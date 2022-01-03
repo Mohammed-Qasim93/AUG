@@ -685,9 +685,6 @@ select {
 .mt-1 {
   margin-top: 0.25rem;
 }
-.mr-10 {
-  margin-right: 2.5rem;
-}
 .block {
   display: block;
 }
@@ -769,12 +766,6 @@ select {
 .flex-1 {
   flex: 1 1 0%;
 }
-.flex-\[0\.5\] {
-  flex: 0.5;
-}
-.flex-\[0\.25\] {
-  flex: 0.25;
-}
 .shrink-0 {
   flex-shrink: 0;
 }
@@ -824,9 +815,6 @@ select {
 .items-center {
   align-items: center;
 }
-.justify-start {
-  justify-content: flex-start;
-}
 .justify-end {
   justify-content: flex-end;
 }
@@ -835,9 +823,6 @@ select {
 }
 .justify-between {
   justify-content: space-between;
-}
-.justify-around {
-  justify-content: space-around;
 }
 .space-x-8 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
@@ -848,22 +833,6 @@ select {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
-}
-.space-x-4 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(1rem * var(--tw-space-x-reverse));
-  margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
-}
-.space-x-16 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(4rem * var(--tw-space-x-reverse));
-  margin-left: calc(4rem * calc(1 - var(--tw-space-x-reverse)));
-}
-.self-center {
-  align-self: center;
-}
-.justify-self-center {
-  justify-self: center;
 }
 .overflow-hidden {
   overflow: hidden;
@@ -950,10 +919,6 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(238 242 255 / var(--tw-bg-opacity));
 }
-.bg-red-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(248 113 113 / var(--tw-bg-opacity));
-}
 .fill-current {
   fill: currentColor;
 }
@@ -962,9 +927,6 @@ select {
 }
 .p-2 {
   padding: 0.5rem;
-}
-.p-64 {
-  padding: 16rem;
 }
 .px-4 {
   padding-left: 1rem;
@@ -1025,27 +987,6 @@ select {
 }
 .pt-6 {
   padding-top: 1.5rem;
-}
-.pt-64 {
-  padding-top: 16rem;
-}
-.pl-64 {
-  padding-left: 16rem;
-}
-.pl-96 {
-  padding-left: 24rem;
-}
-.pr-96 {
-  padding-right: 24rem;
-}
-.pt-32 {
-  padding-top: 8rem;
-}
-.pr-64 {
-  padding-right: 16rem;
-}
-.text-left {
-  text-align: left;
 }
 .text-center {
   text-align: center;

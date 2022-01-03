@@ -31,5 +31,6 @@ Route::prefix('dashboard')->middleware('admin')->group(function () {
     Route::get('/user/create', [Controller::class, 'create'])->name('create');
 });
 
-Route::resource('dashboard/menu', MenuController::class)->middleware('admin');
-Route::resource('dashboard/categories', CategoriesController::class)->middleware('admin');
+Route::resource('dashboard/items', ItemsController::class)->middleware('auth');
+// Route::resource('dashboard/menu', MenuController::class)->middleware('admin');
+// Route::resource('dashboard/categories', CategoriesController::class)->middleware('admin');
