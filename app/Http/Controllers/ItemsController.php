@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Items;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ItemsController extends Controller
 {
@@ -14,7 +15,9 @@ class ItemsController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Items/Index', [
+            'items' => Items::paginate(10),
+        ]);
     }
 
     /**
@@ -24,7 +27,7 @@ class ItemsController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Items/Add');
     }
 
     /**
@@ -55,9 +58,11 @@ class ItemsController extends Controller
      * @param  \App\Models\Items  $items
      * @return \Illuminate\Http\Response
      */
-    public function edit(Items $items)
+    public function edit($items)
     {
-        //
+        return Inertia::render('Items/Edit', [
+            'items' => Items::findOrFail($items)->first()
+        ]);
     }
 
     /**
@@ -67,7 +72,7 @@ class ItemsController extends Controller
      * @param  \App\Models\Items  $items
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Items $items)
+    public function update(Request $request, $items)
     {
         //
     }
@@ -78,7 +83,7 @@ class ItemsController extends Controller
      * @param  \App\Models\Items  $items
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Items $items)
+    public function destroy($items)
     {
         //
     }

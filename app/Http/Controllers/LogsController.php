@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\logs;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class LogsController extends Controller
 {
@@ -14,7 +15,9 @@ class LogsController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Logs/Index', [
+            'logs' => logs::paginate(10),
+        ]);
     }
 
     /**
@@ -24,7 +27,7 @@ class LogsController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Logs/Add');
     }
 
     /**
@@ -55,9 +58,11 @@ class LogsController extends Controller
      * @param  \App\Models\logs  $logs
      * @return \Illuminate\Http\Response
      */
-    public function edit(logs $logs)
+    public function edit($logs)
     {
-        //
+        return Inertia::render('Logs/Edit', [
+            'logs' => logs::findOrFail($logs)->first()
+        ]);
     }
 
     /**
