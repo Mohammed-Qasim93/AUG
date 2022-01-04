@@ -23,6 +23,7 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
 
 Route::middleware('auth')->group(function () {
     Route::get('/user', [Controller::class, 'index'])->name('index');               // Index
+    Route::get('/user/{id}/edit', [Controller::class, 'edit'])->name('edit');        // Edit
     Route::put('/user/{id}', [Controller::class, 'update'])->name('update');        // Update
     Route::delete('/user/{id}', [Controller::class, 'delete'])->name('delelte');    // Delete
 });
