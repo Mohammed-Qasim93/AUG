@@ -5,25 +5,30 @@ import DashboardBar from "../../Components/DashboardBar";
 import Table from "../../Components/Table";
 import TableButtons from "../../Components/TableButtons";
 
-export default function index({ user, auth, errors }) {
+export default function index({ items, auth, errors }) {
     return (
         <Authenticated auth={auth} errors={errors}>
             <Head>
-                <title>المستخدمين</title>
+                <title>السلع</title>
             </Head>
             <div className="flex">
                 <DashboardBar auth={auth} />
                 <div className="flex-1 flex flex-col">
-                    <TableButtons text="إضافة موظف" url="/register" />
+                    <TableButtons
+                        text="إضافة سلعه"
+                        url="/dashboard/items/create"
+                    />
                     <Table
-                        data={user}
+                        data={items}
                         url="user"
                         auth={auth}
                         tableHeaders={[
-                            "الاسم",
-                            "البريد الالكتروني",
+                            "رقم الماده",
+                            "اسم الماده",
+                            "الكمية",
                             "الحالة",
-                            "العمليات",
+                            "الملاحظات",
+                            "تاريخ الاضافة",
                         ]}
                     />
                 </div>

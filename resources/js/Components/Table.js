@@ -4,24 +4,18 @@ import { Inertia } from "@inertiajs/inertia";
 import Swal from "sweetalert2";
 import Button from "./Button";
 
-export default function Table({ data, url, auth }) {
+export default function Table({ data, url, auth, tableHeaders }) {
     const handleClick = (id) => {
         Swal.fire({
-            title: "Do you want to save the changes?",
+            title: "هل انت متأكد من الحذف؟",
             showDenyButton: true,
-            showCancelButton: true,
-            confirmButtonText: "Save",
-            denyButtonText: `Don't save`,
+            confirmButtonText: "نعم",
+            denyButtonText: `كلا`,
         }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
-                Swal.fire("Saved!", "", "success");
-            } else if (result.isDenied) {
-                Swal.fire("Changes are not saved", "", "info");
+                Inertia.delete(`/dashboard/user/${id}`);
             }
         });
-        console.log(id);
-        Inertia.delete(`/dashboard/user/${id}`);
     };
 
     return (
@@ -29,30 +23,15 @@ export default function Table({ data, url, auth }) {
             <table className="max-w-5xl divide-y text-center divide-gray-200">
                 <thead className="bg-gray-50 text-right">
                     <tr>
-                        <th
-                            scope="col"
-                            className=" py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
-                        >
-                            الاسم
-                        </th>
-                        <th
-                            scope="col"
-                            className=" py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
-                        >
-                            الايميل
-                        </th>
-                        <th
-                            scope="col"
-                            className=" py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
-                        >
-                            الحاله
-                        </th>
-                        <th
-                            scope="col"
-                            className="text-center py-3  text-xs font-medium text-gray-500 uppercase tracking-wider"
-                        >
-                            العمليات
-                        </th>
+                        {tableHeaders.map((header, index) => (
+                            <th
+                                key={index}
+                                scope="col"
+                                className=" py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+                            >
+                                {header}
+                            </th>
+                        ))}
                     </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
@@ -103,11 +82,7 @@ export default function Table({ data, url, auth }) {
                                     </svg>
                                 </Link>
                                 <button
-                                    onClick={() =>
-                                        Inertia.delete(
-                                            `/dashboard/user/${item.id}`
-                                        )
-                                    }
+                                    onClick={() => handleClick(item.id)}
                                     className="px-2 py-2 bg-blue-500 rounded-lg mx-2 hover:bg-blue-300 transition duration-500 ease-in-out"
                                 >
                                     <svg
