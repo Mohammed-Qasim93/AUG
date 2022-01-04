@@ -14,10 +14,7 @@ export default function index({ items, auth, errors }) {
             <div className="flex">
                 <DashboardBar auth={auth} />
                 <div className="flex-1 flex flex-col">
-                    <TableButtons
-                        text="إضافة سلعه"
-                        url="/dashboard/items/create"
-                    />
+                    <TableButtons text="إضافة سلعه" url="/items/create" />
                     <Table
                         data={items}
                         url="user"

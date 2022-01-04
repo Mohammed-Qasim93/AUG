@@ -13,15 +13,11 @@ export default function Table({ data, url, auth, tableHeaders }) {
             denyButtonText: `كلا`,
         }).then((result) => {
             if (result.isConfirmed) {
-                Inertia.delete(`/dashboard/user/${id}`);
+                Inertia.delete(`${url}/${id}`);
             }
         });
     };
 
-<<<<<<< HEAD
-export default function Table({ user, auth }) {
-=======
->>>>>>> 612d321e761345d63b9ab19af5b643c77c3859dd
     return (
         <div className="flex flex-col pt-20 pr-32">
             <table className="max-w-5xl divide-y text-center divide-gray-200">
@@ -31,7 +27,7 @@ export default function Table({ user, auth }) {
                             <th
                                 key={index}
                                 scope="col"
-                                className=" py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                className=" py-3 text-center text-base font-medium text-gray-500 uppercase tracking-wider"
                             >
                                 {header}
                             </th>
@@ -39,22 +35,22 @@ export default function Table({ user, auth }) {
                     </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                    {user.data.map((user, key) => (
+                    {data.data.map((item, key) => (
                         <tr key={key}>
                             <td className="pb-4">
-                                {auth.user.isAdmin === 1 ? (
+                                {item.isAdmin === 1 ? (
                                     <Link
                                         className="hover:text-red-500 transition duration-500 ease-in-out"
-                                        href={`/employee/${user.id}/edit`}
+                                        href={`/employee/${item.id}/edit`}
                                     >
-                                        {user.name}
+                                        {item.name}
                                     </Link>
                                 ) : (
-                                    user.name
+                                    item.name
                                 )}
                             </td>
-                            <td className="py-4 ">{user.email}</td>
-                            {user.isAdmin ? (
+                            <td className="py-4 ">{item.email}</td>
+                            {item.isAdmin ? (
                                 <td className="py-4 text-green-600 px-5">
                                     مدير
                                 </td>
@@ -63,7 +59,7 @@ export default function Table({ user, auth }) {
                             )}
                             <td className="py-4 flex items-center justify-center">
                                 <Link
-                                    href={`/employee/${user.id}/edit`}
+                                    href={`/employee/${item.id}/edit`}
                                     className="bg-green-500 text-black p-2 rounded-lg mx-2 hover:bg-green-300 transition duration-500 ease-in-out"
                                 >
                                     <svg
@@ -81,13 +77,8 @@ export default function Table({ user, auth }) {
                                         />
                                     </svg>
                                 </Link>
-<<<<<<< HEAD
-                                <Link
-                                    href={`/dashboard/${user.id}`}
-=======
                                 <button
                                     onClick={() => handleClick(item.id)}
->>>>>>> 612d321e761345d63b9ab19af5b643c77c3859dd
                                     className="px-2 py-2 bg-blue-500 rounded-lg mx-2 hover:bg-blue-300 transition duration-500 ease-in-out"
                                 >
                                     <svg

@@ -30,7 +30,7 @@ export default function DashboardBar({ auth }) {
                                     />
                                 </svg>
                             </span>
-                            <Link href="/dashboard/user">
+                            <Link href="/user">
                                 <span className="mr-2">المستخدمين</span>
                             </Link>
                         </li>
@@ -54,7 +54,7 @@ export default function DashboardBar({ auth }) {
                                     />
                                 </svg>
                             </span>
-                            <Link href="/dashboard/items">
+                            <Link href="/items">
                                 <span className="mr-2">المواد</span>
                             </Link>
                         </li>
