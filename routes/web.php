@@ -15,13 +15,11 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login')
-    ]);
+    return Inertia::render('Welcome');
 });
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
-})->middleware(['admin'])->name('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
