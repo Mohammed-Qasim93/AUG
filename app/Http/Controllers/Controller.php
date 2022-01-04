@@ -37,6 +37,17 @@ class Controller extends BaseController
             'name' => 'required|unique:users,name|string',
             'email' => 'required|unique:users,email|email',
             'password' => 'required|confirmed',
+        ],[
+            'name.required' => 'يجب ادخال الاسم',
+            'name.unique' => 'الاسم موجود فعلاً',
+            'name.string' => 'الاسم غير صالح',
+
+            'email.required' => 'يجب ادخال البريد الالكتروني',
+            'email.unique' => 'البريد الالكتروني موجود فعلاً',
+            'email.string' => 'البريد الالكتروني غير صالح',
+
+            'password.required' => 'يجب ادخال كلمة المرور',
+            'password.required' => 'كلمة المرور غير متطابقة',
         ]);
 
         $user->update([

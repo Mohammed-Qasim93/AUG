@@ -46,6 +46,21 @@ class ItemsController extends Controller
             'no' => 'required|integer',
             'desc' => 'string',
             'note' => 'string',
+        ],[
+            'name.required' => 'يجب ادخال الاسم',
+            'name.required' => 'الاسم غير صالح',
+
+            'category.required' => 'يجب ادخال الفئة',
+            'category.string' => 'الفئة المدخلة غير صالحة',
+
+            'qty.required' => 'يجب ادخال الكمية',
+            'qty.integer' => 'يجب ادخال الكمية كعدد',
+
+            'no.required' => 'يجب ادخال العدد',
+            'no.integer' => 'صيغة العدد غير صحيحة',
+
+            'desc.string' => 'صيغة الوصف غير صحيحة',
+            'note.string' => 'صيغة الملاحظات غير صحيحة',
         ]);
 
         Items::create([
@@ -99,6 +114,21 @@ class ItemsController extends Controller
             'no' => 'required|integer',
             'desc' => 'string',
             'note' => 'string',
+        ],[
+            'name.required' => 'يجب ادخال الاسم',
+            'name.required' => 'الاسم غير صالح',
+
+            'category.required' => 'يجب ادخال الفئة',
+            'category.string' => 'الفئة المدخلة غير صالحة',
+
+            'qty.required' => 'يجب ادخال الكمية',
+            'qty.integer' => 'يجب ادخال الكمية كعدد',
+
+            'no.required' => 'يجب ادخال العدد',
+            'no.integer' => 'صيغة العدد غير صحيحة',
+
+            'desc.string' => 'صيغة الوصف غير صحيحة',
+            'note.string' => 'صيغة الملاحظات غير صحيحة',
         ]);
 
         $item->update([
