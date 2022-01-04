@@ -3895,7 +3895,7 @@ function Table(_ref) {
               className: "pb-4",
               children: auth.user.isAdmin === 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
                 className: "hover:text-red-500 transition duration-500 ease-in-out",
-                href: "/employee/".concat(item.id, "/edit"),
+                href: "/".concat(url, "/").concat(item.id, "/edit"),
                 children: item.name
               }) : item.name
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
