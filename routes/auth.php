@@ -7,12 +7,24 @@ use App\Http\Controllers\ItemsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/register', [RegisteredUserController::class, 'create'])
+<<<<<<< HEAD
                 ->middleware(['auth'])
+=======
+>>>>>>> 612d321e761345d63b9ab19af5b643c77c3859dd
                 ->name('register');
 
+
 Route::post('/register', [RegisteredUserController::class, 'store'])
+<<<<<<< HEAD
                 ->middleware(['auth'])
                 ->name('register');
+=======
+                ->name('register');
+
+
+
+
+>>>>>>> 612d321e761345d63b9ab19af5b643c77c3859dd
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])
                 ->middleware('guest')

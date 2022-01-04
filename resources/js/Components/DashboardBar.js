@@ -54,8 +54,8 @@ export default function DashboardBar({ auth }) {
                                     />
                                 </svg>
                             </span>
-                            <Link href="/dashboard/menu">
-                                <span className="mr-2">الوجبات</span>
+                            <Link href="/dashboard/items">
+                                <span className="mr-2">المواد</span>
                             </Link>
                         </li>
                         <li className="mb-2 px-4 py-4 text-gray-100 flex flex-row  border-gray-300 hover:text-slate-700   hover:bg-gray-300  hover:font-bold rounded-lg">
