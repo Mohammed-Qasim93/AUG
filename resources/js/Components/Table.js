@@ -41,7 +41,7 @@ export default function Table({ data, url, auth, tableHeaders }) {
                                 {auth.user.isAdmin === 1 ? (
                                     <Link
                                         className="hover:text-red-500 transition duration-500 ease-in-out"
-                                        href={`/employee/${item.id}/edit`}
+                                        href={`/${url}/${item.id}/edit`}
                                     >
                                         {item.name}
                                     </Link>
