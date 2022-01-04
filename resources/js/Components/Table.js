@@ -38,7 +38,7 @@ export default function Table({ data, url, auth, tableHeaders }) {
                     {data.data.map((item, key) => (
                         <tr key={key}>
                             <td className="pb-4">
-                                {item.isAdmin === 1 ? (
+                                {auth.user.isAdmin === 1 ? (
                                     <Link
                                         className="hover:text-red-500 transition duration-500 ease-in-out"
                                         href={`/employee/${item.id}/edit`}
@@ -59,7 +59,7 @@ export default function Table({ data, url, auth, tableHeaders }) {
                             )}
                             <td className="py-4 flex items-center justify-center">
                                 <Link
-                                    href={`/employee/${item.id}/edit`}
+                                    href={`/${url}/${item.id}/edit`}
                                     className="bg-green-500 text-black p-2 rounded-lg mx-2 hover:bg-green-300 transition duration-500 ease-in-out"
                                 >
                                     <svg

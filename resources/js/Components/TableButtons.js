@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, Head } from "@inertiajs/inertia-react";
 
-export default function TableButtons({ user, auth, errors, text, url }) {
+export default function TableButtons({ text, url }) {
     return (
         <div className="flex justify-between w-full px-32 pt-16">
             <Link
