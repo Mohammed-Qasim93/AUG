@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Items;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class ItemsController extends Controller
@@ -38,7 +39,23 @@ class ItemsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+            'category' => 'required|string',
+            'qty' => 'required|integer',
+            'no' => 'required|integer',
+            'desc' => 'string',
+            'note' => 'string',
+        ]);
+
+        Items::create([
+             'name' => $request['name'],
+             'category' => $request['category'],
+             'qty' => $request['qty'],
+             'no' => $request['no'],
+             'desc' => $request['desc'],
+             'note' => $request['name'],
+        ]);
     }
 
     /**
@@ -74,7 +91,25 @@ class ItemsController extends Controller
      */
     public function update(Request $request, $items)
     {
-        //
+        $item = Items::findOrFail($items);
+        $request->validate([
+            'name' => 'required|string',
+            'category' => 'required|string',
+            'qty' => 'required|integer',
+            'no' => 'required|integer',
+            'desc' => 'string',
+            'note' => 'string',
+        ]);
+
+        $item->update([
+            'name' => $request->name,
+            'category' => $request->category,
+            'qty' => $request->qty,
+            'no' => $request->no,
+            'desc' => $request->desc,
+            'note' => $request->note,
+        ]);
+        return Redirect::route('dashboard')->with('success', 'تم التعديل بنجاح');
     }
 
     /**
@@ -85,6 +120,8 @@ class ItemsController extends Controller
      */
     public function destroy($items)
     {
-        //
+        $item = Items::findOrFail($items);
+        $item->delete();
+        return Redirect::route('dashboard')->with('success', 'تم الحذف بنجاح');
     }
 }
