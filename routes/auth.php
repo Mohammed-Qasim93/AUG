@@ -6,14 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\ItemsController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/register', [RegisteredUserController::class, 'create'])
-                ->middleware(['auth'])
-                ->name('register');
+Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
 
-
-Route::post('/register', [RegisteredUserController::class, 'store'])
-                ->middleware(['auth'])
-                ->name('register');
+Route::post('/register', [RegisteredUserController::class, 'store']);
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])
                 ->middleware('guest')
@@ -26,15 +21,10 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->middleware('auth')
                 ->name('logout');
 
-Route::prefix('dashboard')->middleware('admin')->group(function () {
-    Route::get('/user', [Controller::class, 'index'])->name('index');               //Index
-    Route::get('/user/create', [Controller::class, 'add'])->name('add');            //Create
-    Route::post('/user', [Controller::class, 'insert'])->name('insert');            //Store
-    Route::get('/user/{id}/edit', [Controller::class, 'edit'])->name('edit');       //Edit
-    Route::put('/user/{update}', [Controller::class, 'update'])->name('update');    //Update
-    Route::delete('/user/{id}', [Controller::class, 'delete'])->name('delelte');    //Delete
+Route::middleware('admin')->group(function () {
+    Route::get('/user', [Controller::class, 'index'])->name('index');               // Index
+    Route::put('/user/{id}', [Controller::class, 'update'])->name('update');        // Update
+    Route::delete('/user/{id}', [Controller::class, 'delete'])->name('delelte');    // Delete
 });
 
-Route::resource('dashboard/items', ItemsController::class)->middleware('auth');
-// Route::resource('dashboard/menu', MenuController::class)->middleware('admin');
-// Route::resource('dashboard/categories', CategoriesController::class)->middleware('admin');
+Route::resource('items', ItemsController::class)->middleware('auth');
