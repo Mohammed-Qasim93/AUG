@@ -13,8 +13,11 @@ export default function DashboardBar({ auth }) {
                 </div>
                 <div className="mt-10 mb-4">
                     <ul className="mr-4">
-                        <li className="mb-2 px-4 py-4 text-gray-100 flex flex-row  border-gray-300 hover:text-slate-700   hover:bg-gray-300  hover:font-bold rounded-lg">
-                            <Link href="/user" className="flex items-center">
+                        <li className="mb-2  text-gray-100 flex flex-row  border-gray-300 hover:text-slate-700   hover:bg-gray-300  hover:font-bold rounded-lg">
+                            <Link
+                                href="/user"
+                                className="flex px-4 py-4 items-center w-full"
+                            >
                                 <span>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -34,8 +37,11 @@ export default function DashboardBar({ auth }) {
                                 <span className="mr-2">المستخدمين</span>
                             </Link>
                         </li>
-                        <li className="mb-2 px-4 py-4 text-gray-100 flex flex-row  border-gray-300 hover:text-slate-700   hover:bg-gray-300  hover:font-bold rounded-lg">
-                            <Link href="/items" className="flex items-center">
+                        <li className="mb-2 text-gray-100 flex flex-row  border-gray-300 hover:text-slate-700   hover:bg-gray-300  hover:font-bold rounded-lg">
+                            <Link
+                                href="/items"
+                                className="flex px-4 py-4 items-center w-full"
+                            >
                                 <span>
                                     <svg
                                         className="fill-current h-5 w-5 "
@@ -58,10 +64,10 @@ export default function DashboardBar({ auth }) {
                                 <span className="mr-2">المواد</span>
                             </Link>
                         </li>
-                        <li className="mb-2 px-4 py-4 text-gray-100 flex flex-row  border-gray-300 hover:text-slate-700   hover:bg-gray-300  hover:font-bold rounded-lg">
+                        <li className="mb-2  text-gray-100 flex flex-row  border-gray-300 hover:text-slate-700   hover:bg-gray-300  hover:font-bold rounded-lg">
                             <Link
                                 href="/dashboard/categories"
-                                className="flex items-center"
+                                className="flex  px-4 py-4 items-center w-full "
                             >
                                 <span>
                                     <svg
@@ -117,24 +123,27 @@ export default function DashboardBar({ auth }) {
                                 <span className="mr-2">الفئات</span>
                             </Link>
                         </li>
-                        <li className="mb-2 px-4 py-4 text-gray-100 flex flex-row  border-gray-300 hover:text-slate-700   hover:bg-gray-300  hover:font-bold rounded-lg">
-                            <span>
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-6 w-6"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
-                                    />
-                                </svg>
-                            </span>
-                            <Link href="/orders">
+                        <li className="mb-2  text-gray-100 flex flex-row  border-gray-300 hover:text-slate-700   hover:bg-gray-300  hover:font-bold rounded-lg">
+                            <Link
+                                className="flex px-4 py-4 items-center w-full"
+                                href="/orders"
+                            >
+                                <span>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-6 w-6"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                                        />
+                                    </svg>
+                                </span>
                                 <span className="mr-2">الطلبات</span>
                             </Link>
                         </li>

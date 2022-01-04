@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Head, Link, useForm } from "@inertiajs/inertia-react";
 import Input from "@/Components/Input";
 import Label from "@/Components/Label";
 import Button from "@/Components/Button";
 import Authenticated from "@/Layouts/Authenticated";
 import DashboardBar from "../../Components/DashboardBar";
+import ValidationErrors from "@/Components/ValidationErrors";
 
-export default function Edit({ status }) {
+export default function Edit({ status, auth }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         email: "",
         password: "",
@@ -35,10 +36,10 @@ export default function Edit({ status }) {
 
     return (
         <>
-            <Authenticated auth={props.auth} errors={props.errors}>
+            <Authenticated auth={auth} errors={errors}>
                 <Head title="الفئات" />
                 <div className="flex">
-                    <DashboardBar auth={props.auth} />
+                    <DashboardBar auth={auth} />
                     {status && (
                         <div className="mb-4 font-medium text-sm text-green-600">
                             {status}
@@ -73,20 +74,6 @@ export default function Edit({ status }) {
                                 autoComplete="current-password"
                                 handleChange={onHandleChange}
                             />
-                        </div>
-
-                        <div className="block mt-4">
-                            <label className="flex items-center ">
-                                <Checkbox
-                                    name="remember"
-                                    value={data.remember}
-                                    handleChange={onHandleChange}
-                                />
-
-                                <span className="mr-2 text-sm font-tajawal-light font-bold text-gray-600">
-                                    تذكرني
-                                </span>
-                            </label>
                         </div>
 
                         <div className="flex items-center justify-center mt-4">

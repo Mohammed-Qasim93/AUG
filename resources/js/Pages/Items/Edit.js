@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Head, Link, useForm } from "@inertiajs/inertia-react";
 import Input from "@/Components/Input";
 import Label from "@/Components/Label";
 import Button from "@/Components/Button";
 import Authenticated from "@/Layouts/Authenticated";
 import DashboardBar from "../../Components/DashboardBar";
+import ValidationErrors from "@/Components/ValidationErrors";
 
 export default function Edit({ status }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -73,20 +74,6 @@ export default function Edit({ status }) {
                                 autoComplete="current-password"
                                 handleChange={onHandleChange}
                             />
-                        </div>
-
-                        <div className="block mt-4">
-                            <label className="flex items-center ">
-                                <Checkbox
-                                    name="remember"
-                                    value={data.remember}
-                                    handleChange={onHandleChange}
-                                />
-
-                                <span className="mr-2 text-sm font-tajawal-light font-bold text-gray-600">
-                                    تذكرني
-                                </span>
-                            </label>
                         </div>
 
                         <div className="flex items-center justify-center mt-4">
