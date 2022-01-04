@@ -1,9 +1,9 @@
 import React from "react";
 import { Link, Head } from "@inertiajs/inertia-react";
 
-export default function Table({ user, auth }) {
+export default function Table({ data, url, auth }) {
     return (
-        <div className="flex flex-col pt-20 pr-32">
+        <div className="flex flex-col p-8 pr-32">
             <table className="max-w-5xl divide-y text-center divide-gray-200">
                 <thead className="bg-gray-50 text-right">
                     <tr>
@@ -34,31 +34,35 @@ export default function Table({ user, auth }) {
                     </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                    {user.data.map((user, key) => (
+                    {data.data.map((item, key) => (
                         <tr key={key}>
                             <td className="pb-4">
                                 {auth.user.isAdmin === 1 ? (
                                     <Link
                                         className="hover:text-red-500 transition duration-500 ease-in-out"
-                                        href={`/employee/${user.id}/edit`}
+                                        href={`/dashboard/${url}/${item.id}/edit`}
                                     >
-                                        {user.name}
+                                        {item.name}
                                     </Link>
                                 ) : (
-                                    user.name
+                                    item.name
                                 )}
                             </td>
-                            <td className="py-4 ">{user.email}</td>
-                            {user.isAdmin ? (
-                                <td className="py-4 text-green-600 px-5">
-                                    مدير
-                                </td>
-                            ) : (
-                                <td className="py-4 text-red-600 px-5">موظف</td>
-                            )}
+                            <td className="py-4 ">{item.email}</td>
+                            {item.email ? (
+                                item.isAdmin ? (
+                                    <td className="py-4 text-green-600 px-5">
+                                        مدير
+                                    </td>
+                                ) : (
+                                    <td className="py-4 text-red-600 px-5">
+                                        موظف
+                                    </td>
+                                )
+                            ) : null}
                             <td className="py-4 flex items-center justify-center">
                                 <Link
-                                    href={`/employee/${user.id}/edit`}
+                                    href={`/dashboard/${url}/${item.id}/edit`}
                                     className="bg-green-500 text-black p-2 rounded-lg mx-2 hover:bg-green-300 transition duration-500 ease-in-out"
                                 >
                                     <svg
@@ -77,7 +81,7 @@ export default function Table({ user, auth }) {
                                     </svg>
                                 </Link>
                                 <Link
-                                    href={`/dashboard/${user.id}`}
+                                    href={`/dashboard/${item.id}`}
                                     className="px-2 py-2 bg-blue-500 rounded-lg mx-2 hover:bg-blue-300 transition duration-500 ease-in-out"
                                 >
                                     <svg
