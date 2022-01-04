@@ -6,13 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\ItemsController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/register', [RegisteredUserController::class, 'create'])
+                ->name('register');
+
+
 Route::post('/register', [RegisteredUserController::class, 'store'])
                 ->middleware(['auth'])
                 ->middleware(['guest'])
                 ->name('register');
 
-Route::post('/register', [RegisteredUserController::class, 'store'])
-                ->middleware(['guest']);
+
 
 
 

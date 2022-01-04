@@ -1,7 +1,29 @@
 import React from "react";
 import { Link, Head } from "@inertiajs/inertia-react";
+import { Inertia } from "@inertiajs/inertia";
+import Swal from "sweetalert2";
+import Button from "./Button";
 
 export default function Table({ data, url, auth }) {
+    const handleClick = (id) => {
+        Swal.fire({
+            title: "Do you want to save the changes?",
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: "Save",
+            denyButtonText: `Don't save`,
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                Swal.fire("Saved!", "", "success");
+            } else if (result.isDenied) {
+                Swal.fire("Changes are not saved", "", "info");
+            }
+        });
+        console.log(id);
+        Inertia.delete(`/dashboard/user/${id}`);
+    };
+
     return (
         <div className="flex flex-col p-8 pr-32">
             <table className="max-w-5xl divide-y text-center divide-gray-200">
@@ -80,8 +102,12 @@ export default function Table({ data, url, auth }) {
                                         />
                                     </svg>
                                 </Link>
-                                <Link
-                                    href={`/dashboard/${item.id}`}
+                                <button
+                                    onClick={() =>
+                                        Inertia.delete(
+                                            `/dashboard/user/${item.id}`
+                                        )
+                                    }
                                     className="px-2 py-2 bg-blue-500 rounded-lg mx-2 hover:bg-blue-300 transition duration-500 ease-in-out"
                                 >
                                     <svg
@@ -99,7 +125,7 @@ export default function Table({ data, url, auth }) {
                                         <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z" />
                                         <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z" />
                                     </svg>
-                                </Link>
+                                </button>
                             </td>
                         </tr>
                     ))}

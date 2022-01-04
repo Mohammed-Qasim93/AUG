@@ -6,7 +6,7 @@ import Button from "@/Components/Button";
 import Authenticated from "@/Layouts/Authenticated";
 import DashboardBar from "../../Components/DashboardBar";
 
-export default function index({ status }) {
+export default function Edit({ status }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         email: "",
         password: "",

@@ -8,6 +8,8 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Redirect;
+
 
 class Controller extends BaseController
 {
@@ -32,4 +34,17 @@ class Controller extends BaseController
         ]);
     }
 
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Items  $items
+     * @return \Illuminate\Http\Response
+     */
+    public function delete($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+        return Redirect::route('dashboard')->with('success', 'تم الحذف بنجاح');
+    }
 }
