@@ -1,15 +1,36 @@
 import React, { useState } from "react";
-import { Link, Head } from "@inertiajs/inertia-react";
+import { Link, Head, useForm } from "@inertiajs/inertia-react";
 import Authenticated from "@/Layouts/Authenticated";
 import DashboardBar from "../../Components/DashboardBar";
 import Table from "../../Components/Table";
 import TableButtons from "../../Components/TableButtons";
-import Pagination from "../../Components/Pagination";
+import Input from "../../Components/Input";
+import Label from "../../Components/Label";
 import Button from "../../Components/Button";
+import Filters from "../../Components/Filters";
+import { Inertia } from "@inertiajs/inertia";
 
 export default function index({ items, auth, errors }) {
-    console.log(items);
+    const { data, setData } = useForm({
+        from: "",
+        to: "",
+    });
 
+    const onHandleChange = (event) => {
+        setData({
+            ...data,
+            [event.target.name]: event.target.value,
+        });
+    };
+
+    const submit = (e) => {
+        e.preventDefault();
+        Inertia.get(
+            `/items?`,
+            { date_from: data.from, date_to: data.to },
+            { replaces: true, preserveState: true }
+        );
+    };
     return (
         <Authenticated auth={auth} errors={errors}>
             <Head>
@@ -20,11 +41,46 @@ export default function index({ items, auth, errors }) {
                 <div className="flex-1 flex flex-col max-w-6xl">
                     <div className="flex justify-between items-end h-20 ">
                         <TableButtons text="إضافة مادة" url="/items/create" />
-                        <Button
-                            className="bg-orange-400 hover:bg-orange-500"
-                            children="ترتيب"
-                        />
                     </div>
+                    <div className="flex flex-col justify-end pr-32 items-start max-w-6xl ">
+                        <Filters text="اخر يوم :" />
+                        <Filters text="اخر اسبوع :" />
+                        <Filters text="اخر شهر :" />
+                        <div className="flex gap-8">
+                            <div className="flex items-center gap-4">
+                                <Label value="من :"></Label>
+                                <Input
+                                    type="date"
+                                    name="from"
+                                    value={data.from}
+                                    className="mt-1 block w-full"
+                                    autoComplete="username"
+                                    isFocused={true}
+                                    handleChange={onHandleChange}
+                                />
+                            </div>
+                            <div className="flex items-center gap-4">
+                                <Label value="الى :"></Label>
+                                <Input
+                                    type="date"
+                                    name="to"
+                                    value={data.to}
+                                    className="mt-1 block w-full"
+                                    autoComplete="username"
+                                    isFocused={true}
+                                    handleChange={onHandleChange}
+                                />
+                            </div>
+                            <div className="flex items-center gap-4">
+                                <Button
+                                    className="bg-orange-400 hover:bg-orange-500"
+                                    handleClick={submit}
+                                    children="بحث"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
                     <Table
                         data={items.data}
                         paginate={items}

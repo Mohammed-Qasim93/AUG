@@ -6,6 +6,7 @@ import Button from "./Button";
 import moment from "moment";
 import "moment/locale/ar";
 import Pagination from "./Pagination";
+import Filters from "./Filters";
 
 export default function Table({ data, url, paginate, auth, tableHeaders }) {
     console.log(data);
@@ -58,14 +59,16 @@ export default function Table({ data, url, paginate, auth, tableHeaders }) {
                             {item.email && (
                                 <td className="py-4 ">{item.email}</td>
                             )}
-                            {item.qty && <td className="py-4 ">{item.qty}</td>}
-                            {item.qty && (
+                            {item.qty >= 0 && (
+                                <td className="py-4 ">{item.qty}</td>
+                            )}
+                            {item.category && (
                                 <td className="py-4 ">{item.category}</td>
                             )}
-                            {item.qty && (
+                            {item.state && (
                                 <td className="py-4 ">{item.state}</td>
                             )}
-                            {item.qty && (
+                            {item.category && (
                                 <td className="py-4 ">
                                     {moment(item.created_at).fromNow()}
                                 </td>
