@@ -1,22 +1,24 @@
 import React, { useEffect } from "react";
 import { Head, Link, useForm } from "@inertiajs/inertia-react";
 import Input from "@/Components/Input";
-import Label from "@/Components/Label";
 import Button from "@/Components/Button";
 import Authenticated from "@/Layouts/Authenticated";
 import DashboardBar from "../../Components/DashboardBar";
 import ValidationErrors from "@/Components/ValidationErrors";
 import { Inertia } from "@inertiajs/inertia";
+import Swal from "sweetalert2";
+import axios from "axios";
 
-export default function Add({ status, auth }) {
-    const { data, setData, post, processing, errors, reset } = useForm({
-        name: "",
-        category: "",
-        qty: "",
-        state: "",
-        active: "",
-        note: "",
-        desc: "",
+export default function Add({ auth, errors, items }) {
+    const { data, setData } = useForm({
+        name: items.name || "",
+        category: items.category || "",
+        qty: items.qty || "",
+        no: items.no || "",
+        note: items.note || "",
+        desc: items.desc || "",
+        state: items.state || "",
+        _method: "PUT",
     });
 
     const onHandleChange = (event) => {
@@ -28,20 +30,30 @@ export default function Add({ status, auth }) {
         );
     };
 
-    // const submit = (e) => {
-    //     e.preventDefault();
-    //     post(route("items/create"));
-    // };
+    const submit = (e) => {
+        e.preventDefault();
+        Inertia.post(`/items/${items.id}`, data);
+    };
 
     // const handleChange = (e) => {
     //     const { name, value } = e.target;
     //     setData({ ...data, [name]: value });
     // };
 
-    const handelClick = (e) => {
-        e.preventDefault();
-        Inertia.post(`/items`, data);
-    };
+    // const handelClick = (e) => {
+    //     e.preventDefault();
+    //     axios.post("/items", data).then((response) => {
+    //         if (response.status === 201) {
+    //             Swal.fire({
+    //                 title: "تمت العملية بنجاح",
+    //                 icon: "success",
+    //                 showConfirmButton: false,
+    //                 timer: 1500,
+    //             });
+    //             Inertia.replace("/items");
+    //         }
+    //     });
+    // };
 
     return (
         <>
@@ -56,11 +68,11 @@ export default function Add({ status, auth }) {
                                     <div className="mt-10 sm:mt-0">
                                         <div className="grid grid-cols-2 gap-6">
                                             <div className="mt-5 md:mt-0 col-span-2">
-                                                <form onSubmit={handelClick}>
+                                                <form onSubmit={submit}>
                                                     <div className="shadow overflow-hidden sm:rounded-md">
                                                         <div className="px-4 py-5 bg-white sm:p-6">
                                                             <div className="grid grid-cols-6 gap-6">
-                                                                <div className="col-span-6 sm:col-span-3">
+                                                                <div className="col-span-6">
                                                                     <label
                                                                         htmlFor="name"
                                                                         className="block text-sm font-medium text-gray-700"
@@ -79,8 +91,13 @@ export default function Add({ status, auth }) {
                                                                         }
                                                                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                                     />
+                                                                    <small className="text-red-500 text-sm">
+                                                                        {
+                                                                            errors.name
+                                                                        }
+                                                                    </small>
                                                                 </div>
-                                                                <div className="col-span-6 sm:col-span-3">
+                                                                <div className="col-span-6  sm:col-span-2">
                                                                     <label
                                                                         htmlFor="category"
                                                                         className="block text-sm font-medium text-gray-700"
@@ -98,25 +115,77 @@ export default function Add({ status, auth }) {
                                                                         name="category"
                                                                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                                     />
+                                                                    <small className="text-red-500 text-sm">
+                                                                        {
+                                                                            errors.category
+                                                                        }
+                                                                    </small>
                                                                 </div>
-                                                                <div className="col-span-6">
+                                                                <div className="col-span-6 sm:col-span-2">
                                                                     <label
-                                                                        htmlFor="note"
+                                                                        htmlFor="qty"
                                                                         className="block text-sm font-medium text-gray-700"
                                                                     >
-                                                                        الملاحظات
+                                                                        العدد
                                                                     </label>
                                                                     <Input
                                                                         handleChange={
                                                                             onHandleChange
                                                                         }
-                                                                        area="true"
-                                                                        type="text"
+                                                                        type="number"
                                                                         value={
-                                                                            data.note
+                                                                            data.qty
                                                                         }
-                                                                        name="note"
-                                                                        autoComplete="street-address"
+                                                                        name="qty"
+                                                                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                                    />
+                                                                    <small className="text-red-500 text-sm">
+                                                                        {
+                                                                            errors.qty
+                                                                        }
+                                                                    </small>
+                                                                </div>
+                                                                <div className="col-span-6 sm:col-span-2">
+                                                                    <label
+                                                                        htmlFor="qty"
+                                                                        className="block text-sm font-medium text-gray-700"
+                                                                    >
+                                                                        الرقم
+                                                                        التسلسلي
+                                                                    </label>
+                                                                    <Input
+                                                                        handleChange={
+                                                                            onHandleChange
+                                                                        }
+                                                                        type="number"
+                                                                        name="no"
+                                                                        value={
+                                                                            data.no
+                                                                        }
+                                                                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                                    />
+                                                                    <small className="text-red-500 text-sm">
+                                                                        {
+                                                                            errors.no
+                                                                        }
+                                                                    </small>
+                                                                </div>
+                                                                <div className="col-span-6">
+                                                                    <label
+                                                                        htmlFor="postal-code"
+                                                                        className="block text-sm font-medium text-gray-700"
+                                                                    >
+                                                                        الحاله
+                                                                    </label>
+                                                                    <Input
+                                                                        handleChange={
+                                                                            onHandleChange
+                                                                        }
+                                                                        type="text"
+                                                                        name="state"
+                                                                        value={
+                                                                            data.state
+                                                                        }
                                                                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                                     />
                                                                 </div>
@@ -140,66 +209,24 @@ export default function Add({ status, auth }) {
                                                                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                                     />
                                                                 </div>
-
-                                                                <div className="col-span-6 sm:col-span-6 lg:col-span-2">
+                                                                <div className="col-span-6">
                                                                     <label
-                                                                        htmlFor="qty"
+                                                                        htmlFor="note"
                                                                         className="block text-sm font-medium text-gray-700"
                                                                     >
-                                                                        العدد
+                                                                        الملاحظات
                                                                     </label>
                                                                     <Input
                                                                         handleChange={
                                                                             onHandleChange
                                                                         }
-                                                                        type="text"
-                                                                        name="qty"
-                                                                        value={
-                                                                            data.qty
-                                                                        }
-                                                                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                                    />
-                                                                </div>
-
-                                                                <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                                                                    <label
-                                                                        htmlFor="active"
-                                                                        className="block text-sm font-medium text-gray-700"
-                                                                    >
-                                                                        قابل
-                                                                        للاستهلاك
-                                                                    </label>
-                                                                    <Input
-                                                                        handleChange={
-                                                                            onHandleChange
-                                                                        }
+                                                                        area="true"
                                                                         type="text"
                                                                         value={
-                                                                            data.active
+                                                                            data.note
                                                                         }
-                                                                        name="active"
-                                                                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                                    />
-                                                                </div>
-
-                                                                <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                                                                    <label
-                                                                        htmlFor="postal-code"
-                                                                        className="block text-sm font-medium text-gray-700"
-                                                                    >
-                                                                        الحاله
-                                                                    </label>
-                                                                    <Input
-                                                                        handleChange={
-                                                                            onHandleChange
-                                                                        }
-                                                                        type="text"
-                                                                        name="postal-code"
-                                                                        id="postal-code"
-                                                                        value={
-                                                                            data.state
-                                                                        }
-                                                                        autoComplete="postal-code"
+                                                                        name="note"
+                                                                        autoComplete="street-address"
                                                                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                                     />
                                                                 </div>

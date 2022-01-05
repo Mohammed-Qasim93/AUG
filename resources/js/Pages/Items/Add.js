@@ -18,7 +18,6 @@ export default function Add({ auth, errors }) {
         note: "",
         desc: "",
         state: "",
-        active: "",
     });
 
     const onHandleChange = (event) => {

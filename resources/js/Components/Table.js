@@ -61,6 +61,9 @@ export default function Table({ data, url, auth, tableHeaders }) {
                                 <td className="py-4 ">{item.category}</td>
                             )}
                             {item.qty && (
+                                <td className="py-4 ">{item.state}</td>
+                            )}
+                            {item.qty && (
                                 <td className="py-4 ">
                                     {moment(item.created_at).fromNow()}
                                 </td>

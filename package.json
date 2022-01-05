@@ -30,6 +30,8 @@
         "chart.js": "^3.7.0",
         "moment": "^2.29.1",
         "react-chartjs-2": "^4.0.0",
+        "react-paginate": "^8.1.0",
+        "react-progress-2": "^4.4.3",
         "sweetalert2": "^11.3.3"
     }
 }
