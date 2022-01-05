@@ -25,16 +25,16 @@ class Controller extends BaseController
         ]);
     }
 
-    public function edit($user)
+    public function edit($id)
     {
         return Inertia::render('User/Edit', [
-            'user' => User::findOrFail($user)->first()
+            'user' => User::findOrFail($id)->first()
         ]);
     }
 
-    public function update(Request $request, $user){
-        $user = User::findOrFail($user);
-        if($request->password !== $user->password && $request->password !== null){
+    public function update(Request $request, $id){
+        $user = User::findOrFail($id);
+        if($request->password !== $id->password && $request->password !== null){
             $request->validate([
                 'password' => ['required', 'confirmed', Rules\Password::min(8)],
                 ],[
@@ -62,7 +62,7 @@ class Controller extends BaseController
             'isAdmin' => $request->isAdmin,
         ]);
 
-        return Redirect::route('/user')->with('success', 'تمت الاضافة بنجاح');
+        return Redirect::route('user.index')->with('success', 'تمت الاضافة بنجاح');
     }
 
 

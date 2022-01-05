@@ -75,7 +75,7 @@ class ItemsController extends Controller
      * @param  \App\Models\Items  $items
      * @return \Illuminate\Http\Response
      */
-    public function show(Items $items)
+    public function show($id)
     {
         //
     }
@@ -86,10 +86,10 @@ class ItemsController extends Controller
      * @param  \App\Models\Items  $items
      * @return \Illuminate\Http\Response
      */
-    public function edit($items)
+    public function edit($id)
     {
         return Inertia::render('Items/Edit', [
-            'items' => Items::findOrFail($items)->first()
+            'items' => Items::findOrFail($id)
         ]);
     }
 
@@ -100,9 +100,9 @@ class ItemsController extends Controller
      * @param  \App\Models\Items  $items
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $items)
+    public function update(Request $request, $id)
     {
-        $item = Items::findOrFail($items);
+        $item = Items::findOrFail($id);
         $request->validate([
             'name' => 'required|string',
             'category' => 'required|string',
@@ -135,7 +135,7 @@ class ItemsController extends Controller
             'desc' => $request->desc,
             'note' => $request->note,
         ]);
-        return Redirect::route('dashboard')->with('success', 'تم التعديل بنجاح');
+        return Redirect::route('items.index')->with('success', 'تم التعديل بنجاح');
     }
 
     /**
@@ -144,10 +144,10 @@ class ItemsController extends Controller
      * @param  \App\Models\Items  $items
      * @return \Illuminate\Http\Response
      */
-    public function destroy($items)
+    public function destroy($id)
     {
-        $item = Items::findOrFail($items);
+        $item = Items::findOrFail($id);
         $item->delete();
-        return Redirect::route('dashboard')->with('success', 'تم الحذف بنجاح');
+        return Redirect::route('items.index')->with('success', 'تم الحذف بنجاح');
     }
 }
