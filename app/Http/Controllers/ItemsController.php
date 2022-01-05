@@ -23,7 +23,8 @@ class ItemsController extends Controller
         // ]);
 
         if(request('date_from') > request('date_to')){
-            return Redirect::back()->with('success', 'تأكد من التاريخ المحدد');
+            // return redirect()->back()->with('success', 'تأكد من التاريخ المحدد');
+            $error = "تأكد من التاريخ المحدد";
         }else{
             $query = Items::query();
             $date = request('date_from') . "," . request('date_to');
@@ -32,6 +33,7 @@ class ItemsController extends Controller
         }
         return Inertia::render('Items/Index', [
             'items' => request('date_from') && request('date_to') ? $query->orderBy('created_at', 'desc')->paginate(5)->withQueryString() : Items::paginate(5),
+            'errors' => isset($error) ? $error : null
         ]);
     }
 
