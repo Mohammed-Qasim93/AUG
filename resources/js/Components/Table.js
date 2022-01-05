@@ -8,6 +8,7 @@ import "moment/locale/ar";
 import Pagination from "./Pagination";
 
 export default function Table({ data, url, paginate, auth, tableHeaders }) {
+    console.log(data);
     const handleClick = (id) => {
         Swal.fire({
             title: "هل انت متأكد من الحذف؟",

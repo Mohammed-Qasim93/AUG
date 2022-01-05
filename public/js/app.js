@@ -3994,6 +3994,7 @@ function Table(_ref) {
       paginate = _ref.paginate,
       auth = _ref.auth,
       tableHeaders = _ref.tableHeaders;
+  console.log(data);
 
   var handleClick = function handleClick(id) {
     sweetalert2__WEBPACK_IMPORTED_MODULE_3___default().fire({
@@ -5622,7 +5623,7 @@ function index(_ref) {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
           className: "flex justify-between items-end h-20 ",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_TableButtons__WEBPACK_IMPORTED_MODULE_5__["default"], {
-            text: "\u0625\u0636\u0627\u0641\u0629 \u0633\u0644\u0639\u0629",
+            text: "\u0625\u0636\u0627\u0641\u0629 \u0645\u0627\u062F\u0629",
             url: "/items/create"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_7__["default"], {
             className: "bg-orange-400 hover:bg-orange-500",

@@ -19,7 +19,7 @@ export default function index({ items, auth, errors }) {
                 <DashboardBar auth={auth} />
                 <div className="flex-1 flex flex-col max-w-6xl">
                     <div className="flex justify-between items-end h-20 ">
-                        <TableButtons text="إضافة سلعة" url="/items/create" />
+                        <TableButtons text="إضافة مادة" url="/items/create" />
                         <Button
                             className="bg-orange-400 hover:bg-orange-500"
                             children="ترتيب"
