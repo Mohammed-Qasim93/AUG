@@ -38,7 +38,30 @@ class LogsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+            'qty' => 'required|integer',
+            'state' => 'required|boolean',
+            'category' => 'required|string',
+            'no' => 'required|integer',
+            'desc' => 'string',
+            'note' => 'string',
+        ],[
+            'name.required' => 'يجب ادخال الاسم',
+            'name.required' => 'الاسم غير صالح',
+
+            'category.required' => 'يجب ادخال الفئة',
+            'category.string' => 'الفئة المدخلة غير صالحة',
+
+            'qty.required' => 'يجب ادخال الكمية',
+            'qty.integer' => 'يجب ادخال الكمية كعدد',
+
+            'no.required' => 'يجب ادخال العدد',
+            'no.integer' => 'صيغة العدد غير صحيحة',
+
+            'desc.string' => 'صيغة الوصف غير صحيحة',
+            'note.string' => 'صيغة الملاحظات غير صحيحة',
+        ]);
     }
 
     /**
@@ -47,9 +70,9 @@ class LogsController extends Controller
      * @param  \App\Models\logs  $logs
      * @return \Illuminate\Http\Response
      */
-    public function show(logs $logs)
+    public function show($logs)
     {
-        //
+
     }
 
     /**
@@ -72,7 +95,7 @@ class LogsController extends Controller
      * @param  \App\Models\logs  $logs
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, logs $logs)
+    public function update(Request $request, $logs)
     {
         //
     }
@@ -83,7 +106,7 @@ class LogsController extends Controller
      * @param  \App\Models\logs  $logs
      * @return \Illuminate\Http\Response
      */
-    public function destroy(logs $logs)
+    public function destroy($logs)
     {
         //
     }

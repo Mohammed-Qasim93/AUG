@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Validation\Rules;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -33,10 +34,17 @@ class Controller extends BaseController
 
     public function update(Request $request, $user){
         $user = User::findOrFail($user);
+        if($request->password !== $user->password && $request->password !== null){
+            $request->validate([
+                'password' => ['required', 'confirmed', Rules\Password::min(8)],
+                ],[
+                'password.required'  => 'يجب ادخال كلمة المرور',
+                'password.confirmed' => 'كلمة المرور غير متطابقة',
+            ]);
+        }
         $request->validate([
             'name' => 'required|unique:users,name|string',
             'email' => 'required|unique:users,email|email',
-            'password' => 'required|confirmed',
         ],[
             'name.required' => 'يجب ادخال الاسم',
             'name.unique' => 'الاسم موجود فعلاً',
@@ -45,9 +53,6 @@ class Controller extends BaseController
             'email.required' => 'يجب ادخال البريد الالكتروني',
             'email.unique' => 'البريد الالكتروني موجود فعلاً',
             'email.string' => 'البريد الالكتروني غير صالح',
-
-            'password.required' => 'يجب ادخال كلمة المرور',
-            'password.required' => 'كلمة المرور غير متطابقة',
         ]);
 
         $user->update([
