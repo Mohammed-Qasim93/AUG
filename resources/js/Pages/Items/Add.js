@@ -1,24 +1,24 @@
 import React, { useEffect } from "react";
 import { Head, Link, useForm } from "@inertiajs/inertia-react";
 import Input from "@/Components/Input";
-import Label from "@/Components/Label";
 import Button from "@/Components/Button";
 import Authenticated from "@/Layouts/Authenticated";
 import DashboardBar from "../../Components/DashboardBar";
 import ValidationErrors from "@/Components/ValidationErrors";
+import { Inertia } from "@inertiajs/inertia";
+import Swal from "sweetalert2";
+import axios from "axios";
 
-export default function Add({ status, auth }) {
-    const { data, setData, post, processing, errors, reset } = useForm({
-        email: "",
-        password: "",
-        remember: "",
+export default function Add({ auth, errors }) {
+    const { data, setData } = useForm({
+        name: "",
+        category: "",
+        qty: "",
+        state: "",
+        active: "",
+        note: "",
+        desc: "",
     });
-
-    useEffect(() => {
-        return () => {
-            reset("password");
-        };
-    }, []);
 
     const onHandleChange = (event) => {
         setData(
@@ -31,8 +31,28 @@ export default function Add({ status, auth }) {
 
     const submit = (e) => {
         e.preventDefault();
-        post(route("dashboard/catagories/edit"));
+        Inertia.post(`/items`, data);
     };
+
+    // const handleChange = (e) => {
+    //     const { name, value } = e.target;
+    //     setData({ ...data, [name]: value });
+    // };
+
+    // const handelClick = (e) => {
+    //     e.preventDefault();
+    //     axios.post("/items", data).then((response) => {
+    //         if (response.status === 201) {
+    //             Swal.fire({
+    //                 title: "تمت العملية بنجاح",
+    //                 icon: "success",
+    //                 showConfirmButton: false,
+    //                 timer: 1500,
+    //             });
+    //             Inertia.replace("/items");
+    //         }
+    //     });
+    // };
 
     return (
         <>
@@ -40,54 +60,209 @@ export default function Add({ status, auth }) {
                 <Head title="الفئات" />
                 <div className="flex">
                     <DashboardBar auth={auth} />
-                    {status && (
-                        <div className="mb-4 font-medium text-sm text-green-600">
-                            {status}
-                        </div>
-                    )}
-                    <div className="flex-1 flex flex-col">
-                        <form>
-                            <div class="flex items-center justify-center h-screen bg-gray-100">
-                                <div class="bg-white py-6 rounded-md px-10 max-w-lg shadow-md">
-                                    <h1 class="text-center text-lg font-bold text-gray-500">
-                                        Form Register
-                                    </h1>
-                                    <div class="space-y-4 mt-6">
-                                        <div class="w-full">
-                                            <input
-                                                type="text"
-                                                placeholder="fullname"
-                                                class="px-4 py-2 bg-gray-50"
-                                            />
-                                        </div>
-                                        <div class="w-full">
-                                            <input
-                                                type="text"
-                                                placeholder="username"
-                                                class="px-4 py-2 bg-gray-50"
-                                            />
-                                        </div>
-                                        <div class="w-full">
-                                            <input
-                                                type="text"
-                                                placeholder="email"
-                                                class="px-4 py-2 bg-gray-50"
-                                            />
-                                        </div>
-                                        <div class="w-full">
-                                            <input
-                                                type="text"
-                                                placeholder="password"
-                                                class="px-4 py-2 bg-gray-50"
-                                            />
+                    <div className="flex-1 flex flex-col max-w-6xl">
+                        <div className=" flex justify-center  text-gray-900 text-2xl">
+                            <div className="pt-12" style={{ width: "512px" }}>
+                                <div>
+                                    <div className="mt-10 sm:mt-0">
+                                        <div className="grid grid-cols-2 gap-6">
+                                            <div className="mt-5 md:mt-0 col-span-2">
+                                                <form onSubmit={submit}>
+                                                    <div className="shadow overflow-hidden sm:rounded-md">
+                                                        <div className="px-4 py-5 bg-white sm:p-6">
+                                                            <div className="grid grid-cols-6 gap-6">
+                                                                <div className="col-span-6 sm:col-span-3">
+                                                                    <label
+                                                                        htmlFor="name"
+                                                                        className="block text-sm font-medium text-gray-700"
+                                                                    >
+                                                                        إسم
+                                                                        المادة
+                                                                    </label>
+                                                                    <Input
+                                                                        handleChange={
+                                                                            onHandleChange
+                                                                        }
+                                                                        type="text"
+                                                                        name="name"
+                                                                        value={
+                                                                            data.name
+                                                                        }
+                                                                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                                    />
+                                                                    <small className="text-red-500 text-base">
+                                                                        {
+                                                                            errors.name
+                                                                        }
+                                                                    </small>
+                                                                </div>
+                                                                <div className="col-span-6 sm:col-span-3">
+                                                                    <label
+                                                                        htmlFor="category"
+                                                                        className="block text-sm font-medium text-gray-700"
+                                                                    >
+                                                                        الصنف
+                                                                    </label>
+                                                                    <Input
+                                                                        handleChange={
+                                                                            onHandleChange
+                                                                        }
+                                                                        type="text"
+                                                                        value={
+                                                                            data.category
+                                                                        }
+                                                                        name="category"
+                                                                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                                    />
+                                                                    <small className="text-red-500 text-base">
+                                                                        {
+                                                                            errors.category
+                                                                        }
+                                                                    </small>
+                                                                </div>
+
+                                                                <div className="col-span-6">
+                                                                    <label
+                                                                        htmlFor="note"
+                                                                        className="block text-sm font-medium text-gray-700"
+                                                                    >
+                                                                        الملاحظات
+                                                                    </label>
+                                                                    <Input
+                                                                        handleChange={
+                                                                            onHandleChange
+                                                                        }
+                                                                        area="true"
+                                                                        type="text"
+                                                                        value={
+                                                                            data.note
+                                                                        }
+                                                                        name="note"
+                                                                        autoComplete="street-address"
+                                                                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                                    />
+                                                                    <small className="text-red-500 text-base">
+                                                                        {
+                                                                            errors.note
+                                                                        }
+                                                                    </small>
+                                                                </div>
+                                                                <div className="col-span-6">
+                                                                    <label
+                                                                        htmlFor="desc"
+                                                                        className="block text-sm font-medium text-gray-700"
+                                                                    >
+                                                                        الوصف
+                                                                    </label>
+                                                                    <Input
+                                                                        handleChange={
+                                                                            onHandleChange
+                                                                        }
+                                                                        area="true"
+                                                                        type="text"
+                                                                        value={
+                                                                            data.desc
+                                                                        }
+                                                                        name="desc"
+                                                                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                                    />
+                                                                    <small className="text-red-500 text-base">
+                                                                        {
+                                                                            errors.desc
+                                                                        }
+                                                                    </small>
+                                                                </div>
+
+                                                                <div className="col-span-6 sm:col-span-6 lg:col-span-2">
+                                                                    <label
+                                                                        htmlFor="qty"
+                                                                        className="block text-sm font-medium text-gray-700"
+                                                                    >
+                                                                        العدد
+                                                                    </label>
+                                                                    <Input
+                                                                        handleChange={
+                                                                            onHandleChange
+                                                                        }
+                                                                        type="text"
+                                                                        name="qty"
+                                                                        value={
+                                                                            data.qty
+                                                                        }
+                                                                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                                    />
+                                                                    <small className="text-red-500 text-base">
+                                                                        {
+                                                                            errors.qty
+                                                                        }
+                                                                    </small>
+                                                                </div>
+
+                                                                <div className="col-span-6 sm:col-span-3 lg:col-span-2">
+                                                                    <label
+                                                                        htmlFor="active"
+                                                                        className="block text-sm font-medium text-gray-700"
+                                                                    >
+                                                                        قابل
+                                                                        للاستهلاك
+                                                                    </label>
+                                                                    <Input
+                                                                        handleChange={
+                                                                            onHandleChange
+                                                                        }
+                                                                        type="text"
+                                                                        value={
+                                                                            data.active
+                                                                        }
+                                                                        name="active"
+                                                                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                                    />
+                                                                    <small className="text-red-500 text-base">
+                                                                        {
+                                                                            errors.active
+                                                                        }
+                                                                    </small>
+                                                                </div>
+
+                                                                <div className="col-span-6 sm:col-span-3 lg:col-span-2">
+                                                                    <label
+                                                                        htmlFor="postal-code"
+                                                                        className="block text-sm font-medium text-gray-700"
+                                                                    >
+                                                                        الحاله
+                                                                    </label>
+                                                                    <Input
+                                                                        handleChange={
+                                                                            onHandleChange
+                                                                        }
+                                                                        type="text"
+                                                                        name="state"
+                                                                        value={
+                                                                            data.state
+                                                                        }
+                                                                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                                    />
+                                                                    <small className="text-red-500 text-base">
+                                                                        {
+                                                                            errors.state
+                                                                        }
+                                                                    </small>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="px-4 py-3 flex justify-center bg-gray-50 text-right sm:px-6">
+                                                            <Button className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600 focus:outline-none ">
+                                                                إضافة
+                                                            </Button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
-                                    <button class="w-full mt-5 bg-indigo-600 text-white py-2 rounded-md font-semibold tracking-tight">
-                                        Register
-                                    </button>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </Authenticated>

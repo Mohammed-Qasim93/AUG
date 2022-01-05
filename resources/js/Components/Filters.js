@@ -1,12 +1,12 @@
 import React from "react";
 import { Link, Head } from "@inertiajs/inertia-react";
 
-export default function TableButtons({ text, url }) {
+export default function Filters({ text, url }) {
     return (
-        <div className="flex justify-between w-full px-32 max-w-6xl">
+        <div className="flex justify-between pt-16 ">
             <Link
-                className="rounded-md text-base bg-green-500 py-1 px-3 text-gray-100 hover:bg-green-600   transition duration-500 ease-in-out"
-                href={url}
+                className="rounded-md text-base bg-green-500 py-1 px-3 text-gray-100 hover:bg-green-300 hover:text-gray-600  transition duration-500 ease-in-out"
+                href="#"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -18,7 +18,7 @@ export default function TableButtons({ text, url }) {
                 >
                     <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                 </svg>
-                <span>{text}</span>
+                <span> pojpjpj </span>
             </Link>
         </div>
     );
