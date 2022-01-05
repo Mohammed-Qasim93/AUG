@@ -9,10 +9,10 @@ import Pagination from "./Pagination";
 import Filters from "./Filters";
 
 export default function Table({ data, url, paginate, auth, tableHeaders }) {
-    console.log(data);
     const handleClick = (id) => {
         Swal.fire({
             title: "هل انت متأكد من الحذف؟",
+            icon: "warning",
             showDenyButton: true,
             confirmButtonText: "نعم",
             denyButtonText: `كلا`,
