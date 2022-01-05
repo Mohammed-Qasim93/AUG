@@ -1,23 +1,22 @@
-import React, { useEffect } from "react";
-import { Head, Link, useForm } from "@inertiajs/inertia-react";
+import React from "react";
+import { Head, useForm } from "@inertiajs/inertia-react";
 import Input from "@/Components/Input";
 import Button from "@/Components/Button";
 import Authenticated from "@/Layouts/Authenticated";
 import DashboardBar from "../../Components/DashboardBar";
-import ValidationErrors from "@/Components/ValidationErrors";
 import { Inertia } from "@inertiajs/inertia";
 import Swal from "sweetalert2";
-import axios from "axios";
 
 export default function Add({ auth, errors }) {
     const { data, setData } = useForm({
         name: "",
         category: "",
         qty: "",
-        state: "",
-        active: "",
+        no: "",
         note: "",
         desc: "",
+        state: "",
+        active: "",
     });
 
     const onHandleChange = (event) => {
@@ -71,7 +70,7 @@ export default function Add({ auth, errors }) {
                                                     <div className="shadow overflow-hidden sm:rounded-md">
                                                         <div className="px-4 py-5 bg-white sm:p-6">
                                                             <div className="grid grid-cols-6 gap-6">
-                                                                <div className="col-span-6 sm:col-span-3">
+                                                                <div className="col-span-6 sm:col-span-2">
                                                                     <label
                                                                         htmlFor="name"
                                                                         className="block text-sm font-medium text-gray-700"
@@ -96,7 +95,7 @@ export default function Add({ auth, errors }) {
                                                                         }
                                                                     </small>
                                                                 </div>
-                                                                <div className="col-span-6 sm:col-span-3">
+                                                                <div className="col-span-6 sm:col-span-2">
                                                                     <label
                                                                         htmlFor="category"
                                                                         className="block text-sm font-medium text-gray-700"
@@ -120,7 +119,30 @@ export default function Add({ auth, errors }) {
                                                                         }
                                                                     </small>
                                                                 </div>
-
+                                                                <div className="col-span-6 sm:col-span-6 lg:col-span-2">
+                                                                    <label
+                                                                        htmlFor="qty"
+                                                                        className="block text-sm font-medium text-gray-700"
+                                                                    >
+                                                                        الرقم
+                                                                    </label>
+                                                                    <Input
+                                                                        handleChange={
+                                                                            onHandleChange
+                                                                        }
+                                                                        type="number"
+                                                                        name="qty"
+                                                                        value={
+                                                                            data.qty
+                                                                        }
+                                                                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                                    />
+                                                                    <small className="text-red-500 text-base">
+                                                                        {
+                                                                            errors.qty
+                                                                        }
+                                                                    </small>
+                                                                </div>
                                                                 <div className="col-span-6">
                                                                     <label
                                                                         htmlFor="note"
