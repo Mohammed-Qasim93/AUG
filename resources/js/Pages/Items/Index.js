@@ -43,40 +43,44 @@ export default function index({ items, auth, errors }) {
                         <TableButtons text="إضافة مادة" url="/items/create" />
                     </div>
                     <div className="flex flex-col justify-end pr-32 items-start max-w-6xl ">
-                        <Filters text="اخر يوم :" />
-                        <Filters text="اخر اسبوع :" />
-                        <Filters text="اخر شهر :" />
-                        <div className="flex gap-8">
-                            <div className="flex items-center gap-4">
-                                <Label value="من :"></Label>
-                                <Input
-                                    type="date"
-                                    name="from"
-                                    value={data.from}
-                                    className="mt-1 block w-full"
-                                    autoComplete="username"
-                                    isFocused={true}
-                                    handleChange={onHandleChange}
-                                />
-                            </div>
-                            <div className="flex items-center gap-4">
-                                <Label value="الى :"></Label>
-                                <Input
-                                    type="date"
-                                    name="to"
-                                    value={data.to}
-                                    className="mt-1 block w-full"
-                                    autoComplete="username"
-                                    isFocused={true}
-                                    handleChange={onHandleChange}
-                                />
-                            </div>
-                            <div className="flex items-center gap-4">
-                                <Button
-                                    className="bg-orange-400 hover:bg-orange-500"
-                                    handleClick={submit}
-                                    children="بحث"
-                                />
+                        <div className="flex gap-32 w-full justify-between">
+                            <Filters text="اخر يوم :" />
+                            <Filters text="اخر اسبوع :" />
+                        </div>
+                        <div className="flex w-full justify-between">
+                            <Filters text="اخر شهر :" />
+                            <div className="flex gap-8">
+                                <div className="flex items-center gap-4">
+                                    <Label value="من :"></Label>
+                                    <Input
+                                        type="date"
+                                        name="from"
+                                        value={data.from}
+                                        className="mt-1 block w-full"
+                                        autoComplete="username"
+                                        isFocused={true}
+                                        handleChange={onHandleChange}
+                                    />
+                                </div>
+                                <div className="flex items-center gap-4">
+                                    <Label value="الى :"></Label>
+                                    <Input
+                                        type="date"
+                                        name="to"
+                                        value={data.to}
+                                        className="mt-1 block w-full"
+                                        autoComplete="username"
+                                        isFocused={true}
+                                        handleChange={onHandleChange}
+                                    />
+                                </div>
+                                <div className="flex items-center gap-4">
+                                    <Button
+                                        className="bg-orange-400 hover:bg-orange-500"
+                                        handleClick={submit}
+                                        children="بحث"
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
