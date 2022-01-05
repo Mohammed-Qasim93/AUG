@@ -26,7 +26,7 @@ class ItemsController extends Controller
             $query->whereBetween('created_at', $date);
         }
         return Inertia::render('Items/Index', [
-            'items' => request('date_from') && request('date_to') ? $query->orderBy('created_at', 'desc')->paginate(5)->withQueryString() : Items::paginate(5),
+            'items' => request('date_from') && request('date_to') ? $query->orderBy('created_at', 'desc')->paginate(5)->withQueryString() : Items::orderBy('created_at', 'desc')->paginate(5),
         ]);
     }
 
