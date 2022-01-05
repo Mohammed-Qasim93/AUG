@@ -23,9 +23,8 @@ export default function index({ items, auth, errors }) {
                             children="ترتيب"
                         />
                     </div>
-
                     <Table
-                        data={items}
+                        data={items.data}
                         url="items"
                         auth={auth}
                         tableHeaders={[
@@ -34,7 +33,7 @@ export default function index({ items, auth, errors }) {
                             "الكمية",
                             "الحالة",
                             "تاريخ الاضافة",
-                            "الملاحظات",
+                            "العمليات",
                         ]}
                     />
                 </div>

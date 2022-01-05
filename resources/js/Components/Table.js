@@ -3,6 +3,8 @@ import { Link, Head } from "@inertiajs/inertia-react";
 import { Inertia } from "@inertiajs/inertia";
 import Swal from "sweetalert2";
 import Button from "./Button";
+import moment from "moment";
+import "moment/locale/ar";
 
 export default function Table({ data, url, auth, tableHeaders }) {
     const handleClick = (id) => {
@@ -35,8 +37,10 @@ export default function Table({ data, url, auth, tableHeaders }) {
                     </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                    {data.data.map((item, key) => (
+                    {data.map((item, key) => (
                         <tr key={key}>
+                            {item.no && <td className="pb-4">{item.no}</td>}
+                            {item.email && <td className="pb-4">{item.id}</td>}
                             <td className="pb-4">
                                 {auth.user.isAdmin === 1 ? (
                                     <Link
@@ -49,14 +53,28 @@ export default function Table({ data, url, auth, tableHeaders }) {
                                     item.name
                                 )}
                             </td>
-                            <td className="py-4 ">{item.email}</td>
-                            {item.isAdmin ? (
-                                <td className="py-4 text-green-600 px-5">
-                                    مدير
-                                </td>
-                            ) : (
-                                <td className="py-4 text-red-600 px-5">موظف</td>
+                            {item.email && (
+                                <td className="py-4 ">{item.email}</td>
                             )}
+                            {item.qty && <td className="py-4 ">{item.qty}</td>}
+                            {item.qty && (
+                                <td className="py-4 ">{item.category}</td>
+                            )}
+                            {item.qty && (
+                                <td className="py-4 ">
+                                    {moment(item.created_at).fromNow()}
+                                </td>
+                            )}
+                            {item.email &&
+                                (item.isAdmin ? (
+                                    <td className="py-4 text-green-600 px-5">
+                                        مدير
+                                    </td>
+                                ) : (
+                                    <td className="py-4 text-red-600 px-5">
+                                        موظف
+                                    </td>
+                                ))}
                             <td className="py-4 flex items-center justify-center">
                                 <Link
                                     href={`/${url}/${item.id}/edit`}

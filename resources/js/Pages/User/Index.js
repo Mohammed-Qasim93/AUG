@@ -32,10 +32,11 @@ export default function index({ user, auth, errors }) {
                     </div>
 
                     <Table
-                        data={user}
+                        data={user.data}
                         url="user"
                         auth={auth}
                         tableHeaders={[
+                            "الرقم",
                             "الاسم",
                             "البريد الالكتروني",
                             "الحالة",

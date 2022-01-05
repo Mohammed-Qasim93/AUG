@@ -1,11 +1,13 @@
-import React from "react";
-import { Head, useForm } from "@inertiajs/inertia-react";
+import React, { useEffect } from "react";
+import { Head, Link, useForm } from "@inertiajs/inertia-react";
 import Input from "@/Components/Input";
 import Button from "@/Components/Button";
 import Authenticated from "@/Layouts/Authenticated";
 import DashboardBar from "../../Components/DashboardBar";
+import ValidationErrors from "@/Components/ValidationErrors";
 import { Inertia } from "@inertiajs/inertia";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 export default function Add({ auth, errors }) {
     const { data, setData } = useForm({
@@ -70,7 +72,7 @@ export default function Add({ auth, errors }) {
                                                     <div className="shadow overflow-hidden sm:rounded-md">
                                                         <div className="px-4 py-5 bg-white sm:p-6">
                                                             <div className="grid grid-cols-6 gap-6">
-                                                                <div className="col-span-6 sm:col-span-2">
+                                                                <div className="col-span-6">
                                                                     <label
                                                                         htmlFor="name"
                                                                         className="block text-sm font-medium text-gray-700"
@@ -89,13 +91,13 @@ export default function Add({ auth, errors }) {
                                                                         }
                                                                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                                     />
-                                                                    <small className="text-red-500 text-base">
+                                                                    <small className="text-red-500 text-sm">
                                                                         {
                                                                             errors.name
                                                                         }
                                                                     </small>
                                                                 </div>
-                                                                <div className="col-span-6 sm:col-span-2">
+                                                                <div className="col-span-6  sm:col-span-2">
                                                                     <label
                                                                         htmlFor="category"
                                                                         className="block text-sm font-medium text-gray-700"
@@ -113,35 +115,99 @@ export default function Add({ auth, errors }) {
                                                                         name="category"
                                                                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                                     />
-                                                                    <small className="text-red-500 text-base">
+                                                                    <small className="text-red-500 text-sm">
                                                                         {
                                                                             errors.category
                                                                         }
                                                                     </small>
                                                                 </div>
-                                                                <div className="col-span-6 sm:col-span-6 lg:col-span-2">
+                                                                <div className="col-span-6 sm:col-span-2">
                                                                     <label
                                                                         htmlFor="qty"
                                                                         className="block text-sm font-medium text-gray-700"
                                                                     >
-                                                                        الرقم
+                                                                        العدد
                                                                     </label>
                                                                     <Input
                                                                         handleChange={
                                                                             onHandleChange
                                                                         }
                                                                         type="number"
-                                                                        name="qty"
                                                                         value={
                                                                             data.qty
                                                                         }
+                                                                        name="qty"
                                                                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                                     />
-                                                                    <small className="text-red-500 text-base">
+                                                                    <small className="text-red-500 text-sm">
                                                                         {
                                                                             errors.qty
                                                                         }
                                                                     </small>
+                                                                </div>
+                                                                <div className="col-span-6 sm:col-span-2">
+                                                                    <label
+                                                                        htmlFor="qty"
+                                                                        className="block text-sm font-medium text-gray-700"
+                                                                    >
+                                                                        الرقم
+                                                                        التسلسلي
+                                                                    </label>
+                                                                    <Input
+                                                                        handleChange={
+                                                                            onHandleChange
+                                                                        }
+                                                                        type="number"
+                                                                        name="no"
+                                                                        value={
+                                                                            data.no
+                                                                        }
+                                                                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                                    />
+                                                                    <small className="text-red-500 text-sm">
+                                                                        {
+                                                                            errors.no
+                                                                        }
+                                                                    </small>
+                                                                </div>
+                                                                <div className="col-span-6">
+                                                                    <label
+                                                                        htmlFor="postal-code"
+                                                                        className="block text-sm font-medium text-gray-700"
+                                                                    >
+                                                                        الحاله
+                                                                    </label>
+                                                                    <Input
+                                                                        handleChange={
+                                                                            onHandleChange
+                                                                        }
+                                                                        type="text"
+                                                                        name="state"
+                                                                        value={
+                                                                            data.state
+                                                                        }
+                                                                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-span-6">
+                                                                    <label
+                                                                        htmlFor="desc"
+                                                                        className="block text-sm font-medium text-gray-700"
+                                                                    >
+                                                                        الوصف
+                                                                    </label>
+                                                                    <Input
+                                                                        handleChange={
+                                                                            onHandleChange
+                                                                        }
+                                                                        area="true"
+                                                                        type="text"
+                                                                        value={
+                                                                            data.desc
+                                                                        }
+                                                                        name="desc"
+                                                                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                                    />
                                                                 </div>
                                                                 <div className="col-span-6">
                                                                     <label
@@ -163,112 +229,6 @@ export default function Add({ auth, errors }) {
                                                                         autoComplete="street-address"
                                                                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                                     />
-                                                                    <small className="text-red-500 text-base">
-                                                                        {
-                                                                            errors.note
-                                                                        }
-                                                                    </small>
-                                                                </div>
-                                                                <div className="col-span-6">
-                                                                    <label
-                                                                        htmlFor="desc"
-                                                                        className="block text-sm font-medium text-gray-700"
-                                                                    >
-                                                                        الوصف
-                                                                    </label>
-                                                                    <Input
-                                                                        handleChange={
-                                                                            onHandleChange
-                                                                        }
-                                                                        area="true"
-                                                                        type="text"
-                                                                        value={
-                                                                            data.desc
-                                                                        }
-                                                                        name="desc"
-                                                                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                                    />
-                                                                    <small className="text-red-500 text-base">
-                                                                        {
-                                                                            errors.desc
-                                                                        }
-                                                                    </small>
-                                                                </div>
-
-                                                                <div className="col-span-6 sm:col-span-6 lg:col-span-2">
-                                                                    <label
-                                                                        htmlFor="qty"
-                                                                        className="block text-sm font-medium text-gray-700"
-                                                                    >
-                                                                        العدد
-                                                                    </label>
-                                                                    <Input
-                                                                        handleChange={
-                                                                            onHandleChange
-                                                                        }
-                                                                        type="text"
-                                                                        name="qty"
-                                                                        value={
-                                                                            data.qty
-                                                                        }
-                                                                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                                    />
-                                                                    <small className="text-red-500 text-base">
-                                                                        {
-                                                                            errors.qty
-                                                                        }
-                                                                    </small>
-                                                                </div>
-
-                                                                <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                                                                    <label
-                                                                        htmlFor="active"
-                                                                        className="block text-sm font-medium text-gray-700"
-                                                                    >
-                                                                        قابل
-                                                                        للاستهلاك
-                                                                    </label>
-                                                                    <Input
-                                                                        handleChange={
-                                                                            onHandleChange
-                                                                        }
-                                                                        type="text"
-                                                                        value={
-                                                                            data.active
-                                                                        }
-                                                                        name="active"
-                                                                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                                    />
-                                                                    <small className="text-red-500 text-base">
-                                                                        {
-                                                                            errors.active
-                                                                        }
-                                                                    </small>
-                                                                </div>
-
-                                                                <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                                                                    <label
-                                                                        htmlFor="postal-code"
-                                                                        className="block text-sm font-medium text-gray-700"
-                                                                    >
-                                                                        الحاله
-                                                                    </label>
-                                                                    <Input
-                                                                        handleChange={
-                                                                            onHandleChange
-                                                                        }
-                                                                        type="text"
-                                                                        name="state"
-                                                                        value={
-                                                                            data.state
-                                                                        }
-                                                                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                                    />
-                                                                    <small className="text-red-500 text-base">
-                                                                        {
-                                                                            errors.state
-                                                                        }
-                                                                    </small>
                                                                 </div>
                                                             </div>
                                                         </div>
