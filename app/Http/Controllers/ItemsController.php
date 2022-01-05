@@ -44,6 +44,7 @@ class ItemsController extends Controller
             'category' => 'required|string',
             'qty' => 'required|integer',
             'no' => 'required|integer',
+            'state' => 'required|boolean',
             'desc' => 'string',
             'note' => 'string',
         ],[
@@ -58,6 +59,8 @@ class ItemsController extends Controller
 
             'no.required' => 'يجب ادخال العدد',
             'no.integer' => 'صيغة العدد غير صحيحة',
+
+            'state.required' => 'يجب تحديد الحالة',
 
             'desc.string' => 'صيغة الوصف غير صحيحة',
             'note.string' => 'صيغة الملاحظات غير صحيحة',
