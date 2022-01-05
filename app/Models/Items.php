@@ -12,7 +12,7 @@ class Items extends Model
 
 
     protected $fillable =[
-        'name', 'category', 'qty', 'no', 'state', 'active', 'desc', 'note'
+        'name', 'category', 'qty', 'no', 'state', 'desc', 'note'
     ];
 
     public function logs(){

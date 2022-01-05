@@ -43,10 +43,7 @@ class ItemsController extends Controller
             'name' => 'required|string',
             'category' => 'required|string',
             'qty' => 'required|integer',
-            'no' => 'required|integer',
-            'state' => 'required|boolean',
-            'desc' => 'string',
-            'note' => 'string',
+            'no' => 'required',
         ],[
             'name.required' => 'يجب ادخال الاسم',
             'name.required' => 'الاسم غير صالح',
@@ -58,21 +55,15 @@ class ItemsController extends Controller
             'qty.integer' => 'يجب ادخال الكمية كعدد',
 
             'no.required' => 'يجب ادخال العدد',
-            'no.integer' => 'صيغة العدد غير صحيحة',
-
-            'state.required' => 'يجب تحديد الحالة',
-
-            'desc.string' => 'صيغة الوصف غير صحيحة',
-            'note.string' => 'صيغة الملاحظات غير صحيحة',
         ]);
 
         Items::create([
-             'name' => $request['name'],
-             'category' => $request['category'],
-             'qty' => $request['qty'],
-             'no' => $request['no'],
-             'desc' => $request['desc'],
-             'note' => $request['name'],
+             'name' => $request->name,
+             'category' => $request->category,
+             'qty' => $request->qty,
+             'no' => $request->no,
+             'desc' => $request->desc,
+             'note' => $request->name,
         ]);
     }
 
