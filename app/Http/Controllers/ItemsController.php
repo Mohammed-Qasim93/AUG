@@ -54,7 +54,7 @@ class ItemsController extends Controller
             'qty.required' => 'يجب ادخال الكمية',
             'qty.integer' => 'يجب ادخال الكمية كعدد',
 
-            'no.required' => 'يجب ادخال العدد',
+            'no.required' => 'يجب ادخال الرقم التسلسلي',
         ]);
 
         Items::create([
