@@ -28,7 +28,7 @@ class Controller extends BaseController
     public function edit($id)
     {
         return Inertia::render('User/Edit', [
-            'user' => User::findOrFail($id)->first()
+            'user' => User::findOrFail($id)
         ]);
     }
 
