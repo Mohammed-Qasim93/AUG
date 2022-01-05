@@ -18,28 +18,21 @@ class ItemsController extends Controller
     public function index()
     {
         // request()->validate([
-        //     'direction' => Rule::in(['asc', 'desc']),
-        //     'field'     => Rule::in(['id', 'categories_id', 'sub_cats_id', 'pd_name', 'pd_stack', 'pd_state', 'created_at']),
+        //     'date_from' => 'date',
+        //     'date_to' => 'date',
         // ]);
 
-        $query = Items::query();
-
-        // if (request('search')) {
-        //     $query->where('pd_name', 'LIKE', '%'.request('search').'%');
-        //     $query->orWhere('pd_description', 'LIKE', '%'.request('search').'%');
-        // }
-        // if(request()->has(['field', 'direction'])){
-        //     $query->orderBy(request('field'), request('direction'));
-        // }
-        // if(request('category')){
-        //     $query->where('categories_id', request('category'));
-        // }
-        // if(request('subcat')){
-        //     $query->where('sub_cats_id', request('subcat'));
-        // }
-        // return Inertia::render('Items/Index', [
-        //     'items' => Items::paginate(5)->withQueryString(),
-        // ]);
+        if(request('date_from') > request('date_to')){
+            return Redirect::back()->with('success', 'تأكد من التاريخ المحدد');
+        }else{
+            $query = Items::query();
+            $date = request('date_from') . "," . request('date_to');
+            $date = explode(',', $date);
+            $query->whereBetween('created_at', $date);
+        }
+        return Inertia::render('Items/Index', [
+            'items' => request('date_from') && request('date_to') ? $query->orderBy('created_at', 'desc')->paginate(5)->withQueryString() : Items::paginate(5),
+        ]);
     }
 
     /**
