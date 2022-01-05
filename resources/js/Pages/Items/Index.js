@@ -9,8 +9,9 @@ import Label from "../../Components/Label";
 import Button from "../../Components/Button";
 import Filters from "../../Components/Filters";
 import { Inertia } from "@inertiajs/inertia";
+import Swal from "sweetalert2";
 
-export default function index({ items, auth, errors }) {
+export default function index({ items, auth, errors, success }) {
     const { data, setData } = useForm({
         from: "",
         to: "",
@@ -25,11 +26,17 @@ export default function index({ items, auth, errors }) {
 
     const submit = (e) => {
         e.preventDefault();
+        console.log(success);
         Inertia.get(
             `/items?`,
             { date_from: data.from, date_to: data.to },
             { replaces: true, preserveState: true }
         );
+        Swal.fire({
+            title: "jjijijij",
+            html: "I will close in <b></b> milliseconds.",
+            timer: 2000,
+        });
     };
     return (
         <Authenticated auth={auth} errors={errors}>
