@@ -10,6 +10,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Redirect;
 
@@ -34,7 +35,45 @@ class Controller extends BaseController
 
     public function update(Request $request, $id){
         $user = User::findOrFail($id);
-        if($request->password !== $id->password && $request->password !== null){
+
+        if(($request->name !== $user->name) || ($request->email !== $user->email) || ($request->password !== $user->password)){
+            if($request->name !== $user->name){
+                $request->validate([
+                    'name' => 'required|unique:users,name'
+                    ],[
+                    'name.required'        => 'يجب ادخال الاسم',
+                    'name.unique'        => 'الاسم مستخدم بالفعل',
+                ]);
+            }
+            if($request->email !== $user->email){
+                $request->validate([
+                    'email' => 'required|unique:users,email|email'
+                    ],[
+                    'email.required'        => 'يجب ادخال البريد الالكتروني',
+                    'email.unique'        => 'البريد الالكتروني مستخدم',
+                    'email.email'        => 'البريد الالكتروني المدخل غير صالح',
+                ]);
+            }
+            if($request->password !== $user->password && $request->password !== null){
+                $request->validate([
+                    'password' => ['required', 'confirmed', Rules\Password::min(8)],
+                    ],[
+                    'password.required'  => 'يجب ادخال كلمة المرور',
+                    'password.confirmed' => 'كلمة المرور غير متطابقة',
+                ]);
+            }
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => !isset($request->password) ? $user->password : Hash::make($request->password),
+            ]);
+            return Redirect::route('user.index')->with('success', 'تم التعديل بنجاح');
+        }else{
+            return Redirect::route('user.index');
+        }
+
+
+        if($request->password !== $user->password && $request->password !== null){
             $request->validate([
                 'password' => ['required', 'confirmed', Rules\Password::min(8)],
                 ],[
@@ -42,27 +81,6 @@ class Controller extends BaseController
                 'password.confirmed' => 'كلمة المرور غير متطابقة',
             ]);
         }
-        $request->validate([
-            'name' => 'required|unique:users,name|string',
-            'email' => 'required|unique:users,email|email',
-        ],[
-            'name.required' => 'يجب ادخال الاسم',
-            'name.unique' => 'الاسم موجود فعلاً',
-            'name.string' => 'الاسم غير صالح',
-
-            'email.required' => 'يجب ادخال البريد الالكتروني',
-            'email.unique' => 'البريد الالكتروني موجود فعلاً',
-            'email.string' => 'البريد الالكتروني غير صالح',
-        ]);
-
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => $request->password,
-            'isAdmin' => $request->isAdmin,
-        ]);
-
-        return Redirect::route('user.index')->with('success', 'تمت الاضافة بنجاح');
     }
 
 

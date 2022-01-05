@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Items;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 class ItemsController extends Controller
@@ -16,9 +17,29 @@ class ItemsController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Items/Index', [
-            'items' => Items::paginate(5),
-        ]);
+        // request()->validate([
+        //     'direction' => Rule::in(['asc', 'desc']),
+        //     'field'     => Rule::in(['id', 'categories_id', 'sub_cats_id', 'pd_name', 'pd_stack', 'pd_state', 'created_at']),
+        // ]);
+
+        $query = Items::query();
+
+        // if (request('search')) {
+        //     $query->where('pd_name', 'LIKE', '%'.request('search').'%');
+        //     $query->orWhere('pd_description', 'LIKE', '%'.request('search').'%');
+        // }
+        // if(request()->has(['field', 'direction'])){
+        //     $query->orderBy(request('field'), request('direction'));
+        // }
+        // if(request('category')){
+        //     $query->where('categories_id', request('category'));
+        // }
+        // if(request('subcat')){
+        //     $query->where('sub_cats_id', request('subcat'));
+        // }
+        // return Inertia::render('Items/Index', [
+        //     'items' => Items::paginate(5)->withQueryString(),
+        // ]);
     }
 
     /**
