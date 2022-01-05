@@ -1511,16 +1511,16 @@ select {
 }
 @media (min-width: 640px) {
 
+  .sm\:col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+
   .sm\:col-span-3 {
     grid-column: span 3 / span 3;
   }
 
   .sm\:col-span-6 {
     grid-column: span 6 / span 6;
-  }
-
-  .sm\:col-span-2 {
-    grid-column: span 2 / span 2;
   }
 
   .sm\:-my-px {

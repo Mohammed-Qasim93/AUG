@@ -66,7 +66,7 @@ class ItemsController extends Controller
              'note' => $request->name,
         ]);
 
-        return Redirect::route('/items')->with('success', 'تمت الاضافة بنجاح');
+        return Redirect::route('items.index')->with('success', 'تمت الاضافة بنجاح');
     }
 
     /**
