@@ -5,8 +5,9 @@ import Swal from "sweetalert2";
 import Button from "./Button";
 import moment from "moment";
 import "moment/locale/ar";
+import Pagination from "./Pagination";
 
-export default function Table({ data, url, auth, tableHeaders }) {
+export default function Table({ data, url, paginate, auth, tableHeaders }) {
     const handleClick = (id) => {
         Swal.fire({
             title: "هل انت متأكد من الحذف؟",
@@ -21,7 +22,7 @@ export default function Table({ data, url, auth, tableHeaders }) {
     };
 
     return (
-        <div className="flex flex-col pt-20 pr-32">
+        <div className="flex flex-col pt-8 pr-32">
             <table className="max-w-5xl divide-y text-center divide-gray-200">
                 <thead className="bg-gray-50 text-right">
                     <tr>
@@ -123,6 +124,20 @@ export default function Table({ data, url, auth, tableHeaders }) {
                     ))}
                 </tbody>
             </table>
+            <div className="">
+                <Pagination
+                    firstPageUrl={paginate.first_page_url}
+                    lastPageUrl={paginate.last_page_url}
+                    nextPage={paginate.next_page_url}
+                    prevPage={paginate.prev_page_url}
+                    perPage={paginate.perPage}
+                    to={paginate.to}
+                    total={paginate.data.length}
+                    currentPage={paginate.current_page}
+                    path={paginate.path}
+                    lastPage={paginate.last_page}
+                />
+            </div>
         </div>
     );
 }

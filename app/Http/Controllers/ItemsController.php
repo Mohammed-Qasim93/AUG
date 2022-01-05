@@ -17,7 +17,7 @@ class ItemsController extends Controller
     public function index()
     {
         return Inertia::render('Items/Index', [
-            'items' => Items::paginate(10),
+            'items' => Items::paginate(5),
         ]);
     }
 

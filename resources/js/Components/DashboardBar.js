@@ -15,7 +15,7 @@ export default function DashboardBar({ auth }) {
                     <ul className="mr-4">
                         <li className="mb-2  text-gray-100 flex flex-row  border-gray-300 hover:text-slate-700   hover:bg-gray-300  hover:font-bold rounded-lg">
                             <Link
-                                href="/user"
+                                href="/user?page=1"
                                 className="flex px-4 py-4 items-center w-full"
                             >
                                 <span>
@@ -39,7 +39,7 @@ export default function DashboardBar({ auth }) {
                         </li>
                         <li className="mb-2 text-gray-100 flex flex-row  border-gray-300 hover:text-slate-700   hover:bg-gray-300  hover:font-bold rounded-lg">
                             <Link
-                                href="/items"
+                                href="/items?page=1"
                                 className="flex px-4 py-4 items-center w-full"
                             >
                                 <span>

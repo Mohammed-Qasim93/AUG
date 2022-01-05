@@ -8,6 +8,7 @@ import Filters from "../../Components/Filters";
 import Button from "../../Components/Button";
 
 export default function index({ user, auth, errors }) {
+    console.log(user);
     const [isOpen, setIsOpen] = useState(false);
 
     const handleClick = () => {
@@ -35,6 +36,7 @@ export default function index({ user, auth, errors }) {
                         data={user.data}
                         url="user"
                         auth={auth}
+                        paginate={user}
                         tableHeaders={[
                             "الرقم",
                             "الاسم",

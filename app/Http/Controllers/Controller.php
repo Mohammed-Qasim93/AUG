@@ -21,7 +21,7 @@ class Controller extends BaseController
     public function index()
     {
         return Inertia::render('User/Index' , [
-            'user' => User::paginate(10),
+            'user' => User::paginate(5),
         ]);
     }
 
