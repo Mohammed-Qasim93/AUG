@@ -31,3 +31,10 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('items', ItemsController::class)->middleware('auth');
 Route::resource('logs', LogsController::class)->middleware('auth');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/takeout', [TakeOutController::class, 'index'])->name('takeout.index');               // Index
+    // Route::get('/user/{id}/edit', [Controller::class, 'edit'])->name('user.edit');        // Edit
+    // Route::put('/user/{id}', [Controller::class, 'update'])->name('user.update');        // Update
+    // Route::delete('/user/{id}', [Controller::class, 'delete'])->name('user.delelte');    // Delete
+});

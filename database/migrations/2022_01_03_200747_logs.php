@@ -16,13 +16,15 @@ class Logs extends Migration
         Schema::create('logs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->bigInteger('items_id')->unsigned();
-            $table->bigInteger('users_id')->unsigned();
+            $table->datetime('outDate');
+            $table->datetime('inDate');
             $table->integer('qty');
             $table->boolean('state');
             $table->boolean('active');
             $table->string('note');
             $table->timestamps();
+            $table->bigInteger('items_id')->unsigned();
+            $table->bigInteger('users_id')->unsigned();
             $table->foreign('items_id')->references('id')->on('items');
             $table->foreign('users_id')->references('id')->on('users');
         });

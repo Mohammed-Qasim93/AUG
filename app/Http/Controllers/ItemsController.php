@@ -116,12 +116,12 @@ class ItemsController extends Controller
             'name' => 'required|string',
             'category' => 'required|string',
             'qty' => 'required|integer',
-            'no' => 'required|integer',
+            'no' => 'required|string',
             'desc' => 'string',
             'note' => 'string',
         ],[
             'name.required' => 'يجب ادخال الاسم',
-            'name.required' => 'الاسم غير صالح',
+            'name.string' => 'الاسم غير صالح',
 
             'category.required' => 'يجب ادخال الفئة',
             'category.string' => 'الفئة المدخلة غير صالحة',
@@ -129,8 +129,7 @@ class ItemsController extends Controller
             'qty.required' => 'يجب ادخال الكمية',
             'qty.integer' => 'يجب ادخال الكمية كعدد',
 
-            'no.required' => 'يجب ادخال العدد',
-            'no.integer' => 'صيغة العدد غير صحيحة',
+            'no.required' => 'يجب ادخال الرقم التسلسلي',
 
             'desc.string' => 'صيغة الوصف غير صحيحة',
             'note.string' => 'صيغة الملاحظات غير صحيحة',

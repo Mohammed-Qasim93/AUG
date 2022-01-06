@@ -1969,6 +1969,10 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(239 68 68 / var(--tw-bg-opacity));
 }
+.bg-blue-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
+}
 .fill-current {
   fill: currentColor;
 }
@@ -2069,6 +2073,9 @@ select {
 .pb-2 {
   padding-bottom: 0.5rem;
 }
+.pt-20 {
+  padding-top: 5rem;
+}
 .text-center {
   text-align: center;
 }
@@ -2080,6 +2087,9 @@ select {
 }
 .font-tajawal-light {
   font-family: Tajawal-Light;
+}
+.font-tajawal-extrabold {
+  font-family: Tajawal-ExtraBold;
 }
 .text-sm {
   font-size: 0.875rem;
@@ -2104,6 +2114,10 @@ select {
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
+}
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
 }
 .font-medium {
   font-weight: 500;
@@ -2322,6 +2336,10 @@ select {
 .hover\:bg-red-600:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(220 38 38 / var(--tw-bg-opacity));
+}
+.hover\:bg-blue-600:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(37 99 235 / var(--tw-bg-opacity));
 }
 .hover\:font-bold:hover {
   font-weight: 700;

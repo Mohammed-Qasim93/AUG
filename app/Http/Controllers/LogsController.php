@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\logs;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class LogsController extends Controller
@@ -41,25 +43,14 @@ class LogsController extends Controller
         $request->validate([
             'name' => 'required|string',
             'qty' => 'required|integer',
-            'state' => 'required|boolean',
-            'category' => 'required|string',
-            'no' => 'required|integer',
-            'desc' => 'string',
             'note' => 'string',
         ],[
             'name.required' => 'يجب ادخال الاسم',
-            'name.required' => 'الاسم غير صالح',
-
-            'category.required' => 'يجب ادخال الفئة',
-            'category.string' => 'الفئة المدخلة غير صالحة',
+            'name.string' => 'الاسم غير صالح',
 
             'qty.required' => 'يجب ادخال الكمية',
             'qty.integer' => 'يجب ادخال الكمية كعدد',
 
-            'no.required' => 'يجب ادخال العدد',
-            'no.integer' => 'صيغة العدد غير صحيحة',
-
-            'desc.string' => 'صيغة الوصف غير صحيحة',
             'note.string' => 'صيغة الملاحظات غير صحيحة',
         ]);
     }
@@ -84,7 +75,7 @@ class LogsController extends Controller
     public function edit($logs)
     {
         return Inertia::render('Logs/Edit', [
-            'logs' => logs::findOrFail($logs)->first()
+            'logs' => logs::findOrFail($logs)
         ]);
     }
 
@@ -97,7 +88,13 @@ class LogsController extends Controller
      */
     public function update(Request $request, $logs)
     {
-        //
+        $logs = logs::findOrFail($logs);
+        if(($logs->name !== $request->name) && ($logs->qty !== $request->qty) && ($logs->note !== $request->note))
+
+        $logs->update([
+
+        ]);
+        return Redirect::route('logs.index')->with('success', 'تم التعديل بنجاح');
     }
 
     /**
@@ -108,6 +105,6 @@ class LogsController extends Controller
      */
     public function destroy($logs)
     {
-        //
+
     }
 }

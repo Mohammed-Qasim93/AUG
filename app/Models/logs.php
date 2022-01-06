@@ -9,10 +9,10 @@ class logs extends Model
 {
     use HasFactory;
 
-   
+
 
     protected $fillable =[
-        'name', 'items_id', 'users_id', 'qty', 'state', 'active', 'note'
+        'name', 'outDate', 'inDate', 'items_id', 'users_id', 'qty', 'state', 'active', 'note'
     ];
 
     public function items(){
