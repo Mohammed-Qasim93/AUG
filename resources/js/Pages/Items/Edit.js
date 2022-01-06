@@ -197,6 +197,9 @@ export default function Add({ auth, errors, items, success }) {
                                                                         handleChange={
                                                                             onHandleChange
                                                                         }
+                                                                        takeoutCheck={
+                                                                            false
+                                                                        }
                                                                     />
                                                                     <label
                                                                         htmlFor="state"
