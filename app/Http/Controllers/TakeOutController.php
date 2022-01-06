@@ -34,6 +34,19 @@ class TakeOutController extends Controller
         }
     }
 
+    public function removeItem(Request $request){
+        if($request->data) {
+            $items=[];
+            for ($i = 0; $i < count($request->data) ; $i++){
+                $item = Items::findOrFail($request->data[$i]);
+                $items[$i] = $item;
+            }
+            return Inertia::render('TakeOut/Checkout', [
+                'items' => $items,
+            ]);
+        }
+    }
+
     public function refresh(){
         // return redirect()->route('takeout.index');
         return Inertia::render('TakeOut/Checkout', [
