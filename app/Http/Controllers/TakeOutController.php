@@ -14,4 +14,8 @@ class TakeOutController extends Controller
             'items' => Items::orderBy('created_at', 'desc')->paginate(10),
         ]);
     }
+
+    public function checkout($id){
+        dd($id);
+    }
 }
