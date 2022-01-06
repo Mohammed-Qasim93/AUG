@@ -4,6 +4,8 @@ export default function Input({
     type = "text",
     name,
     value,
+    max,
+    min,
     className,
     autoComplete,
     required,
@@ -41,7 +43,9 @@ export default function Input({
                 <input
                     type={type}
                     name={name}
-                    value={value}
+                    value={value > max ? max : value}
+                    max={max}
+                    min={min}
                     placeholder={placeholder}
                     className={
                         `border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm ` +

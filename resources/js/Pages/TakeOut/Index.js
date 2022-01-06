@@ -10,18 +10,15 @@ import Button from "../../Components/Button";
 import Filters from "../../Components/Filters";
 import { Inertia } from "@inertiajs/inertia";
 import Swal from "sweetalert2";
+import Checkout from "./Checkout";
 
 export default function index({ items, auth, errors, success }) {
     const { data, setData } = useForm({
         search: "",
     });
 
-    const [checked, setChecked] = useState([]);
-    const [re, setRe] = useState(0);
-
     const onHandleChange = (e) => {
         e.preventDefault();
-        setRe(re + 1);
         Inertia.get(
             `/takeout?`,
             { item: e.target.value },
