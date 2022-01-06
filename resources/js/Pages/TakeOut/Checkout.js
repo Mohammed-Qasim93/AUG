@@ -8,14 +8,16 @@ import DashboardBar from "../../Components/DashboardBar";
 import Table from "../../Components/Table";
 import Toast from "../../Components/Toast";
 import Label from "../../Components/Label";
+import Pagination from "../../Components/Pagination";
+import { Inertia } from "@inertiajs/inertia";
 
 export default function Checkout({ auth, errors, items, success }) {
     console.log(items);
     const { data, setData, post } = useForm({
-        name: items.name || "",
-        category: items.category || "",
-        qty: items.qty || "",
-        no: items.no || "",
+        name: "",
+        category: "",
+        qty: "",
+        note: "",
     });
 
     // const increment = (e) => {
@@ -31,6 +33,9 @@ export default function Checkout({ auth, errors, items, success }) {
         );
     };
 
+    const changeqty = (e) => {
+        setData("qty", e.target.value);
+    };
     // const submit = (e) => {
     //     console.log(data);
     //     e.preventDefault();
@@ -39,9 +44,16 @@ export default function Checkout({ auth, errors, items, success }) {
 
     const submit = (e) => {
         e.preventDefault();
-        Inertia.post(`/logs`, { ...items, qty });
+        Inertia.post(`/logs`, { data });
     };
 
+    const removeItem = (id) => {
+        let items = JSON.parse(localStorage.getItem("checked"));
+        items = items.filter((item) => item !== id);
+        console.log(items);
+        localStorage.setItem("checked", JSON.stringify(items));
+        Inertia.post(`/checkout`, { data: items }, { replaces: true });
+    };
     // const handleChange = (e) => {
     //     const { name, value } = e.target;
     //     setData({ ...data, [name]: value });
@@ -167,19 +179,98 @@ export default function Checkout({ auth, errors, items, success }) {
                             </div>
                         </div>
 
-                        <Table
-                            data={items}
-                            checkout="true"
-                            url="items"
-                            auth={auth}
-                            tableHeaders={[
-                                "حذف",
-                                "رقم الماده",
-                                "اسم الماده",
-                                "الصنف",
-                                "الكمية",
-                            ]}
-                        />
+                        <div className="flex flex-col pt-8 pr-32">
+                            <table className="max-w-5xl divide-y text-center divide-gray-200">
+                                <thead className="bg-gray-50 text-right">
+                                    <tr>
+                                        <th
+                                            scope="col"
+                                            className=" py-3 text-center text-base font-medium text-gray-500 uppercase tracking-wider"
+                                        >
+                                            ازالة
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            className=" py-3 text-center text-base font-medium text-gray-500 uppercase tracking-wider"
+                                        >
+                                            رقم الماده
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            className=" py-3 text-center text-base font-medium text-gray-500 uppercase tracking-wider"
+                                        >
+                                            اسم الماده
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            className=" py-3 text-center text-base font-medium text-gray-500 uppercase tracking-wider"
+                                        >
+                                            الصنف
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            className=" py-3 text-center text-base font-medium text-gray-500 uppercase tracking-wider"
+                                        >
+                                            الكمية
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody className="bg-white divide-y divide-gray-200">
+                                    {items.map((item, key) => (
+                                        <tr key={key}>
+                                            <th
+                                                scope="col"
+                                                className=" py-3 cursor-pointer "
+                                                onClick={() =>
+                                                    removeItem(item.id)
+                                                }
+                                            >
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    className="h-6 w-6 mx-auto"
+                                                    fill="none"
+                                                    viewBox="0 0 20 20"
+                                                    stroke="red"
+                                                >
+                                                    <path
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        strokeWidth={2}
+                                                        d="M6 18L18 6M6 6l12 12"
+                                                    />
+                                                </svg>
+                                            </th>
+
+                                            {item.no && (
+                                                <td className="pb-4">
+                                                    {item.no}
+                                                </td>
+                                            )}
+                                            {item.no && (
+                                                <td className="pb-4">
+                                                    {item.name}
+                                                </td>
+                                            )}
+
+                                            <td className="py-4 ">
+                                                {item.category}
+                                            </td>
+
+                                            <td className="flex items-center justify-center py-4 text-lg">
+                                                <Input
+                                                    type="number"
+                                                    name="qty"
+                                                    value={data.value}
+                                                    max={item.qty}
+                                                    min={1}
+                                                    handleChange={changeqty}
+                                                />
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </Authenticated>

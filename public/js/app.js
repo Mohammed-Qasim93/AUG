@@ -3437,62 +3437,6 @@ function DashboardBar(_ref) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
             className: "mb-2  text-gray-100 flex flex-row  border-gray-300 hover:text-slate-700   hover:bg-gray-300  hover:font-bold rounded-lg",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
-              href: "/dashboard/categories",
-              className: "flex  px-4 py-4 items-center w-full ",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("svg", {
-                  className: "fill-current h-5 w-5 ",
-                  viewBox: "0 0 24 24",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
-                    id: "Stroke 1",
-                    fillRule: "evenodd",
-                    clipRule: "evenodd",
-                    fill: "none",
-                    d: "M21.0003 6.6738C21.0003 8.7024 19.3551 10.3476 17.3265 10.3476C15.2979 10.3476 13.6536 8.7024 13.6536 6.6738C13.6536 4.6452 15.2979 3 17.3265 3C19.3551 3 21.0003 4.6452 21.0003 6.6738Z",
-                    stroke: "currentColor",
-                    strokeWidth: "1.5",
-                    strokeLinecap: "round",
-                    strokeLinejoin: "round"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
-                    id: "Stroke 1",
-                    fillRule: "evenodd",
-                    clipRule: "evenodd",
-                    d: "M10.3467 6.6738C10.3467 8.7024 8.7024 10.3476 6.6729 10.3476C4.6452 10.3476 3 8.7024 3 6.6738C3 4.6452 4.6452 3 6.6729 3C8.7024 3 10.3467 4.6452 10.3467 6.6738Z",
-                    stroke: "currentColor",
-                    fill: "none",
-                    strokeWidth: "1.5",
-                    strokeLinecap: "round",
-                    strokeLinejoin: "round"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
-                    id: "Stroke 1",
-                    fill: "none",
-                    fillRule: "evenodd",
-                    clipRule: "evenodd",
-                    d: "M21.0003 17.2619C21.0003 19.2905 19.3551 20.9348 17.3265 20.9348C15.2979 20.9348 13.6536 19.2905 13.6536 17.2619C13.6536 15.2333 15.2979 13.5881 17.3265 13.5881C19.3551 13.5881 21.0003 15.2333 21.0003 17.2619Z",
-                    stroke: "currentColor",
-                    strokeWidth: "1.5",
-                    strokeLinecap: "round",
-                    strokeLinejoin: "round"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
-                    id: "Stroke 1",
-                    fillRule: "evenodd",
-                    clipRule: "evenodd",
-                    d: "M10.3467 17.2619C10.3467 19.2905 8.7024 20.9348 6.6729 20.9348C4.6452 20.9348 3 19.2905 3 17.2619C3 15.2333 4.6452 13.5881 6.6729 13.5881C8.7024 13.5881 10.3467 15.2333 10.3467 17.2619Z",
-                    stroke: "currentColor",
-                    fill: "none",
-                    strokeWidth: "1.5",
-                    strokeLinecap: "round",
-                    strokeLinejoin: "round"
-                  })]
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-                className: "mr-2",
-                children: "\u0627\u0644\u0641\u0626\u0627\u062A"
-              })]
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
-            className: "mb-2  text-gray-100 flex flex-row  border-gray-300 hover:text-slate-700   hover:bg-gray-300  hover:font-bold rounded-lg",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
               className: "flex px-4 py-4 items-center w-full",
               href: "/takeout",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
@@ -3512,6 +3456,30 @@ function DashboardBar(_ref) {
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
                 className: "mr-2",
                 children: "\u0627\u062E\u0631\u0627\u062C \u0645\u062E\u0632\u0646\u064A"
+              })]
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+            className: "mb-2  text-gray-100 flex flex-row  border-gray-300 hover:text-slate-700   hover:bg-gray-300  hover:font-bold rounded-lg",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
+              href: "/logs?page=1",
+              className: "flex  px-4 py-4 items-center w-full ",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
+                  xmlns: "http://www.w3.org/2000/svg",
+                  className: "h-5 w-5",
+                  fill: "none",
+                  viewBox: "0 0 24 24",
+                  stroke: "currentColor",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+                  })
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+                className: "mr-2",
+                children: "\u0633\u062C\u0644 \u0627\u0644\u062E\u0631\u0648\u062C"
               })]
             })
           })]
@@ -4034,8 +4002,6 @@ function Table(_ref) {
       tableHeaders = _ref.tableHeaders,
       _ref$takeout = _ref.takeout,
       takeout = _ref$takeout === void 0 ? false : _ref$takeout,
-      _ref$checkout = _ref.checkout,
-      checkout = _ref$checkout === void 0 ? false : _ref$checkout,
       value = _ref.value;
 
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState([]),
@@ -4122,26 +4088,7 @@ function Table(_ref) {
         className: "bg-white divide-y divide-gray-200",
         children: data.map(function (item, key) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("tr", {
-            children: [checkout && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("th", {
-              scope: "col",
-              className: " py-3 cursor-pointer ",
-              onClick: function onClick() {
-                return removeItem(item.id);
-              },
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("svg", {
-                xmlns: "http://www.w3.org/2000/svg",
-                className: "h-6 w-6 mx-auto",
-                fill: "none",
-                viewBox: "0 0 20 20",
-                stroke: "red",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("path", {
-                  strokeLinecap: "round",
-                  strokeLinejoin: "round",
-                  strokeWidth: 2,
-                  d: "M6 18L18 6M6 6l12 12"
-                })
-              })
-            }), takeout ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("th", {
+            children: [takeout ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("th", {
               scope: "col",
               className: " py-3 text-center text-base font-medium text-gray-500 uppercase tracking-wider",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Checkbox__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -4171,22 +4118,13 @@ function Table(_ref) {
             }), item.category && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
               className: "py-4 ",
               children: item.category
-            }), !checkout && item.qty >= 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
+            }), item.qty >= 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
               className: "py-4 ",
               children: item.qty
             }), takeout && item.category && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
               className: "py-4 ",
               children: item.state
-            }), checkout && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
-              className: "flex items-center justify-center py-4 text-lg",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Input__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                type: "number",
-                name: "qty",
-                defaultValue: 1,
-                max: item.qty,
-                min: 1
-              })
-            }), !takeout && !checkout && item.category && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
+            }), !takeout && item.category && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
               className: "py-4 text-lg",
               children: moment__WEBPACK_IMPORTED_MODULE_7___default()(item.created_at).format("L")
             }), item.email && (item.isAdmin ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
@@ -4195,7 +4133,7 @@ function Table(_ref) {
             }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
               className: "py-4 text-red-600 px-5",
               children: "\u0645\u0648\u0638\u0641"
-            })), !takeout && !checkout && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("td", {
+            })), !takeout && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("td", {
               className: "py-4 flex items-center justify-center",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
                 href: "/".concat(url, "/").concat(item.id, "/edit"),
@@ -6041,12 +5979,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_Table__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../Components/Table */ "./resources/js/Components/Table.js");
 /* harmony import */ var _Components_Toast__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../Components/Toast */ "./resources/js/Components/Toast.js");
 /* harmony import */ var _Components_Label__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../Components/Label */ "./resources/js/Components/Label.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+/* harmony import */ var _Components_Pagination__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../Components/Pagination */ "./resources/js/Components/Pagination.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
@@ -6069,10 +6005,10 @@ function Checkout(_ref) {
   console.log(items);
 
   var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.useForm)({
-    name: items.name || "",
-    category: items.category || "",
-    qty: items.qty || "",
-    no: items.no || ""
+    name: "",
+    category: "",
+    qty: "",
+    note: ""
   }),
       data = _useForm.data,
       setData = _useForm.setData,
@@ -6083,6 +6019,10 @@ function Checkout(_ref) {
 
   var onHandleChange = function onHandleChange(event) {
     setData(event.target.name, event.target.type === "checkbox" ? event.target.checked : event.target.value);
+  };
+
+  var changeqty = function changeqty(e) {
+    setData("qty", e.target.value);
   }; // const submit = (e) => {
   //     console.log(data);
   //     e.preventDefault();
@@ -6092,9 +6032,23 @@ function Checkout(_ref) {
 
   var submit = function submit(e) {
     e.preventDefault();
-    Inertia.post("/logs", _objectSpread(_objectSpread({}, items), {}, {
-      qty: qty
-    }));
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_11__.Inertia.post("/logs", {
+      data: data
+    });
+  };
+
+  var removeItem = function removeItem(id) {
+    var items = JSON.parse(localStorage.getItem("checked"));
+    items = items.filter(function (item) {
+      return item !== id;
+    });
+    console.log(items);
+    localStorage.setItem("checked", JSON.stringify(items));
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_11__.Inertia.post("/checkout", {
+      data: items
+    }, {
+      replaces: true
+    });
   }; // const handleChange = (e) => {
   //     const { name, value } = e.target;
   //     setData({ ...data, [name]: value });
@@ -6115,56 +6069,56 @@ function Checkout(_ref) {
   // };
 
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)(_Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_5__["default"], {
       auth: auth,
       errors: errors,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Head, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Head, {
         title: "\u0627\u062E\u0631\u0627\u062C \u0645\u062E\u0632\u0646\u064A"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
         className: "flex",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_DashboardBar__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_DashboardBar__WEBPACK_IMPORTED_MODULE_6__["default"], {
           auth: auth
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
           className: "flex-1 flex flex-col max-w-6xl",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
             className: "flex flex-col justify-end pr-32 items-start ",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
               className: "flex w-full items-center justify-between",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
                 className: "flex justify-between flex-1 gap-x-4 items-end pt-16",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("form", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("form", {
                   onSubmit: submit,
                   className: "w-1/2 mx-auto ",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
                     className: "shadow overflow-hidden sm:rounded-md",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
                       className: "px-4 py-5 bg-white sm:p-6",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
                         className: "grid grid-cols-6 gap-6",
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
                           className: "col-span-6",
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("label", {
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("label", {
                             htmlFor: "name",
                             className: "block text-sm font-medium text-gray-700",
                             children: "\u0627\u0644\u0627\u0633\u0645"
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
                             handleChange: onHandleChange,
                             type: "text",
                             name: "name",
                             value: data.name,
                             className: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("small", {
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("small", {
                             className: "text-red-500 text-sm",
                             children: errors.name
                           })]
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
                           className: "col-span-6",
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("label", {
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("label", {
                             htmlFor: "note",
                             className: "block text-sm font-medium text-gray-700",
                             children: "\u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0627\u062A"
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
                             handleChange: onHandleChange,
                             area: "true",
                             type: "text",
@@ -6175,9 +6129,9 @@ function Checkout(_ref) {
                           })]
                         })]
                       })
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
                       className: "px-4 py-3 flex justify-center bg-gray-50 text-right sm:px-6",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
                         className: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600 focus:outline-none ",
                         children: "\u0625\u062E\u0631\u0627\u062C"
                       })
@@ -6186,12 +6140,82 @@ function Checkout(_ref) {
                 })
               })
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Table__WEBPACK_IMPORTED_MODULE_7__["default"], {
-            data: items,
-            checkout: "true",
-            url: "items",
-            auth: auth,
-            tableHeaders: ["حذف", "رقم الماده", "اسم الماده", "الصنف", "الكمية"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+            className: "flex flex-col pt-8 pr-32",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("table", {
+              className: "max-w-5xl divide-y text-center divide-gray-200",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("thead", {
+                className: "bg-gray-50 text-right",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("tr", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("th", {
+                    scope: "col",
+                    className: " py-3 text-center text-base font-medium text-gray-500 uppercase tracking-wider",
+                    children: "\u0627\u0632\u0627\u0644\u0629"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("th", {
+                    scope: "col",
+                    className: " py-3 text-center text-base font-medium text-gray-500 uppercase tracking-wider",
+                    children: "\u0631\u0642\u0645 \u0627\u0644\u0645\u0627\u062F\u0647"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("th", {
+                    scope: "col",
+                    className: " py-3 text-center text-base font-medium text-gray-500 uppercase tracking-wider",
+                    children: "\u0627\u0633\u0645 \u0627\u0644\u0645\u0627\u062F\u0647"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("th", {
+                    scope: "col",
+                    className: " py-3 text-center text-base font-medium text-gray-500 uppercase tracking-wider",
+                    children: "\u0627\u0644\u0635\u0646\u0641"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("th", {
+                    scope: "col",
+                    className: " py-3 text-center text-base font-medium text-gray-500 uppercase tracking-wider",
+                    children: "\u0627\u0644\u0643\u0645\u064A\u0629"
+                  })]
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("tbody", {
+                className: "bg-white divide-y divide-gray-200",
+                children: items.map(function (item, key) {
+                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("tr", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("th", {
+                      scope: "col",
+                      className: " py-3 cursor-pointer ",
+                      onClick: function onClick() {
+                        return removeItem(item.id);
+                      },
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("svg", {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        className: "h-6 w-6 mx-auto",
+                        fill: "none",
+                        viewBox: "0 0 20 20",
+                        stroke: "red",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("path", {
+                          strokeLinecap: "round",
+                          strokeLinejoin: "round",
+                          strokeWidth: 2,
+                          d: "M6 18L18 6M6 6l12 12"
+                        })
+                      })
+                    }), item.no && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("td", {
+                      className: "pb-4",
+                      children: item.no
+                    }), item.no && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("td", {
+                      className: "pb-4",
+                      children: item.name
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("td", {
+                      className: "py-4 ",
+                      children: item.category
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("td", {
+                      className: "flex items-center justify-center py-4 text-lg",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                        type: "number",
+                        name: "qty",
+                        value: data.value,
+                        max: item.qty,
+                        min: 1,
+                        handleChange: changeqty
+                      })
+                    })]
+                  }, key);
+                })
+              })]
+            })
           })]
         })]
       })]
