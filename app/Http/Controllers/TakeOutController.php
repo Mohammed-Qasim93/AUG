@@ -33,4 +33,8 @@ class TakeOutController extends Controller
             ]);
         }
     }
+
+    public function test(){
+        return redirect()->route('takeout.index');
+    }
 }

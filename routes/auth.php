@@ -35,7 +35,8 @@ Route::resource('logs', LogsController::class)->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::get('/takeout', [TakeOutController::class, 'index'])->name('takeout.index');               // Index
-    Route::get('/checkout', [TakeOutController::class, 'checkout'])->name('takeout.checkout');               // Index
+    Route::post('/checkout', [TakeOutController::class, 'checkout'])->name('takeout.checkout');               // Index
+    Route::get('/checkout', [TakeOutController::class, 'refresh'])->name('takeout.refresh');               // Index
     // Route::get('/user/{id}/edit', [Controller::class, 'edit'])->name('user.edit');        // Edit
     // Route::put('/user/{id}', [Controller::class, 'update'])->name('user.update');        // Update
     // Route::delete('/user/{id}', [Controller::class, 'delete'])->name('user.delelte');    // Delete
