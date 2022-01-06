@@ -10,7 +10,7 @@ class TakeOutController extends Controller
 {
     public function index(){
         return Inertia::render('TakeOut/Index', [
-            'items' => logs::orderBy('created_at', 'desc')->pagainte(10),
+            'items' => logs::orderBy('created_at', 'desc')->paginate(10),
         ]);
     }
 }
