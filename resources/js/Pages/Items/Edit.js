@@ -5,11 +5,11 @@ import Checkbox from "@/Components/Checkbox";
 import Button from "@/Components/Button";
 import Authenticated from "@/Layouts/Authenticated";
 import DashboardBar from "../../Components/DashboardBar";
-import { Inertia } from "@inertiajs/inertia";
-import Swal from "sweetalert2";
 
-export default function Add({ auth, errors, items }) {
-    const { data, setData } = useForm({
+import Toast from "../../Components/Toast";
+
+export default function Add({ auth, errors, items, success }) {
+    const { data, setData, post } = useForm({
         name: items.name || "",
         category: items.category || "",
         qty: items.qty || "",
@@ -31,11 +31,23 @@ export default function Add({ auth, errors, items }) {
         );
     };
 
-    console.log(data);
+    // const submit = (e) => {
+    //     console.log(data);
+    //     e.preventDefault();
+    //     Inertia.post(`/items/${items.id}`, data);
+    // };
+
     const submit = (e) => {
-        console.log(data);
         e.preventDefault();
-        Inertia.post(`/items/${items.id}`, data);
+
+        post(`/items/${items.id}`, {
+            onSuccess: () => {
+                Toast.fire({
+                    icon: "success",
+                    title: success,
+                });
+            },
+        });
     };
 
     // const handleChange = (e) => {

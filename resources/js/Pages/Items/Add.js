@@ -4,14 +4,12 @@ import Input from "@/Components/Input";
 import Button from "@/Components/Button";
 import Authenticated from "@/Layouts/Authenticated";
 import DashboardBar from "../../Components/DashboardBar";
-import ValidationErrors from "@/Components/ValidationErrors";
-import { Inertia } from "@inertiajs/inertia";
-import Swal from "sweetalert2";
-import axios from "axios";
-import Checkbox from "../../Components/Checkbox";
 
-export default function Add({ auth, errors }) {
-    const { data, setData } = useForm({
+import Checkbox from "../../Components/Checkbox";
+import Toast from "../../Components/Toast";
+
+export default function Add({ auth, errors, success }) {
+    const { data, setData, post } = useForm({
         name: "",
         category: "",
         qty: "",
@@ -30,9 +28,22 @@ export default function Add({ auth, errors }) {
         );
     };
 
+    // const submit = (e) => {
+    //     e.preventDefault();
+    //     Inertia.post(`/items`, data);
+    // };
+
     const submit = (e) => {
         e.preventDefault();
-        Inertia.post(`/items`, data);
+
+        post("/items", {
+            onSuccess: () => {
+                Toast.fire({
+                    icon: "success",
+                    title: success,
+                });
+            },
+        });
     };
 
     // const handleChange = (e) => {

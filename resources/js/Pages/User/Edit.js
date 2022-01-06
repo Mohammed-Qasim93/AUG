@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Head, useForm } from "@inertiajs/inertia-react";
-import { Inertia } from "@inertiajs/inertia";
 import Authenticated from "@/Layouts/Authenticated";
 import Button from "@/Components/Button";
 import Input from "@/Components/Input";
 import Label from "@/Components/Label";
 import DashboardBar from "../../Components/DashboardBar";
+import Toast from "../../Components/Toast";
 // import ComboBox from "@/Components/ComboBox";
 
-export default function Edit({ auth, user, errors }) {
+export default function Edit({ auth, user, errors, success }) {
     let { data, setData } = useForm({
         name: user.name || "",
         email: user.email || "",
@@ -26,9 +26,22 @@ export default function Edit({ auth, user, errors }) {
         setData({ ...data, [name]: value });
     };
 
-    const handelClick = (e) => {
+    // const handelClick = (e) => {
+    //     e.preventDefault();
+    //     Inertia.post(`/user/${user.id}`, data);
+    // };
+
+    const submit = (e) => {
         e.preventDefault();
-        Inertia.post(`/user/${user.id}`, data);
+
+        post(`/user/${user.id}`, {
+            onSuccess: () => {
+                Toast.fire({
+                    icon: "success",
+                    title: success,
+                });
+            },
+        });
     };
 
     // const handlechecked = (e) => {
@@ -47,7 +60,7 @@ export default function Edit({ auth, user, errors }) {
                     <div className=" flex justify-center  text-gray-900 text-2xl">
                         <div className="pt-12" style={{ width: "512px" }}>
                             <form
-                                onSubmit={handelClick}
+                                onSubmit={submit}
                                 className="w-full mx-auto border-2 bg-white p-8 space-y-6"
                             >
                                 <div className="">
