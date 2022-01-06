@@ -34,7 +34,7 @@ class TakeOutController extends Controller
         }
     }
 
-    public function test(){
+    public function refresh(){
         return redirect()->route('takeout.index');
     }
 }
