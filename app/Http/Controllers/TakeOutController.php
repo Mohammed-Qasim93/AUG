@@ -27,10 +27,11 @@ class TakeOutController extends Controller
         }else{
             for ($i = 0; $i > $id; $i++){
                 $item = Items::finOrFail($id[$i]);
-                return Inertia::render('TakeOut/Checkout', [
-                    'checkout' => $item,
-                ]);
+                $items[$i] = $item;
             }
+            return Inertia::render('TakeOut/Checkout', [
+                'checkout' => $items,
+            ]);
         }
     }
 }
