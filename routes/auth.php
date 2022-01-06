@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ItemsController;
+use App\Http\Controllers\LogsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
@@ -29,3 +30,4 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('items', ItemsController::class)->middleware('auth');
+Route::resource('logs', LogsController::class)->middleware('auth');
