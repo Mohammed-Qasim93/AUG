@@ -26,14 +26,14 @@ export default function index({ items, auth, errors, success }) {
 
     const submit = (e) => {
         e.preventDefault();
-        console.log(success);
         Inertia.get(
             `/items?`,
             { date_from: data.from, date_to: data.to },
             { replaces: true, preserveState: true }
         );
         Swal.fire({
-            title: "jjijijij",
+            title: errors.data.name,
+            toast: true,
             html: "I will close in <b></b> milliseconds.",
             timer: 2000,
         });

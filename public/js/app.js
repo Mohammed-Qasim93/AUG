@@ -3994,11 +3994,11 @@ function Table(_ref) {
       paginate = _ref.paginate,
       auth = _ref.auth,
       tableHeaders = _ref.tableHeaders;
-  console.log(data);
 
   var handleClick = function handleClick(id) {
     sweetalert2__WEBPACK_IMPORTED_MODULE_3___default().fire({
       title: "هل انت متأكد من الحذف؟",
+      icon: "warning",
       showDenyButton: true,
       confirmButtonText: "نعم",
       denyButtonText: "\u0643\u0644\u0627"
@@ -5693,7 +5693,6 @@ function index(_ref) {
 
   var submit = function submit(e) {
     e.preventDefault();
-    console.log(success);
     _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_10__.Inertia.get("/items?", {
       date_from: data.from,
       date_to: data.to
@@ -5702,7 +5701,8 @@ function index(_ref) {
       preserveState: true
     });
     sweetalert2__WEBPACK_IMPORTED_MODULE_11___default().fire({
-      title: "jjijijij",
+      title: errors.data.name,
+      toast: true,
       html: "I will close in <b></b> milliseconds.",
       timer: 2000
     });
