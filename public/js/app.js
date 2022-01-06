@@ -6262,8 +6262,7 @@ function index(_ref) {
       success = _ref.success;
 
   var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.useForm)({
-    from: "",
-    to: ""
+    search: ""
   }),
       data = _useForm.data,
       setData = _useForm.setData;
@@ -6273,13 +6272,14 @@ function index(_ref) {
       checked = _useState2[0],
       setChecked = _useState2[1];
 
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    setChecked(JSON.parse(localStorage.getItem("checked")));
-    var d = JSON.parse(localStorage.getItem("checked"));
-  }, []);
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState4 = _slicedToArray(_useState3, 2),
+      re = _useState4[0],
+      setRe = _useState4[1];
 
   var onHandleChange = function onHandleChange(e) {
     e.preventDefault();
+    setRe(re + 1);
     _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_10__.Inertia.get("/takeout?", {
       item: e.target.value
     }, {
@@ -6295,13 +6295,11 @@ function index(_ref) {
   };
 
   var submit = function submit(e) {
-    console.log(checked);
     e.preventDefault();
     _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_10__.Inertia.post("/checkout", {
-      data: checked
+      data: JSON.parse(localStorage.getItem("checked"))
     }, {
-      replaces: true,
-      preserveState: true
+      replaces: true
     });
   };
 

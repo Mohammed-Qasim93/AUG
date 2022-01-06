@@ -13,19 +13,15 @@ import Swal from "sweetalert2";
 
 export default function index({ items, auth, errors, success }) {
     const { data, setData } = useForm({
-        from: "",
-        to: "",
+        search: "",
     });
 
     const [checked, setChecked] = useState([]);
-
-    useEffect(() => {
-        setChecked(JSON.parse(localStorage.getItem("checked")));
-        const d = JSON.parse(localStorage.getItem("checked"));
-    }, []);
+    const [re, setRe] = useState(0);
 
     const onHandleChange = (e) => {
         e.preventDefault();
+        setRe(re + 1);
         Inertia.get(
             `/takeout?`,
             { item: e.target.value },
@@ -40,12 +36,11 @@ export default function index({ items, auth, errors, success }) {
     };
 
     const submit = (e) => {
-        console.log(checked);
         e.preventDefault();
         Inertia.post(
             `/checkout`,
-            { data: checked },
-            { replaces: true, preserveState: true }
+            { data: JSON.parse(localStorage.getItem("checked")) },
+            { replaces: true }
         );
     };
     return (
