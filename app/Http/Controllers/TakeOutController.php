@@ -31,6 +31,8 @@ class TakeOutController extends Controller
             return Inertia::render('TakeOut/Checkout', [
                 'items' => $items,
             ]);
+        }else{
+            return redirect()->route('takeout.index')->with('success', 'لاتوجد مواد محددة');
         }
     }
 
@@ -44,13 +46,12 @@ class TakeOutController extends Controller
             return Inertia::render('TakeOut/Checkout', [
                 'items' => $items,
             ]);
+        }else{
+            return redirect()->route('takeout.index')->with('success', 'لاتوجد مواد محددة');
         }
     }
 
     public function refresh(){
         return redirect()->route('takeout.index');
-        // return Inertia::render('TakeOut/Checkout', [
-        //     'items' => Items::all(),
-        // ]);
     }
 }
