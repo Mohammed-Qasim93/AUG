@@ -17,7 +17,7 @@ class TakeOutController extends Controller
                             ->orWhere('category', 'LIKE', '%'.request('item').'%');
         }
         return Inertia::render('TakeOut/Index', [
-            'items' => $query->orderBy('created_at', 'desc')->paginate(10),
+            'items' => $query->orderBy('created_at', 'desc')->paginate(10)->withQueryString(),
         ]);
     }
 
