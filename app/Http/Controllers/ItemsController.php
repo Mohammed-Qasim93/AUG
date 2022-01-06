@@ -141,6 +141,7 @@ class ItemsController extends Controller
             'category' => $request->category,
             'qty' => $request->qty,
             'no' => $request->no,
+            'state' => $request->state,
             'desc' => $request->desc,
             'note' => $request->note,
         ]);
