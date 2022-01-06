@@ -10,8 +10,14 @@ use Inertia\Inertia;
 class TakeOutController extends Controller
 {
     public function index(){
+        $query = Items::query();
+        if(request('item')){
+            $query = Items::where('name', 'LIKE', '%'.request('item').'%')
+                            ->orWhere('no', 'LIKE', '%'.request('item').'%')
+                            ->orWhere('category', 'LIKE', '%'.request('item').'%');
+        }
         return Inertia::render('TakeOut/Index', [
-            'items' => Items::orderBy('created_at', 'desc')->paginate(10),
+            'items' => $query->orderBy('created_at', 'desc')->paginate(10),
         ]);
     }
 
