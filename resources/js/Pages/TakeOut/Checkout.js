@@ -10,6 +10,7 @@ import Toast from "../../Components/Toast";
 import Label from "../../Components/Label";
 
 export default function Checkout({ auth, errors, items, success }) {
+    console.log(items);
     const { data, setData, post } = useForm({
         name: items.name || "",
         category: items.category || "",
@@ -18,7 +19,6 @@ export default function Checkout({ auth, errors, items, success }) {
         note: items.note || "",
         desc: items.desc || "",
         state: items.state,
-        _method: "PUT",
     });
 
     const onHandleChange = (event) => {
@@ -38,15 +38,7 @@ export default function Checkout({ auth, errors, items, success }) {
 
     const submit = (e) => {
         e.preventDefault();
-
-        post(`/items/${items.id}`, {
-            onSuccess: () => {
-                Toast.fire({
-                    icon: "success",
-                    title: success,
-                });
-            },
-        });
+        // Inertia.post(`/logs`, { ...items, ...data });
     };
 
     // const handleChange = (e) => {

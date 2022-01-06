@@ -43,7 +43,7 @@ export default function Input({
                 <input
                     type={type}
                     name={name}
-                    value={value > max ? max : value}
+                    value={value > max ? max : value || value < 0 ? min : value}
                     max={max}
                     min={min}
                     placeholder={placeholder}

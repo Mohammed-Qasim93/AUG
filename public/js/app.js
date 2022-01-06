@@ -3776,7 +3776,7 @@ function Input(_ref) {
     }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
       type: type,
       name: name,
-      value: value > max ? max : value,
+      value: value > max ? max : value || value < 0 ? min : value,
       max: max,
       min: min,
       placeholder: placeholder,
@@ -6054,6 +6054,7 @@ function Checkout(_ref) {
       errors = _ref.errors,
       items = _ref.items,
       success = _ref.success;
+  console.log(items);
 
   var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.useForm)({
     name: items.name || "",
@@ -6062,8 +6063,7 @@ function Checkout(_ref) {
     no: items.no || "",
     note: items.note || "",
     desc: items.desc || "",
-    state: items.state,
-    _method: "PUT"
+    state: items.state
   }),
       data = _useForm.data,
       setData = _useForm.setData,
@@ -6079,15 +6079,7 @@ function Checkout(_ref) {
 
 
   var submit = function submit(e) {
-    e.preventDefault();
-    post("/items/".concat(items.id), {
-      onSuccess: function onSuccess() {
-        _Components_Toast__WEBPACK_IMPORTED_MODULE_8__["default"].fire({
-          icon: "success",
-          title: success
-        });
-      }
-    });
+    e.preventDefault(); // Inertia.post(`/logs`, { ...items, ...data });
   }; // const handleChange = (e) => {
   //     const { name, value } = e.target;
   //     setData({ ...data, [name]: value });
