@@ -22,12 +22,10 @@ class TakeOutController extends Controller
     }
 
     public function checkout(Request $request){
-        dd($request->all());
-        if(!$request) {
-            return redirect()->back()->with('success', 'لم يتم تحديد مواد للاخراج');
-        }else{
-            for ($i = 0; $i > $request; $i++){
-                $item = Items::finOrFail($request[$i]);
+        if($request->data) {
+            $items=[];
+            for ($i = 0; $i < count($request->data) ; $i++){
+                $item = Items::findOrFail($request->data[$i]);
                 $items[$i] = $item;
             }
             return Inertia::render('TakeOut/Checkout', [
