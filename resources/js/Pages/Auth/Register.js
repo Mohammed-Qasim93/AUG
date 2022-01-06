@@ -5,8 +5,9 @@ import Input from "@/Components/Input";
 import Label from "@/Components/Label";
 import ValidationErrors from "@/Components/ValidationErrors";
 import { Head, Link, useForm } from "@inertiajs/inertia-react";
+import Swal from "sweetalert2";
 
-export default function Register() {
+export default function Register({ success }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: "",
         email: "",
@@ -33,14 +34,17 @@ export default function Register() {
         e.preventDefault();
 
         post(route("register"));
+        Swal.fire({
+            title: "شكراً لك",
+            text: "تم تسجيلك بنجاح",
+            icon: "success",
+            toast: true,
+        });
     };
 
     return (
         <Guest>
-            <Head title="إضافة مستخدم" />
-
-            <ValidationErrors errors={errors} />
-
+            <Head title="إضافة موظف" />
             <form onSubmit={submit}>
                 <div>
                     <Label forInput="name" value="الاسم" />
@@ -55,6 +59,9 @@ export default function Register() {
                         handleChange={onHandleChange}
                         required
                     />
+                    <small className="text-red-500 text-sm">
+                        {errors.name}
+                    </small>
                 </div>
 
                 <div className="mt-4">
@@ -69,6 +76,9 @@ export default function Register() {
                         handleChange={onHandleChange}
                         required
                     />
+                    <small className="text-red-500 text-sm">
+                        {errors.email}
+                    </small>
                 </div>
 
                 <div className="mt-4">
@@ -83,6 +93,9 @@ export default function Register() {
                         handleChange={onHandleChange}
                         required
                     />
+                    <small className="text-red-500 text-sm">
+                        {errors.password}
+                    </small>
                 </div>
 
                 <div className="mt-4">

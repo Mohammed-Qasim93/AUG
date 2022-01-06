@@ -45,8 +45,6 @@ export default function Login({ status, canResetPassword }) {
                 </div>
             )}
 
-            <ValidationErrors errors={errors} />
-
             <form onSubmit={submit}>
                 <div>
                     <Label forInput="email" value="البريد الالكتروني" />
@@ -60,6 +58,9 @@ export default function Login({ status, canResetPassword }) {
                         isFocused={true}
                         handleChange={onHandleChange}
                     />
+                    <small className="text-red-500 text-sm">
+                        {errors.email}
+                    </small>
                 </div>
 
                 <div className="mt-4">
@@ -73,6 +74,9 @@ export default function Login({ status, canResetPassword }) {
                         autoComplete="current-password"
                         handleChange={onHandleChange}
                     />
+                    <small className="text-red-500 text-sm">
+                        {errors.password}
+                    </small>
                 </div>
 
                 <div className="block mt-4">

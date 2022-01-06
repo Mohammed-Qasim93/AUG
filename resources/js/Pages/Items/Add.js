@@ -8,6 +8,7 @@ import ValidationErrors from "@/Components/ValidationErrors";
 import { Inertia } from "@inertiajs/inertia";
 import Swal from "sweetalert2";
 import axios from "axios";
+import Checkbox from "../../Components/Checkbox";
 
 export default function Add({ auth, errors }) {
     const { data, setData } = useForm({
@@ -57,7 +58,7 @@ export default function Add({ auth, errors }) {
     return (
         <>
             <Authenticated auth={auth} errors={errors}>
-                <Head title="الفئات" />
+                <Head title="اضافة مادة" />
                 <div className="flex">
                     <DashboardBar auth={auth} />
                     <div className="flex-1 flex flex-col max-w-6xl">
@@ -169,24 +170,26 @@ export default function Add({ auth, errors }) {
                                                                         }
                                                                     </small>
                                                                 </div>
-                                                                <div className="col-span-6">
-                                                                    <label
-                                                                        htmlFor="postal-code"
-                                                                        className="block text-sm font-medium text-gray-700"
-                                                                    >
-                                                                        الحاله
-                                                                    </label>
-                                                                    <Input
-                                                                        handleChange={
-                                                                            onHandleChange
-                                                                        }
-                                                                        type="text"
+                                                                <div className="col-span-6 flex items-center gap-x-2">
+                                                                    <Checkbox
                                                                         name="state"
                                                                         value={
                                                                             data.state
                                                                         }
-                                                                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                                        checked={
+                                                                            data.state
+                                                                        }
+                                                                        handleChange={
+                                                                            onHandleChange
+                                                                        }
                                                                     />
+                                                                    <label
+                                                                        htmlFor="state"
+                                                                        className="block text-sm font-medium text-gray-700"
+                                                                    >
+                                                                        قابل
+                                                                        للاستهلاك
+                                                                    </label>
                                                                 </div>
                                                                 <div className="col-span-6">
                                                                     <label

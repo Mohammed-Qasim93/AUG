@@ -61,7 +61,7 @@ export default function Add({ auth, errors, items }) {
     return (
         <>
             <Authenticated auth={auth} errors={errors}>
-                <Head title="الفئات" />
+                <Head title={`تعديل بيانات  ${items.name}`} />
                 <div className="flex">
                     <DashboardBar auth={auth} />
                     <div className="flex-1 flex flex-col max-w-6xl">
@@ -239,7 +239,7 @@ export default function Add({ auth, errors, items }) {
                                                         </div>
                                                         <div className="px-4 py-3 flex justify-center bg-gray-50 text-right sm:px-6">
                                                             <Button className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600 focus:outline-none ">
-                                                                إضافة
+                                                                تعديل
                                                             </Button>
                                                         </div>
                                                     </div>

@@ -17,9 +17,7 @@ export default function index({ user, auth, errors }) {
 
     return (
         <Authenticated auth={auth} errors={errors}>
-            <Head>
-                <title>المستخدمين</title>
-            </Head>
+            <Head title="الموظفين" />
             <div className="flex">
                 <DashboardBar auth={auth} />
                 <div className="flex-1 flex flex-col max-w-6xl">

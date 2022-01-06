@@ -66,6 +66,7 @@ export default function Authenticated({ auth, header, children }) {
                                         </Dropdown.Link>
                                         <Dropdown.Link
                                             href={route("logout")}
+                                            className="bg-red-500 text-white hover:bg-red-600"
                                             method="post"
                                             as="button"
                                         >

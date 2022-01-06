@@ -40,7 +40,7 @@ export default function Edit({ auth, user, errors }) {
     // };
     return (
         <Authenticated auth={auth}>
-            <Head title="تعديل معلومات الموظف" />
+            <Head title={`تعديل بيانات ${user.name}`} />
             <div className="flex">
                 <DashboardBar auth={auth} />
                 <div className="flex-1 flex flex-col max-w-6xl">
@@ -155,7 +155,7 @@ export default function Edit({ auth, user, errors }) {
 
                                 <div className="flex justify-center">
                                     <Button className="bg-green-500 py-2">
-                                        حفظ
+                                        تعديل
                                     </Button>
                                 </div>
                             </form>

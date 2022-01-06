@@ -40,9 +40,7 @@ export default function index({ items, auth, errors, success }) {
     };
     return (
         <Authenticated auth={auth} errors={errors}>
-            <Head>
-                <title>السلع</title>
-            </Head>
+            <Head title="المواد" />
             <div className="flex">
                 <DashboardBar auth={auth} />
                 <div className="flex-1 flex flex-col max-w-6xl">
@@ -50,20 +48,20 @@ export default function index({ items, auth, errors, success }) {
                         <TableButtons text="إضافة مادة" url="/items/create" />
                     </div>
                     <div className="flex flex-col justify-end pr-32 items-start max-w-6xl">
-                        <div className="flex gap-8 w-full justify-between">
+                        {/* <div className="flex gap-8 w-full justify-between">
                             <Filters text="اخر يوم :" />
                             <Filters text="اخر اسبوع :" />
-                        </div>
+                        </div> */}
                         <div className="flex w-full  justify-between">
-                            <Filters text="اخر شهر :" />
-                            <div className="flex gap-4">
+                            {/* <Filters text="اخر شهر :" /> */}
+                            <div className="flex gap-4 pt-4">
                                 <div className="flex items-center gap-4">
                                     <Label value="من :"></Label>
                                     <Input
                                         type="date"
                                         name="from"
                                         value={data.from}
-                                        className="mt-1 block w-full"
+                                        className="mt-1 block w-full "
                                         autoComplete="username"
                                         isFocused={true}
                                         handleChange={onHandleChange}
@@ -83,12 +81,12 @@ export default function index({ items, auth, errors, success }) {
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <Button
-                                        className="bg-green-500 hover:bg-green-600"
+                                        className="bg-blue-500 hover:bg-blue-600"
                                         handleClick={submit}
                                         children="بحث"
                                     />
                                     <Link
-                                        className="inline-flex items-center px-4 py-2 bg-green-500 hover:bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 $"
+                                        className="inline-flex items-center px-4 py-2 bg-red-500 hover:bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 $"
                                         href="/items?page=1"
                                     >
                                         تصفير
