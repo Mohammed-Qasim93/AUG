@@ -3738,6 +3738,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
+
 function Input(_ref) {
   var _ref$type = _ref.type,
       type = _ref$type === void 0 ? "text" : _ref$type,
@@ -3752,16 +3753,18 @@ function Input(_ref) {
       handleChange = _ref.handleChange,
       placeholder = _ref.placeholder,
       _ref$area = _ref.area,
-      area = _ref$area === void 0 ? false : _ref$area;
+      area = _ref$area === void 0 ? false : _ref$area,
+      defaultValue = _ref.defaultValue;
   var input = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (isFocused) {
       input.current.focus();
+      input.current.value = value;
     }
   }, []);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
     className: "flex flex-col items-start",
-    children: area ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("textarea", {
+    children: [area ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("textarea", {
       type: type,
       name: name,
       value: value,
@@ -3776,7 +3779,19 @@ function Input(_ref) {
     }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
       type: type,
       name: name,
-      value: value > max ? max : value || value < 0 ? min : value,
+      value: value,
+      max: max,
+      min: min,
+      placeholder: placeholder,
+      className: "border-gray-300 focus:border-indigo-300  ".concat(defaultValue ? "hidden" : "", " focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm ") + className,
+      ref: input,
+      autoComplete: autoComplete,
+      required: required,
+      onChange: handleChange
+    }), defaultValue && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+      type: type,
+      name: name,
+      defaultValue: defaultValue,
       max: max,
       min: min,
       placeholder: placeholder,
@@ -3784,10 +3799,8 @@ function Input(_ref) {
       ref: input,
       autoComplete: autoComplete,
       required: required,
-      onChange: function onChange(e) {
-        return handleChange(e);
-      }
-    })
+      onChange: handleChange
+    })]
   });
 }
 
@@ -3980,8 +3993,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment_locale_ar_ly__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! moment/locale/ar-ly */ "./node_modules/moment/locale/ar-ly.js");
 /* harmony import */ var moment_locale_ar_ly__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(moment_locale_ar_ly__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _Pagination__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Pagination */ "./resources/js/Components/Pagination.js");
-/* harmony import */ var _Filters__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Filters */ "./resources/js/Components/Filters.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -4014,7 +4026,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
 function Table(_ref) {
   var data = _ref.data,
       url = _ref.url,
@@ -4024,17 +4035,14 @@ function Table(_ref) {
       _ref$takeout = _ref.takeout,
       takeout = _ref$takeout === void 0 ? false : _ref$takeout,
       _ref$checkout = _ref.checkout,
-      checkout = _ref$checkout === void 0 ? false : _ref$checkout;
+      checkout = _ref$checkout === void 0 ? false : _ref$checkout,
+      value = _ref.value;
 
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState([]),
       _React$useState2 = _slicedToArray(_React$useState, 2),
       checked = _React$useState2[0],
-      setChecked = _React$useState2[1];
+      setChecked = _React$useState2[1]; // const [value, setValue] = React.useState(1);
 
-  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0__.useState(1),
-      _React$useState4 = _slicedToArray(_React$useState3, 2),
-      value = _React$useState4[0],
-      setValue = _React$useState4[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     localStorage.getItem("checked") && setChecked(JSON.parse(localStorage.getItem("checked")));
@@ -4052,11 +4060,11 @@ function Table(_ref) {
     }, {
       replaces: true
     });
-  };
+  }; // const onHandleChange = (e) => {
+  //     console.log(e.target);
+  //     // setValue(e.target.value);
+  // };
 
-  var onHandleChange = function onHandleChange(e) {
-    setValue(e.target.value);
-  };
 
   var handleToggle = function handleToggle(data) {
     var currentIndex = checked.indexOf(data);
@@ -4087,56 +4095,56 @@ function Table(_ref) {
     });
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
     className: "flex flex-col pt-8 pr-32",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("table", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("table", {
       className: "max-w-5xl divide-y text-center divide-gray-200",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("thead", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("thead", {
         className: "bg-gray-50 text-right",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("tr", {
-          children: [takeout ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("th", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("tr", {
+          children: [takeout ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("th", {
             scope: "col",
             className: " py-3 text-center text-base font-medium text-gray-500 uppercase tracking-wider",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Checkbox__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Checkbox__WEBPACK_IMPORTED_MODULE_4__["default"], {
               name: "disabledCheck",
               checked: true,
               disabled: true
             })
           }) : null, tableHeaders.map(function (header, index) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("th", {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("th", {
               scope: "col",
               className: " py-3 text-center text-base font-medium text-gray-500 uppercase tracking-wider",
               children: header
             }, index);
           })]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("tbody", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("tbody", {
         className: "bg-white divide-y divide-gray-200",
         children: data.map(function (item, key) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("tr", {
-            children: [checkout && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("th", {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("tr", {
+            children: [checkout && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("th", {
               scope: "col",
               className: " py-3 cursor-pointer ",
               onClick: function onClick() {
                 return removeItem(item.id);
               },
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("svg", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("svg", {
                 xmlns: "http://www.w3.org/2000/svg",
                 className: "h-6 w-6 mx-auto",
                 fill: "none",
                 viewBox: "0 0 20 20",
                 stroke: "red",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("path", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("path", {
                   strokeLinecap: "round",
                   strokeLinejoin: "round",
                   strokeWidth: 2,
                   d: "M6 18L18 6M6 6l12 12"
                 })
               })
-            }), takeout ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("th", {
+            }), takeout ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("th", {
               scope: "col",
               className: " py-3 text-center text-base font-medium text-gray-500 uppercase tracking-wider",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Checkbox__WEBPACK_IMPORTED_MODULE_4__["default"], {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Checkbox__WEBPACK_IMPORTED_MODULE_4__["default"], {
                 name: "checkeditem",
                 handleChange: function handleChange() {
                   return handleToggle(item.id);
@@ -4144,83 +4152,81 @@ function Table(_ref) {
                 checked: checked.includes(item.id),
                 takeoutCheck: true
               })
-            }) : null, item.no && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("td", {
+            }) : null, item.no && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
               className: "pb-4",
               children: item.no
-            }), item.email && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("td", {
+            }), item.email && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
               className: "pb-4",
               children: key + 1
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("td", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
               className: "pb-4",
-              children: auth.user.isAdmin === 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
+              children: auth.user.isAdmin === 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
                 className: "hover:text-red-500 transition duration-500 ease-in-out",
                 href: "/".concat(url, "/").concat(item.id, "/edit"),
                 children: item.name
               }) : item.name
-            }), item.email && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("td", {
+            }), item.email && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
               className: "py-4 ",
               children: item.email
-            }), item.category && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("td", {
+            }), item.category && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
               className: "py-4 ",
               children: item.category
-            }), !checkout && item.qty >= 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("td", {
+            }), !checkout && item.qty >= 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
               className: "py-4 ",
               children: item.qty
-            }), takeout && item.category && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("td", {
+            }), takeout && item.category && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
               className: "py-4 ",
               children: item.state
-            }), checkout && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("td", {
+            }), checkout && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
               className: "flex items-center justify-center py-4 text-lg",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Input__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                max: item.qty,
-                min: "1",
-                value: value,
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Input__WEBPACK_IMPORTED_MODULE_6__["default"], {
                 type: "number",
                 name: "qty",
-                className: "w-20 text-center",
-                handleChange: onHandleChange
+                defaultValue: 1,
+                max: item.qty,
+                min: 1
               })
-            }), !takeout && !checkout && item.category && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("td", {
+            }), !takeout && !checkout && item.category && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
               className: "py-4 text-lg",
               children: moment__WEBPACK_IMPORTED_MODULE_7___default()(item.created_at).format("L")
-            }), item.email && (item.isAdmin ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("td", {
+            }), item.email && (item.isAdmin ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
               className: "py-4 text-green-600 px-5",
               children: "\u0645\u062F\u064A\u0631"
-            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("td", {
+            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
               className: "py-4 text-red-600 px-5",
               children: "\u0645\u0648\u0638\u0641"
-            })), !takeout && !checkout && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("td", {
+            })), !takeout && !checkout && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("td", {
               className: "py-4 flex items-center justify-center",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
                 href: "/".concat(url, "/").concat(item.id, "/edit"),
                 className: "bg-green-500 text-black p-2 rounded-lg mx-2 hover:bg-green-600 transition duration-500 ease-in-out",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("svg", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("svg", {
                   xmlns: "http://www.w3.org/2000/svg",
                   width: "20",
                   height: "20",
                   fill: "#fff",
                   className: "bi bi-pencil-square",
                   viewBox: "0 0 16 16",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("path", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("path", {
                     d: "M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("path", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("path", {
                     fillRule: "evenodd",
                     d: "M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
                   })]
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("button", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("button", {
                 onClick: function onClick() {
                   return handleClick(item.id);
                 },
                 className: "px-2 py-2 bg-red-500 rounded-lg mx-2 hover:bg-red-600 transition duration-500 ease-in-out",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("svg", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("svg", {
                   xmlns: "http://www.w3.org/2000/svg",
                   width: "20",
                   height: "20",
                   fill: "red",
                   viewBox: "0 0 24 24",
                   stroke: "#fff",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("path", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("path", {
                     strokeLinecap: "round",
                     strokeLinejoin: "round",
                     strokeWidth: 2,
@@ -4232,9 +4238,9 @@ function Table(_ref) {
           }, key);
         })
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
       className: "",
-      children: paginate && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Pagination__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      children: paginate && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Pagination__WEBPACK_IMPORTED_MODULE_9__["default"], {
         firstPageUrl: paginate.first_page_url,
         lastPageUrl: paginate.last_page_url,
         nextPage: paginate.next_page_url,
@@ -6036,6 +6042,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_Toast__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../Components/Toast */ "./resources/js/Components/Toast.js");
 /* harmony import */ var _Components_Label__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../Components/Label */ "./resources/js/Components/Label.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -6060,14 +6072,14 @@ function Checkout(_ref) {
     name: items.name || "",
     category: items.category || "",
     qty: items.qty || "",
-    no: items.no || "",
-    note: items.note || "",
-    desc: items.desc || "",
-    state: items.state
+    no: items.no || ""
   }),
       data = _useForm.data,
       setData = _useForm.setData,
-      post = _useForm.post;
+      post = _useForm.post; // const increment = (e) => {
+  //     setData(value + 1);
+  // };
+
 
   var onHandleChange = function onHandleChange(event) {
     setData(event.target.name, event.target.type === "checkbox" ? event.target.checked : event.target.value);
@@ -6079,7 +6091,10 @@ function Checkout(_ref) {
 
 
   var submit = function submit(e) {
-    e.preventDefault(); // Inertia.post(`/logs`, { ...items, ...data });
+    e.preventDefault();
+    Inertia.post("/logs", _objectSpread(_objectSpread({}, items), {}, {
+      qty: qty
+    }));
   }; // const handleChange = (e) => {
   //     const { name, value } = e.target;
   //     setData({ ...data, [name]: value });
@@ -6172,9 +6187,7 @@ function Checkout(_ref) {
               })
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Table__WEBPACK_IMPORTED_MODULE_7__["default"], {
-            data: items // paginate={items}
-            // takeout="true"
-            ,
+            data: items,
             checkout: "true",
             url: "items",
             auth: auth,
@@ -6331,7 +6344,7 @@ function index(_ref) {
           takeout: "true",
           url: "items",
           auth: auth,
-          tableHeaders: ["رقم الماده", "اسم الماده", "الكمية", "الصنف", "الحاله"]
+          tableHeaders: ["رقم الماده", "اسم الماده", "الصنف", "الكمية", "الحاله"]
         })]
       })]
     })]

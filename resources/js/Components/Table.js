@@ -8,7 +8,6 @@ import Input from "./Input";
 import moment from "moment";
 import "moment/locale/ar-ly";
 import Pagination from "./Pagination";
-import Filters from "./Filters";
 
 export default function Table({
     data,
@@ -18,9 +17,10 @@ export default function Table({
     tableHeaders,
     takeout = false,
     checkout = false,
+    value,
 }) {
     const [checked, setChecked] = React.useState([]);
-    const [value, setValue] = React.useState(1);
+    // const [value, setValue] = React.useState(1);
 
     useEffect(() => {
         localStorage.getItem("checked") &&
@@ -35,9 +35,10 @@ export default function Table({
         Inertia.post(`/checkout`, { data: items }, { replaces: true });
     };
 
-    const onHandleChange = (e) => {
-        setValue(e.target.value);
-    };
+    // const onHandleChange = (e) => {
+    //     console.log(e.target);
+    //     // setValue(e.target.value);
+    // };
 
     const handleToggle = (data) => {
         const currentIndex = checked.indexOf(data);
@@ -166,13 +167,11 @@ export default function Table({
                             {checkout && (
                                 <td className="flex items-center justify-center py-4 text-lg">
                                     <Input
-                                        max={item.qty}
-                                        min="1"
-                                        value={value}
                                         type="number"
                                         name="qty"
-                                        className="w-20 text-center"
-                                        handleChange={onHandleChange}
+                                        defaultValue={1}
+                                        max={item.qty}
+                                        min={1}
                                     />
                                 </td>
                             )}

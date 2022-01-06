@@ -31,6 +31,7 @@
         "moment": "^2.29.1",
         "react-chartjs-2": "^4.0.0",
         "sweetalert2": "^11.3.3",
-        "tw-elements": "^1.0.0-alpha4"
+        "tw-elements": "^1.0.0-alpha4",
+        "uuid": "^8.3.2"
     }
 }

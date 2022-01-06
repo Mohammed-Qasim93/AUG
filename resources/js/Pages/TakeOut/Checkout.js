@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Head, Link, useForm } from "@inertiajs/inertia-react";
 import Input from "@/Components/Input";
 import Checkbox from "@/Components/Checkbox";
@@ -16,10 +16,11 @@ export default function Checkout({ auth, errors, items, success }) {
         category: items.category || "",
         qty: items.qty || "",
         no: items.no || "",
-        note: items.note || "",
-        desc: items.desc || "",
-        state: items.state,
     });
+
+    // const increment = (e) => {
+    //     setData(value + 1);
+    // };
 
     const onHandleChange = (event) => {
         setData(
@@ -38,7 +39,7 @@ export default function Checkout({ auth, errors, items, success }) {
 
     const submit = (e) => {
         e.preventDefault();
-        // Inertia.post(`/logs`, { ...items, ...data });
+        Inertia.post(`/logs`, { ...items, qty });
     };
 
     // const handleChange = (e) => {
@@ -168,8 +169,6 @@ export default function Checkout({ auth, errors, items, success }) {
 
                         <Table
                             data={items}
-                            // paginate={items}
-                            // takeout="true"
                             checkout="true"
                             url="items"
                             auth={auth}
