@@ -48,9 +48,9 @@ class TakeOutController extends Controller
     }
 
     public function refresh(){
-        // return redirect()->route('takeout.index');
-        return Inertia::render('TakeOut/Checkout', [
-            'items' => Items::all(),
-        ]);
+        return redirect()->route('takeout.index');
+        // return Inertia::render('TakeOut/Checkout', [
+        //     'items' => Items::all(),
+        // ]);
     }
 }
