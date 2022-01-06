@@ -25,11 +25,6 @@ export default function index({ user, auth, errors }) {
                 <div className="flex-1 flex flex-col max-w-6xl">
                     <div className="flex justify-between items-end h-20 ">
                         <TableButtons text="إضافة موظف" url="/register" />
-                        <Button
-                            className="bg-orange-400 hover:bg-orange-500"
-                            children="ترتيب"
-                            handleClick={handleClick}
-                        />
                     </div>
 
                     <Table

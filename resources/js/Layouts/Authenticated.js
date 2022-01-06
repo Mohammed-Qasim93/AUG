@@ -58,11 +58,18 @@ export default function Authenticated({ auth, header, children }) {
 
                                     <Dropdown.Content>
                                         <Dropdown.Link
+                                            href="/user?page=1"
+                                            method="get"
+                                            as="button"
+                                        >
+                                            المستخدمين
+                                        </Dropdown.Link>
+                                        <Dropdown.Link
                                             href={route("logout")}
                                             method="post"
                                             as="button"
                                         >
-                                            Log Out
+                                            تسجيل خروج
                                         </Dropdown.Link>
                                     </Dropdown.Content>
                                 </Dropdown>
@@ -143,7 +150,14 @@ export default function Authenticated({ auth, header, children }) {
                                 href={route("logout")}
                                 as="button"
                             >
-                                Log Out
+                                تسجيل خروج
+                            </ResponsiveNavLink>
+                            <ResponsiveNavLink
+                                method="get"
+                                href="/user?page=1"
+                                as="button"
+                            >
+                                المستخدمين
                             </ResponsiveNavLink>
                         </div>
                     </div>
