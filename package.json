@@ -30,6 +30,7 @@
         "chart.js": "^3.7.0",
         "moment": "^2.29.1",
         "react-chartjs-2": "^4.0.0",
-        "sweetalert2": "^11.3.3"
+        "sweetalert2": "^11.3.3",
+        "tw-elements": "^1.0.0-alpha4"
     }
 }

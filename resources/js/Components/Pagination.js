@@ -35,7 +35,7 @@ const Pagination = ({
             )}
             {currentPage && (
                 <Link
-                    className="py-2 px-3 bg-slate-300 text-background rounded-md"
+                    className="py-2 px-3 bg-gray-900 text-white text-background rounded-md"
                     href={`${path}?page=${currentPage}`}
                 >
                     {currentPage}

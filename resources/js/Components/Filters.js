@@ -4,7 +4,7 @@ import Button from "./Button";
 
 export default function Filters({ text, url }) {
     return (
-        <div className="gap-16 justify-start flex max-w-6xl py-2">
+        <div className="gap-4 justify-start flex max-w-6xl py-2">
             <p className="w-20"> {text} </p>
             <div className="flex gap-8">
                 <Button children="pdf" />

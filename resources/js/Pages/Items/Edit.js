@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
 import { Head, Link, useForm } from "@inertiajs/inertia-react";
 import Input from "@/Components/Input";
+import Checkbox from "@/Components/Checkbox";
 import Button from "@/Components/Button";
 import Authenticated from "@/Layouts/Authenticated";
 import DashboardBar from "../../Components/DashboardBar";
-import ValidationErrors from "@/Components/ValidationErrors";
 import { Inertia } from "@inertiajs/inertia";
 import Swal from "sweetalert2";
-import axios from "axios";
 
 export default function Add({ auth, errors, items }) {
     const { data, setData } = useForm({
@@ -17,11 +16,13 @@ export default function Add({ auth, errors, items }) {
         no: items.no || "",
         note: items.note || "",
         desc: items.desc || "",
-        state: items.state || "",
+        state: items.state,
         _method: "PUT",
     });
 
     const onHandleChange = (event) => {
+        console.log(event.target.value);
+
         setData(
             event.target.name,
             event.target.type === "checkbox"
@@ -30,7 +31,9 @@ export default function Add({ auth, errors, items }) {
         );
     };
 
+    console.log(data);
     const submit = (e) => {
+        console.log(data);
         e.preventDefault();
         Inertia.post(`/items/${items.id}`, data);
     };
@@ -170,24 +173,26 @@ export default function Add({ auth, errors, items }) {
                                                                         }
                                                                     </small>
                                                                 </div>
-                                                                <div className="col-span-6">
-                                                                    <label
-                                                                        htmlFor="postal-code"
-                                                                        className="block text-sm font-medium text-gray-700"
-                                                                    >
-                                                                        الحاله
-                                                                    </label>
-                                                                    <Input
-                                                                        handleChange={
-                                                                            onHandleChange
-                                                                        }
-                                                                        type="text"
+                                                                <div className="col-span-6 flex items-center gap-x-2">
+                                                                    <Checkbox
                                                                         name="state"
                                                                         value={
                                                                             data.state
                                                                         }
-                                                                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                                        checked={
+                                                                            data.state
+                                                                        }
+                                                                        handleChange={
+                                                                            onHandleChange
+                                                                        }
                                                                     />
+                                                                    <label
+                                                                        htmlFor="state"
+                                                                        className="block text-sm font-medium text-gray-700"
+                                                                    >
+                                                                        قابل
+                                                                        للاستهلاك
+                                                                    </label>
                                                                 </div>
                                                                 <div className="col-span-6">
                                                                     <label

@@ -49,14 +49,14 @@ export default function index({ items, auth, errors, success }) {
                     <div className="flex justify-between items-end h-20 ">
                         <TableButtons text="إضافة مادة" url="/items/create" />
                     </div>
-                    <div className="flex flex-col justify-end pr-32 items-start max-w-6xl ">
-                        <div className="flex gap-32 w-full justify-between">
+                    <div className="flex flex-col justify-end pr-32 items-start max-w-6xl">
+                        <div className="flex gap-8 w-full justify-between">
                             <Filters text="اخر يوم :" />
                             <Filters text="اخر اسبوع :" />
                         </div>
-                        <div className="flex w-full justify-between">
+                        <div className="flex w-full  justify-between">
                             <Filters text="اخر شهر :" />
-                            <div className="flex gap-8">
+                            <div className="flex gap-4">
                                 <div className="flex items-center gap-4">
                                     <Label value="من :"></Label>
                                     <Input
@@ -81,12 +81,18 @@ export default function index({ items, auth, errors, success }) {
                                         handleChange={onHandleChange}
                                     />
                                 </div>
-                                <div className="flex items-center gap-4">
+                                <div className="flex items-center gap-2">
                                     <Button
-                                        className="bg-orange-400 hover:bg-orange-500"
+                                        className="bg-green-500 hover:bg-green-600"
                                         handleClick={submit}
                                         children="بحث"
                                     />
+                                    <Link
+                                        className="inline-flex items-center px-4 py-2 bg-green-500 hover:bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 $"
+                                        href="/items?page=1"
+                                    >
+                                        تصفير
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -102,7 +108,6 @@ export default function index({ items, auth, errors, success }) {
                             "اسم الماده",
                             "الكمية",
                             "الصنف",
-                            "الحالة",
                             "تاريخ الاضافة",
                             "العمليات",
                         ]}
