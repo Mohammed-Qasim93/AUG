@@ -21,7 +21,7 @@ class TakeOutController extends Controller
         ]);
     }
 
-    public function checkout($id){
+    public function checkout(Request $id){
         if(!$id) {
             return redirect()->back()->with('success', 'لم يتم تحديد مواد للاخراج');
         }else{
