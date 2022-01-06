@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Head, useForm } from "@inertiajs/inertia-react";
 import Authenticated from "@/Layouts/Authenticated";
 import DashboardBar from "../../Components/DashboardBar";
@@ -17,6 +17,13 @@ export default function index({ items, auth, errors, success }) {
         to: "",
     });
 
+    const [checked, setChecked] = useState([]);
+
+    useEffect(() => {
+        setChecked(JSON.parse(localStorage.getItem("checked")));
+        const d = JSON.parse(localStorage.getItem("checked"));
+    }, []);
+
     const onHandleChange = (e) => {
         e.preventDefault();
         Inertia.get(
@@ -32,31 +39,27 @@ export default function index({ items, auth, errors, success }) {
         });
     };
 
-    // const submit = (e) => {
-    //     e.preventDefault();
-    //     Inertia.get(
-    //         `/items?`,
-    //         { date_from: data.from, date_to: data.to },
-    //         { replaces: true, preserveState: true }
-    //     );
-    //     Swal.fire({
-    //         title: errors.data.name,
-    //         toast: true,
-    //         html: "I will close in <b></b> milliseconds.",
-    //         timer: 2000,
-    //     });
-    // };
+    const submit = (e) => {
+        console.log(checked);
+        e.preventDefault();
+        Inertia.post(
+            `/checkout`,
+            { data: checked },
+            { replaces: true, preserveState: true }
+        );
+    };
     return (
         <Authenticated auth={auth} errors={errors}>
             <Head title="اخراج مخزني" />
             <div className="flex">
                 <DashboardBar auth={auth} />
                 <div className="flex-1 flex flex-col max-w-6xl">
-                    <div className="flex justify-between items-end h-20 ">
-                        {/* <TableButtons text="إضافة مادة" url="/items/create" /> */}
-                    </div>
                     <div className="flex flex-col justify-end pr-32 items-start max-w-6xl">
                         <div className="flex w-full items-center justify-between">
+                            <div className="flex justify-between items-end h-20 ">
+                                {/* <TableButtons text="اخراج" url="/checkout" /> */}
+                                <Button handleClick={submit} children="اخراج" />
+                            </div>
                             <div className="flex gap-4 items-center pt-4">
                                 <div className="flex items-center gap-4">
                                     <Label value="من :"></Label>
