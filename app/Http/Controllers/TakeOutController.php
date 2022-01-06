@@ -29,7 +29,7 @@ class TakeOutController extends Controller
                 $items[$i] = $item;
             }
             return Inertia::render('TakeOut/Checkout', [
-                'checkout' => $items,
+                'items' => $items,
             ]);
         }
     }
