@@ -21,12 +21,13 @@ class TakeOutController extends Controller
         ]);
     }
 
-    public function checkout(Request $id){
-        if(!$id) {
+    public function checkout(Request $request){
+        dd($request->all());
+        if(!$request) {
             return redirect()->back()->with('success', 'لم يتم تحديد مواد للاخراج');
         }else{
-            for ($i = 0; $i > $id; $i++){
-                $item = Items::finOrFail($id[$i]);
+            for ($i = 0; $i > $request; $i++){
+                $item = Items::finOrFail($request[$i]);
                 $items[$i] = $item;
             }
             return Inertia::render('TakeOut/Checkout', [
