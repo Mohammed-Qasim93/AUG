@@ -3,9 +3,8 @@ import Button from "@/Components/Button";
 import Guest from "@/Layouts/Guest";
 import Input from "@/Components/Input";
 import Label from "@/Components/Label";
-import ValidationErrors from "@/Components/ValidationErrors";
 import { Head, Link, useForm } from "@inertiajs/inertia-react";
-import Swal from "sweetalert2";
+import Toast from "../../Components/Toast";
 
 export default function Register({ success }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -33,12 +32,13 @@ export default function Register({ success }) {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route("register"));
-        Swal.fire({
-            title: "شكراً لك",
-            text: "تم تسجيلك بنجاح",
-            icon: "success",
-            toast: true,
+        post("/register", {
+            onSuccess: () => {
+                Toast.fire({
+                    icon: "success",
+                    title: success,
+                });
+            },
         });
     };
 
