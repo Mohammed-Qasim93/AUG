@@ -16,6 +16,15 @@ class TakeOutController extends Controller
     }
 
     public function checkout($id){
-        dd($id);
+        if(!$id) {
+            return redirect()->back()->with('success', 'لم يتم تحديد مواد للاخراج');
+        }else{
+            for ($i = 0; $i > $id; $i++){
+                $item = Items::finOrFail($id[$i]);
+                return Inertia::render('TakeOut/Checkout', [
+                    'checkout' => $item,
+                ]);
+            }
+        }
     }
 }
