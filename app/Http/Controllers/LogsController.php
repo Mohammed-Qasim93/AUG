@@ -53,6 +53,8 @@ class LogsController extends Controller
 
             'note.string' => 'صيغة الملاحظات غير صحيحة',
         ]);
+
+
     }
 
     /**
