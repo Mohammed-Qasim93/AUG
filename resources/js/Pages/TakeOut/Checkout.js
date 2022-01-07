@@ -45,7 +45,6 @@ export default function Checkout({ auth, errors, items, success }) {
             });
         });
         setData("items", i);
-        console.log(data);
     };
 
     // const submit = (e) => {
@@ -273,7 +272,7 @@ export default function Checkout({ auth, errors, items, success }) {
 
                                             <td className="flex items-center justify-center py-4 text-lg">
                                                 <form onSubmit={submit}>
-                                                    <Input
+                                                    <input
                                                         type="number"
                                                         required
                                                         name="qty"

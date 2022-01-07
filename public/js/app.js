@@ -6122,7 +6122,6 @@ function Checkout(_ref) {
       });
     });
     setData("items", i);
-    console.log(data);
   }; // const submit = (e) => {
   //     console.log(data);
   //     e.preventDefault();
@@ -6308,7 +6307,7 @@ function Checkout(_ref) {
                       className: "flex items-center justify-center py-4 text-lg",
                       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("form", {
                         onSubmit: submit,
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("input", {
                           type: "number",
                           required: true,
                           name: "qty",
