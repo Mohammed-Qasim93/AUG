@@ -6205,7 +6205,6 @@ function Checkout(_ref) {
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
                             handleChange: onHandleChange,
                             type: "text",
-                            required: true,
                             name: "name",
                             value: data.name,
                             className: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
@@ -6222,7 +6221,6 @@ function Checkout(_ref) {
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
                             handleChange: onHandleChange,
                             area: "true",
-                            required: true,
                             type: "text",
                             value: data.note,
                             name: "note",
@@ -6305,17 +6303,13 @@ function Checkout(_ref) {
                       children: item.category
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("td", {
                       className: "flex items-center justify-center py-4 text-lg",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("form", {
-                        onSubmit: submit,
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("input", {
-                          type: "number",
-                          required: true,
-                          name: "qty",
-                          id: item.id,
-                          max: item.qty,
-                          min: 1,
-                          onChange: filterItems
-                        })
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("input", {
+                        type: "number",
+                        name: "qty",
+                        id: item.id,
+                        max: item.qty,
+                        min: 1,
+                        onChange: filterItems
                       })
                     })]
                   }, key);
