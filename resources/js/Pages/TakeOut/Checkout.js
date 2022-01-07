@@ -57,7 +57,7 @@ export default function Checkout({ auth, errors, items, success }) {
     const submit = (e) => {
         e.preventDefault();
         console.log(data);
-        Inertia.post(`/logs`, { data });
+        Inertia.post(`/logs`, { ...data });
     };
 
     const removeItem = (id) => {
@@ -116,6 +116,7 @@ export default function Checkout({ auth, errors, items, success }) {
                                                                 onHandleChange
                                                             }
                                                             type="text"
+                                                            required
                                                             name="name"
                                                             value={data.name}
                                                             className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
@@ -136,6 +137,7 @@ export default function Checkout({ auth, errors, items, success }) {
                                                                 onHandleChange
                                                             }
                                                             area="true"
+                                                            required
                                                             type="text"
                                                             value={data.note}
                                                             name="note"
@@ -270,14 +272,17 @@ export default function Checkout({ auth, errors, items, success }) {
                                             </td>
 
                                             <td className="flex items-center justify-center py-4 text-lg">
-                                                <input
-                                                    type="number"
-                                                    name="qty"
-                                                    id={item.id}
-                                                    max={item.qty}
-                                                    min={1}
-                                                    onChange={filterItems}
-                                                />
+                                                <form onSubmit={submit}>
+                                                    <Input
+                                                        type="number"
+                                                        required
+                                                        name="qty"
+                                                        id={item.id}
+                                                        max={item.qty}
+                                                        min={1}
+                                                        onChange={filterItems}
+                                                    />
+                                                </form>
                                             </td>
                                         </tr>
                                     ))}

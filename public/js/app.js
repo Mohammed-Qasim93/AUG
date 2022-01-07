@@ -4002,7 +4002,8 @@ function Table(_ref) {
       tableHeaders = _ref.tableHeaders,
       _ref$takeout = _ref.takeout,
       takeout = _ref$takeout === void 0 ? false : _ref$takeout,
-      value = _ref.value;
+      _ref$logs = _ref.logs,
+      logs = _ref$logs === void 0 ? false : _ref$logs;
 
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState([]),
       _React$useState2 = _slicedToArray(_React$useState, 2),
@@ -4099,7 +4100,10 @@ function Table(_ref) {
                 checked: checked.includes(item.id),
                 takeoutCheck: true
               })
-            }) : null, item.no && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
+            }) : null, logs && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
+              className: "pb-4",
+              children: item.name
+            }), item.no && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
               className: "pb-4",
               children: item.no
             }), item.email && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
@@ -5958,6 +5962,76 @@ function index(_ref) {
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Logs/Index.js":
+/*!******************************************!*\
+  !*** ./resources/js/Pages/Logs/Index.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ index)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Layouts/Authenticated */ "./resources/js/Layouts/Authenticated.js");
+/* harmony import */ var _Components_DashboardBar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Components/DashboardBar */ "./resources/js/Components/DashboardBar.js");
+/* harmony import */ var _Components_Table__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Components/Table */ "./resources/js/Components/Table.js");
+/* harmony import */ var _Components_TableButtons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Components/TableButtons */ "./resources/js/Components/TableButtons.js");
+/* harmony import */ var _Components_Input__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../Components/Input */ "./resources/js/Components/Input.js");
+/* harmony import */ var _Components_Label__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../Components/Label */ "./resources/js/Components/Label.js");
+/* harmony import */ var _Components_Button__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../Components/Button */ "./resources/js/Components/Button.js");
+/* harmony import */ var _Components_Filters__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../Components/Filters */ "./resources/js/Components/Filters.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function index(_ref) {
+  var logs = _ref.logs,
+      auth = _ref.auth,
+      errors = _ref.errors,
+      success = _ref.success;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)(_Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    auth: auth,
+    errors: errors,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Head, {
+      title: "\u0627\u062E\u0631\u0627\u062C \u0645\u062E\u0632\u0646\u064A"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
+      className: "flex",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_DashboardBar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        auth: auth
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+        className: "flex-1 flex flex-col max-w-6xl",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Table__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          data: logs.data,
+          paginate: logs,
+          url: "logs",
+          logs: true,
+          auth: auth,
+          tableHeaders: ["الاسم", "اسم الماده", "الكميه", "التاريخ", "الحاله", "الخيارات"]
+        })
+      })]
+    })]
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/js/Pages/TakeOut/Checkout.js":
 /*!************************************************!*\
   !*** ./resources/js/Pages/TakeOut/Checkout.js ***!
@@ -5982,6 +6056,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_Pagination__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../Components/Pagination */ "./resources/js/Components/Pagination.js");
 /* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -6059,9 +6139,7 @@ function Checkout(_ref) {
   var submit = function submit(e) {
     e.preventDefault();
     console.log(data);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_11__.Inertia.post("/logs", {
-      data: data
-    });
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_11__.Inertia.post("/logs", _objectSpread({}, data));
   };
 
   var removeItem = function removeItem(id) {
@@ -6132,6 +6210,7 @@ function Checkout(_ref) {
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
                             handleChange: onHandleChange,
                             type: "text",
+                            required: true,
                             name: "name",
                             value: data.name,
                             className: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
@@ -6148,6 +6227,7 @@ function Checkout(_ref) {
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
                             handleChange: onHandleChange,
                             area: "true",
+                            required: true,
                             type: "text",
                             value: data.note,
                             name: "note",
@@ -6230,13 +6310,17 @@ function Checkout(_ref) {
                       children: item.category
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("td", {
                       className: "flex items-center justify-center py-4 text-lg",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("input", {
-                        type: "number",
-                        name: "qty",
-                        id: item.id,
-                        max: item.qty,
-                        min: 1,
-                        onChange: filterItems
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("form", {
+                        onSubmit: submit,
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                          type: "number",
+                          required: true,
+                          name: "qty",
+                          id: item.id,
+                          max: item.qty,
+                          min: 1,
+                          onChange: filterItems
+                        })
                       })
                     })]
                   }, key);
@@ -84690,6 +84774,8 @@ var map = {
 	"./Items/Edit.js": "./resources/js/Pages/Items/Edit.js",
 	"./Items/Index": "./resources/js/Pages/Items/Index.js",
 	"./Items/Index.js": "./resources/js/Pages/Items/Index.js",
+	"./Logs/Index": "./resources/js/Pages/Logs/Index.js",
+	"./Logs/Index.js": "./resources/js/Pages/Logs/Index.js",
 	"./TakeOut/Checkout": "./resources/js/Pages/TakeOut/Checkout.js",
 	"./TakeOut/Checkout.js": "./resources/js/Pages/TakeOut/Checkout.js",
 	"./TakeOut/Index": "./resources/js/Pages/TakeOut/Index.js",

@@ -16,8 +16,7 @@ export default function Table({
     auth,
     tableHeaders,
     takeout = false,
-
-    value,
+    logs = false,
 }) {
     const [checked, setChecked] = React.useState([]);
     // const [value, setValue] = React.useState(1);
@@ -115,6 +114,7 @@ export default function Table({
                                     />
                                 </th>
                             ) : null}
+                            {logs && <td className="pb-4">{item.name}</td>}
                             {item.no && <td className="pb-4">{item.no}</td>}
                             {item.email && <td className="pb-4">{key + 1}</td>}
                             <td className="pb-4">
