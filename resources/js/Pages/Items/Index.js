@@ -43,7 +43,7 @@ export default function index({ items, auth, errors, success }) {
             <Head title="المواد" />
             <div className="flex">
                 <DashboardBar auth={auth} />
-                <div className="flex-1 flex flex-col max-w-6xl">
+                <div className="flex-1 flex flex-col  max-w-6xl">
                     <div className="flex justify-between items-end h-20 ">
                         <TableButtons text="إضافة مادة" url="/items/create" />
                     </div>
@@ -54,7 +54,7 @@ export default function index({ items, auth, errors, success }) {
                         </div> */}
                         <div className="flex w-full  justify-between">
                             {/* <Filters text="اخر شهر :" /> */}
-                            <div className="flex gap-4 pt-4">
+                            {/* <div className="flex gap-4 pt-4">
                                 <div className="flex items-center gap-4">
                                     <Label value="من :"></Label>
                                     <Input
@@ -92,7 +92,7 @@ export default function index({ items, auth, errors, success }) {
                                         تصفير
                                     </Link>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
 
@@ -101,6 +101,7 @@ export default function index({ items, auth, errors, success }) {
                         paginate={items}
                         url="items"
                         auth={auth}
+                        total={items.total}
                         tableHeaders={[
                             "رقم الماده",
                             "اسم الماده",
