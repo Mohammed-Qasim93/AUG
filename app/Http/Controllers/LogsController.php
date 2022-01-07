@@ -6,6 +6,7 @@ use App\Models\logs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 
 class LogsController extends Controller
@@ -40,32 +41,23 @@ class LogsController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string',
-            'qty' => 'required|integer',
-            'note' => 'string',
-        ],[
-            'name.required' => 'يجب ادخال الاسم',
-            'name.string' => 'الاسم غير صالح',
-
-            'qty.required' => 'يجب ادخال الكمية',
-            'qty.integer' => 'يجب ادخال الكمية كعدد',
-
-            'note.string' => 'صيغة الملاحظات غير صحيحة',
-        ]);
-
-        for ($i = 0 ; $i < count($request->items);$i++){
-            logs::create([
-                'name' => $request->name,
-                'note' => $request->note,
-                'outDate' => now(),
-                'qty' => $request->items[$i]->qty,
-                'items_id' => $request->items[$i]->id,
-                'user_id' => Auth::user()->id
-            ]);
+        dd($request->all());
+        if((count($request->data['items']) <= 0) || !$request->data['name']){
+            return Redirect::back()->withInput()->with('success', 'لم يتم ادخال جميع المدخلات');
+        }else{
+            for ($i = 0 ; $i < count($request->data['items']);$i++){
+                logs::create([
+                    'name' => $request->name,
+                    'note' => $request->note,
+                    'outDate' => now(),
+                    'qty' => $request->data['items'][$i]['qty'],
+                    'state' => $request->data['items'][$i]['state'],
+                    'items_id' => $request->data['items'][$i]['itemId'],
+                    'user_id' => Auth::user()->id
+                ]);
+            }
+            return Redirect::route('takeout.index')->with('success', 'تم اخراج المواد بنجاح');
         }
-
-        return Redirect::route('takeout.index')->with('success', 'تم اخراج المواد بنجاح');
     }
 
     /**

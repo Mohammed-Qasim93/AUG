@@ -17,7 +17,7 @@ class Logs extends Migration
             $table->id();
             $table->string('name');
             $table->datetime('outDate');
-            $table->datetime('inDate');
+            $table->datetime('inDate')->nullable();
             $table->integer('qty');
             $table->boolean('state');
             $table->boolean('active');
