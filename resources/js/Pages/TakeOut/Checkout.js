@@ -41,7 +41,8 @@ export default function Checkout({ auth, errors, items, success }) {
                 item: item.name,
                 category: item.category,
                 no: item.no,
-                qty: document.getElementById(item.id).value,
+                state: item.state,
+                qty: document.getElementById(item.id).value || 1,
             });
         });
         setData("items", i);
@@ -56,7 +57,11 @@ export default function Checkout({ auth, errors, items, success }) {
     const submit = (e) => {
         e.preventDefault();
         console.log(data);
-        Inertia.post(`/logs`, { data });
+        if (data.items.length === items.length) {
+            Inertia.post(`/logs`, data);
+        } else {
+            alert("الرجاء ادخال كميات المادات");
+        }
     };
 
     const removeItem = (id) => {
@@ -272,9 +277,11 @@ export default function Checkout({ auth, errors, items, success }) {
                                                 <input
                                                     type="number"
                                                     name="qty"
+                                                    className="qty"
                                                     id={item.id}
                                                     max={item.qty}
                                                     min={1}
+                                                    required={true}
                                                     onChange={filterItems}
                                                 />
                                             </td>
