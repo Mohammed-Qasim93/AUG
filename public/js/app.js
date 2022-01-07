@@ -6040,6 +6040,7 @@ function Checkout(_ref) {
     var i = [];
     items.map(function (item) {
       i.push({
+        itemId: item.id,
         item: item.name,
         category: item.category,
         no: item.no,

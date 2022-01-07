@@ -37,6 +37,7 @@ export default function Checkout({ auth, errors, items, success }) {
         let i = [];
         items.map((item) => {
             i.push({
+                itemId: item.id,
                 item: item.name,
                 category: item.category,
                 no: item.no,
