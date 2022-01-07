@@ -57,7 +57,7 @@ export default function Checkout({ auth, errors, items, success }) {
     const submit = (e) => {
         e.preventDefault();
         console.log(data);
-        Inertia.post(`/logs`, { ...data });
+        Inertia.post(`/logs`, { data });
     };
 
     const removeItem = (id) => {
