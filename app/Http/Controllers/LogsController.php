@@ -54,7 +54,18 @@ class LogsController extends Controller
             'note.string' => 'صيغة الملاحظات غير صحيحة',
         ]);
 
+        for ($i = 0 ; $i < count($request->items);$i++){
+            logs::create([
+                'name' => $request->name,
+                'note' => $request->note,
+                'outDate' => now(),
+                'qty' => $request->items[$i]->qty,
+                'items_id' => $request->items[$i]->id,
+                'user_id' => Auth::user()->id
+            ]);
+        }
 
+        return Redirect::route('takeout.index')->with('success', 'تم اخراج المواد بنجاح');
     }
 
     /**
