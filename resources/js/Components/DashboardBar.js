@@ -40,65 +40,7 @@ export default function DashboardBar({ auth }) {
                                 <span className="mr-2">المواد</span>
                             </Link>
                         </li>
-                        <li className="mb-2  text-gray-100 flex flex-row  border-gray-300 hover:text-slate-700   hover:bg-gray-300  hover:font-bold rounded-lg">
-                            <Link
-                                href="/dashboard/categories"
-                                className="flex  px-4 py-4 items-center w-full "
-                            >
-                                <span>
-                                    <svg
-                                        className="fill-current h-5 w-5 "
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path
-                                            id="Stroke 1"
-                                            fillRule="evenodd"
-                                            clipRule="evenodd"
-                                            fill="none"
-                                            d="M21.0003 6.6738C21.0003 8.7024 19.3551 10.3476 17.3265 10.3476C15.2979 10.3476 13.6536 8.7024 13.6536 6.6738C13.6536 4.6452 15.2979 3 17.3265 3C19.3551 3 21.0003 4.6452 21.0003 6.6738Z"
-                                            stroke="currentColor"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                        <path
-                                            id="Stroke 1"
-                                            fillRule="evenodd"
-                                            clipRule="evenodd"
-                                            d="M10.3467 6.6738C10.3467 8.7024 8.7024 10.3476 6.6729 10.3476C4.6452 10.3476 3 8.7024 3 6.6738C3 4.6452 4.6452 3 6.6729 3C8.7024 3 10.3467 4.6452 10.3467 6.6738Z"
-                                            stroke="currentColor"
-                                            fill="none"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                        <path
-                                            id="Stroke 1"
-                                            fill="none"
-                                            fillRule="evenodd"
-                                            clipRule="evenodd"
-                                            d="M21.0003 17.2619C21.0003 19.2905 19.3551 20.9348 17.3265 20.9348C15.2979 20.9348 13.6536 19.2905 13.6536 17.2619C13.6536 15.2333 15.2979 13.5881 17.3265 13.5881C19.3551 13.5881 21.0003 15.2333 21.0003 17.2619Z"
-                                            stroke="currentColor"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                        <path
-                                            id="Stroke 1"
-                                            fillRule="evenodd"
-                                            clipRule="evenodd"
-                                            d="M10.3467 17.2619C10.3467 19.2905 8.7024 20.9348 6.6729 20.9348C4.6452 20.9348 3 19.2905 3 17.2619C3 15.2333 4.6452 13.5881 6.6729 13.5881C8.7024 13.5881 10.3467 15.2333 10.3467 17.2619Z"
-                                            stroke="currentColor"
-                                            fill="none"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                    </svg>
-                                </span>
-                                <span className="mr-2">الفئات</span>
-                            </Link>
-                        </li>
+
                         <li className="mb-2  text-gray-100 flex flex-row  border-gray-300 hover:text-slate-700   hover:bg-gray-300  hover:font-bold rounded-lg">
                             <Link
                                 className="flex px-4 py-4 items-center w-full"
@@ -121,6 +63,30 @@ export default function DashboardBar({ auth }) {
                                     </svg>
                                 </span>
                                 <span className="mr-2">اخراج مخزني</span>
+                            </Link>
+                        </li>
+                        <li className="mb-2  text-gray-100 flex flex-row  border-gray-300 hover:text-slate-700   hover:bg-gray-300  hover:font-bold rounded-lg">
+                            <Link
+                                href="/logs?page=1"
+                                className="flex  px-4 py-4 items-center w-full "
+                            >
+                                <span>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-5 w-5"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+                                        />
+                                    </svg>
+                                </span>
+                                <span className="mr-2">سجل الخروج</span>
                             </Link>
                         </li>
                     </ul>

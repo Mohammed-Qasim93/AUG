@@ -8,7 +8,6 @@ import Input from "./Input";
 import moment from "moment";
 import "moment/locale/ar-ly";
 import Pagination from "./Pagination";
-import Filters from "./Filters";
 
 export default function Table({
     data,
@@ -17,10 +16,11 @@ export default function Table({
     auth,
     tableHeaders,
     takeout = false,
-    checkout = false,
+
+    value,
 }) {
     const [checked, setChecked] = React.useState([]);
-    const [value, setValue] = React.useState(1);
+    // const [value, setValue] = React.useState(1);
 
     useEffect(() => {
         localStorage.getItem("checked") &&
@@ -35,9 +35,10 @@ export default function Table({
         Inertia.post(`/checkout`, { data: items }, { replaces: true });
     };
 
-    const onHandleChange = (e) => {
-        setValue(e.target.value);
-    };
+    // const onHandleChange = (e) => {
+    //     console.log(e.target);
+    //     // setValue(e.target.value);
+    // };
 
     const handleToggle = (data) => {
         const currentIndex = checked.indexOf(data);
@@ -99,28 +100,6 @@ export default function Table({
                 <tbody className="bg-white divide-y divide-gray-200">
                     {data.map((item, key) => (
                         <tr key={key}>
-                            {checkout && (
-                                <th
-                                    scope="col"
-                                    className=" py-3 cursor-pointer "
-                                    onClick={() => removeItem(item.id)}
-                                >
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="h-6 w-6 mx-auto"
-                                        fill="none"
-                                        viewBox="0 0 20 20"
-                                        stroke="red"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M6 18L18 6M6 6l12 12"
-                                        />
-                                    </svg>
-                                </th>
-                            )}
                             {takeout ? (
                                 <th
                                     scope="col"
@@ -156,27 +135,14 @@ export default function Table({
                             {item.category && (
                                 <td className="py-4 ">{item.category}</td>
                             )}
-                            {!checkout && item.qty >= 0 && (
+                            {item.qty >= 0 && (
                                 <td className="py-4 ">{item.qty}</td>
                             )}
                             {takeout && item.category && (
                                 <td className="py-4 ">{item.state}</td>
                             )}
 
-                            {checkout && (
-                                <td className="flex items-center justify-center py-4 text-lg">
-                                    <Input
-                                        max={item.qty}
-                                        min="1"
-                                        value={value}
-                                        type="number"
-                                        name="qty"
-                                        className="w-20 text-center"
-                                        handleChange={onHandleChange}
-                                    />
-                                </td>
-                            )}
-                            {!takeout && !checkout && item.category && (
+                            {!takeout && item.category && (
                                 <td className="py-4 text-lg">
                                     {moment(item.created_at).format("L")}
                                 </td>
@@ -191,7 +157,7 @@ export default function Table({
                                         موظف
                                     </td>
                                 ))}
-                            {!takeout && !checkout && (
+                            {!takeout && (
                                 <td className="py-4 flex items-center justify-center">
                                     <Link
                                         href={`/${url}/${item.id}/edit`}

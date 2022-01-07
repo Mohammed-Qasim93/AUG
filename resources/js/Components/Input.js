@@ -13,12 +13,14 @@ export default function Input({
     handleChange,
     placeholder,
     area = false,
+    defaultValue,
 }) {
     const input = useRef();
 
     useEffect(() => {
         if (isFocused) {
             input.current.focus();
+            input.current.value = value;
         }
     }, []);
 
@@ -43,7 +45,27 @@ export default function Input({
                 <input
                     type={type}
                     name={name}
-                    value={value > max ? max : value || value < 0 ? min : value}
+                    value={value}
+                    max={max}
+                    min={min}
+                    placeholder={placeholder}
+                    className={
+                        `border-gray-300 focus:border-indigo-300  ${
+                            defaultValue ? "hidden" : ""
+                        } focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm ` +
+                        className
+                    }
+                    ref={input}
+                    autoComplete={autoComplete}
+                    required={required}
+                    onChange={handleChange}
+                />
+            )}
+            {defaultValue && (
+                <input
+                    type={type}
+                    name={name}
+                    defaultValue={defaultValue}
                     max={max}
                     min={min}
                     placeholder={placeholder}
@@ -54,7 +76,7 @@ export default function Input({
                     ref={input}
                     autoComplete={autoComplete}
                     required={required}
-                    onChange={(e) => handleChange(e)}
+                    onChange={handleChange}
                 />
             )}
         </div>
