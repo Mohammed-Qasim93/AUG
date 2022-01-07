@@ -57,11 +57,11 @@ export default function Checkout({ auth, errors, items, success }) {
     const submit = (e) => {
         e.preventDefault();
         console.log(data);
-        if (data.items.length === items.length) {
-            Inertia.post(`/logs`, data);
-        } else {
-            alert("الرجاء ادخال كميات المادات");
-        }
+        // if (data.items.length === items.length) {
+        Inertia.post(`/logs`, data);
+        // } else {
+        // alert("الرجاء ادخال كميات المادات");
+        // }
     };
 
     const removeItem = (id) => {
@@ -277,11 +277,9 @@ export default function Checkout({ auth, errors, items, success }) {
                                                 <input
                                                     type="number"
                                                     name="qty"
-                                                    className="qty"
                                                     id={item.id}
                                                     max={item.qty}
                                                     min={1}
-                                                    required={true}
                                                     onChange={filterItems}
                                                 />
                                             </td>

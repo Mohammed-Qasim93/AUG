@@ -6132,13 +6132,11 @@ function Checkout(_ref) {
 
   var submit = function submit(e) {
     e.preventDefault();
-    console.log(data);
+    console.log(data); // if (data.items.length === items.length) {
 
-    if (data.items.length === items.length) {
-      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_11__.Inertia.post("/logs", data);
-    } else {
-      alert("الرجاء ادخال كميات المادات");
-    }
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_11__.Inertia.post("/logs", data); // } else {
+    // alert("الرجاء ادخال كميات المادات");
+    // }
   };
 
   var removeItem = function removeItem(id) {
@@ -6310,11 +6308,9 @@ function Checkout(_ref) {
                       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("input", {
                         type: "number",
                         name: "qty",
-                        className: "qty",
                         id: item.id,
                         max: item.qty,
                         min: 1,
-                        required: true,
                         onChange: filterItems
                       })
                     })]
