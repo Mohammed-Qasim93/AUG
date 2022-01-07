@@ -5982,6 +5982,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_Pagination__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../Components/Pagination */ "./resources/js/Components/Pagination.js");
 /* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -6002,17 +6014,20 @@ function Checkout(_ref) {
       errors = _ref.errors,
       items = _ref.items,
       success = _ref.success;
-  console.log(items);
 
   var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.useForm)({
     name: "",
-    category: "",
-    qty: "",
-    note: ""
+    note: "",
+    items: []
   }),
       data = _useForm.data,
       setData = _useForm.setData,
-      post = _useForm.post; // const increment = (e) => {
+      post = _useForm.post;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState2 = _slicedToArray(_useState, 2),
+      qty = _useState2[0],
+      setQty = _useState2[1]; // const increment = (e) => {
   //     setData(value + 1);
   // };
 
@@ -6021,8 +6036,18 @@ function Checkout(_ref) {
     setData(event.target.name, event.target.type === "checkbox" ? event.target.checked : event.target.value);
   };
 
-  var changeqty = function changeqty(e) {
-    setData("qty", e.target.value);
+  var filterItems = function filterItems(e) {
+    var i = [];
+    items.map(function (item) {
+      i.push({
+        item: item.name,
+        category: item.category,
+        no: item.no,
+        qty: document.getElementById(item.id).value
+      });
+    });
+    setData("items", i);
+    console.log(data);
   }; // const submit = (e) => {
   //     console.log(data);
   //     e.preventDefault();
@@ -6032,6 +6057,7 @@ function Checkout(_ref) {
 
   var submit = function submit(e) {
     e.preventDefault();
+    console.log(data);
     _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_11__.Inertia.post("/logs", {
       data: data
     });
@@ -6203,13 +6229,13 @@ function Checkout(_ref) {
                       children: item.category
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("td", {
                       className: "flex items-center justify-center py-4 text-lg",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("input", {
                         type: "number",
                         name: "qty",
-                        value: data.value,
+                        id: item.id,
                         max: item.qty,
                         min: 1,
-                        handleChange: changeqty
+                        onChange: filterItems
                       })
                     })]
                   }, key);

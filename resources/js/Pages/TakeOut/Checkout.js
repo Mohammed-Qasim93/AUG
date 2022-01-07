@@ -12,13 +12,13 @@ import Pagination from "../../Components/Pagination";
 import { Inertia } from "@inertiajs/inertia";
 
 export default function Checkout({ auth, errors, items, success }) {
-    console.log(items);
     const { data, setData, post } = useForm({
         name: "",
-        category: "",
-        qty: "",
         note: "",
+        items: [],
     });
+
+    const [qty, setQty] = useState(0);
 
     // const increment = (e) => {
     //     setData(value + 1);
@@ -33,9 +33,20 @@ export default function Checkout({ auth, errors, items, success }) {
         );
     };
 
-    const changeqty = (e) => {
-        setData("qty", e.target.value);
+    const filterItems = (e) => {
+        let i = [];
+        items.map((item) => {
+            i.push({
+                item: item.name,
+                category: item.category,
+                no: item.no,
+                qty: document.getElementById(item.id).value,
+            });
+        });
+        setData("items", i);
+        console.log(data);
     };
+
     // const submit = (e) => {
     //     console.log(data);
     //     e.preventDefault();
@@ -44,6 +55,7 @@ export default function Checkout({ auth, errors, items, success }) {
 
     const submit = (e) => {
         e.preventDefault();
+        console.log(data);
         Inertia.post(`/logs`, { data });
     };
 
@@ -257,13 +269,13 @@ export default function Checkout({ auth, errors, items, success }) {
                                             </td>
 
                                             <td className="flex items-center justify-center py-4 text-lg">
-                                                <Input
+                                                <input
                                                     type="number"
                                                     name="qty"
-                                                    value={data.value}
+                                                    id={item.id}
                                                     max={item.qty}
                                                     min={1}
-                                                    handleChange={changeqty}
+                                                    onChange={filterItems}
                                                 />
                                             </td>
                                         </tr>
