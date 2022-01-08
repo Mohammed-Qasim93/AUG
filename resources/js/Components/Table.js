@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, Head } from "@inertiajs/inertia-react";
+import { Link, Head, useForm } from "@inertiajs/inertia-react";
 import { Inertia } from "@inertiajs/inertia";
 import Swal from "sweetalert2";
 import Checkbox from "./Checkbox";
@@ -20,8 +20,10 @@ export default function Table({
     total,
 }) {
     const [checked, setChecked] = React.useState([]);
+
     // const [value, setValue] = React.useState(1);
 
+    console.log(data);
     useEffect(() => {
         localStorage.getItem("checked") &&
             setChecked(JSON.parse(localStorage.getItem("checked")));
@@ -33,6 +35,12 @@ export default function Table({
         console.log(items);
         localStorage.setItem("checked", JSON.stringify(items));
         Inertia.post(`/checkout`, { data: items }, { replaces: true });
+    };
+
+    const handleStore = (id) => {
+        // e.preventDefault();
+        console.log(id);
+        Inertia.put(`logs/${id}`, { id: id });
     };
 
     // const onHandleChange = (e) => {
@@ -122,39 +130,77 @@ export default function Table({
                                         />
                                     </th>
                                 ) : null}
-                                {logs && <td className="pb-4">{item.name}</td>}
-                                {item.no && <td className="pb-4">{item.no}</td>}
+                                {item.no && <td className="py-4">{item.no}</td>}
                                 {(item.email || logs) && (
-                                    <td className="pb-4">{key + 1}</td>
+                                    <td className="py-4">{key + 1}</td>
                                 )}
-                                <td className="pb-4">
-                                    {auth.user.isAdmin === 1 ? (
-                                        <Link
-                                            className="hover:text-red-500 transition duration-500 ease-in-out"
-                                            href={`/${url}/${item.id}/edit`}
-                                        >
-                                            {item.name}
-                                        </Link>
-                                    ) : (
-                                        item.name
-                                    )}
-                                </td>
+                                {logs && <td className="py-4">{item.name}</td>}
+                                {!logs && (
+                                    <td className="py-4">
+                                        {auth.user.isAdmin === 1 ? (
+                                            <Link
+                                                className="hover:text-red-500 transition duration-500 ease-in-out"
+                                                href={`/${url}/${item.id}/edit`}
+                                            >
+                                                {item.name}
+                                            </Link>
+                                        ) : (
+                                            item.name
+                                        )}
+                                    </td>
+                                )}
                                 {item.email && (
                                     <td className="py-4 ">{item.email}</td>
                                 )}
+                                {logs && item.items.name && (
+                                    <td className="py-4 ">{item.items.name}</td>
+                                )}
+                                {logs && item.items.category && (
+                                    <td className="py-4 ">
+                                        {item.items.category}
+                                    </td>
+                                )}
+                                {logs && item.items.no && (
+                                    <td className="py-4 ">{item.items.no}</td>
+                                )}
+
                                 {item.category && (
                                     <td className="py-4 ">{item.category}</td>
                                 )}
+
                                 {item.qty >= 0 && (
                                     <td className="py-4 ">{item.qty}</td>
                                 )}
-                                {takeout && item.category && (
-                                    <td className="py-4 ">{item.state}</td>
+                                {!logs &&
+                                    url !== "user" &&
+                                    takeout === false && (
+                                        <td className="py-4 text-lg">
+                                            {moment(item.created_at).format(
+                                                "L"
+                                            )}
+                                        </td>
+                                    )}
+                                {takeout && (
+                                    <td className="py-4 ">
+                                        {item.state === 1 ? (
+                                            <span className="text-red-500 font-tajawal-Black">
+                                                مستهلك
+                                            </span>
+                                        ) : (
+                                            <span className="text-green-500">
+                                                غير مستهلك
+                                            </span>
+                                        )}
+                                    </td>
                                 )}
-
                                 {!takeout && item.category && (
                                     <td className="py-4 text-lg">
                                         {moment(item.created_at).format("L")}
+                                    </td>
+                                )}
+                                {logs && (
+                                    <td className="py-4 text-lg">
+                                        {moment(item.outDate).format("L")}
                                     </td>
                                 )}
                                 {item.email &&
@@ -167,7 +213,7 @@ export default function Table({
                                             موظف
                                         </td>
                                     ))}
-                                {!takeout && (
+                                {!takeout && !logs && (
                                     <td className="py-4 flex items-center justify-center">
                                         <Link
                                             href={`/${url}/${item.id}/edit`}
@@ -188,9 +234,12 @@ export default function Table({
                                                 />
                                             </svg>
                                         </Link>
+
                                         <button
                                             onClick={() => handleClick(item.id)}
-                                            className="px-2 py-2 bg-red-500 rounded-lg mx-2 hover:bg-red-600 transition duration-500 ease-in-out"
+                                            className={` px-2 py-2 transition duration-500 ease-in-out bg-red-500 hover:bg-red-600
+                                             text-white p-2 rounded-lg mx-2 
+                                               `}
                                         >
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -208,6 +257,48 @@ export default function Table({
                                                 />
                                             </svg>
                                         </button>
+                                    </td>
+                                )}
+
+                                {logs && (
+                                    <td className="py-2">
+                                        {item.state === 1 ? (
+                                            <span className="text-red-500 font-tajawal-Black">
+                                                مستهلك
+                                            </span>
+                                        ) : item.inDate === null ? (
+                                            <button
+                                                type="submit"
+                                                onClick={() => {
+                                                    handleStore(item.outID);
+                                                }}
+                                                className={` px-2 py-2 transition duration-500 ease-in-out 
+                                               bg-green-500 hover:bg-green-600 text-white p-2 rounded-lg mx-2 
+                                               `}
+                                            >
+                                                <span className="flex gap-x-3">
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        className="h-6 w-6"
+                                                        fill="none"
+                                                        viewBox="0 0 24 24"
+                                                        stroke="currentColor"
+                                                    >
+                                                        <path
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            strokeWidth={2}
+                                                            d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+                                                        />
+                                                    </svg>
+                                                    <span>ادخال</span>
+                                                </span>
+                                            </button>
+                                        ) : (
+                                            moment(item.inDate).format(
+                                                "HH:mm - YYYY/MM/DD"
+                                            )
+                                        )}
                                     </td>
                                 )}
                             </tr>

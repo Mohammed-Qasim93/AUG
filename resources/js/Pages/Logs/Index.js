@@ -32,7 +32,6 @@ export default function index({ logs, auth, errors, success }) {
                             "الرقم التسلسلي",
                             "الكميه",
                             "التاريخ",
-                            "الحاله",
                             "ادخال مخزني",
                         ]}
                     />

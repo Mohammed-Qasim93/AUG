@@ -105,8 +105,9 @@ export default function index({ items, auth, errors, success }) {
                         tableHeaders={[
                             "رقم الماده",
                             "اسم الماده",
-                            "الكمية",
                             "الصنف",
+                            "الكمية",
+                            "الحاله",
                             "تاريخ الاضافة",
                             "العمليات",
                         ]}

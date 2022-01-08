@@ -4020,6 +4020,7 @@ function Table(_ref) {
       setChecked = _React$useState2[1]; // const [value, setValue] = React.useState(1);
 
 
+  console.log(data);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     localStorage.getItem("checked") && setChecked(JSON.parse(localStorage.getItem("checked")));
   }, []);
@@ -4035,6 +4036,14 @@ function Table(_ref) {
       data: items
     }, {
       replaces: true
+    });
+  };
+
+  var handleStore = function handleStore(id) {
+    // e.preventDefault();
+    console.log(id);
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia.put("logs/".concat(id), {
+      id: id
     });
   }; // const onHandleChange = (e) => {
   //     console.log(e.target);
@@ -4117,17 +4126,17 @@ function Table(_ref) {
                   checked: checked.includes(item.id),
                   takeoutCheck: true
                 })
-              }) : null, logs && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
-                className: "pb-4",
-                children: item.name
-              }), item.no && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
-                className: "pb-4",
+              }) : null, item.no && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
+                className: "py-4",
                 children: item.no
               }), (item.email || logs) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
-                className: "pb-4",
+                className: "py-4",
                 children: key + 1
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
-                className: "pb-4",
+              }), logs && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
+                className: "py-4",
+                children: item.name
+              }), !logs && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
+                className: "py-4",
                 children: auth.user.isAdmin === 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
                   className: "hover:text-red-500 transition duration-500 ease-in-out",
                   href: "/".concat(url, "/").concat(item.id, "/edit"),
@@ -4136,25 +4145,46 @@ function Table(_ref) {
               }), item.email && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
                 className: "py-4 ",
                 children: item.email
+              }), logs && item.items.name && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
+                className: "py-4 ",
+                children: item.items.name
+              }), logs && item.items.category && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
+                className: "py-4 ",
+                children: item.items.category
+              }), logs && item.items.no && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
+                className: "py-4 ",
+                children: item.items.no
               }), item.category && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
                 className: "py-4 ",
                 children: item.category
               }), item.qty >= 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
                 className: "py-4 ",
                 children: item.qty
-              }), takeout && item.category && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
+              }), !logs && url !== "user" && takeout === false && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
+                className: "py-4 text-lg",
+                children: moment__WEBPACK_IMPORTED_MODULE_7___default()(item.created_at).format("L")
+              }), takeout && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
                 className: "py-4 ",
-                children: item.state
+                children: item.state === 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("span", {
+                  className: "text-red-500 font-tajawal-Black",
+                  children: "\u0645\u0633\u062A\u0647\u0644\u0643"
+                }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("span", {
+                  className: "text-green-500",
+                  children: "\u063A\u064A\u0631 \u0645\u0633\u062A\u0647\u0644\u0643"
+                })
               }), !takeout && item.category && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
                 className: "py-4 text-lg",
                 children: moment__WEBPACK_IMPORTED_MODULE_7___default()(item.created_at).format("L")
+              }), logs && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
+                className: "py-4 text-lg",
+                children: moment__WEBPACK_IMPORTED_MODULE_7___default()(item.outDate).format("L")
               }), item.email && (item.isAdmin ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
                 className: "py-4 text-green-600 px-5",
                 children: "\u0645\u062F\u064A\u0631"
               }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
                 className: "py-4 text-red-600 px-5",
                 children: "\u0645\u0648\u0638\u0641"
-              })), !takeout && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("td", {
+              })), !takeout && !logs && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("td", {
                 className: "py-4 flex items-center justify-center",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
                   href: "/".concat(url, "/").concat(item.id, "/edit"),
@@ -4177,7 +4207,7 @@ function Table(_ref) {
                   onClick: function onClick() {
                     return handleClick(item.id);
                   },
-                  className: "px-2 py-2 bg-red-500 rounded-lg mx-2 hover:bg-red-600 transition duration-500 ease-in-out",
+                  className: " px-2 py-2 transition duration-500 ease-in-out bg-red-500 hover:bg-red-600\n                                             text-white p-2 rounded-lg mx-2 \n                                               ",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("svg", {
                     xmlns: "http://www.w3.org/2000/svg",
                     width: "20",
@@ -4193,6 +4223,36 @@ function Table(_ref) {
                     })
                   })
                 })]
+              }), logs && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
+                className: "py-2",
+                children: item.state === 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("span", {
+                  className: "text-red-500 font-tajawal-Black",
+                  children: "\u0645\u0633\u062A\u0647\u0644\u0643"
+                }) : item.inDate === null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("button", {
+                  type: "submit",
+                  onClick: function onClick() {
+                    handleStore(item.outID);
+                  },
+                  className: " px-2 py-2 transition duration-500 ease-in-out \n                                               bg-green-500 hover:bg-green-600 text-white p-2 rounded-lg mx-2 \n                                               ",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("span", {
+                    className: "flex gap-x-3",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("svg", {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      className: "h-6 w-6",
+                      fill: "none",
+                      viewBox: "0 0 24 24",
+                      stroke: "currentColor",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("path", {
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round",
+                        strokeWidth: 2,
+                        d: "M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+                      })
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("span", {
+                      children: "\u0627\u062F\u062E\u0627\u0644"
+                    })]
+                  })
+                }) : moment__WEBPACK_IMPORTED_MODULE_7___default()(item.inDate).format("HH:mm - YYYY/MM/DD")
               })]
             }, key);
           })
@@ -5938,7 +5998,7 @@ function index(_ref) {
           url: "items",
           auth: auth,
           total: items.total,
-          tableHeaders: ["رقم الماده", "اسم الماده", "الكمية", "الصنف", "تاريخ الاضافة", "العمليات"]
+          tableHeaders: ["رقم الماده", "اسم الماده", "الصنف", "الكمية", "الحاله", "تاريخ الاضافة", "العمليات"]
         })]
       })]
     })]
@@ -6008,7 +6068,7 @@ function index(_ref) {
           url: "logs",
           logs: true,
           auth: auth,
-          tableHeaders: ["التسلسل", "الاسم", "اسم الماده", "الصنف", "الرقم التسلسلي", "الكميه", "التاريخ", "الحاله", "ادخال مخزني"]
+          tableHeaders: ["التسلسل", "الاسم", "اسم الماده", "الصنف", "الرقم التسلسلي", "الكميه", "التاريخ", "ادخال مخزني"]
         })
       })]
     })]
