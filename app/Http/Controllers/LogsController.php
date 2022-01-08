@@ -55,7 +55,7 @@ class LogsController extends Controller
                     'users_id' => Auth::user()->id
                 ]);
             }
-            return Redirect::route('takeout.index')->with('success', ['success', 'تمت العملية بنجاح']);
+            return Redirect::route('takeout.index')->with('success', ['title' => 'success', 'message' => 'تمت العملية بنجاح']);
         }
     }
 
