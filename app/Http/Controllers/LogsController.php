@@ -20,7 +20,7 @@ class LogsController extends Controller
     public function index()
     {
         return Inertia::render('Logs/Index', [
-            'logs' => logs::with('items')->paginate(10),
+            'logs' => logs::orderBy('created_at', 'desc')->with('items')->paginate(10)->withQueryString(),
         ]);
     }
 
@@ -100,12 +100,10 @@ class LogsController extends Controller
     public function update(Request $request, $logs)
     {
         $logs = logs::findOrFail($logs);
-        if(($logs->name !== $request->name) && ($logs->qty !== $request->qty) && ($logs->note !== $request->note))
-
         $logs->update([
-
+            'inDate' => now()
         ]);
-        return Redirect::route('logs.index')->with('success', 'تم التعديل بنجاح');
+        return Redirect::route('logs.index')->with('success', ['icon' => 'success' ,'title' => 'نجاح العملية', 'message' => 'تم ادخال للمخزن']);
     }
 
     /**
