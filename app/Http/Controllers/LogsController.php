@@ -22,7 +22,7 @@ class LogsController extends Controller
     public function index()
     {
         $query = logs::query();
-        if(request('logs')){
+        if(request('logs')) {
             if(request('logs') === 'day'){
                 $query->where('created_at', Carbon::yesterday())->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
             }elseif(request('logs') === 'month'){
