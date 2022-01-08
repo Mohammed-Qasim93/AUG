@@ -23,6 +23,8 @@ class LogsController extends Controller
     {
         $query = logs::query();
         if(request('logs')) {
+            dd(request('logs'));
+
             if(request('logs') === 'day'){
                 $query->where('created_at', Carbon::yesterday())->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
             }elseif(request('logs') === 'month'){
@@ -58,13 +60,7 @@ class LogsController extends Controller
      */
     public function store(Request $request)
     {
-        dd(Storage::disk('local')->exists('checked'));
-
         if((count($request['items']) <= 0) || !$request['name']){
-            // if(session()->all()){
-            //     dd('yes');
-            // }else{dd('no');}
-            // session()->forget('checked');
             return Redirect::route('takeout.index')->with('success', ['icon' => 'error' ,'title' => 'خطا', 'message' => 'لم يتم ملئ كل المدخلات']);
         }else{
             $outID = logs::all()->count();
@@ -118,9 +114,7 @@ class LogsController extends Controller
      */
     public function update(Request $request, $logs)
     {
-        // $logs = logs::where('id', $request->id)->get();
         $logs = logs::findOrFail($logs);
-        // dd($logs);
         $logs->update([
             'inDate' => now()
         ]);
