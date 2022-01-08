@@ -45,7 +45,11 @@ export default function Register({ success }) {
     return (
         <Guest>
             <Head title="إضافة موظف" />
+
             <form onSubmit={submit}>
+                <h2 className="text-center text-3xl py-4 text-gray-600">
+                    إضافة موظف
+                </h2>
                 <div>
                     <Label forInput="name" value="الاسم" />
 
@@ -114,10 +118,16 @@ export default function Register({ success }) {
                     />
                 </div>
 
-                <div className="flex items-center justify-center mt-4">
+                <div className="flex items-center justify-around mt-4">
                     <Button className="ml-4" processing={processing}>
                         إضافة
                     </Button>
+                    <Link
+                        href="/user?page=1"
+                        className="ml-4 bg-transparent px-4 py-1 border rounded-lg"
+                    >
+                        رجوع
+                    </Link>
                 </div>
             </form>
         </Guest>

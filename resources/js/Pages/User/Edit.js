@@ -63,6 +63,9 @@ export default function Edit({ auth, user, errors, success }) {
                                 onSubmit={submit}
                                 className="w-full mx-auto border-2 bg-white p-8 space-y-6"
                             >
+                                <h2 className="text-center text-3xl py-4 text-gray-600">
+                                    تعديل معلومات الموظف
+                                </h2>
                                 <div className="">
                                     <Label
                                         className="text-xl w-full pb-2"

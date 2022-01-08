@@ -13,23 +13,16 @@ import Swal from "sweetalert2";
 import Checkout from "./Checkout";
 
 export default function index({ items, auth, errors, success }) {
-    const { data, setData } = useForm({
-        search: "",
-    });
+    const [data, setData] = useState("");
 
     const onHandleChange = (e) => {
         e.preventDefault();
+        setData(e.target.value);
         Inertia.get(
             `/takeout?`,
-            { item: e.target.value },
+            { item: data },
             { replaces: true, preserveState: true }
         );
-        Swal.fire({
-            title: errors.data.name,
-            toast: true,
-            html: "I will close in <b></b> milliseconds.",
-            timer: 2000,
-        });
     };
 
     const submit = (e) => {
@@ -58,7 +51,7 @@ export default function index({ items, auth, errors, success }) {
                                     <Input
                                         type="search"
                                         name="search"
-                                        value={data.search}
+                                        value={data}
                                         className="mt-1 block w-full"
                                         autoComplete="username"
                                         isFocused={true}
