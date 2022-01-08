@@ -24,10 +24,16 @@ export default function index({ logs, auth, errors, success }) {
         });
     };
 
+    const exportPDF = () => {};
+    const print = () => {
+        window.print();
+    };
+    const exportExcel = () => {};
+
     const submit = (e) => {
         e.preventDefault();
         Inertia.get(
-            `/items?`,
+            `/logs?`,
             { date_from: data.from, date_to: data.to },
             { replaces: true, preserveState: true }
         );
@@ -39,16 +45,16 @@ export default function index({ logs, auth, errors, success }) {
             <div className="flex">
                 <DashboardBar auth={auth} />
                 <div className="flex-1 flex flex-col max-w-6xl">
-                    <h2 className="font-tajawal-extrabold text-3xl pr-32 py-4 text-center w-full pt-10 ">
+                    <h2 className="font-tajawal-extrabold text-3xl print:pr-0 pr-32 py-4 text-center w-full pt-10 ">
                         سجل الادخال والاخراج
                     </h2>
                     <div className="flex flex-col justify-end pr-32 items-start max-w-6xl">
-                        <div className="flex   w-1/3 py-3 justify-around">
-                            <Button children="اخر يوم" />
-                            <Button children="اخر اسبوع" />
-                            <Button children="اخر شهر" />
+                        <div className="flex   w-1/3 py-3 justify-around print:hidden">
+                            <Link children="اخر يوم" href="/logs?logs=day" />
+                            <Link children="اخر اسبوع" href="/logs?logs=week" />
+                            <Link children="اخر شهر" href="/logs?logs=month" />
                         </div>
-                        <div className="flex w-full  justify-between">
+                        <div className="flex w-full  justify-between print:hidden">
                             <div className="flex gap-4 pt-4">
                                 <div className="flex items-center gap-4">
                                     <Label value="من :"></Label>
@@ -88,13 +94,13 @@ export default function index({ logs, auth, errors, success }) {
                                     </Link>
                                 </div>
                             </div>
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-center ">
                                 <Button
                                     className="bg-blue-500 hover:bg-blue-600"
                                     handleClick={print}
                                     children="طباعة"
                                 />
-                                <Button
+                                {/* <Button
                                     className="bg-blue-500 hover:bg-blue-600"
                                     handleClick={exportPDF}
                                     children="PDF"
@@ -103,7 +109,7 @@ export default function index({ logs, auth, errors, success }) {
                                     className="bg-blue-500 hover:bg-blue-600"
                                     handleClick={exportExcel}
                                     children="Excel"
-                                />
+                                /> */}
                             </div>
                         </div>
                     </div>

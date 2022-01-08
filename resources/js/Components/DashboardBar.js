@@ -13,7 +13,7 @@ export default function DashboardBar({ auth }) {
     };
 
     return (
-        <div>
+        <div className="print:hidden">
             <nav className="flex flex-col  w-64 h-screen px-4 tex-gray-900  bg-slate-500">
                 <div className="flex flex-col text-slate-600 mt-8 justify-center items-center">
                     <h3 className="text-lg">اهلا</h3>

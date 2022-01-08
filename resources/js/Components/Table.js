@@ -85,14 +85,14 @@ export default function Table({
                     <p> {total} </p>
                 </div>
             )}
-            <div className="flex flex-col pt-4 pr-32">
-                <table className="max-w-5xl divide-y text-center divide-gray-200">
-                    <thead className="bg-gray-50 text-right">
+            <div className="flex flex-col pt-4 print:pr-0 pr-32">
+                <table className="max-w-5xl  divide-y text-center print:text-base divide-gray-200">
+                    <thead className="bg-gray-50 text-right ">
                         <tr>
                             {takeout ? (
                                 <th
                                     scope="col"
-                                    className=" py-3 text-center text-base font-medium text-gray-500 uppercase tracking-wider"
+                                    className=" py-3 text-center print:text-xs text-base font-medium  text-gray-500 uppercase tracking-wider"
                                 >
                                     <Checkbox
                                         name="disabledCheck"
@@ -105,7 +105,7 @@ export default function Table({
                                 <th
                                     key={index}
                                     scope="col"
-                                    className=" py-3 text-center text-base font-medium text-gray-500 uppercase tracking-wider"
+                                    className=" py-3 last:print:hidden print:text-xs print:font-thin text-center text-base font-medium text-gray-500 uppercase tracking-wider"
                                 >
                                     {header}
                                 </th>
@@ -130,16 +130,26 @@ export default function Table({
                                         />
                                     </th>
                                 ) : null}
-                                {item.no && <td className="py-4">{item.no}</td>}
-                                {(item.email || logs) && (
-                                    <td className="py-4">{key + 1}</td>
+                                {item.no && (
+                                    <td className="py-4 print:text-xs print:font-thin">
+                                        {item.no}
+                                    </td>
                                 )}
-                                {logs && <td className="py-4">{item.name}</td>}
+                                {(item.email || logs) && (
+                                    <td className="py-4 print:text-xs print:font-thin">
+                                        {key + 1}
+                                    </td>
+                                )}
+                                {logs && (
+                                    <td className="py-4 print:p-1 print:text-xs print:font-thin">
+                                        {item.name}
+                                    </td>
+                                )}
                                 {!logs && (
                                     <td className="py-4">
                                         {auth.user.isAdmin === 1 ? (
                                             <Link
-                                                className="hover:text-red-500 transition duration-500 ease-in-out"
+                                                className="hover:text-red-500  transition duration-500 ease-in-out"
                                                 href={`/${url}/${item.id}/edit`}
                                             >
                                                 {item.name}
@@ -150,38 +160,48 @@ export default function Table({
                                     </td>
                                 )}
                                 {item.email && (
-                                    <td className="py-4 ">{item.email}</td>
+                                    <td className="py-4 print:text-xs print:font-thin">
+                                        {item.email}
+                                    </td>
                                 )}
                                 {logs && item.items.name && (
-                                    <td className="py-4 ">{item.items.name}</td>
+                                    <td className="py-4 p-1 print:text-xs print:font-thin">
+                                        {item.items.name}
+                                    </td>
                                 )}
                                 {logs && item.items.category && (
-                                    <td className="py-4 ">
+                                    <td className="py-4 print:text-xs print:font-thin">
                                         {item.items.category}
                                     </td>
                                 )}
                                 {logs && item.items.no && (
-                                    <td className="py-4 ">{item.items.no}</td>
+                                    <td className="py-4 print:text-xs print:font-thin">
+                                        {item.items.no}
+                                    </td>
                                 )}
 
                                 {item.category && (
-                                    <td className="py-4 ">{item.category}</td>
+                                    <td className="py-4 print:p-1 print:text-xs print:font-thin">
+                                        {item.category}
+                                    </td>
                                 )}
 
                                 {item.qty >= 0 && (
-                                    <td className="py-4 ">{item.qty}</td>
+                                    <td className="py-4 print:p-1 print:text-xs print:font-thin">
+                                        {item.qty}
+                                    </td>
                                 )}
                                 {!logs &&
                                     url !== "user" &&
                                     takeout === false && (
-                                        <td className="py-4 text-lg">
+                                        <td className="py-4 text-lg print:text-xs print:font-thin">
                                             {moment(item.created_at).format(
                                                 "L"
                                             )}
                                         </td>
                                     )}
                                 {takeout && (
-                                    <td className="py-4 ">
+                                    <td className="py-4 print:text-xs print:font-thin">
                                         {item.state === 1 ? (
                                             <span className="text-red-500 font-tajawal-Black">
                                                 مستهلك
@@ -194,12 +214,12 @@ export default function Table({
                                     </td>
                                 )}
                                 {!takeout && item.category && (
-                                    <td className="py-4 text-lg">
+                                    <td className="py-4 print:p-1 print:text-xs print:font-thin text-lg">
                                         {moment(item.created_at).format("L")}
                                     </td>
                                 )}
                                 {logs && (
-                                    <td className="py-4 text-lg">
+                                    <td className="py-4 print:p-1 print:text-xs print:font-thin text-lg">
                                         {moment(item.outDate).format(
                                             "HH:mm - YYYY/MM/DD"
                                         )}
@@ -207,7 +227,7 @@ export default function Table({
                                 )}
                                 {item.email &&
                                     (item.isAdmin ? (
-                                        <td className="py-4 text-green-600 px-5">
+                                        <td className="py-4 print:p-1 print:text-xs print:font-thin text-green-600 px-5">
                                             مدير
                                         </td>
                                     ) : (
@@ -263,7 +283,7 @@ export default function Table({
                                 )}
 
                                 {logs && (
-                                    <td className="py-2">
+                                    <td className="py-2 print:hidden">
                                         {item.state === 1 ? (
                                             <span className="text-red-500 font-tajawal-Black">
                                                 مستهلك
