@@ -200,7 +200,9 @@ export default function Table({
                                 )}
                                 {logs && (
                                     <td className="py-4 text-lg">
-                                        {moment(item.outDate).format("L")}
+                                        {moment(item.outDate).format(
+                                            "HH:mm - YYYY/MM/DD"
+                                        )}
                                     </td>
                                 )}
                                 {item.email &&
@@ -272,7 +274,7 @@ export default function Table({
                                                 onClick={() => {
                                                     handleStore(
                                                         item.id,
-                                                        item.items.outID
+                                                        item.outID
                                                     );
                                                 }}
                                                 className={` px-2 py-2 transition duration-500 ease-in-out 
