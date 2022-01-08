@@ -52,7 +52,7 @@ export default function Input({
                     className={
                         `border-gray-300 focus:border-indigo-300  ${
                             defaultValue ? "hidden" : ""
-                        } focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm ` +
+                        } focus:ring focus:ring-indigo-200 print:hidden focus:ring-opacity-50 rounded-md shadow-sm ` +
                         className
                     }
                     ref={input}
@@ -70,7 +70,7 @@ export default function Input({
                     min={min}
                     placeholder={placeholder}
                     className={
-                        `border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm ` +
+                        `border-gray-300 print:hidden focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm ` +
                         className
                     }
                     ref={input}

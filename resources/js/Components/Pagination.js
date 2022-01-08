@@ -15,7 +15,7 @@ const Pagination = ({
     total,
 }) => {
     return (
-        <div className="flex max-w-6xl justify-center pt-4 gap-8">
+        <div className="flex max-w-6xl print:hidden justify-center pt-4 gap-8">
             {currentPage > 1 && (
                 <Link
                     className="py-2 px-3 bg-white text-background rounded-md"

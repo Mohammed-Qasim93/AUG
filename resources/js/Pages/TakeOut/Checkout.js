@@ -10,6 +10,8 @@ import Toast from "../../Components/Toast";
 import Label from "../../Components/Label";
 import Pagination from "../../Components/Pagination";
 import { Inertia } from "@inertiajs/inertia";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 
 export default function Checkout({ auth, errors, items, success }) {
     const { data, setData, post } = useForm({
@@ -55,7 +57,6 @@ export default function Checkout({ auth, errors, items, success }) {
     // };
 
     const submit = (e) => {
-        console.log("lp[lp[l");
         e.preventDefault();
         // if (data.items.length === items.length) {
 
