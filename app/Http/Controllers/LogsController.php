@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\logs;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -20,6 +21,20 @@ class LogsController extends Controller
      */
     public function index()
     {
+        $query = logs::query();
+        if(request('logs')){
+            if(request('logs') === 'day'){
+                $query->where('created_at', Carbon::yesterday())->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
+            }elseif(request('logs') === 'month'){
+                $query->where('created_at', Carbon::now()->subMonthsNoOverflow())->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
+            }elseif(request('logs') === 'week'){
+                $query->where('created_at', Carbon::now()->subWeek())->orderBy('created_at', 'asc')->paginate(10)->withQueryString();
+            }elseif(request('logs') === 'custom'){
+                $date = request('date_from') . "," . request('date_to');
+                $date = explode(',', $date);
+                $query->whereBetween('created_at', $date)->orderBy('created_at', 'asc')->paginate(10)->withQueryString();
+            }
+        }
         return Inertia::render('Logs/Index', [
             'logs' => logs::orderBy('created_at', 'desc')->with('items')->paginate(10)->withQueryString(),
         ]);
@@ -43,8 +58,9 @@ class LogsController extends Controller
      */
     public function store(Request $request)
     {
+        dd(Storage::disk('local')->exists('checked'));
+
         if((count($request['items']) <= 0) || !$request['name']){
-            // dd(Storage::disk('local'));
             // if(session()->all()){
             //     dd('yes');
             // }else{dd('no');}
@@ -102,8 +118,9 @@ class LogsController extends Controller
      */
     public function update(Request $request, $logs)
     {
-        dd($request->all());
+        // $logs = logs::where('id', $request->id)->get();
         $logs = logs::findOrFail($logs);
+        // dd($logs);
         $logs->update([
             'inDate' => now()
         ]);
