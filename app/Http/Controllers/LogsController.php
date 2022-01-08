@@ -36,7 +36,7 @@ class LogsController extends Controller
             }
         }
         return Inertia::render('Logs/Index', [
-            'logs' => logs::orderBy('created_at', 'desc')->with('items')->paginate(10)->withQueryString(),
+            'logs' => $query->orderBy('created_at', 'desc')->with('items')->paginate(10)->withQueryString(),
         ]);
     }
 
