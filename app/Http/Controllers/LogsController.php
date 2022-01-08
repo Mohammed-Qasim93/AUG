@@ -42,7 +42,7 @@ class LogsController extends Controller
     public function store(Request $request)
     {
         if((count($request['items']) <= 0) || !$request['name']){
-            return Redirect::route('takeout.index')->with('success', 'لم يتم ادخال جميع المدخلات');
+            return Redirect::route('takeout.index')->with('error', 'لم يتم ادخال جميع المدخلات');
         }else{
             for ($i = 0 ; $i < count($request['items']);$i++){
                 logs::create([
