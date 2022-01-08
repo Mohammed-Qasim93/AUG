@@ -168,7 +168,7 @@ export default function Add({ auth, errors, success }) {
                                                                         handleChange={
                                                                             onHandleChange
                                                                         }
-                                                                        type="number"
+                                                                        type="text"
                                                                         name="no"
                                                                         value={
                                                                             data.no

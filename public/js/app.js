@@ -5562,7 +5562,7 @@ function Add(_ref) {
                                   children: "\u0627\u0644\u0631\u0642\u0645 \u0627\u0644\u062A\u0633\u0644\u0633\u0644\u064A"
                                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
                                   handleChange: onHandleChange,
-                                  type: "number",
+                                  type: "text",
                                   name: "no",
                                   value: data.no,
                                   className: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
