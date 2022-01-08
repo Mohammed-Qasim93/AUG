@@ -51,7 +51,7 @@ export default function index({ logs, auth, errors, success }) {
                     </h2>
                     <div className="flex flex-col justify-end pr-32 items-start max-w-6xl">
                         <div className="flex  w-full py-3 justify-between print:hidden">
-                            <div className="">
+                            <div className=" gap-x-4 flex">
                                 <Link
                                     children="اليوم"
                                     href="/logs?logs=today"
@@ -80,7 +80,7 @@ export default function index({ logs, auth, errors, success }) {
                         </div>
                         <div className="flex w-full  justify-between print:hidden pt-4">
                             <div className="flex gap-4 ">
-                                <div className="flex items-center gap-x-4">
+                                {/* <div className="flex items-center gap-x-4">
                                     <Label value="من :"></Label>
                                     <Input
                                         type="date"
@@ -91,8 +91,8 @@ export default function index({ logs, auth, errors, success }) {
                                         isFocused={true}
                                         handleChange={onHandleChange}
                                     />
-                                </div>
-                                <div className="flex items-center gap-x-4">
+                                </div> */}
+                                {/* <div className="flex items-center gap-x-4">
                                     <Label value="الى :"></Label>
                                     <Input
                                         type="date"
@@ -103,13 +103,13 @@ export default function index({ logs, auth, errors, success }) {
                                         isFocused={true}
                                         handleChange={onHandleChange}
                                     />
-                                </div>
+                                </div> */}
                                 <div className="flex items-center gap-2">
-                                    <Button
+                                    {/* <Button
                                         className="bg-blue-500 hover:bg-blue-600"
                                         handleClick={submit}
                                         children="بحث"
-                                    />
+                                    /> */}
                                     <Link
                                         className="inline-flex items-center px-4 py-2 bg-red-500 hover:bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 $"
                                         href="/logs?page=1"

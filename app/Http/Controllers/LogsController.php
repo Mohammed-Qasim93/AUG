@@ -43,13 +43,7 @@ class LogsController extends Controller
 
             }
         }
-        if(request('date_from') > request('date_to')){
-            return redirect()->back()->with('success', 'تأكد من التاريخ المحدد');
-        }else{
-            $date = request('date_from') . "," . request('date_to');
-            $date = explode(',', $date);
-            $query->whereBetween('created_at', $date);
-        }
+        
         return Inertia::render('Logs/Index', [
             'logs' => $query ? $query->orderBy('created_at', 'desc')->with('items')->paginate(10)->withQueryString() : logs::orderBy('created_at', 'desc')->with('items')->paginate(10)->withQueryString(),
         ]);
