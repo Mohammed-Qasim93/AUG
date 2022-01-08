@@ -6070,6 +6070,7 @@ function index(_ref) {
       auth = _ref.auth,
       errors = _ref.errors,
       success = _ref.success;
+  console.log(logs);
 
   var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.useForm)({
     from: "",
@@ -6092,7 +6093,7 @@ function index(_ref) {
 
   var submit = function submit(e) {
     e.preventDefault();
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_10__.Inertia.get("/logs?", {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_10__.Inertia.get("/logs?=", {
       date_from: data.from,
       date_to: data.to
     }, {
@@ -6118,23 +6119,40 @@ function index(_ref) {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
           className: "flex flex-col justify-end pr-32 items-start max-w-6xl",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
-            className: "flex   w-1/3 py-3 justify-around print:hidden",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
-              children: "\u0627\u062E\u0631 \u064A\u0648\u0645",
-              href: "/logs?logs=day"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
-              children: "\u0627\u062E\u0631 \u0627\u0633\u0628\u0648\u0639",
-              href: "/logs?logs=week"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
-              children: "\u0627\u062E\u0631 \u0634\u0647\u0631",
-              href: "/logs?logs=month"
+            className: "flex  w-full py-3 justify-between print:hidden",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
+              className: "",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
+                children: "\u0627\u0644\u064A\u0648\u0645",
+                href: "/logs?logs=today",
+                className: "px-4 py-2 rounded-lg bg-gray-800 text-gray-200 "
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
+                children: "\u0627\u0644\u0628\u0627\u0631\u062D\u0647",
+                href: "/logs?logs=yesterday",
+                className: "px-4 py-2 rounded-lg bg-gray-800 text-gray-200 "
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
+                children: "\u0627\u062E\u0631 \u0627\u0633\u0628\u0648\u0639",
+                href: "/logs?logs=week",
+                className: "px-4 py-2 rounded-lg bg-gray-800 text-gray-200 "
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
+                children: "\u0627\u062E\u0631 \u0634\u0647\u0631",
+                href: "/logs?logs=month",
+                className: "px-4 py-2 rounded-lg bg-gray-800 text-gray-200 "
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
+              className: "",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("span", {
+                children: "\u0639\u062F\u062F \u0627\u0644\u0645\u0648\u0627\u062F :"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("span", {
+                children: logs.data.length
+              })]
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
-            className: "flex w-full  justify-between print:hidden",
+            className: "flex w-full  justify-between print:hidden pt-4",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
-              className: "flex gap-4 pt-4",
+              className: "flex gap-4 ",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
-                className: "flex items-center gap-4",
+                className: "flex items-center gap-x-4",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_7__["default"], {
                   value: "\u0645\u0646 :"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -6147,7 +6165,7 @@ function index(_ref) {
                   handleChange: onHandleChange
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
-                className: "flex items-center gap-4",
+                className: "flex items-center gap-x-4",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_7__["default"], {
                   value: "\u0627\u0644\u0649 :"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -6167,7 +6185,7 @@ function index(_ref) {
                   children: "\u0628\u062D\u062B"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
                   className: "inline-flex items-center px-4 py-2 bg-red-500 hover:bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 $",
-                  href: "/items?page=1",
+                  href: "/logs?page=1",
                   children: "\u062A\u0635\u0641\u064A\u0631"
                 })]
               })]

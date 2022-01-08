@@ -12,6 +12,7 @@ import { Inertia } from "@inertiajs/inertia";
 import Swal from "sweetalert2";
 
 export default function index({ logs, auth, errors, success }) {
+    console.log(logs);
     const { data, setData } = useForm({
         from: "",
         to: "",
@@ -33,7 +34,7 @@ export default function index({ logs, auth, errors, success }) {
     const submit = (e) => {
         e.preventDefault();
         Inertia.get(
-            `/logs?`,
+            `/logs?=`,
             { date_from: data.from, date_to: data.to },
             { replaces: true, preserveState: true }
         );
@@ -49,14 +50,37 @@ export default function index({ logs, auth, errors, success }) {
                         سجل الادخال والاخراج
                     </h2>
                     <div className="flex flex-col justify-end pr-32 items-start max-w-6xl">
-                        <div className="flex   w-1/3 py-3 justify-around print:hidden">
-                            <Link children="اخر يوم" href="/logs?logs=day" />
-                            <Link children="اخر اسبوع" href="/logs?logs=week" />
-                            <Link children="اخر شهر" href="/logs?logs=month" />
+                        <div className="flex  w-full py-3 justify-between print:hidden">
+                            <div className="">
+                                <Link
+                                    children="اليوم"
+                                    href="/logs?logs=today"
+                                    className="px-4 py-2 rounded-lg bg-gray-800 text-gray-200 "
+                                />
+                                <Link
+                                    children="البارحه"
+                                    href="/logs?logs=yesterday"
+                                    className="px-4 py-2 rounded-lg bg-gray-800 text-gray-200 "
+                                />
+                                <Link
+                                    children="اخر اسبوع"
+                                    href="/logs?logs=week"
+                                    className="px-4 py-2 rounded-lg bg-gray-800 text-gray-200 "
+                                />
+                                <Link
+                                    children="اخر شهر"
+                                    href="/logs?logs=month"
+                                    className="px-4 py-2 rounded-lg bg-gray-800 text-gray-200 "
+                                />
+                            </div>
+                            <div className="">
+                                <span>عدد المواد :</span>
+                                <span>{logs.data.length}</span>
+                            </div>
                         </div>
-                        <div className="flex w-full  justify-between print:hidden">
-                            <div className="flex gap-4 pt-4">
-                                <div className="flex items-center gap-4">
+                        <div className="flex w-full  justify-between print:hidden pt-4">
+                            <div className="flex gap-4 ">
+                                <div className="flex items-center gap-x-4">
                                     <Label value="من :"></Label>
                                     <Input
                                         type="date"
@@ -68,7 +92,7 @@ export default function index({ logs, auth, errors, success }) {
                                         handleChange={onHandleChange}
                                     />
                                 </div>
-                                <div className="flex items-center gap-4">
+                                <div className="flex items-center gap-x-4">
                                     <Label value="الى :"></Label>
                                     <Input
                                         type="date"
@@ -88,7 +112,7 @@ export default function index({ logs, auth, errors, success }) {
                                     />
                                     <Link
                                         className="inline-flex items-center px-4 py-2 bg-red-500 hover:bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 $"
-                                        href="/items?page=1"
+                                        href="/logs?page=1"
                                     >
                                         تصفير
                                     </Link>
