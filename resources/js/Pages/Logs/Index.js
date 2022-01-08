@@ -46,33 +46,12 @@ export default function index({ logs, auth, errors, success }) {
             <div className="flex">
                 <DashboardBar auth={auth} />
                 <div className="flex-1 flex flex-col max-w-6xl">
-                    <h2 className="font-tajawal-extrabold text-3xl print:pr-0 pr-32 py-4 text-center w-full pt-10 ">
+                    <h2 className="font-tajawal-extrabold print:hidden  text-3xl print:pr-0 pr-32 py-4 text-center w-full pt-10 ">
                         سجل الادخال والاخراج
                     </h2>
-                    <div className="flex flex-col justify-end pr-32 items-start max-w-6xl">
-                        <div className="flex  w-full py-3 justify-between print:hidden">
-                            <div className=" gap-x-4 flex">
-                                <Link
-                                    children="اليوم"
-                                    href="/logs?logs=today"
-                                    className="px-4 py-2 rounded-lg bg-gray-800 text-gray-200 "
-                                />
-                                <Link
-                                    children="البارحه"
-                                    href="/logs?logs=yesterday"
-                                    className="px-4 py-2 rounded-lg bg-gray-800 text-gray-200 "
-                                />
-                                <Link
-                                    children="اخر اسبوع"
-                                    href="/logs?logs=week"
-                                    className="px-4 py-2 rounded-lg bg-gray-800 text-gray-200 "
-                                />
-                                <Link
-                                    children="اخر شهر"
-                                    href="/logs?logs=month"
-                                    className="px-4 py-2 rounded-lg bg-gray-800 text-gray-200 "
-                                />
-                            </div>
+                    <div className="relative"></div>
+                    <div className="flex flex-col justify-end pr-32 print:absolute top-0 items-start max-w-6xl">
+                        <div className="flex  w-full py-3 justify-end print:hidden">
                             <div className="">
                                 <span>عدد المواد :</span>
                                 <span>{logs.data.length}</span>
@@ -80,7 +59,7 @@ export default function index({ logs, auth, errors, success }) {
                         </div>
                         <div className="flex w-full  justify-between print:hidden pt-4">
                             <div className="flex gap-4 ">
-                                {/* <div className="flex items-center gap-x-4">
+                                <div className="flex items-center gap-x-4">
                                     <Label value="من :"></Label>
                                     <Input
                                         type="date"
@@ -91,8 +70,8 @@ export default function index({ logs, auth, errors, success }) {
                                         isFocused={true}
                                         handleChange={onHandleChange}
                                     />
-                                </div> */}
-                                {/* <div className="flex items-center gap-x-4">
+                                </div>
+                                <div className="flex items-center gap-x-4">
                                     <Label value="الى :"></Label>
                                     <Input
                                         type="date"
@@ -103,13 +82,13 @@ export default function index({ logs, auth, errors, success }) {
                                         isFocused={true}
                                         handleChange={onHandleChange}
                                     />
-                                </div> */}
+                                </div>
                                 <div className="flex items-center gap-2">
-                                    {/* <Button
+                                    <Button
                                         className="bg-blue-500 hover:bg-blue-600"
                                         handleClick={submit}
                                         children="بحث"
-                                    /> */}
+                                    />
                                     <Link
                                         className="inline-flex items-center px-4 py-2 bg-red-500 hover:bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 $"
                                         href="/logs?page=1"
@@ -137,23 +116,25 @@ export default function index({ logs, auth, errors, success }) {
                             </div>
                         </div>
                     </div>
-                    <Table
-                        data={logs.data}
-                        paginate={logs}
-                        url="logs"
-                        logs={true}
-                        auth={auth}
-                        tableHeaders={[
-                            "التسلسل",
-                            "الاسم",
-                            "اسم الماده",
-                            "الصنف",
-                            "الرقم التسلسلي",
-                            "الكميه",
-                            "التاريخ",
-                            "ادخال مخزني",
-                        ]}
-                    />
+                    <div className="form">
+                        <Table
+                            data={logs.data}
+                            paginate={logs}
+                            url="logs"
+                            logs={true}
+                            auth={auth}
+                            tableHeaders={[
+                                "التسلسل",
+                                "الاسم",
+                                "اسم الماده",
+                                "الصنف",
+                                "الرقم التسلسلي",
+                                "الكميه",
+                                "التاريخ",
+                                "ادخال مخزني",
+                            ]}
+                        />
+                    </div>
                 </div>
             </div>
         </Authenticated>

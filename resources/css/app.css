@@ -24,3 +24,7 @@
         src: url(/fonts/Tajawal-Light.ttf);
     }
 }
+
+.form {
+    background: url("/h.jpg") no-repeat cover cover;
+}

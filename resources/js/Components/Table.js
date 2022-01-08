@@ -132,7 +132,7 @@ export default function Table({
                                 ) : null}
                                 {item.no && (
                                     <td className="py-4 print:text-xs print:font-thin">
-                                        {item.no}
+                                        {item.id}
                                     </td>
                                 )}
                                 {(item.email || logs) && (
@@ -193,6 +193,7 @@ export default function Table({
                                 )}
                                 {!logs &&
                                     url !== "user" &&
+                                    url !== "items" &&
                                     takeout === false && (
                                         <td className="py-4 text-lg print:text-xs print:font-thin">
                                             {moment(item.created_at).format(
@@ -200,7 +201,7 @@ export default function Table({
                                             )}
                                         </td>
                                     )}
-                                {takeout && (
+                                {(takeout || url === "items") && (
                                     <td className="py-4 print:text-xs print:font-thin">
                                         {item.state === 1 ? (
                                             <span className="text-red-500 font-tajawal-Black">

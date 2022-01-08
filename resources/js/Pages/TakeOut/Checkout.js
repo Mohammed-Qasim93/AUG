@@ -13,7 +13,8 @@ import { Inertia } from "@inertiajs/inertia";
 
 export default function Checkout({ auth, errors, items, success }) {
     const { data, setData, post } = useForm({
-        name: "",
+        receiver: "",
+        sender: "",
         note: "",
         items: [],
     });
@@ -122,7 +123,7 @@ export default function Checkout({ auth, errors, items, success }) {
                                                             htmlFor="name"
                                                             className="block text-sm font-medium text-gray-700"
                                                         >
-                                                            الاسم
+                                                            اسم المستلم
                                                         </label>
                                                         <Input
                                                             handleChange={
@@ -130,7 +131,29 @@ export default function Checkout({ auth, errors, items, success }) {
                                                             }
                                                             type="text"
                                                             name="name"
-                                                            value={data.name}
+                                                            value={
+                                                                data.receiver
+                                                            }
+                                                            className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                        />
+                                                        <small className="text-red-500 text-sm">
+                                                            {errors.name}
+                                                        </small>
+                                                    </div>
+                                                    <div className="col-span-6">
+                                                        <label
+                                                            htmlFor="name"
+                                                            className="block text-sm font-medium text-gray-700"
+                                                        >
+                                                            اسم المخول
+                                                        </label>
+                                                        <Input
+                                                            handleChange={
+                                                                onHandleChange
+                                                            }
+                                                            type="text"
+                                                            name="name"
+                                                            value={data.sender}
                                                             className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                         />
                                                         <small className="text-red-500 text-sm">
@@ -158,9 +181,12 @@ export default function Checkout({ auth, errors, items, success }) {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="px-4 py-3 flex justify-center bg-gray-50 text-right sm:px-6">
+                                            <div className="px-4 py-3 flex justify-around bg-gray-50 text-right sm:px-6">
                                                 <Button className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600 focus:outline-none ">
-                                                    إخراج
+                                                    اخراج من المخزن
+                                                </Button>
+                                                <Button className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none ">
+                                                    اخراج من الموقع
                                                 </Button>
                                             </div>
                                         </div>
