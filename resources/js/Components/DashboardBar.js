@@ -115,7 +115,7 @@ export default function DashboardBar({ auth }) {
                                         />
                                     </svg>
                                 </span>
-                                <span className="mr-2">سجل الخروج</span>
+                                <span className="mr-2">السجل</span>
                             </Link>
                         </li>
                     </ul>

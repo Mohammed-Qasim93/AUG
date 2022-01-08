@@ -52,6 +52,9 @@ export default function index({ items, auth, errors, success }) {
                 <DashboardBar auth={auth} />
                 <div className="flex-1 flex flex-col max-w-6xl">
                     <div className="flex flex-col justify-end pr-32 items-start max-w-6xl">
+                        <h2 className="font-tajawal-extrabold text-3xl text-center w-full pt-10 ">
+                            اخراج مخزني
+                        </h2>
                         <div className="flex w-full items-center justify-between">
                             <div className="flex justify-between items-end h-20 ">
                                 {/* <TableButtons text="اخراج" url="/checkout" /> */}
@@ -95,7 +98,6 @@ export default function index({ items, auth, errors, success }) {
                             </div>
                         </div>
                     </div>
-
                     <Table
                         data={items.data}
                         paginate={items}

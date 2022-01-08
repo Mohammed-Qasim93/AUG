@@ -55,6 +55,9 @@ export default function index({ items, auth, errors, success }) {
             <div className="flex">
                 <DashboardBar auth={auth} />
                 <div className="flex-1 flex flex-col  max-w-6xl">
+                    <h2 className="font-tajawal-extrabold text-3xl text-center w-full pt-10 pr-32">
+                        سجل المواد
+                    </h2>
                     <div className="flex justify-between items-end h-20 ">
                         <TableButtons text="إضافة مادة" url="/items/create" />
                     </div>

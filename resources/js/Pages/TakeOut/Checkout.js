@@ -55,10 +55,15 @@ export default function Checkout({ auth, errors, items, success }) {
     // };
 
     const submit = (e) => {
+        console.log("lp[lp[l");
         e.preventDefault();
         // if (data.items.length === items.length) {
 
-        Inertia.post(`/logs`, data);
+        Inertia.post(`/logs`, data, {
+            onFinish: () => {
+                localStorage.removeItem("checked");
+            },
+        });
 
         // } else {
         // alert("الرجاء ادخال كميات المادات");
@@ -97,8 +102,12 @@ export default function Checkout({ auth, errors, items, success }) {
             <Authenticated auth={auth} errors={errors}>
                 <Head title="اخراج مخزني" />
                 <div className="flex">
+                    ا
                     <DashboardBar auth={auth} />
                     <div className="flex-1 flex flex-col max-w-6xl">
+                        <h2 className="font-tajawal-extrabold text-3xl text-center pr-32 w-full pt-10">
+                            اخراج مخزني
+                        </h2>
                         <div className="flex flex-col justify-end pr-32 items-start ">
                             <div className="flex w-full items-center justify-between">
                                 <div className="flex justify-between flex-1 gap-x-4 items-end pt-16">

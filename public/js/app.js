@@ -3486,7 +3486,7 @@ function DashboardBar(_ref) {
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
                 className: "mr-2",
-                children: "\u0633\u062C\u0644 \u0627\u0644\u062E\u0631\u0648\u062C"
+                children: "\u0627\u0644\u0633\u062C\u0644"
               })]
             })
           })]
@@ -5990,7 +5990,10 @@ function index(_ref) {
         auth: auth
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
         className: "flex-1 flex flex-col  max-w-6xl",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("h2", {
+          className: "font-tajawal-extrabold text-3xl text-center w-full pt-10 pr-32",
+          children: "\u0633\u062C\u0644 \u0627\u0644\u0645\u0648\u0627\u062F"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
           className: "flex justify-between items-end h-20 ",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_Components_TableButtons__WEBPACK_IMPORTED_MODULE_5__["default"], {
             text: "\u0625\u0636\u0627\u0641\u0629 \u0645\u0627\u062F\u0629",
@@ -6041,6 +6044,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_11__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -6060,25 +6069,106 @@ function index(_ref) {
       auth = _ref.auth,
       errors = _ref.errors,
       success = _ref.success;
+
+  var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.useForm)({
+    from: "",
+    to: ""
+  }),
+      data = _useForm.data,
+      setData = _useForm.setData;
+
+  var onHandleChange = function onHandleChange(event) {
+    setData(_objectSpread(_objectSpread({}, data), {}, _defineProperty({}, event.target.name, event.target.value)));
+  };
+
+  var submit = function submit(e) {
+    e.preventDefault();
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_10__.Inertia.get("/items?", {
+      date_from: data.from,
+      date_to: data.to
+    }, {
+      replaces: true,
+      preserveState: true
+    });
+  };
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)(_Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_2__["default"], {
     auth: auth,
     errors: errors,
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Head, {
-      title: "\u0627\u062E\u0631\u0627\u062C \u0645\u062E\u0632\u0646\u064A"
+      title: "\u0627\u0644\u0633\u062C\u0644"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
       className: "flex",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_DashboardBar__WEBPACK_IMPORTED_MODULE_3__["default"], {
         auth: auth
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
         className: "flex-1 flex flex-col max-w-6xl",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Table__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("h2", {
+          className: "font-tajawal-extrabold text-3xl pr-32 py-4 text-center w-full pt-10 ",
+          children: "\u0633\u062C\u0644 \u0627\u0644\u0627\u062F\u062E\u0627\u0644 \u0648\u0627\u0644\u0627\u062E\u0631\u0627\u062C"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
+          className: "flex flex-col justify-end pr-32 items-start max-w-6xl",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
+            className: "flex   w-1/3 py-3 justify-around",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_8__["default"], {
+              children: "\u0627\u062E\u0631 \u064A\u0648\u0645"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_8__["default"], {
+              children: "\u0627\u062E\u0631 \u0627\u0633\u0628\u0648\u0639"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_8__["default"], {
+              children: "\u0627\u062E\u0631 \u0634\u0647\u0631"
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+            className: "flex w-full  justify-between",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
+              className: "flex gap-4 pt-4",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
+                className: "flex items-center gap-4",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                  value: "\u0645\u0646 :"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                  type: "date",
+                  name: "from",
+                  value: data.from,
+                  className: "mt-1 block w-full ",
+                  autoComplete: "username",
+                  isFocused: true,
+                  handleChange: onHandleChange
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
+                className: "flex items-center gap-4",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                  value: "\u0627\u0644\u0649 :"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                  type: "date",
+                  name: "to",
+                  value: data.to,
+                  className: "mt-1 block w-full",
+                  autoComplete: "username",
+                  isFocused: true,
+                  handleChange: onHandleChange
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
+                className: "flex items-center gap-2",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_8__["default"], {
+                  className: "bg-blue-500 hover:bg-blue-600",
+                  handleClick: submit,
+                  children: "\u0628\u062D\u062B"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
+                  className: "inline-flex items-center px-4 py-2 bg-red-500 hover:bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 $",
+                  href: "/items?page=1",
+                  children: "\u062A\u0635\u0641\u064A\u0631"
+                })]
+              })]
+            })
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Table__WEBPACK_IMPORTED_MODULE_4__["default"], {
           data: logs.data,
           paginate: logs,
           url: "logs",
           logs: true,
           auth: auth,
           tableHeaders: ["التسلسل", "الاسم", "اسم الماده", "الصنف", "الرقم التسلسلي", "الكميه", "التاريخ", "ادخال مخزني"]
-        })
+        })]
       })]
     })]
   });
@@ -6185,9 +6275,14 @@ function Checkout(_ref) {
 
 
   var submit = function submit(e) {
+    console.log("lp[lp[l");
     e.preventDefault(); // if (data.items.length === items.length) {
 
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_11__.Inertia.post("/logs", data); // } else {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_11__.Inertia.post("/logs", data, {
+      onFinish: function onFinish() {
+        localStorage.removeItem("checked");
+      }
+    }); // } else {
     // alert("الرجاء ادخال كميات المادات");
     // }
   };
@@ -6232,11 +6327,14 @@ function Checkout(_ref) {
         title: "\u0627\u062E\u0631\u0627\u062C \u0645\u062E\u0632\u0646\u064A"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
         className: "flex",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_DashboardBar__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        children: ["\u0627", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_DashboardBar__WEBPACK_IMPORTED_MODULE_6__["default"], {
           auth: auth
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
           className: "flex-1 flex flex-col max-w-6xl",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("h2", {
+            className: "font-tajawal-extrabold text-3xl text-center pr-32 w-full pt-10",
+            children: "\u0627\u062E\u0631\u0627\u062C \u0645\u062E\u0632\u0646\u064A"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
             className: "flex flex-col justify-end pr-32 items-start ",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
               className: "flex w-full items-center justify-between",
@@ -6488,9 +6586,12 @@ function index(_ref) {
         auth: auth
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
         className: "flex-1 flex flex-col max-w-6xl",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
           className: "flex flex-col justify-end pr-32 items-start max-w-6xl",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("h2", {
+            className: "font-tajawal-extrabold text-3xl text-center w-full pt-10 ",
+            children: "\u0627\u062E\u0631\u0627\u062C \u0645\u062E\u0632\u0646\u064A"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
             className: "flex w-full items-center justify-between",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
               className: "flex justify-between items-end h-20 ",
@@ -6535,7 +6636,7 @@ function index(_ref) {
                 })
               })]
             })]
-          })
+          })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_Components_Table__WEBPACK_IMPORTED_MODULE_4__["default"], {
           data: items.data,
           paginate: items,
