@@ -99,6 +99,7 @@ class LogsController extends Controller
      */
     public function update(Request $request, $logs)
     {
+        dd($logs);
         $logs = logs::findOrFail($logs);
         $logs->update([
             'inDate' => now()
