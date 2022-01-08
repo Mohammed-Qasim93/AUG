@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Head, useForm } from "@inertiajs/inertia-react";
 import Authenticated from "@/Layouts/Authenticated";
 import DashboardBar from "../../Components/DashboardBar";
@@ -10,6 +10,7 @@ import Button from "../../Components/Button";
 import Filters from "../../Components/Filters";
 import { Inertia } from "@inertiajs/inertia";
 import Swal from "sweetalert2";
+import Toast from "../../Components/Toast";
 
 export default function index({ items, auth, errors, success }) {
     const { data, setData } = useForm({
@@ -24,20 +25,30 @@ export default function index({ items, auth, errors, success }) {
         });
     };
 
-    const submit = (e) => {
-        e.preventDefault();
-        Inertia.get(
-            `/items?`,
-            { date_from: data.from, date_to: data.to },
-            { replaces: true, preserveState: true }
-        );
-        Swal.fire({
-            title: errors.data.name,
-            toast: true,
-            html: "I will close in <b></b> milliseconds.",
-            timer: 2000,
-        });
-    };
+    useEffect(() => {
+        if (success) {
+            Toast.fire({
+                icon: success.icon,
+                title: success.title,
+                text: success.message,
+            });
+        }
+    }, [success]);
+
+    // const submit = (e) => {
+    //     e.preventDefault();
+    //     Inertia.get(
+    //         `/items?`,
+    //         { date_from: data.from, date_to: data.to },
+    //         { replaces: true, preserveState: true }
+    //     );
+    //     Swal.fire({
+    //         title: errors.data.name,
+    //         toast: true,
+    //         html: "I will close in <b></b> milliseconds.",
+    //         timer: 2000,
+    //     });
+    // };
     return (
         <Authenticated auth={auth} errors={errors}>
             <Head title="المواد" />
