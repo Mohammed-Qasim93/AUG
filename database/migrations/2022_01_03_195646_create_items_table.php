@@ -19,7 +19,7 @@ class CreateItemsTable extends Migration
             $table->string('category');
             $table->integer('qty')->default(0);
             $table->string('no')->default(0);
-            $table->boolean('state')->default(true);
+            $table->boolean('state')->default(false);
             $table->string('desc')->nullable();
             $table->boolean('active')->default(true); // قابل للاستهلاك
             $table->string('note')->nullable();

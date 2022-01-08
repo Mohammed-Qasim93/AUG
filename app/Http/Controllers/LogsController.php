@@ -51,16 +51,17 @@ class LogsController extends Controller
             // session()->forget('checked');
             return Redirect::route('takeout.index')->with('success', ['icon' => 'error' ,'title' => 'خطا', 'message' => 'لم يتم ملئ كل المدخلات']);
         }else{
+            $outID = logs::all()->count();
             for ($i = 0 ; $i < count($request['items']);$i++){
                 logs::create([
                     'name' => $request->name,
                     'note' => $request->note,
+                    'outID' => $outID,
                     'outDate' => now(),
                     'qty' => $request['items'][$i]['qty'],
                     'state' => $request['items'][$i]['state'],
                     'items_id' => $request['items'][$i]['itemId'],
                     'users_id' => Auth::user()->id,
-                    'outID' => DB::table('logs')->increment('outID'),
                 ]);
             }
 
