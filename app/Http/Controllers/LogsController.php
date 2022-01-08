@@ -23,22 +23,35 @@ class LogsController extends Controller
     {
         $query = logs::query();
         if(request('logs')) {
-            dd(request('logs'));
+            if(request('logs') === 'yesterday'){
+                $query->whereDate('created_at', Carbon::yesterday())->orderBy('created_at', 'desc')->with('items')->paginate(10)->withQueryString();
 
-            if(request('logs') === 'day'){
-                $query->where('created_at', Carbon::yesterday())->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
-            }elseif(request('logs') === 'month'){
-                $query->where('created_at', Carbon::now()->subMonthsNoOverflow())->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
-            }elseif(request('logs') === 'week'){
-                $query->where('created_at', Carbon::now()->subWeek())->orderBy('created_at', 'asc')->paginate(10)->withQueryString();
-            }elseif(request('logs') === 'custom'){
-                $date = request('date_from') . "," . request('date_to');
+            }elseif(request('logs') === 'today'){
+                $date = Carbon::now()->subDay() . "," . now();
                 $date = explode(',', $date);
-                $query->whereBetween('created_at', $date)->orderBy('created_at', 'asc')->paginate(10)->withQueryString();
+                $query->whereBetween('created_at', $date)->orderBy('created_at', 'desc')->with('items')->paginate(10)->withQueryString();
+
+            }elseif(request('logs') === 'week'){
+                $date = Carbon::now()->subWeek() . "," . now();
+                $date = explode(',', $date);
+                $query->whereBetween('created_at', $date)->orderBy('created_at', 'desc')->with('items')->paginate(10)->withQueryString();
+
+            }elseif(request('logs') === 'month'){
+                $date = Carbon::now()->subMonthsNoOverflow() . "," . now();
+                $date = explode(',', $date);
+                $query->whereBetween('created_at', $date)->orderBy('created_at', 'desc')->with('items')->paginate(10)->withQueryString();
+
             }
         }
+        if(request('date_from') > request('date_to')){
+            return redirect()->back()->with('success', 'تأكد من التاريخ المحدد');
+        }else{
+            $date = request('date_from') . "," . request('date_to');
+            $date = explode(',', $date);
+            $query->whereBetween('created_at', $date);
+        }
         return Inertia::render('Logs/Index', [
-            'logs' => $query->orderBy('created_at', 'desc')->with('items')->paginate(10)->withQueryString(),
+            'logs' => $query ? $query->orderBy('created_at', 'desc')->with('items')->paginate(10)->withQueryString() : logs::orderBy('created_at', 'desc')->with('items')->paginate(10)->withQueryString(),
         ]);
     }
 
