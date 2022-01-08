@@ -55,6 +55,7 @@ class LogsController extends Controller
                     'users_id' => Auth::user()->id
                 ]);
             }
+            session()->forget('checked');
             return Redirect::route('takeout.index')->with('success', ['icon' => 'success' ,'title' => 'نجاح العملية', 'message' => 'تم اخراج المواد بنجاح']);
         }
     }
