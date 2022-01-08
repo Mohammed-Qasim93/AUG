@@ -6380,8 +6380,9 @@ function index(_ref) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (success) {
       _Components_Toast__WEBPACK_IMPORTED_MODULE_13__["default"].fire({
-        title: "خطأ",
-        text: success,
+        title: success.title,
+        text: success.message,
+        icon: success.icon,
         confirmButtonText: "اغلاق"
       });
     }
