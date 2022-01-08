@@ -88,6 +88,23 @@ export default function index({ logs, auth, errors, success }) {
                                     </Link>
                                 </div>
                             </div>
+                            <div className="flex items-center gap-2">
+                                <Button
+                                    className="bg-blue-500 hover:bg-blue-600"
+                                    handleClick={print}
+                                    children="طباعة"
+                                />
+                                <Button
+                                    className="bg-blue-500 hover:bg-blue-600"
+                                    handleClick={exportPDF}
+                                    children="PDF"
+                                />
+                                <Button
+                                    className="bg-blue-500 hover:bg-blue-600"
+                                    handleClick={exportExcel}
+                                    children="Excel"
+                                />
+                            </div>
                         </div>
                     </div>
                     <Table
