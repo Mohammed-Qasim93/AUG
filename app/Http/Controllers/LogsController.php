@@ -41,19 +41,18 @@ class LogsController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
-        if((count($request->data['items']) <= 0) || !$request->data['name']){
-            return Redirect::back()->withInput()->with('success', 'لم يتم ادخال جميع المدخلات');
+        if((count($request['items']) <= 0) || !$request['name']){
+            return Redirect::route('takeout.index')->with('success', 'لم يتم ادخال جميع المدخلات');
         }else{
-            for ($i = 0 ; $i < count($request->data['items']);$i++){
+            for ($i = 0 ; $i < count($request['items']);$i++){
                 logs::create([
                     'name' => $request->name,
                     'note' => $request->note,
                     'outDate' => now(),
-                    'qty' => $request->data['items'][$i]['qty'],
-                    'state' => $request->data['items'][$i]['state'],
-                    'items_id' => $request->data['items'][$i]['itemId'],
-                    'user_id' => Auth::user()->id
+                    'qty' => $request['items'][$i]['qty'],
+                    'state' => $request['items'][$i]['state'],
+                    'items_id' => $request['items'][$i]['itemId'],
+                    'users_id' => Auth::user()->id
                 ]);
             }
             return Redirect::route('takeout.index')->with('success', 'تم اخراج المواد بنجاح');

@@ -20,7 +20,7 @@ class Logs extends Migration
             $table->datetime('inDate')->nullable();
             $table->integer('qty');
             $table->boolean('state');
-            $table->boolean('active');
+            $table->boolean('active')->nullable();
             $table->string('note');
             $table->timestamps();
             $table->bigInteger('items_id')->unsigned();
