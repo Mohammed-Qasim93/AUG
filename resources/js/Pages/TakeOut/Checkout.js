@@ -56,9 +56,10 @@ export default function Checkout({ auth, errors, items, success }) {
 
     const submit = (e) => {
         e.preventDefault();
-        console.log(data);
         // if (data.items.length === items.length) {
+
         Inertia.post(`/logs`, data);
+
         // } else {
         // alert("الرجاء ادخال كميات المادات");
         // }

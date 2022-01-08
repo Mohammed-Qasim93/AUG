@@ -25,12 +25,15 @@ export default function index({ logs, auth, errors, success }) {
                         logs={true}
                         auth={auth}
                         tableHeaders={[
+                            "التسلسل",
                             "الاسم",
                             "اسم الماده",
+                            "الصنف",
+                            "الرقم التسلسلي",
                             "الكميه",
                             "التاريخ",
                             "الحاله",
-                            "الخيارات",
+                            "ادخال مخزني",
                         ]}
                     />
                 </div>

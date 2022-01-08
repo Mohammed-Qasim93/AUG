@@ -124,7 +124,7 @@ export default function Table({
                                 ) : null}
                                 {logs && <td className="pb-4">{item.name}</td>}
                                 {item.no && <td className="pb-4">{item.no}</td>}
-                                {item.email && (
+                                {(item.email || logs) && (
                                     <td className="pb-4">{key + 1}</td>
                                 )}
                                 <td className="pb-4">

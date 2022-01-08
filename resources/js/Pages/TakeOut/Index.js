@@ -11,9 +11,20 @@ import Filters from "../../Components/Filters";
 import { Inertia } from "@inertiajs/inertia";
 import Swal from "sweetalert2";
 import Checkout from "./Checkout";
+import Toast from "../../Components/Toast";
 
 export default function index({ items, auth, errors, success }) {
     const [data, setData] = useState("");
+
+    useEffect(() => {
+        if (success) {
+            Toast.fire({
+                title: "خطأ",
+                text: success,
+                confirmButtonText: "اغلاق",
+            });
+        }
+    }, [success]);
 
     const onHandleChange = (e) => {
         e.preventDefault();
