@@ -16,6 +16,6 @@ class logs extends Model
     ];
 
     public function items(){
-        return $this->belongsTo(logs::class);
+        return $this->belongsTo(Items::class);
     }
 }

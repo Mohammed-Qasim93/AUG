@@ -16,6 +16,6 @@ class Items extends Model
     ];
 
     public function logs(){
-        return $this->hasMany(Items::class);
+        return $this->hasMany(logs::class);
     }
 }

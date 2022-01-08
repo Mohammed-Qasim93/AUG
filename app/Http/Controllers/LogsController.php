@@ -20,7 +20,7 @@ class LogsController extends Controller
     public function index()
     {
         return Inertia::render('Logs/Index', [
-            'logs' => logs::orderBy('created_at', 'desc')->with('logs')->paginate(10)->withQueryString(),
+            'logs' => logs::orderBy('created_at', 'desc')->with('items')->paginate(10)->withQueryString(),
         ]);
     }
 
