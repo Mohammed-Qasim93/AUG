@@ -19,8 +19,9 @@ export default function index({ items, auth, errors, success }) {
     useEffect(() => {
         if (success) {
             Toast.fire({
-                title: "خطأ",
-                text: success,
+                title: success.title,
+                text: success.message,
+                icon: success.icon,
                 confirmButtonText: "اغلاق",
             });
         }
