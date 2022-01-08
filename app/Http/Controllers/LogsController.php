@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\logs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -43,11 +44,11 @@ class LogsController extends Controller
     public function store(Request $request)
     {
         if((count($request['items']) <= 0) || !$request['name']){
-            dd(Storage::disk('local'));
-            if(session()->all()){
-                dd('yes');
-            }else{dd('no');}
-            session()->forget('checked');
+            // dd(Storage::disk('local'));
+            // if(session()->all()){
+            //     dd('yes');
+            // }else{dd('no');}
+            // session()->forget('checked');
             return Redirect::route('takeout.index')->with('success', ['icon' => 'error' ,'title' => 'خطا', 'message' => 'لم يتم ملئ كل المدخلات']);
         }else{
             for ($i = 0 ; $i < count($request['items']);$i++){
@@ -58,7 +59,8 @@ class LogsController extends Controller
                     'qty' => $request['items'][$i]['qty'],
                     'state' => $request['items'][$i]['state'],
                     'items_id' => $request['items'][$i]['itemId'],
-                    'users_id' => Auth::user()->id
+                    'users_id' => Auth::user()->id,
+                    'outID' => DB::table('logs')->increment('outID'),
                 ]);
             }
 
