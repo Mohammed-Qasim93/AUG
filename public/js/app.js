@@ -4039,11 +4039,12 @@ function Table(_ref) {
     });
   };
 
-  var handleStore = function handleStore(id) {
+  var handleStore = function handleStore(id, outID) {
     // e.preventDefault();
     console.log(id);
     _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia.put("logs/".concat(id), {
-      id: id
+      id: id,
+      outID: outID
     });
   }; // const onHandleChange = (e) => {
   //     console.log(e.target);
@@ -4231,7 +4232,7 @@ function Table(_ref) {
                 }) : item.inDate === null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("button", {
                   type: "submit",
                   onClick: function onClick() {
-                    handleStore(item.outID);
+                    handleStore(item.id, item.items.outID);
                   },
                   className: " px-2 py-2 transition duration-500 ease-in-out \n                                               bg-green-500 hover:bg-green-600 text-white p-2 rounded-lg mx-2 \n                                               ",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("span", {

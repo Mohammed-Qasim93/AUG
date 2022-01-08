@@ -37,10 +37,10 @@ export default function Table({
         Inertia.post(`/checkout`, { data: items }, { replaces: true });
     };
 
-    const handleStore = (id) => {
+    const handleStore = (id, outID) => {
         // e.preventDefault();
         console.log(id);
-        Inertia.put(`logs/${id}`, { id: id });
+        Inertia.put(`logs/${id}`, { id: id, outID: outID });
     };
 
     // const onHandleChange = (e) => {
@@ -270,7 +270,10 @@ export default function Table({
                                             <button
                                                 type="submit"
                                                 onClick={() => {
-                                                    handleStore(item.outID);
+                                                    handleStore(
+                                                        item.id,
+                                                        item.items.outID
+                                                    );
                                                 }}
                                                 className={` px-2 py-2 transition duration-500 ease-in-out 
                                                bg-green-500 hover:bg-green-600 text-white p-2 rounded-lg mx-2 
