@@ -30,7 +30,7 @@ class ItemsController extends Controller
         //     'items' => request('date_from') && request('date_to') ? $query->orderBy('created_at', 'desc')->paginate(5)->withQueryString() : Items::orderBy('created_at', 'desc')->paginate(5),
         // ]);
         return Inertia::render('Items/Index', [
-            'items' => Items::orderBy('created_at', 'desc')->paginate(5),
+            'items' => Items::with('category')->orderBy('created_at', 'desc')->paginate(5),
         ]); 
     }
 
