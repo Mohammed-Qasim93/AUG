@@ -6532,12 +6532,12 @@ function Checkout(_ref) {
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
                             handleChange: onHandleChange,
                             type: "text",
-                            name: "name",
+                            name: "receiver",
                             value: data.receiver,
                             className: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("small", {
                             className: "text-red-500 text-sm",
-                            children: errors.name
+                            children: errors.receiver
                           })]
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
                           className: "col-span-6",
@@ -6548,12 +6548,12 @@ function Checkout(_ref) {
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
                             handleChange: onHandleChange,
                             type: "text",
-                            name: "name",
+                            name: "sender",
                             value: data.sender,
                             className: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("small", {
                             className: "text-red-500 text-sm",
-                            children: errors.name
+                            children: errors.sender
                           })]
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
                           className: "col-span-6",
