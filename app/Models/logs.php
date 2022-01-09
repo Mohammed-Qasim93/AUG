@@ -12,7 +12,7 @@ class logs extends Model
 
 
     protected $fillable =[
-        'name', 'outDate', 'inDate', 'items_id', 'users_id', 'qty', 'state', 'note', 'outID'
+        'name', 'authname', 'outDate', 'inDate', 'qty', 'state', 'outID', 'outType', 'note', 'items_id', 'users_id',
     ];
 
     public function items(){

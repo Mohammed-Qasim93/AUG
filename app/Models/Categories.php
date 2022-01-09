@@ -9,13 +9,9 @@ class Categories extends Model
 {
     use HasFactory;
 
-    protected $fillable =['category'];
+    protected $fillable =['name', 'desc'];
 
-    public function meal(){
-        return $this->hasMany(Menu::class);
-    }
-
-    public function image(){
-        return $this->morphOne(Images::class, 'img');
+    public function items(){
+        return $this->hasMany(Items::class);
     }
 }

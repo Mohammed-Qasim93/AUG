@@ -12,10 +12,14 @@ class Items extends Model
 
 
     protected $fillable =[
-        'name', 'category', 'qty', 'no', 'state', 'desc', 'note'
+        'name', 'qty', 'state', 'constate', 'inventory', 'desc', 'note', 'categories_id'
     ];
 
     public function logs(){
         return $this->hasMany(logs::class);
+    }
+
+    public function category(){
+        return $this->belongsTo(Categories::class);
     }
 }

@@ -15,18 +15,20 @@ class Logs extends Migration
     {
         Schema::create('logs', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->datetime('outDate');
-            $table->datetime('inDate')->nullable();
-            $table->integer('qty');
-            $table->boolean('state');
-            $table->boolean('outID');
-            $table->string('note');
-            $table->timestamps();
+            $table->string('name'); // اسم المستلم
+            $table->string('authname'); // اسم المخول
+            $table->datetime('outDate'); // تاريخ اخراج المادة
+            $table->datetime('inDate')->nullable(); // تاريخ ادخال المادة
+            $table->integer('qty')->default(1); // العدد
+            $table->boolean('state'); // الاستهلاكية
+            $table->bigInteger('outID'); // ID الخروج
+            $table->boolean('outType'); // خارج الشركة\المخزن
+            $table->string('note'); // ملاحظات
             $table->bigInteger('items_id')->unsigned();
             $table->bigInteger('users_id')->unsigned();
             $table->foreign('items_id')->references('id')->on('items');
             $table->foreign('users_id')->references('id')->on('users');
+            $table->timestamps();
         });
     }
 
