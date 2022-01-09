@@ -55,33 +55,29 @@ class ItemsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string',
-            'category' => 'required|string',
+            'name' => 'required|string|unique:items,name',
             'qty' => 'required|integer',
-            'no' => 'required',
         ],[
             'name.required' => 'يجب ادخال الاسم',
             'name.string' => 'الاسم غير صالح',
-
-            'category.required' => 'يجب ادخال الفئة',
-            'category.string' => 'الفئة المدخلة غير صالحة',
+            'name.unique' => 'اسم المادة مستخدم بالفعل',
 
             'qty.required' => 'يجب ادخال الكمية',
             'qty.integer' => 'يجب ادخال الكمية كعدد',
-
-            'no.required' => 'يجب ادخال الرقم التسلسلي',
         ]);
 
         Items::create([
              'name' => $request->name,
-             'category' => $request->category,
              'qty' => $request->qty,
-             'no' => $request->no,
+             'state' => $request->state,
+             'constate' => $request->constate,
+             'inventory' => $request->inventory,
              'desc' => $request->desc,
-             'note' => $request->name,
+             'note' => $request->note,
+             'categories_id' => $request->categories_id,
         ]);
 
-        return Redirect::route('items.index')->with('success', 'تمت الاضافة بنجاح');
+        return Redirect::route('items.index')->with('success', ['icon' => 'success' ,'title' => 'نجاح العملية', 'message' => 'تمت الاضافة بنجاح']);
     }
 
     /**
@@ -104,7 +100,8 @@ class ItemsController extends Controller
     public function edit($id)
     {
         return Inertia::render('Items/Edit', [
-            'items' => Items::findOrFail($id)
+            'items' => Items::findOrFail($id),
+            'categories' => Categories::all()
         ]);
     }
 
@@ -120,34 +117,49 @@ class ItemsController extends Controller
         $item = Items::findOrFail($id);
         $request->validate([
             'name' => 'required|string',
-            'category' => 'required|string',
             'qty' => 'required|integer',
-            'no' => 'required',
         ],[
             'name.required' => 'يجب ادخال الاسم',
             'name.string' => 'الاسم غير صالح',
 
-            'category.required' => 'يجب ادخال الفئة',
-            'category.string' => 'الفئة المدخلة غير صالحة',
-
             'qty.required' => 'يجب ادخال الكمية',
             'qty.integer' => 'يجب ادخال الكمية كعدد',
-
-            'no.required' => 'يجب ادخال الرقم التسلسلي',
         ]);
 
-        $item->update([
-            'name' => $request->name,
-            'category' => $request->category,
-            'qty' => $request->qty,
-            'no' => $request->no,
-            'state' => $request->state,
-            'desc' => $request->desc,
-            'note' => $request->note,
-        ]);
-        return Redirect::route('items.index')->with('success', 'تم التعديل بنجاح');
+        if(($request->name <> $item->name) || ($request->qty <> $item->qty) || ($request->state <> $item->state) ||
+            ($request->inventory <> $item->inventory) || ($request->desc <> $item->desc) || ($request->categories_id <> $item->categories_id)){
+                
+            if($request->name <> $item->name){
+                $request->validate([
+                    'name' => 'required|string',
+                ],[
+                    'name.required' => 'يجب ادخال الاسم',
+                    'name.string' => 'الاسم غير صالح',
+                ]);
+            }
+            if($request->qty <> $item->qty){
+                $request->validate([
+                    'qty' => 'required|integer',
+                ],[
+                    'qty.required' => 'يجب ادخال الكمية',
+                    'qty.integer' => 'يجب ادخال الكمية كعدد',
+                ]);
+            }
+            $item->update([
+                'name' => $request->name,
+                    'qty' => $request->qty,
+                    'state' => $request->state,
+                    'constate' => $request->constate,
+                    'inventory' => $request->inventory,
+                    'desc' => $request->desc,
+                    'note' => $request->note,
+                    'categories_id' => $request->categories_id,
+            ]);
+            return Redirect::route('items.index')->with('success', ['icon' => 'success' ,'title' => 'نجاح العملية', 'message' => 'تم التعديل بنجاح']);        
+        }else{
+            return Redirect::route('items.index')->with('success', ['icon' => 'warning' ,'title' => 'لا تعديل', 'message' => 'لم يتم تحديث البيانات']);        
+        }
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -158,6 +170,6 @@ class ItemsController extends Controller
     {
         $item = Items::findOrFail($id);
         $item->delete();
-        return Redirect::route('items.index')->with('success', 'تم الحذف بنجاح');
+        return Redirect::route('items.index')->with('success', ['icon' => 'success' ,'title' => 'نجاح العملية', 'message' => 'تم الحذف بنجاح']);
     }
 }
