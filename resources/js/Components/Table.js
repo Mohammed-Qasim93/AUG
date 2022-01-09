@@ -79,7 +79,7 @@ export default function Table({
 
     return (
         <>
-            {total && (
+            {total > 0 && (
                 <div className=" flex text-gray-600  justify-end gap-x-4   items-center">
                     <p> عدد المواد : </p>
                     <p> {total} </p>

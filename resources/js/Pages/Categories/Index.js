@@ -12,7 +12,7 @@ import { Inertia } from "@inertiajs/inertia";
 import Swal from "sweetalert2";
 import Toast from "../../Components/Toast";
 
-export default function index({ items, auth, errors, success }) {
+export default function index({ categories, auth, errors, success }) {
     const { data, setData } = useForm({
         from: "",
         to: "",
@@ -59,73 +59,43 @@ export default function index({ items, auth, errors, success }) {
                         سجل المواد
                     </h2>
                     <div className="flex justify-between items-end h-20 ">
-                        <TableButtons text="إضافة مادة" url="/items/create" />
-                    </div>
-                    <div className="flex flex-col justify-end pr-32 items-start max-w-6xl">
-                        {/* <div className="flex gap-8 w-full justify-between">
-                            <Filters text="اخر يوم :" />
-                            <Filters text="اخر اسبوع :" />
-                        </div> */}
-                        <div className="flex w-full  justify-between">
-                            {/* <Filters text="اخر شهر :" /> */}
-                            {/* <div className="flex gap-4 pt-4">
-                                <div className="flex items-center gap-4">
-                                    <Label value="من :"></Label>
-                                    <Input
-                                        type="date"
-                                        name="from"
-                                        value={data.from}
-                                        className="mt-1 block w-full "
-                                        autoComplete="username"
-                                        isFocused={true}
-                                        handleChange={onHandleChange}
-                                    />
-                                </div>
-                                <div className="flex items-center gap-4">
-                                    <Label value="الى :"></Label>
-                                    <Input
-                                        type="date"
-                                        name="to"
-                                        value={data.to}
-                                        className="mt-1 block w-full"
-                                        autoComplete="username"
-                                        isFocused={true}
-                                        handleChange={onHandleChange}
-                                    />
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <Button
-                                        className="bg-blue-500 hover:bg-blue-600"
-                                        handleClick={submit}
-                                        children="بحث"
-                                    />
-                                    <Link
-                                        className="inline-flex items-center px-4 py-2 bg-red-500 hover:bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 $"
-                                        href="/items?page=1"
-                                    >
-                                        تصفير
-                                    </Link>
-                                </div>
-                            </div> */}
-                        </div>
+                        <TableButtons
+                            text="إضافة صنف"
+                            url="/categories/create"
+                        />
                     </div>
 
-                    <Table
-                        data={items.data}
-                        paginate={items}
-                        url="items"
-                        auth={auth}
-                        total={items.total}
-                        tableHeaders={[
-                            "رقم الماده",
-                            "اسم الماده",
-                            "الصنف",
-                            "الكمية",
-                            "الحاله",
-                            "تاريخ الاضافة",
-                            "العمليات",
-                        ]}
-                    />
+                    <div className="flex flex-col pt-4 print:pr-0 pr-32">
+                        <table className="max-w-5xl  divide-y divide-gray-200 text-center">
+                            <thead className="bg-gray-50 text-center ">
+                                <tr className=" ">
+                                    <th className="px-4 py-2">اسم الصنف</th>
+                                    <th className="px-4 py-2">عدد المواد</th>
+                                    <th className="px-4 py-2">الوصف</th>
+                                    <th className="px-4 py-2">العمليات</th>
+                                </tr>
+                            </thead>
+                            <tbody className="bg-white divide-y divide-gray-200">
+                                {categories.data.map((category) => (
+                                    <tr className="py-4 " key={category.id}>
+                                        <td>{category.id}</td>
+                                        <td>{category.name}</td>
+                                        <td>{category.desc}</td>
+
+                                        <td>
+                                            <Link
+                                                className="inline-flex items-center px-4 py-2 bg-blue-500 hover:bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 $"
+                                                href={`/items/${category.id}/edit`}
+                                            >
+                                                تعديل
+                                            </Link>
+                                            <Button children={kopko} />
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </Authenticated>

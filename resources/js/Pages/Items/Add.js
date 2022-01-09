@@ -80,6 +80,7 @@ export default function Add({ auth, errors, success }) {
                                         <div className="grid grid-cols-2 gap-6">
                                             <div className="mt-5 md:mt-0 col-span-2">
                                                 <form onSubmit={submit}>
+                                                    <h2> إضافة مادة </h2>
                                                     <div className="shadow overflow-hidden sm:rounded-md">
                                                         <div className="px-4 py-5 bg-white sm:p-6">
                                                             <div className="grid grid-cols-6 gap-6">
