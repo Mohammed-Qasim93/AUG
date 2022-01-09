@@ -105,6 +105,7 @@ class CategoriesController extends Controller
             'desc' => $request->desc,
         ]);
 
+        return Redirect::route('categories.index')->with('success', ['icon' => 'success' ,'title' => 'نجاح العملية', 'message' => 'تم التعديل بنجاح']);
     }
 
     /**
@@ -117,5 +118,6 @@ class CategoriesController extends Controller
     {
         $categories = Categories::findOrFail($categories);
         $categories->delete();
+        return Redirect::route('categories.index')->with('success', ['icon' => 'success' ,'title' => 'نجاح العملية', 'message' => 'تم الحذف بنجاح']);
     }
 }
