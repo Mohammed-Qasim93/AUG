@@ -1,13 +1,10 @@
-require("./bootstrap");
-
 import React from "react";
 import { render } from "react-dom";
 import { createInertiaApp } from "@inertiajs/inertia-react";
 import { InertiaProgress } from "@inertiajs/progress";
-import "tw-elements";
 
 const appName =
-    window.document.getElementsByTagName("title")[0]?.innerText || "Snack Time";
+    window.document.getElementsByTagName("title")[0]?.innerText || "AUG";
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
