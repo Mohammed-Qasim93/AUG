@@ -94,13 +94,12 @@ class CategoriesController extends Controller
         $categories = Categories::findOrFail($categories);
         // Validating data from Form
         $request->validate([
-            'name' => 'required|unique:categories,name',
+            'name' => 'required',
             'desc' => 'nullable'
         ],[
             'name.required' => 'يجب ادخال عنوان الفئة',
-            'name.unique' => 'اسم الفئة المدخلة مستخدم بالفعل',
         ]);
-
+        
         $categories->save([
             'name' => $request->name,
             'desc' => $request->desc,
