@@ -41,24 +41,20 @@ class CategoriesController extends Controller
     {
         // Validating data from Form
         $request->validate([
-            'title' => 'required|unique:categories,title'
+            'name' => 'required|unique:categories,name',
+            'desc' => 'nullable'
         ],[
-            'title.required' => 'يجب ادخال عنوان الفئة',
-            'title.unique' => 'اسم الفئة المدخلة مستخدم بالفعل',
+            'name.required' => 'يجب ادخال عنوان الفئة',
+            'name.unique' => 'اسم الفئة المدخلة مستخدم بالفعل',
         ]);
 
         // saveing data from Form
-        $categories = Categories::create([
-            'title' => $request->title,
+        Categories::create([
+            'name' => $request->name,
+            'desc' => $request->desc,
         ]);
 
-        // check Image if exists and uploading then save
-        if($request->file('img_url')){
-            $img_url = $request->file('img_url')->store('Categories', 'public');
-            $categories->image()->save(
-                Images::make(['img_url' => $img_url])
-            );
-        }
+        return Redirect::route('categories.index')->with('success', ['icon' => 'success' ,'title' => 'نجاح العملية', 'message' => 'تمت الاضافة بنجاح']);
     }
 
     /**
@@ -81,7 +77,7 @@ class CategoriesController extends Controller
     public function edit($categories)
     {
         return Inertia::render('Categories/Edit', [
-            'categories' => Categories::findOrFail($categories)->first()
+            'categories' => Categories::findOrFail($categories)
         ]);
     }
 
@@ -94,12 +90,19 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $categories)
     {
+        $categories = Categories::findOrFail($categories);
         // Validating data from Form
         $request->validate([
-            'title' => 'required|unique:categories,title'
+            'name' => 'required|unique:categories,name',
+            'desc' => 'nullable'
         ],[
-            'title.required' => 'يجب ادخال عنوان الفئة',
-            'title.unique' => 'اسم الفئة المدخلة مستخدم بالفعل',
+            'name.required' => 'يجب ادخال عنوان الفئة',
+            'name.unique' => 'اسم الفئة المدخلة مستخدم بالفعل',
+        ]);
+
+        $categories->save([
+            'name' => $request->name,
+            'desc' => $request->desc,
         ]);
 
     }
@@ -112,6 +115,7 @@ class CategoriesController extends Controller
      */
     public function destroy(Categories $categories)
     {
-        //
+        $categories = Categories::findOrFail($categories);
+        $categories->delete();
     }
 }
