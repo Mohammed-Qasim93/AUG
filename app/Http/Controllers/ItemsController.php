@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Items;
-use Categories;
+use App\Models\Categories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rule;
