@@ -115,9 +115,9 @@ class CategoriesController extends Controller
      * @param  \App\Models\Categories  $categories
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categories $categories)
+    public function destroy($id)
     {
-        $categories = Categories::findOrFail($categories);
+        $categories = Categories::findOrFail($id);
         $categories->delete();
         return Redirect::route('categories.index')->with('success', ['icon' => 'success' ,'title' => 'نجاح العملية', 'message' => 'تم الحذف بنجاح']);
     }
