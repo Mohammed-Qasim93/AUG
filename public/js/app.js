@@ -6189,6 +6189,8 @@ function Add(_ref) {
                                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
                                   handleChange: onHandleChange,
                                   type: "number",
+                                  min: "1",
+                                  max: data.qty,
                                   value: data.qty,
                                   name: "qty",
                                   className: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
@@ -6199,7 +6201,7 @@ function Add(_ref) {
                               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
                                 className: "col-span-6 sm:col-span-3",
                                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("label", {
-                                  htmlFor: "qty",
+                                  htmlFor: "state",
                                   className: "block text-sm font-medium text-gray-700",
                                   children: "\u0627\u0644\u062D\u0627\u0644\u0647"
                                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_Combo__WEBPACK_IMPORTED_MODULE_7__["default"], {
@@ -6212,7 +6214,7 @@ function Add(_ref) {
                                   }
                                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("small", {
                                   className: "text-red-500 text-sm",
-                                  children: errors.qty
+                                  children: errors.state
                                 })]
                               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
                                 className: "flex col-span-4 gap-x-8",

@@ -171,6 +171,10 @@ export default function Add({ auth, errors, categories }) {
                                                                             onHandleChange
                                                                         }
                                                                         type="number"
+                                                                        min="1"
+                                                                        max={
+                                                                            data.qty
+                                                                        }
                                                                         value={
                                                                             data.qty
                                                                         }
@@ -185,7 +189,7 @@ export default function Add({ auth, errors, categories }) {
                                                                 </div>
                                                                 <div className="col-span-6 sm:col-span-3">
                                                                     <label
-                                                                        htmlFor="qty"
+                                                                        htmlFor="state"
                                                                         className="block text-sm font-medium text-gray-700"
                                                                     >
                                                                         الحاله
@@ -209,7 +213,7 @@ export default function Add({ auth, errors, categories }) {
                                                                     />
                                                                     <small className="text-red-500 text-sm">
                                                                         {
-                                                                            errors.qty
+                                                                            errors.state
                                                                         }
                                                                     </small>
                                                                 </div>
