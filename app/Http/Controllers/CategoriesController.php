@@ -99,8 +99,8 @@ class CategoriesController extends Controller
         ],[
             'name.required' => 'يجب ادخال عنوان الفئة',
         ]);
-        
-        $categories->save([
+
+        $categories->update([
             'name' => $request->name,
             'desc' => $request->desc,
         ]);
