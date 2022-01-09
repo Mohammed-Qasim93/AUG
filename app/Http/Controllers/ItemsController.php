@@ -30,7 +30,7 @@ class ItemsController extends Controller
         //     'items' => request('date_from') && request('date_to') ? $query->orderBy('created_at', 'desc')->paginate(5)->withQueryString() : Items::orderBy('created_at', 'desc')->paginate(5),
         // ]);
         return Inertia::render('Items/Index', [
-            'items' => Items::with('category')->orderBy('created_at', 'desc')->paginate(5),
+            'items' => Items::with('category')->orderBy('created_at', 'desc')->paginate(10),
         ]); 
     }
 
@@ -57,6 +57,7 @@ class ItemsController extends Controller
         $request->validate([
             'name' => 'required|string|unique:items,name',
             'qty' => 'required|integer',
+            'categories_id' => 'required'
         ],[
             'name.required' => 'يجب ادخال الاسم',
             'name.string' => 'الاسم غير صالح',
@@ -64,6 +65,8 @@ class ItemsController extends Controller
 
             'qty.required' => 'يجب ادخال الكمية',
             'qty.integer' => 'يجب ادخال الكمية كعدد',
+
+            'categories_id.required' => 'تحديد الصنف',
         ]);
 
         Items::create([
@@ -143,6 +146,13 @@ class ItemsController extends Controller
                 ],[
                     'qty.required' => 'يجب ادخال الكمية',
                     'qty.integer' => 'يجب ادخال الكمية كعدد',
+                ]);
+            }
+            if($request->categories_id <> $item->categories_id){
+                $request->validate([
+                    'categories_id' => 'required',
+                ],[
+                    'categories_id.required' => 'تحديد الصنف',
                 ]);
             }
             $item->update([
