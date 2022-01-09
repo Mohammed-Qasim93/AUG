@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Items;
 use App\Models\logs;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -70,9 +71,10 @@ class LogsController extends Controller
         if((count($request['items']) <= 0) || !$request['name']){
             return Redirect::route('takeout.index')->with('success', ['icon' => 'error' ,'title' => 'خطا', 'message' => 'لم يتم ملئ كل المدخلات']);
         }else{
+            $items = [];
             $outID = logs::all()->count();
             for ($i = 0 ; $i < count($request['items']);$i++){
-                logs::create([
+                $logs = logs::create([
                     'name' => $request->name,
                     'note' => $request->note,
                     'outID' => $outID,
@@ -82,9 +84,13 @@ class LogsController extends Controller
                     'items_id' => $request['items'][$i]['itemId'],
                     'users_id' => Auth::user()->id,
                 ]);
+                $items[$i] = Items::find($request['items'][$i]['itemId']);
             }
-
-            return Redirect::route('takeout.index')->with('success', ['icon' => 'success' ,'title' => 'نجاح العملية', 'message' => 'تم اخراج المواد بنجاح']);
+            return Inertia::render('Print', [
+                'items' => $items,
+                'logs' => $logs
+            ]);
+            // return Redirect::route('takeout.index')->with('success', ['icon' => 'success' ,'title' => 'نجاح العملية', 'message' => 'تم اخراج المواد بنجاح']);
         }
     }
 
