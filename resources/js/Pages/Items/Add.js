@@ -6,18 +6,37 @@ import Authenticated from "@/Layouts/Authenticated";
 import DashboardBar from "../../Components/DashboardBar";
 
 import Checkbox from "../../Components/Checkbox";
+import Combo from "../../Components/Combo";
 import Toast from "../../Components/Toast";
 
-export default function Add({ auth, errors, success }) {
+export default function Add({ auth, errors, categories }) {
     const { data, setData, post } = useForm({
         name: "",
-        category: "",
+        categories_id: "",
         qty: "",
-        no: "",
         note: "",
         desc: "",
-        state: "",
+        constate: "",
+        inventory: "",
     });
+
+    let stateArr = [
+        {
+            name: "جيدة",
+        },
+        {
+            name: "متوسطة",
+        },
+        {
+            name: "رديئة",
+        },
+        {
+            name: "يعمل",
+        },
+        {
+            name: "لا يعمل",
+        },
+    ];
 
     const onHandleChange = (event) => {
         setData(
@@ -44,6 +63,7 @@ export default function Add({ auth, errors, success }) {
                 });
             },
         });
+        console.log(data);
     };
 
     // const handleChange = (e) => {
@@ -109,23 +129,29 @@ export default function Add({ auth, errors, success }) {
                                                                         }
                                                                     </small>
                                                                 </div>
-                                                                <div className="col-span-6  sm:col-span-2">
+                                                                <div className="col-span-6 ">
                                                                     <label
                                                                         htmlFor="category"
                                                                         className="block text-sm font-medium text-gray-700"
                                                                     >
                                                                         الصنف
                                                                     </label>
-                                                                    <Input
-                                                                        handleChange={
-                                                                            onHandleChange
+                                                                    <Combo
+                                                                        className="w-full rounded-lg"
+                                                                        name="categories_id"
+                                                                        defaultValue={
+                                                                            "---- اختر التصنيف ----"
                                                                         }
-                                                                        type="text"
-                                                                        value={
-                                                                            data.category
+                                                                        options={
+                                                                            categories
                                                                         }
-                                                                        name="category"
-                                                                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                                        handleChange={(
+                                                                            e
+                                                                        ) => {
+                                                                            onHandleChange(
+                                                                                e
+                                                                            );
+                                                                        }}
                                                                     />
                                                                     <small className="text-red-500 text-sm">
                                                                         {
@@ -133,7 +159,7 @@ export default function Add({ auth, errors, success }) {
                                                                         }
                                                                     </small>
                                                                 </div>
-                                                                <div className="col-span-6 sm:col-span-2">
+                                                                <div className="col-span-6 sm:col-span-3">
                                                                     <label
                                                                         htmlFor="qty"
                                                                         className="block text-sm font-medium text-gray-700"
@@ -157,52 +183,87 @@ export default function Add({ auth, errors, success }) {
                                                                         }
                                                                     </small>
                                                                 </div>
-                                                                <div className="col-span-6 sm:col-span-2">
+                                                                <div className="col-span-6 sm:col-span-3">
                                                                     <label
                                                                         htmlFor="qty"
                                                                         className="block text-sm font-medium text-gray-700"
                                                                     >
-                                                                        الرقم
-                                                                        التسلسلي
+                                                                        الحاله
                                                                     </label>
-                                                                    <Input
-                                                                        handleChange={
-                                                                            onHandleChange
+                                                                    <Combo
+                                                                        className="w-full rounded-lg"
+                                                                        name="state"
+                                                                        options={
+                                                                            stateArr
                                                                         }
-                                                                        type="text"
-                                                                        name="no"
-                                                                        value={
-                                                                            data.no
+                                                                        defaultValue={
+                                                                            "---- اختر الحاله ----"
                                                                         }
-                                                                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                                        handleChange={(
+                                                                            e
+                                                                        ) => {
+                                                                            onHandleChange(
+                                                                                e
+                                                                            );
+                                                                        }}
                                                                     />
                                                                     <small className="text-red-500 text-sm">
                                                                         {
-                                                                            errors.no
+                                                                            errors.qty
                                                                         }
                                                                     </small>
                                                                 </div>
-                                                                <div className="col-span-6 flex items-center gap-x-2">
-                                                                    <Checkbox
-                                                                        name="state"
-                                                                        value={
-                                                                            data.state
-                                                                        }
-                                                                        checked={
-                                                                            data.state
-                                                                        }
-                                                                        handleChange={
-                                                                            onHandleChange
-                                                                        }
-                                                                    />
-                                                                    <label
-                                                                        htmlFor="state"
-                                                                        className="block text-sm font-medium text-gray-700"
-                                                                    >
-                                                                        قابل
-                                                                        للاستهلاك
-                                                                    </label>
+                                                                <div className="flex col-span-4 gap-x-8">
+                                                                    <div className="flex items-center gap-x-2">
+                                                                        <Checkbox
+                                                                            name="inventory"
+                                                                            value={
+                                                                                data.inventory
+                                                                            }
+                                                                            checked={
+                                                                                data.inventory
+                                                                            }
+                                                                            handleChange={
+                                                                                onHandleChange
+                                                                            }
+                                                                        />
+                                                                        <label
+                                                                            htmlFor="state"
+                                                                            className="block text-sm font-medium text-gray-700"
+                                                                        >
+                                                                            مادة
+                                                                            جرد
+                                                                        </label>
+                                                                    </div>
+                                                                    <div className="flex items-center gap-x-2">
+                                                                        <Checkbox
+                                                                            name="constate"
+                                                                            disabled={
+                                                                                data.inventory ===
+                                                                                true
+                                                                                    ? true
+                                                                                    : false
+                                                                            }
+                                                                            value={
+                                                                                data.constate
+                                                                            }
+                                                                            checked={
+                                                                                data.constate
+                                                                            }
+                                                                            handleChange={
+                                                                                onHandleChange
+                                                                            }
+                                                                        />
+                                                                        <label
+                                                                            htmlFor="state"
+                                                                            className="block text-sm font-medium text-gray-700"
+                                                                        >
+                                                                            قابل
+                                                                            للاستهلاك
+                                                                        </label>
+                                                                    </div>
                                                                 </div>
+
                                                                 <div className="col-span-6">
                                                                     <label
                                                                         htmlFor="desc"
@@ -211,8 +272,12 @@ export default function Add({ auth, errors, success }) {
                                                                         الوصف
                                                                     </label>
                                                                     <Input
-                                                                        handleChange={
-                                                                            onHandleChange
+                                                                        handleChange={(
+                                                                            e
+                                                                        ) =>
+                                                                            onHandleChange(
+                                                                                e
+                                                                            )
                                                                         }
                                                                         area="true"
                                                                         type="text"

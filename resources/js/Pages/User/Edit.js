@@ -9,7 +9,7 @@ import Toast from "../../Components/Toast";
 // import ComboBox from "@/Components/ComboBox";
 
 export default function Edit({ auth, user, errors, success }) {
-    let { data, setData } = useForm({
+    let { data, setData, post } = useForm({
         name: user.name || "",
         email: user.email || "",
         isAdmin: user.isAdmin || 0,

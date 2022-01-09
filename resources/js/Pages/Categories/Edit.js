@@ -32,7 +32,7 @@ export default function Add({ auth, errors, categories, success }) {
 
     const submit = (e) => {
         e.preventDefault();
-
+        console.log(data);
         post(`/categories/${categories.id}`, {
             onSuccess: () => {
                 Toast.fire({
