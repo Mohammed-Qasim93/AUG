@@ -70,8 +70,8 @@ class ItemsController extends Controller
              'name' => $request->name,
              'qty' => $request->qty,
              'state' => $request->state,
-             'constate' => $request->constate,
              'inventory' => $request->inventory,
+             'constate' => $request->inventory == true ? false : $request->constate,
              'desc' => $request->desc,
              'note' => $request->note,
              'categories_id' => $request->categories_id,
@@ -128,7 +128,7 @@ class ItemsController extends Controller
 
         if(($request->name <> $item->name) || ($request->qty <> $item->qty) || ($request->state <> $item->state) ||
             ($request->inventory <> $item->inventory) || ($request->desc <> $item->desc) || ($request->categories_id <> $item->categories_id)){
-                
+
             if($request->name <> $item->name){
                 $request->validate([
                     'name' => 'required|string',
@@ -149,8 +149,8 @@ class ItemsController extends Controller
                 'name' => $request->name,
                     'qty' => $request->qty,
                     'state' => $request->state,
-                    'constate' => $request->constate,
                     'inventory' => $request->inventory,
+                    'constate' => $request->inventory == true ? false : $request->constate,
                     'desc' => $request->desc,
                     'note' => $request->note,
                     'categories_id' => $request->categories_id,
