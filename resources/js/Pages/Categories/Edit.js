@@ -8,21 +8,14 @@ import DashboardBar from "../../Components/DashboardBar";
 
 import Toast from "../../Components/Toast";
 
-export default function Add({ auth, errors, items, success }) {
+export default function Add({ auth, errors, categories, success }) {
     const { data, setData, post } = useForm({
-        name: items.name || "",
-        category: items.category || "",
-        qty: items.qty || "",
-        no: items.no || "",
-        note: items.note || "",
-        desc: items.desc || "",
-        state: items.state,
+        name: categories.name || "",
+        desc: categories.desc || "",
         _method: "PUT",
     });
 
     const onHandleChange = (event) => {
-        console.log(event.target.value);
-
         setData(
             event.target.name,
             event.target.type === "checkbox"
@@ -40,7 +33,7 @@ export default function Add({ auth, errors, items, success }) {
     const submit = (e) => {
         e.preventDefault();
 
-        post(`/items/${items.id}`, {
+        post(`/categories/${categories.id}`, {
             onSuccess: () => {
                 Toast.fire({
                     icon: "success",
@@ -73,7 +66,7 @@ export default function Add({ auth, errors, items, success }) {
     return (
         <>
             <Authenticated auth={auth} errors={errors}>
-                <Head title={`تعديل بيانات  ${items.name}`} />
+                <Head title={`تعديل بيانات  ${categories.name}`} />
                 <div className="flex">
                     <DashboardBar auth={auth} />
                     <div className="flex-1 flex flex-col max-w-6xl">
@@ -112,103 +105,6 @@ export default function Add({ auth, errors, items, success }) {
                                                                         }
                                                                     </small>
                                                                 </div>
-                                                                <div className="col-span-6  sm:col-span-2">
-                                                                    <label
-                                                                        htmlFor="category"
-                                                                        className="block text-sm font-medium text-gray-700"
-                                                                    >
-                                                                        الصنف
-                                                                    </label>
-                                                                    <Input
-                                                                        handleChange={
-                                                                            onHandleChange
-                                                                        }
-                                                                        type="text"
-                                                                        value={
-                                                                            data.category
-                                                                        }
-                                                                        name="category"
-                                                                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                                    />
-                                                                    <small className="text-red-500 text-sm">
-                                                                        {
-                                                                            errors.category
-                                                                        }
-                                                                    </small>
-                                                                </div>
-                                                                <div className="col-span-6 sm:col-span-2">
-                                                                    <label
-                                                                        htmlFor="qty"
-                                                                        className="block text-sm font-medium text-gray-700"
-                                                                    >
-                                                                        العدد
-                                                                    </label>
-                                                                    <Input
-                                                                        handleChange={
-                                                                            onHandleChange
-                                                                        }
-                                                                        type="number"
-                                                                        value={
-                                                                            data.qty
-                                                                        }
-                                                                        name="qty"
-                                                                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                                    />
-                                                                    <small className="text-red-500 text-sm">
-                                                                        {
-                                                                            errors.qty
-                                                                        }
-                                                                    </small>
-                                                                </div>
-                                                                <div className="col-span-6 sm:col-span-2">
-                                                                    <label
-                                                                        htmlFor="qty"
-                                                                        className="block text-sm font-medium text-gray-700"
-                                                                    >
-                                                                        الرقم
-                                                                        التسلسلي
-                                                                    </label>
-                                                                    <Input
-                                                                        handleChange={
-                                                                            onHandleChange
-                                                                        }
-                                                                        type="number"
-                                                                        name="no"
-                                                                        value={
-                                                                            data.no
-                                                                        }
-                                                                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                                    />
-                                                                    <small className="text-red-500 text-sm">
-                                                                        {
-                                                                            errors.no
-                                                                        }
-                                                                    </small>
-                                                                </div>
-                                                                <div className="col-span-6 flex items-center gap-x-2">
-                                                                    <Checkbox
-                                                                        name="state"
-                                                                        value={
-                                                                            data.state
-                                                                        }
-                                                                        checked={
-                                                                            data.state
-                                                                        }
-                                                                        handleChange={
-                                                                            onHandleChange
-                                                                        }
-                                                                        takeoutCheck={
-                                                                            false
-                                                                        }
-                                                                    />
-                                                                    <label
-                                                                        htmlFor="state"
-                                                                        className="block text-sm font-medium text-gray-700"
-                                                                    >
-                                                                        قابل
-                                                                        للاستهلاك
-                                                                    </label>
-                                                                </div>
                                                                 <div className="col-span-6">
                                                                     <label
                                                                         htmlFor="desc"
@@ -226,27 +122,6 @@ export default function Add({ auth, errors, items, success }) {
                                                                             data.desc
                                                                         }
                                                                         name="desc"
-                                                                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                                    />
-                                                                </div>
-                                                                <div className="col-span-6">
-                                                                    <label
-                                                                        htmlFor="note"
-                                                                        className="block text-sm font-medium text-gray-700"
-                                                                    >
-                                                                        الملاحظات
-                                                                    </label>
-                                                                    <Input
-                                                                        handleChange={
-                                                                            onHandleChange
-                                                                        }
-                                                                        area="true"
-                                                                        type="text"
-                                                                        value={
-                                                                            data.note
-                                                                        }
-                                                                        name="note"
-                                                                        autoComplete="street-address"
                                                                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                                     />
                                                                 </div>

@@ -33,10 +33,10 @@ export default function Add({ auth, errors, success }) {
 
         post("/categories", {
             onSuccess: () => {
-                // Toast.fire({
-                //     icon: "success",
-                //     title: success,
-                // });
+                Toast.fire({
+                    icon: "success",
+                    title: success,
+                });
             },
         });
     };
