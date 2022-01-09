@@ -31,7 +31,6 @@ class ItemsController extends Controller
         // ]);
         return Inertia::render('Items/Index', [
             'items' => Items::orderBy('created_at', 'desc')->paginate(5),
-            'categories' => Categories::all()
         ]); 
     }
 
@@ -42,7 +41,9 @@ class ItemsController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Items/Add');
+        return Inertia::render('Items/Add', [
+            'categories' => Categories::all()
+        ]);
     }
 
     /**
