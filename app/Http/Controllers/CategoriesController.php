@@ -17,7 +17,7 @@ class CategoriesController extends Controller
     public function index()
     {
         return Inertia::render('Categories/Index' , [
-            'categories' => Categories::with('image')->paginate(10),
+            'categories' => Categories::paginate(10),
         ]);
     }
 
@@ -81,7 +81,7 @@ class CategoriesController extends Controller
     public function edit($categories)
     {
         return Inertia::render('Categories/Edit', [
-            'categories' => Categories::findOrFail($categories)->with('image')->first()
+            'categories' => Categories::findOrFail($categories)->first()
         ]);
     }
 
