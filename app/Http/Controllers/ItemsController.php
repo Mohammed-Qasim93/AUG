@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Items;
+use Categories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rule;
@@ -30,6 +31,7 @@ class ItemsController extends Controller
         // ]);
         return Inertia::render('Items/Index', [
             'items' => Items::orderBy('created_at', 'desc')->paginate(5),
+            'categories' => Categories::all()
         ]); 
     }
 
