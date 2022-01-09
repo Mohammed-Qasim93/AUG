@@ -102,7 +102,6 @@ export default function Checkout({ auth, errors, items, success }) {
             <Authenticated auth={auth} errors={errors}>
                 <Head title="اخراج مخزني" />
                 <div className="flex">
-                    ا
                     <DashboardBar auth={auth} />
                     <div className="flex-1 flex flex-col max-w-6xl">
                         <h2 className="font-tajawal-extrabold text-3xl text-center pr-32 w-full pt-10">
