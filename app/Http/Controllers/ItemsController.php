@@ -105,8 +105,8 @@ class ItemsController extends Controller
     public function edit($id)
     {
         return Inertia::render('Items/Edit', [
-            'items' => Items::findOrFail($id),
-            'categories' => Categories::all()
+            'items' => Items::findOrFail($id)->with('categories')->first(),
+            // 'categories' => Categories::all()
         ]);
     }
 
