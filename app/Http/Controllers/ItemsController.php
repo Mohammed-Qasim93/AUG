@@ -29,8 +29,10 @@ class ItemsController extends Controller
         // return Inertia::render('Items/Index', [
         //     'items' => request('date_from') && request('date_to') ? $query->orderBy('created_at', 'desc')->paginate(5)->withQueryString() : Items::orderBy('created_at', 'desc')->paginate(5),
         // ]);
+        dd();
         return Inertia::render('Items/Index', [
-            'items' => Items::with('category')->orderBy('created_at', 'desc')->paginate(10),
+            'items' => Items::select('id', 'name', 'qty', 'state', 'constate', 'created_at', 'categories_id')
+                        ->with('categories')->orderBy('created_at', 'desc')->paginate(10),
         ]); 
     }
 
@@ -68,7 +70,7 @@ class ItemsController extends Controller
 
             'categories_id.required' => 'تحديد الصنف',
         ]);
-
+        
         Items::create([
              'name' => $request->name,
              'qty' => $request->qty,
