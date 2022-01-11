@@ -31,7 +31,7 @@ class ItemsController extends Controller
         // ]);
         return Inertia::render('Items/Index', [
             'items' => Items::select('id', 'name', 'qty', 'state', 'constate', 'created_at', 'categories_id')
-                        ->with('categories')->orderBy('created_at', 'desc')->paginate(10),
+                        ->with('categories')->where('inventory', 'false')->orderBy('created_at', 'desc')->paginate(10),
         ]); 
     }
 

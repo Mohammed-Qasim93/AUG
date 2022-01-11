@@ -19,9 +19,6 @@ Route::get('/', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-// Route::get('/dashboard', function () {
-//     return Inertia::render('Dashboard');
-// })->middleware(['auth'])->name('dashboard');
 Route::get('/items/inventory', [ItemsController::class, 'inventory'])->middleware('auth')->name('items.inventory');
 
 require __DIR__.'/auth.php';
