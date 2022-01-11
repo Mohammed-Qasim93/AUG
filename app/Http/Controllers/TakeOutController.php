@@ -16,8 +16,7 @@ class TakeOutController extends Controller
         $query = Items::query();
         if(request('item')){
             $query = Items::where('name', 'LIKE', '%'.request('item').'%')
-                            ->orWhere('no', 'LIKE', '%'.request('item').'%')
-                            ->orWhere('category', 'LIKE', '%'.request('item').'%');
+                            ->orWhere('id', 'LIKE', '%'.request('item').'%');
         }
         return Inertia::render('TakeOut/Index', [
             'items' => $query->with('categories')->orderBy('created_at', 'desc')->paginate(10)->withQueryString(),
