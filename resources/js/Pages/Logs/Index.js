@@ -25,7 +25,9 @@ export default function index({ logs, auth, errors, success }) {
         });
     };
 
-    const exportPDF = () => {};
+    const exportPDF = () => {
+        Inertia.get("/print?p=excel");
+    };
     const print = () => {
         window.print();
     };
@@ -103,12 +105,13 @@ export default function index({ logs, auth, errors, success }) {
                                     handleClick={print}
                                     children="طباعة"
                                 />
-                                {/* <Button
+                                <a
                                     className="bg-blue-500 hover:bg-blue-600"
-                                    handleClick={exportPDF}
-                                    children="PDF"
-                                />
-                                <Button
+                                    href="/print?p=excel"
+                                >
+                                    pp
+                                </a>
+                                {/* <Button
                                     className="bg-blue-500 hover:bg-blue-600"
                                     handleClick={exportExcel}
                                     children="Excel"

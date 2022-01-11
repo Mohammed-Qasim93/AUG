@@ -1,28 +1,46 @@
 import React, { useEffect } from "react";
 import { Head, Link, useForm } from "@inertiajs/inertia-react";
 import Input from "@/Components/Input";
-import Checkbox from "@/Components/Checkbox";
 import Button from "@/Components/Button";
 import Authenticated from "@/Layouts/Authenticated";
 import DashboardBar from "../../Components/DashboardBar";
 
+import Checkbox from "../../Components/Checkbox";
+import Combo from "../../Components/Combo";
 import Toast from "../../Components/Toast";
 
-export default function Add({ auth, errors, items, success }) {
+export default function Add({ auth, errors, categories, items }) {
     const { data, setData, post } = useForm({
         name: items.name || "",
-        category: items.category || "",
-        qty: items.qty || "",
-        no: items.no || "",
+        categories_id: items.categories_id || "",
+        qty: items.qty || "1",
         note: items.note || "",
         desc: items.desc || "",
-        state: items.state,
+        state: items.state || 1,
+        constate: items.constate || 1,
+        inventory: items.inventory || "0",
         _method: "PUT",
     });
 
-    const onHandleChange = (event) => {
-        console.log(event.target.value);
+    let stateArr = [
+        {
+            name: "جيدة",
+        },
+        {
+            name: "متوسطة",
+        },
+        {
+            name: "رديئة",
+        },
+        {
+            name: "يعمل",
+        },
+        {
+            name: "لا يعمل",
+        },
+    ];
 
+    const onHandleChange = (event) => {
         setData(
             event.target.name,
             event.target.type === "checkbox"
@@ -32,9 +50,8 @@ export default function Add({ auth, errors, items, success }) {
     };
 
     // const submit = (e) => {
-    //     console.log(data);
     //     e.preventDefault();
-    //     Inertia.post(`/items/${items.id}`, data);
+    //     Inertia.post(`/items`, data);
     // };
 
     const submit = (e) => {
@@ -48,6 +65,7 @@ export default function Add({ auth, errors, items, success }) {
                 });
             },
         });
+        console.log(data);
     };
 
     // const handleChange = (e) => {
@@ -73,7 +91,7 @@ export default function Add({ auth, errors, items, success }) {
     return (
         <>
             <Authenticated auth={auth} errors={errors}>
-                <Head title={`تعديل بيانات  ${items.name}`} />
+                <Head title="اضافة مادة" />
                 <div className="flex">
                     <DashboardBar auth={auth} />
                     <div className="flex-1 flex flex-col max-w-6xl">
@@ -84,6 +102,7 @@ export default function Add({ auth, errors, items, success }) {
                                         <div className="grid grid-cols-2 gap-6">
                                             <div className="mt-5 md:mt-0 col-span-2">
                                                 <form onSubmit={submit}>
+                                                    <h2> إضافة مادة </h2>
                                                     <div className="shadow overflow-hidden sm:rounded-md">
                                                         <div className="px-4 py-5 bg-white sm:p-6">
                                                             <div className="grid grid-cols-6 gap-6">
@@ -112,23 +131,29 @@ export default function Add({ auth, errors, items, success }) {
                                                                         }
                                                                     </small>
                                                                 </div>
-                                                                <div className="col-span-6  sm:col-span-2">
+                                                                <div className="col-span-6 ">
                                                                     <label
                                                                         htmlFor="category"
                                                                         className="block text-sm font-medium text-gray-700"
                                                                     >
                                                                         الصنف
                                                                     </label>
-                                                                    <Input
-                                                                        handleChange={
-                                                                            onHandleChange
+                                                                    <Combo
+                                                                        className="w-full rounded-lg"
+                                                                        name="categories_id"
+                                                                        defaultValue={
+                                                                            "---- اختر التصنيف ----"
                                                                         }
-                                                                        type="text"
-                                                                        value={
-                                                                            data.category
+                                                                        options={
+                                                                            categories
                                                                         }
-                                                                        name="category"
-                                                                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                                        handleChange={(
+                                                                            e
+                                                                        ) => {
+                                                                            onHandleChange(
+                                                                                e
+                                                                            );
+                                                                        }}
                                                                     />
                                                                     <small className="text-red-500 text-sm">
                                                                         {
@@ -136,18 +161,19 @@ export default function Add({ auth, errors, items, success }) {
                                                                         }
                                                                     </small>
                                                                 </div>
-                                                                <div className="col-span-6 sm:col-span-2">
+                                                                <div className="col-span-6 sm:col-span-3">
                                                                     <label
                                                                         htmlFor="qty"
                                                                         className="block text-sm font-medium text-gray-700"
                                                                     >
                                                                         العدد
                                                                     </label>
-                                                                    <Input
-                                                                        handleChange={
+                                                                    <input
+                                                                        onChange={
                                                                             onHandleChange
                                                                         }
                                                                         type="number"
+                                                                        min="1"
                                                                         value={
                                                                             data.qty
                                                                         }
@@ -160,55 +186,93 @@ export default function Add({ auth, errors, items, success }) {
                                                                         }
                                                                     </small>
                                                                 </div>
-                                                                <div className="col-span-6 sm:col-span-2">
-                                                                    <label
-                                                                        htmlFor="qty"
-                                                                        className="block text-sm font-medium text-gray-700"
-                                                                    >
-                                                                        الرقم
-                                                                        التسلسلي
-                                                                    </label>
-                                                                    <Input
-                                                                        handleChange={
-                                                                            onHandleChange
-                                                                        }
-                                                                        type="number"
-                                                                        name="no"
-                                                                        value={
-                                                                            data.no
-                                                                        }
-                                                                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                                    />
-                                                                    <small className="text-red-500 text-sm">
-                                                                        {
-                                                                            errors.no
-                                                                        }
-                                                                    </small>
-                                                                </div>
-                                                                <div className="col-span-6 flex items-center gap-x-2">
-                                                                    <Checkbox
-                                                                        name="state"
-                                                                        value={
-                                                                            data.state
-                                                                        }
-                                                                        checked={
-                                                                            data.state
-                                                                        }
-                                                                        handleChange={
-                                                                            onHandleChange
-                                                                        }
-                                                                        takeoutCheck={
-                                                                            false
-                                                                        }
-                                                                    />
+                                                                <div className="col-span-6 sm:col-span-3">
                                                                     <label
                                                                         htmlFor="state"
                                                                         className="block text-sm font-medium text-gray-700"
                                                                     >
-                                                                        قابل
-                                                                        للاستهلاك
+                                                                        الحاله
                                                                     </label>
+                                                                    <Combo
+                                                                        className="w-full rounded-lg"
+                                                                        name="state"
+                                                                        options={
+                                                                            stateArr
+                                                                        }
+                                                                        defaultValue={
+                                                                            items.state
+                                                                        }
+                                                                        handleChange={(
+                                                                            e
+                                                                        ) => {
+                                                                            onHandleChange(
+                                                                                e
+                                                                            );
+                                                                        }}
+                                                                    />
+                                                                    <small className="text-red-500 text-sm">
+                                                                        {
+                                                                            errors.state
+                                                                        }
+                                                                    </small>
                                                                 </div>
+                                                                <div className="flex col-span-4 gap-x-8">
+                                                                    <div className="flex items-center gap-x-2">
+                                                                        <Checkbox
+                                                                            name="inventory"
+                                                                            value={
+                                                                                data.inventory
+                                                                            }
+                                                                            checked={
+                                                                                data.inventory ===
+                                                                                "0"
+                                                                                    ? false
+                                                                                    : true
+                                                                            }
+                                                                            handleChange={
+                                                                                onHandleChange
+                                                                            }
+                                                                        />
+                                                                        <label
+                                                                            htmlFor="state"
+                                                                            className="block text-sm font-medium text-gray-700"
+                                                                        >
+                                                                            مادة
+                                                                            جرد
+                                                                        </label>
+                                                                    </div>
+                                                                    <div className="flex items-center gap-x-2">
+                                                                        <Checkbox
+                                                                            name="constate"
+                                                                            disabled={
+                                                                                data.inventory ===
+                                                                                true
+                                                                                    ? true
+                                                                                    : false
+                                                                            }
+                                                                            value={
+                                                                                data.constate
+                                                                            }
+                                                                            checked={
+                                                                                data.constate ===
+                                                                                "0"
+                                                                                    ? false
+                                                                                    : true
+                                                                            }
+                                                                            handleChange={
+                                                                                onHandleChange
+                                                                            }
+                                                                        />
+                                                                        <label
+                                                                            htmlFor="state"
+                                                                            className="block text-sm font-medium text-gray-700"
+                                                                        >
+                                                                            قابل
+                                                                            للاستهلاك
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+
                                                                 <div className="col-span-6">
                                                                     <label
                                                                         htmlFor="desc"
@@ -217,8 +281,12 @@ export default function Add({ auth, errors, items, success }) {
                                                                         الوصف
                                                                     </label>
                                                                     <Input
-                                                                        handleChange={
-                                                                            onHandleChange
+                                                                        handleChange={(
+                                                                            e
+                                                                        ) =>
+                                                                            onHandleChange(
+                                                                                e
+                                                                            )
                                                                         }
                                                                         area="true"
                                                                         type="text"
@@ -254,7 +322,7 @@ export default function Add({ auth, errors, items, success }) {
                                                         </div>
                                                         <div className="px-4 py-3 flex justify-center bg-gray-50 text-right sm:px-6">
                                                             <Button className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600 focus:outline-none ">
-                                                                تعديل
+                                                                إضافة
                                                             </Button>
                                                         </div>
                                                     </div>

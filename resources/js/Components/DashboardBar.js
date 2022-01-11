@@ -6,20 +6,16 @@ export default function DashboardBar({ auth }) {
 
     const active = (r) => {
         if (r == window.location.pathname) {
-            return "bg-gray-200 text-gray-900";
+            return "bg-active text-gray-900";
         } else {
             return " text-gray-200";
         }
     };
 
     return (
-        <div className="print:hidden">
-            <nav className="flex flex-col  w-64 h-screen px-4 tex-gray-900  bg-slate-500">
-                <div className="flex flex-col text-slate-600 mt-8 justify-center items-center">
-                    <h3 className="text-lg">اهلا</h3>
-                    <h3 className="text-xl"> {user.name} </h3>
-                </div>
-                <div className="mt-10 mb-4">
+        <div className="">
+            <nav className="flex flex-col  w-64 h-screen px-4 tex-gray-900  bg-primary">
+                <div className="mt-10 mb-4 pt-20">
                     <ul className="mr-4">
                         <li
                             className={`
@@ -85,7 +81,38 @@ export default function DashboardBar({ auth }) {
                                 <span className="mr-2">المواد</span>
                             </Link>
                         </li>
-
+                        <li
+                            className={`
+                                mb-2  flex flex-row  
+                        
+                         border-gray-300 hover:text-slate-700 
+                           hover:bg-gray-300  hover:font-bold rounded-lg
+                            ${active("/items/inventory")}
+                                `}
+                        >
+                            <Link
+                                href="items/inventory"
+                                className="flex  px-4 py-4 items-center w-full "
+                            >
+                                <span>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-5 w-5"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+                                        />
+                                    </svg>
+                                </span>
+                                <span className="mr-2">مواد الجرد</span>
+                            </Link>
+                        </li>
                         <li
                             className={`
                                 mb-2  flex flex-row  
@@ -148,38 +175,6 @@ export default function DashboardBar({ auth }) {
                                     </svg>
                                 </span>
                                 <span className="mr-2">السجل</span>
-                            </Link>
-                        </li>
-                        <li
-                            className={`
-                                mb-2  flex flex-row  
-                        
-                         border-gray-300 hover:text-slate-700 
-                           hover:bg-gray-300  hover:font-bold rounded-lg
-                            ${active("/items/inventory")}
-                                `}
-                        >
-                            <Link
-                                href="items/inventory"
-                                className="flex  px-4 py-4 items-center w-full "
-                            >
-                                <span>
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="h-5 w-5"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
-                                        />
-                                    </svg>
-                                </span>
-                                <span className="mr-2">سجل الجرد</span>
                             </Link>
                         </li>
                     </ul>

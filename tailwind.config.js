@@ -10,6 +10,10 @@ module.exports = {
 
     theme: {
         extend: {
+            colors: {
+                primary: "#192436",
+                active: "#FEAF76",
+            },
             fontFamily: {
                 "tajawal-regular": "Tajawal-Regular",
                 "tajawal-bold": "Tajawal-Bold",
