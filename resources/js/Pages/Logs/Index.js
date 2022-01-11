@@ -100,17 +100,6 @@ export default function index({ logs, auth, errors, success }) {
                                 </div>
                             </div>
                             <div className="flex items-center ">
-                                <Button
-                                    className="bg-blue-500 hover:bg-blue-600"
-                                    handleClick={print}
-                                    children="طباعة"
-                                />
-                                <a
-                                    className="bg-blue-500 hover:bg-blue-600"
-                                    href="/print?p=excel"
-                                >
-                                    pp
-                                </a>
                                 {/* <Button
                                     className="bg-blue-500 hover:bg-blue-600"
                                     handleClick={exportExcel}

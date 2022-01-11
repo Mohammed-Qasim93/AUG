@@ -91,7 +91,7 @@ export default function DashboardBar({ auth }) {
                                 `}
                         >
                             <Link
-                                href="items/inventory"
+                                href="/items/inventory"
                                 className="flex  px-4 py-4 items-center w-full "
                             >
                                 <span>

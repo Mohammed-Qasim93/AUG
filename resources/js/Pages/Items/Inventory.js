@@ -129,7 +129,6 @@ export default function index({ items, auth, errors, success }) {
                                 "الرقم التسلسلي",
                                 "الكميه",
                                 "التاريخ",
-                                "ادخال مخزني",
                             ]}
                         />
                     </div>

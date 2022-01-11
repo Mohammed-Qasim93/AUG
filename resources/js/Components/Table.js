@@ -40,7 +40,15 @@ export default function Table({
     const handleStore = (id, outID) => {
         // e.preventDefault();
         console.log(id);
-        Inertia.put(`logs/${id}`, { id: id, outID: outID });
+        Inertia.put(
+            `logs/${id}`,
+            { id: id, outID: outID },
+            {
+                onSuccess: () => {
+                    Inertia.visit("/print?p=inpdf&id=" + id);
+                },
+            }
+        );
     };
 
     // const onHandleChange = (e) => {

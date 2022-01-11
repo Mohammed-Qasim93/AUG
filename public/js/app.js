@@ -3500,7 +3500,7 @@ function DashboardBar(_ref) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
             className: "\n                                mb-2  flex flex-row  \n                        \n                         border-gray-300 hover:text-slate-700 \n                           hover:bg-gray-300  hover:font-bold rounded-lg\n                            ".concat(active("/items/inventory"), "\n                                "),
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
-              href: "items/inventory",
+              href: "/items/inventory",
               className: "flex  px-4 py-4 items-center w-full ",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
@@ -4125,6 +4125,10 @@ function Table(_ref) {
     _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia.put("logs/".concat(id), {
       id: id,
       outID: outID
+    }, {
+      onSuccess: function onSuccess() {
+        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia.visit("/print?p=inpdf&id=" + id);
+      }
     });
   }; // const onHandleChange = (e) => {
   //     console.log(e.target);
@@ -6960,7 +6964,7 @@ function index(_ref) {
             paginate: items,
             url: "items",
             auth: auth,
-            tableHeaders: ["التسلسل", "الاسم", "اسم الماده", "الصنف", "الرقم التسلسلي", "الكميه", "التاريخ", "ادخال مخزني"]
+            tableHeaders: ["التسلسل", "الاسم", "اسم الماده", "الصنف", "الرقم التسلسلي", "الكميه", "التاريخ"]
           })
         })]
       })]
@@ -7124,17 +7128,8 @@ function index(_ref) {
                   children: "\u062A\u0635\u0641\u064A\u0631"
                 })]
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
-              className: "flex items-center ",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_8__["default"], {
-                className: "bg-blue-500 hover:bg-blue-600",
-                handleClick: print,
-                children: "\u0637\u0628\u0627\u0639\u0629"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("a", {
-                className: "bg-blue-500 hover:bg-blue-600",
-                href: "/print?p=excel",
-                children: "pp"
-              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+              className: "flex items-center "
             })]
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
