@@ -62,7 +62,7 @@ class TakeOutController extends Controller
             if(request('p') == 'excel'){
                 return Excel::download(new EXCELs, 'excel_file.xlsx');
             }
-            elseif(request('outpdf') == 'excel'){
+            elseif(request('p') == 'outpdf'){
                 $out = logs::with('items')->where('OutID', '1')->get();
                 $Time = Carbon::parse($out[0]->outDate)->format('A h:m:s');
                 $Date = Carbon::parse($out[0]->outDate)->format('d-m-Y');
@@ -141,12 +141,12 @@ class TakeOutController extends Controller
                 ');
                 $mpdf->Output('' . $out[0]->name . $Date . '.pdf', 'I');
             }
-            elseif(request('inpdf') == 'excel'){
-                $out = logs::with('items')->where('OutID', $request('id'))->get();
-                $Time = Carbon::parse($out->outDate)->format('A h:m:s');
-                $Date = Carbon::parse($out->outDate)->format('d-m-Y');
+            elseif(request('p') == 'inpdf'){
+                $out = logs::findOrFail(request('id'))->with('items')->first();
+                $Time = Carbon::parse($out->inDate)->format('A h:m:s');
+                $Date = Carbon::parse($out->inDate)->format('d-m-Y');
                 $outType = '';
-                $d->outType === 0 ? $outType = "خارج الشركة" : $outType = "خارج المخزن";
+                $out->outType === 0 ? $outType = "خارج الشركة" : $outType = "خارج المخزن";
                 $html = '
                 <style>
                     body{
@@ -195,7 +195,7 @@ class TakeOutController extends Controller
                 <body>
                     <h2 class="x">موضوع / ادخال مادة</h2>
                     <div>
-                        <p>في تمام الساعة <span>(' . $Time . ')</span> وبتاريخ <span>( ' . $Date . ' )</span> تم ادخال المادة ادناه بواسطة <span>( ' . $out[0]->name . ' )</span> </span></p>
+                        <p>في تمام الساعة <span>(' . $Time . ')</span> وبتاريخ <span>( ' . $Date . ' )</span> تم ادخال المادة ادناه بواسطة <span>( ' . $out->name . ' )</span> </span></p>
                     </div>
                 </body>
                 ';
@@ -205,12 +205,12 @@ class TakeOutController extends Controller
                 $mpdf->autoLangToFont = true;
                 $mpdf->WriteHTML($html);
                 $mpdf->WriteHTML('
-                    <p class="lead">&bull; ' . $data->items->name . ' - ' . $outType . ' </p>
+                    <p class="lead">&bull; ' . $out->items->name . ' - ' . $outType . ' </p>
                 ');
                 $mpdf->WriteHTML('
                     <p class="posRes">اسم المخول</p>
                     <p class="dataRes">' . $out->authname . '</p>
-                    <p class="posDel">اسم المستلم</p>
+                    <p class="posDel">اسم المسلم</p>
                     <p class="dataDel">' . $out->name . '</p>
                     
                 ');
