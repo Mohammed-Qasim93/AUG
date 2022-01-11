@@ -183,4 +183,10 @@ class ItemsController extends Controller
         $item->delete();
         return Redirect::route('items.index')->with('success', ['icon' => 'success' ,'title' => 'نجاح العملية', 'message' => 'تم الحذف بنجاح']);
     }
+
+    public function inventory(){
+        return Inertia::render('Items/Inventory', [
+            'items' => Items::with('categories')->where('inventory', true)->orderBy('created_at', 'desc')->paginate(10)->withQueryString(),
+        ]);
+    }
 }

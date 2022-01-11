@@ -41,3 +41,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/checkout', [TakeOutController::class, 'refresh'])->name('takeout.refresh');               // Index
     Route::post('/removeItem', [TakeOutController::class, 'removeItem'])->name('takeout.removeItem');               // Index
 });
+
+Route::get('print', [TakeOutController::class, 'print'])->middleware('auth')->name('print');
+Route::get('items/inventory', [ItemsController::class, 'inventory'])->middleware('auth')->name('inventory');
