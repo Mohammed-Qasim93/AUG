@@ -3559,7 +3559,7 @@ function DashboardBar(_ref) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
             className: "\n                                mb-2  flex flex-row  \n                        \n                         border-gray-300 hover:text-slate-700 \n                           hover:bg-gray-300  hover:font-bold rounded-lg\n                            ".concat(active("/items/inventory"), "\n                                "),
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
-              href: "/items/inventory",
+              href: "items/inventory",
               className: "flex  px-4 py-4 items-center w-full ",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
@@ -6720,7 +6720,7 @@ function index(_ref) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ index)
+/* harmony export */   "default": () => (/* binding */ Inventory)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
@@ -6758,7 +6758,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-function index(_ref) {
+function Inventory(_ref) {
   var items = _ref.items,
       auth = _ref.auth,
       errors = _ref.errors,

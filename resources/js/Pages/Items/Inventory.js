@@ -12,7 +12,7 @@ import { Inertia } from "@inertiajs/inertia";
 import Swal from "sweetalert2";
 import Toast from "../../Components/Toast";
 
-export default function index({ items, auth, errors, success }) {
+export default function Inventory({ items, auth, errors, success }) {
     const { data, setData } = useForm({
         from: "",
         to: "",
