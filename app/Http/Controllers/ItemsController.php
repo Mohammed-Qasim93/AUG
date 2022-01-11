@@ -18,21 +18,31 @@ class ItemsController extends Controller
      */
     public function index()
     {
-        // if(request('date_from') > request('date_to')){
-        //     return redirect()->back()->with('success', 'تأكد من التاريخ المحدد');
-        // }else{
-        //     $query = Items::query();
-        //     $date = request('date_from') . "," . request('date_to');
-        //     $date = explode(',', $date);
-        //     $query->whereBetween('created_at', $date);
-        // }
-        // return Inertia::render('Items/Index', [
-        //     'items' => request('date_from') && request('date_to') ? $query->orderBy('created_at', 'desc')->paginate(5)->withQueryString() : Items::orderBy('created_at', 'desc')->paginate(5),
-        // ]);
-        return Inertia::render('Items/Index', [
-            'items' => Items::select('id', 'name', 'qty', 'state', 'constate', 'created_at', 'categories_id')
-                        ->with('categories')->where('inventory', 'false')->orWhere('inventory', null)->orderBy('created_at', 'desc')->paginate(10),
-        ]); 
+        if(request('date_from') > request('date_to')){
+            return redirect()->back()->with('success', 'تأكد من التاريخ المحدد');
+        }else{
+            $query = Items::query()->select('id', 'name', 'qty', 'state', 'constate', 'created_at', 'categories_id')->where('inventory', false)->orWhere('inventory', null);
+            $date = request('date_from') . "," . request('date_to');
+            $date = explode(',', $date);
+            $query->whereBetween('created_at', $date);
+        }
+        return Inertia::render('Items/Inventory', [
+            'items' => request('date_from') && request('date_to') ? $query->select('id', 'name', 'qty', 'state', 'constate', 'created_at', 'categories_id')->where('inventory', false)->orWhere('inventory', null)->orderBy('created_at', 'desc')->paginate(10)->withQueryString() : Items::select('id', 'name', 'qty', 'state', 'constate', 'created_at', 'categories_id')->where('inventory', false)->orWhere('inventory', null)->orderBy('created_at', 'desc')->paginate(10)->withQueryString(),
+        ]);
+    }
+
+    public function inventory(){
+        if(request('date_from') > request('date_to')){
+            return redirect()->back()->with('success', 'تأكد من التاريخ المحدد');
+        }else{
+            $query = Items::query()->select('id', 'name', 'qty', 'state', 'constate', 'created_at', 'categories_id')->where('inventory', true);
+            $date = request('date_from') . "," . request('date_to');
+            $date = explode(',', $date);
+            $query->whereBetween('created_at', $date);
+        }
+        return Inertia::render('Items/Inventory', [
+            'items' => request('date_from') && request('date_to') ? $query->select('id', 'name', 'qty', 'state', 'constate', 'created_at', 'categories_id')->where('inventory', true)->orderBy('created_at', 'desc')->paginate(10)->withQueryString() : Items::select('id', 'name', 'qty', 'state', 'constate', 'created_at', 'categories_id')->where('inventory', true)->orderBy('created_at', 'desc')->paginate(10)->withQueryString(),
+        ]);
     }
 
     /**
@@ -182,11 +192,5 @@ class ItemsController extends Controller
         $item = Items::findOrFail($id);
         $item->delete();
         return Redirect::route('items.index')->with('success', ['icon' => 'success' ,'title' => 'نجاح العملية', 'message' => 'تم الحذف بنجاح']);
-    }
-
-    public function inventory(){
-        return Inertia::render('Items/Inventory', [
-            'items' => Items::with('categories')->where('inventory', true)->orderBy('created_at', 'desc')->paginate(10)->withQueryString(),
-        ]);
     }
 }
