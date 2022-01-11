@@ -43,4 +43,3 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('print', [TakeOutController::class, 'print'])->middleware('auth')->name('print');
-Route::get('items/inventory', [ItemsController::class, 'inventory'])->middleware('auth')->name('inventory');

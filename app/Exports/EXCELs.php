@@ -2,7 +2,6 @@
 
 namespace App\Exports;
 
-use App\Models\Categories;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
 class EXCELs implements FromCollection
@@ -12,6 +11,6 @@ class EXCELs implements FromCollection
     */
     public function collection()
     {
-        return Categories::all();
+        return Items::where('inventory', true)->orderBy('created_at', 'desc')->get('id', 'name', 'qty', 'desc');
     }
 }

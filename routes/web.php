@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ItemsController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -21,5 +22,6 @@ Route::get('/', function () {
 // Route::get('/dashboard', function () {
 //     return Inertia::render('Dashboard');
 // })->middleware(['auth'])->name('dashboard');
+Route::get('/items/inventory', [ItemsController::class, 'inventory'])->middleware('auth')->name('items.inventory');
 
 require __DIR__.'/auth.php';

@@ -6,10 +6,7 @@ use App\Models\Items;
 use App\Models\logs;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\EXCELs;
 use Carbon\Carbon;
-use Carbon\CarbonImmutable;
 
 class TakeOutController extends Controller
 {
@@ -61,44 +58,82 @@ class TakeOutController extends Controller
 
     public function print(){
         $out = logs::with('items')->where('OutID', '1')->get();
-        $Time = Carbon::parse($out[0]->outDate)->format('h:m:s A');
-        $Date = Carbon::parse($out[0]->outDate)->format('Y-m-d');
-        $data = [];
-        for ($i=0 ; $i < count($out); $i++){
-            $data[$i] = $out[$i]->items->name;
+        $Time = Carbon::parse($out[0]->outDate)->format('A h:m:s');
+        $Date = Carbon::parse($out[0]->outDate)->format('d-m-Y');
+        $outType = [];
+        foreach($out as $i => $d){
+            $d->outType === 0 ? $outType[$i] = "خارج الشركة" : $outType[$i] = "خارج المخزن";
         }
         $html = '
         <style>
-            html, body{
-                height: 100%
-            }
             body{
                 background: url("h.jpg");
-                /* The image used */
                 background-image-resize: 6;
-                /* Full height */
-                height: 100%;
                 direction: rtl;
+                font-size: 18px;
             }
             .x{
                 text-align: center;
                 padding-top: 100px;
-                font-size: 30px;
+            }
+            .lead{
+                line-height: 20px;
+                font-weight:: 70px;
+                font-size: 20px
+            }
+            .textsize{
+                font-size: 20px
+            }
+            .posDel{
+                position: absolute;
+                top: 1100px;
+                left: 75px;
+                font-size: 18px
+            }
+            .posRes{
+                position: absolute;
+                top: 1100px;
+                left: 655px;
+                font-size: 18px
+            }
+            .dataDel{
+                position: absolute;
+                top: 1130px;
+                left: 70px;
+                font-size: 22px
+            }
+            .dataRes{
+                position: absolute;
+                top: 1130px;
+                left: 650px;
+                font-size: 22px
             }
         </style>
         <body>
-            <h1 class="x">موضوع / ادخال معدات</h1>
+            <h2 class="x">موضوع / ادخال معدات</h2>
             <div>
                 <p>في تمام الساعة <span>(' . $Time . ')</span> وبتاريخ <span>( ' . $Date . ' )</span> تم اخراج المواد ادناه بواسطة <span>( ' . $out[0]->name . ' )</span> </span></p>
-                <p> -  </p>
             </div>
         </body>
         ';
+        
         // return Excel::download(new EXCELs, 'uuu.xlsx', \Maatwebsite\Excel\Excel::MPDF);
         $mpdf = new \Mpdf\Mpdf(['format' => 'Legal']);
         $mpdf->autoScriptToLang = true;
         $mpdf->autoLangToFont = true;
         $mpdf->WriteHTML($html);
+        foreach ($out as $i => $data) {
+            $mpdf->WriteHTML('
+                <p class="lead">&bull; ' . $data->items->name . ' - ' . $outType[$i] . ' </p>
+            ');
+        }
+        $mpdf->WriteHTML('
+            <p class="posRes">اسم المخول</p>
+            <p class="dataRes">' . $out[0]->authname . '</p>
+            <p class="posDel">اسم المستلم</p>
+            <p class="dataDel">' . $out[0]->name . '</p>
+            
+        ');
         $mpdf->Output('ddd.pdf', 'I');
     }
 }
