@@ -142,7 +142,7 @@ class TakeOutController extends Controller
                 $mpdf->Output('' . $out[0]->name . $Date . '.pdf', 'I');
             }
             elseif(request('inpdf') == 'excel'){
-                $out = logs::with('items')->where('OutID', '1')->get();
+                $out = logs::with('items')->where('OutID', $request('id'))->get();
                 $Time = Carbon::parse($out->outDate)->format('A h:m:s');
                 $Date = Carbon::parse($out->outDate)->format('d-m-Y');
                 $outType = '';
