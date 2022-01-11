@@ -3556,6 +3556,30 @@ function DashboardBar(_ref) {
                 children: "\u0627\u0644\u0633\u062C\u0644"
               })]
             })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+            className: "\n                                mb-2  flex flex-row  \n                        \n                         border-gray-300 hover:text-slate-700 \n                           hover:bg-gray-300  hover:font-bold rounded-lg\n                            ".concat(active("/items/inventory"), "\n                                "),
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
+              href: "/items/inventory",
+              className: "flex  px-4 py-4 items-center w-full ",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
+                  xmlns: "http://www.w3.org/2000/svg",
+                  className: "h-5 w-5",
+                  fill: "none",
+                  viewBox: "0 0 24 24",
+                  stroke: "currentColor",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+                  })
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+                className: "mr-2",
+                children: "\u0633\u062C\u0644 \u0627\u0644\u062C\u0631\u062F"
+              })]
+            })
           })]
         })
       })]
@@ -6561,6 +6585,133 @@ function Add(_ref) {
 /*!*******************************************!*\
   !*** ./resources/js/Pages/Items/Index.js ***!
   \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ index)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Layouts/Authenticated */ "./resources/js/Layouts/Authenticated.js");
+/* harmony import */ var _Components_DashboardBar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Components/DashboardBar */ "./resources/js/Components/DashboardBar.js");
+/* harmony import */ var _Components_Table__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Components/Table */ "./resources/js/Components/Table.js");
+/* harmony import */ var _Components_TableButtons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Components/TableButtons */ "./resources/js/Components/TableButtons.js");
+/* harmony import */ var _Components_Input__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../Components/Input */ "./resources/js/Components/Input.js");
+/* harmony import */ var _Components_Label__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../Components/Label */ "./resources/js/Components/Label.js");
+/* harmony import */ var _Components_Button__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../Components/Button */ "./resources/js/Components/Button.js");
+/* harmony import */ var _Components_Filters__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../Components/Filters */ "./resources/js/Components/Filters.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _Components_Toast__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../Components/Toast */ "./resources/js/Components/Toast.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function index(_ref) {
+  var items = _ref.items,
+      auth = _ref.auth,
+      errors = _ref.errors,
+      success = _ref.success;
+
+  var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.useForm)({
+    from: "",
+    to: ""
+  }),
+      data = _useForm.data,
+      setData = _useForm.setData;
+
+  var onHandleChange = function onHandleChange(event) {
+    setData(_objectSpread(_objectSpread({}, data), {}, _defineProperty({}, event.target.name, event.target.value)));
+  };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (success) {
+      _Components_Toast__WEBPACK_IMPORTED_MODULE_12__["default"].fire({
+        icon: success.icon,
+        title: success.title,
+        text: success.message
+      });
+    }
+  }, [success]); // const submit = (e) => {
+  //     e.preventDefault();
+  //     Inertia.get(
+  //         `/items?`,
+  //         { date_from: data.from, date_to: data.to },
+  //         { replaces: true, preserveState: true }
+  //     );
+  //     Swal.fire({
+  //         title: errors.data.name,
+  //         toast: true,
+  //         html: "I will close in <b></b> milliseconds.",
+  //         timer: 2000,
+  //     });
+  // };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(_Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    auth: auth,
+    errors: errors,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Head, {
+      title: "\u0627\u0644\u0645\u0648\u0627\u062F"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
+      className: "flex",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_Components_DashboardBar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        auth: auth
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
+        className: "flex-1 flex flex-col  max-w-6xl",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("h2", {
+          className: "font-tajawal-extrabold text-3xl text-center w-full pt-10 pr-32",
+          children: "\u0633\u062C\u0644 \u0627\u0644\u0645\u0648\u0627\u062F"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
+          className: "flex justify-between items-end h-20 ",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_Components_TableButtons__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            text: "\u0625\u0636\u0627\u0641\u0629 \u0645\u0627\u062F\u0629",
+            url: "/items/create"
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
+          className: "flex flex-col justify-end pr-32 items-start max-w-6xl",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
+            className: "flex w-full  justify-between"
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_Components_Table__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          data: items.data,
+          paginate: items,
+          url: "items",
+          auth: auth,
+          total: items.total,
+          tableHeaders: ["رقم الماده", "اسم الماده", "الصنف", "الكمية", "الحاله", "تاريخ الاضافة", "العمليات"]
+        })]
+      })]
+    })]
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Items/Inventory.js":
+/*!***********************************************!*\
+  !*** ./resources/js/Pages/Items/Inventory.js ***!
+  \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -85654,6 +85805,8 @@ var map = {
 	"./Items/Edit.js": "./resources/js/Pages/Items/Edit.js",
 	"./Items/Index": "./resources/js/Pages/Items/Index.js",
 	"./Items/Index.js": "./resources/js/Pages/Items/Index.js",
+	"./Items/Inventory": "./resources/js/Pages/Items/Inventory.js",
+	"./Items/Inventory.js": "./resources/js/Pages/Items/Inventory.js",
 	"./Logs/Index": "./resources/js/Pages/Logs/Index.js",
 	"./Logs/Index.js": "./resources/js/Pages/Logs/Index.js",
 	"./TakeOut/Checkout": "./resources/js/Pages/TakeOut/Checkout.js",
