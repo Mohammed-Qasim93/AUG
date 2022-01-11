@@ -33,7 +33,7 @@ export default function index({ items, auth, errors, success }) {
     const submit = (e) => {
         e.preventDefault();
         Inertia.get(
-            `/logs?=`,
+            `/items/inventory?=`,
             { date_from: data.from, date_to: data.to },
             { replaces: true, preserveState: true }
         );

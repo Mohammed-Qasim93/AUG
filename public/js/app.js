@@ -5582,15 +5582,12 @@ function Add(_ref) {
                                 })]
                               })]
                             })]
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
                             className: "px-4 py-3 flex justify-center bg-gray-50 text-right sm:px-6",
-                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
                               className: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600 focus:outline-none ",
                               children: "\u0625\u0636\u0627\u0641\u0629"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("a", {
-                              href: "/print",
-                              children: "ef"
-                            })]
+                            })
                           })]
                         })
                       })
@@ -6673,20 +6670,18 @@ function index(_ref) {
         text: success.message
       });
     }
-  }, [success]); // const submit = (e) => {
-  //     e.preventDefault();
-  //     Inertia.get(
-  //         `/items?`,
-  //         { date_from: data.from, date_to: data.to },
-  //         { replaces: true, preserveState: true }
-  //     );
-  //     Swal.fire({
-  //         title: errors.data.name,
-  //         toast: true,
-  //         html: "I will close in <b></b> milliseconds.",
-  //         timer: 2000,
-  //     });
-  // };
+  }, [success]);
+
+  var submit = function submit(e) {
+    e.preventDefault();
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_10__.Inertia.get("/items?", {
+      date_from: data.from,
+      date_to: data.to
+    }, {
+      replaces: true,
+      preserveState: true
+    });
+  };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(_Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_2__["default"], {
     auth: auth,
@@ -6711,7 +6706,48 @@ function index(_ref) {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
           className: "flex flex-col justify-end pr-32 items-start max-w-6xl",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
-            className: "flex w-full  justify-between"
+            className: "flex w-full  justify-between",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
+              className: "flex gap-4 pt-4",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
+                className: "flex items-center gap-4",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                  value: "\u0645\u0646 :"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                  type: "date",
+                  name: "from",
+                  value: data.from,
+                  className: "mt-1 block w-full ",
+                  autoComplete: "username",
+                  isFocused: true,
+                  handleChange: onHandleChange
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
+                className: "flex items-center gap-4",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                  value: "\u0627\u0644\u0649 :"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                  type: "date",
+                  name: "to",
+                  value: data.to,
+                  className: "mt-1 block w-full",
+                  autoComplete: "username",
+                  isFocused: true,
+                  handleChange: onHandleChange
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
+                className: "flex items-center gap-2",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_8__["default"], {
+                  className: "bg-blue-500 hover:bg-blue-600",
+                  handleClick: submit,
+                  children: "\u0628\u062D\u062B"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
+                  className: "inline-flex items-center px-4 py-2 bg-red-500 hover:bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 $",
+                  href: "/items?page=1",
+                  children: "\u062A\u0635\u0641\u064A\u0631"
+                })]
+              })]
+            })
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_Components_Table__WEBPACK_IMPORTED_MODULE_4__["default"], {
           data: items.data,
@@ -6800,7 +6836,7 @@ function index(_ref) {
 
   var submit = function submit(e) {
     e.preventDefault();
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_10__.Inertia.get("/logs?=", {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_10__.Inertia.get("/items/inventory?=", {
       date_from: data.from,
       date_to: data.to
     }, {

@@ -35,20 +35,14 @@ export default function index({ items, auth, errors, success }) {
         }
     }, [success]);
 
-    // const submit = (e) => {
-    //     e.preventDefault();
-    //     Inertia.get(
-    //         `/items?`,
-    //         { date_from: data.from, date_to: data.to },
-    //         { replaces: true, preserveState: true }
-    //     );
-    //     Swal.fire({
-    //         title: errors.data.name,
-    //         toast: true,
-    //         html: "I will close in <b></b> milliseconds.",
-    //         timer: 2000,
-    //     });
-    // };
+    const submit = (e) => {
+        e.preventDefault();
+        Inertia.get(
+            `/items?`,
+            { date_from: data.from, date_to: data.to },
+            { replaces: true, preserveState: true }
+        );
+    };
     return (
         <Authenticated auth={auth} errors={errors}>
             <Head title="المواد" />
@@ -62,13 +56,8 @@ export default function index({ items, auth, errors, success }) {
                         <TableButtons text="إضافة مادة" url="/items/create" />
                     </div>
                     <div className="flex flex-col justify-end pr-32 items-start max-w-6xl">
-                        {/* <div className="flex gap-8 w-full justify-between">
-                            <Filters text="اخر يوم :" />
-                            <Filters text="اخر اسبوع :" />
-                        </div> */}
                         <div className="flex w-full  justify-between">
-                            {/* <Filters text="اخر شهر :" /> */}
-                            {/* <div className="flex gap-4 pt-4">
+                            <div className="flex gap-4 pt-4">
                                 <div className="flex items-center gap-4">
                                     <Label value="من :"></Label>
                                     <Input
@@ -106,7 +95,7 @@ export default function index({ items, auth, errors, success }) {
                                         تصفير
                                     </Link>
                                 </div>
-                            </div> */}
+                            </div>
                         </div>
                     </div>
 

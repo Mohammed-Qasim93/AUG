@@ -135,7 +135,6 @@ export default function Add({ auth, errors, success }) {
                                                             <Button className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600 focus:outline-none ">
                                                                 إضافة
                                                             </Button>
-                                                            <a href="/print">ef</a>
                                                         </div>
                                                     </div>
                                                 </form>
