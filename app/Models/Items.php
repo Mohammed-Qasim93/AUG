@@ -19,7 +19,7 @@ class Items extends Model
         return $this->hasMany(logs::class);
     }
 
-    public function category(){
+    public function categories(){
         return $this->belongsTo(Categories::class);
     }
 }
