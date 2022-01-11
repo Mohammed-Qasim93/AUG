@@ -13,11 +13,12 @@ export default function Add({ auth, errors, categories }) {
     const { data, setData, post } = useForm({
         name: "",
         categories_id: "",
-        qty: "",
+        qty: "1",
         note: "",
         desc: "",
-        constate: "",
-        inventory: "",
+        state: "",
+        constate: "0",
+        inventory: "0",
     });
 
     let stateArr = [
@@ -166,8 +167,8 @@ export default function Add({ auth, errors, categories }) {
                                                                     >
                                                                         العدد
                                                                     </label>
-                                                                    <Input
-                                                                        handleChange={
+                                                                    <input
+                                                                        onChange={
                                                                             onHandleChange
                                                                         }
                                                                         type="number"
@@ -225,7 +226,10 @@ export default function Add({ auth, errors, categories }) {
                                                                                 data.inventory
                                                                             }
                                                                             checked={
-                                                                                data.inventory
+                                                                                data.inventory ===
+                                                                                "0"
+                                                                                    ? false
+                                                                                    : true
                                                                             }
                                                                             handleChange={
                                                                                 onHandleChange
@@ -252,7 +256,10 @@ export default function Add({ auth, errors, categories }) {
                                                                                 data.constate
                                                                             }
                                                                             checked={
-                                                                                data.constate
+                                                                                data.constate ===
+                                                                                "0"
+                                                                                    ? false
+                                                                                    : true
                                                                             }
                                                                             handleChange={
                                                                                 onHandleChange

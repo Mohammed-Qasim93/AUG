@@ -6049,11 +6049,12 @@ function Add(_ref) {
   var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.useForm)({
     name: "",
     categories_id: "",
-    qty: "",
+    qty: "1",
     note: "",
     desc: "",
-    constate: "",
-    inventory: ""
+    state: "",
+    constate: "0",
+    inventory: "0"
   }),
       data = _useForm.data,
       setData = _useForm.setData,
@@ -6186,8 +6187,8 @@ function Add(_ref) {
                                   htmlFor: "qty",
                                   className: "block text-sm font-medium text-gray-700",
                                   children: "\u0627\u0644\u0639\u062F\u062F"
-                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
-                                  handleChange: onHandleChange,
+                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("input", {
+                                  onChange: onHandleChange,
                                   type: "number",
                                   min: "1",
                                   max: data.qty,
@@ -6223,7 +6224,7 @@ function Add(_ref) {
                                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_Checkbox__WEBPACK_IMPORTED_MODULE_6__["default"], {
                                     name: "inventory",
                                     value: data.inventory,
-                                    checked: data.inventory,
+                                    checked: data.inventory === "0" ? false : true,
                                     handleChange: onHandleChange
                                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("label", {
                                     htmlFor: "state",
@@ -6236,7 +6237,7 @@ function Add(_ref) {
                                     name: "constate",
                                     disabled: data.inventory === true ? true : false,
                                     value: data.constate,
-                                    checked: data.constate,
+                                    checked: data.constate === "0" ? false : true,
                                     handleChange: onHandleChange
                                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("label", {
                                     htmlFor: "state",
