@@ -102,7 +102,6 @@ export default function index({ items, auth, errors, success }) {
                         data={items.data}
                         paginate={items}
                         takeout="true"
-                        url="items"
                         auth={auth}
                         tableHeaders={[
                             "رقم الماده",

@@ -130,7 +130,7 @@ export default function Table({
                                         />
                                     </th>
                                 ) : null}
-                                {item.no && (
+                                {item.qty && (
                                     <td className="py-4 print:text-xs print:font-thin">
                                         {item.id}
                                     </td>
@@ -140,12 +140,12 @@ export default function Table({
                                         {key + 1}
                                     </td>
                                 )}
-                                {logs && (
+                                {(logs || url === "items" || takeout) && (
                                     <td className="py-4 print:p-1 print:text-xs print:font-thin">
                                         {item.name}
                                     </td>
                                 )}
-                                {!logs && (
+                                {!logs && url === "user" && (
                                     <td className="py-4">
                                         {auth.user.isAdmin === 1 ? (
                                             <Link
@@ -180,9 +180,9 @@ export default function Table({
                                     </td>
                                 )}
 
-                                {item.category && (
+                                {(item.categories || takeout) && (
                                     <td className="py-4 print:p-1 print:text-xs print:font-thin">
-                                        {item.category}
+                                        {item.categories.name}
                                     </td>
                                 )}
 
@@ -203,22 +203,54 @@ export default function Table({
                                     )}
                                 {(takeout || url === "items") && (
                                     <td className="py-4 print:text-xs print:font-thin">
-                                        {item.state === 1 ? (
-                                            <span className="text-red-500 font-tajawal-Black">
-                                                مستهلك
+                                        {item.constate === 1 ? (
+                                            <span className="text-green-500 font-tajawal-Black">
+                                                قابل للاستهلاك
                                             </span>
                                         ) : (
-                                            <span className="text-green-500">
-                                                غير مستهلك
+                                            <span className="text-red-500">
+                                                غير قابل للاستهلاك
                                             </span>
                                         )}
                                     </td>
                                 )}
-                                {!takeout && item.category && (
-                                    <td className="py-4 print:p-1 print:text-xs print:font-thin text-lg">
-                                        {moment(item.created_at).format("L")}
+                                {url === "items" && (
+                                    <td className="py-4 print:text-xs print:font-thin">
+                                        {item.state == 1 && (
+                                            <span className="text-green-500 font-tajawal-Black">
+                                                جيده
+                                            </span>
+                                        )}
+                                        {item.state == 2 && (
+                                            <span className="text-orange-500 font-tajawal-Black">
+                                                متوسطه
+                                            </span>
+                                        )}
+                                        {item.state == 3 && (
+                                            <span className="text-yellow-500 font-tajawal-Black">
+                                                رديئة
+                                            </span>
+                                        )}
+                                        {item.state == 4 && (
+                                            <span className="text-green-500 font-tajawal-Black">
+                                                يعمل
+                                            </span>
+                                        )}
+                                        {item.state == 5 && (
+                                            <span className="text-red-500 font-tajawal-Black">
+                                                لايعمل
+                                            </span>
+                                        )}
                                     </td>
                                 )}
+                                {(takeout && item.category) ||
+                                    (url === "items" && (
+                                        <td className="py-4 print:p-1 print:text-xs print:font-thin text-lg">
+                                            {moment(item.created_at).format(
+                                                "L"
+                                            )}
+                                        </td>
+                                    ))}
                                 {logs && (
                                     <td className="py-4 print:p-1 print:text-xs print:font-thin text-lg">
                                         {moment(item.outDate).format(
@@ -236,7 +268,7 @@ export default function Table({
                                             موظف
                                         </td>
                                     ))}
-                                {!takeout && !logs && (
+                                {!takeout && !logs && url === "items" && (
                                     <td className="py-4 flex items-center justify-center">
                                         <Link
                                             href={`/${url}/${item.id}/edit`}
@@ -285,7 +317,7 @@ export default function Table({
 
                                 {logs && (
                                     <td className="py-2 print:hidden">
-                                        {item.state === 1 ? (
+                                        {item.constate === 1 ? (
                                             <span className="text-red-500 font-tajawal-Black">
                                                 مستهلك
                                             </span>

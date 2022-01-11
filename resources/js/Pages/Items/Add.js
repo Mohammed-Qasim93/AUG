@@ -173,9 +173,6 @@ export default function Add({ auth, errors, categories }) {
                                                                         }
                                                                         type="number"
                                                                         min="1"
-                                                                        max={
-                                                                            data.qty
-                                                                        }
                                                                         value={
                                                                             data.qty
                                                                         }
