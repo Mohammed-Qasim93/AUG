@@ -214,7 +214,7 @@ export default function Table({
                                         )}
                                     </td>
                                 )}
-                                {url === "items" && (
+                                {(url === "items" || takeout) && (
                                     <td className="py-4 print:text-xs print:font-thin">
                                         {item.state == 1 && (
                                             <span className="text-green-500 font-tajawal-Black">

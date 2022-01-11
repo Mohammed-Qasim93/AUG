@@ -27,14 +27,18 @@ export default function index({ items, auth, errors, success }) {
         }
     }, [success]);
 
+    useEffect(() => {
+        data.length > 0 &&
+            Inertia.get(
+                `/takeout?`,
+                { item: data },
+                { replaces: true, preserveState: true }
+            );
+    }, [data]);
+
     const onHandleChange = (e) => {
         e.preventDefault();
         setData(e.target.value);
-        Inertia.get(
-            `/takeout?`,
-            { item: data },
-            { replaces: true, preserveState: true }
-        );
     };
 
     const submit = (e) => {
@@ -68,7 +72,6 @@ export default function index({ items, auth, errors, success }) {
                                         name="search"
                                         value={data}
                                         className="mt-1 block w-full"
-                                        autoComplete="username"
                                         isFocused={true}
                                         handleChange={onHandleChange}
                                     />
@@ -108,6 +111,7 @@ export default function index({ items, auth, errors, success }) {
                             "اسم الماده",
                             "الصنف",
                             "الكمية",
+                            "الاستهلاكية",
                             "الحاله",
                         ]}
                     />

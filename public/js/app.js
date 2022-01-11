@@ -4264,7 +4264,7 @@ function Table(_ref) {
                   className: "text-red-500",
                   children: "\u063A\u064A\u0631 \u0642\u0627\u0628\u0644 \u0644\u0644\u0627\u0633\u062A\u0647\u0644\u0627\u0643"
                 })
-              }), url === "items" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("td", {
+              }), (url === "items" || takeout) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("td", {
                 className: "py-4 print:text-xs print:font-thin",
                 children: [item.state == 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("span", {
                   className: "text-green-500 font-tajawal-Black",
@@ -7481,16 +7481,18 @@ function index(_ref) {
       });
     }
   }, [success]);
-
-  var onHandleChange = function onHandleChange(e) {
-    e.preventDefault();
-    setData(e.target.value);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_10__.Inertia.get("/takeout?", {
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    data.length > 0 && _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_10__.Inertia.get("/takeout?", {
       item: data
     }, {
       replaces: true,
       preserveState: true
     });
+  }, [data]);
+
+  var onHandleChange = function onHandleChange(e) {
+    e.preventDefault();
+    setData(e.target.value);
   };
 
   var submit = function submit(e) {
@@ -7537,7 +7539,6 @@ function index(_ref) {
                   name: "search",
                   value: data,
                   className: "mt-1 block w-full",
-                  autoComplete: "username",
                   isFocused: true,
                   handleChange: onHandleChange
                 })]
@@ -7569,7 +7570,7 @@ function index(_ref) {
           paginate: items,
           takeout: "true",
           auth: auth,
-          tableHeaders: ["رقم الماده", "اسم الماده", "الصنف", "الكمية", "الحاله"]
+          tableHeaders: ["رقم الماده", "اسم الماده", "الصنف", "الكمية", "الاستهلاكية", "الحاله"]
         })]
       })]
     })]
