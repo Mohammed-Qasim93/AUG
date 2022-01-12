@@ -137,11 +137,11 @@ class TakeOutController extends Controller
                     $mpdf->WriteHTML('
                         <p class="lead">&bull; ' . $data->items->name . ' - ' . $outType[$i] . ' </p>
                     ');
-                    if($data->outType == true){
-                        $mpdf->WriteHTML('
-                            <p class="lead"> - بواسطة سائق السيارة ( ' . $name . ' ) الذي يقود مركبة نوع ( ' . $car . ' ) المرقمة ( ' . $num . ' ) .</p>
-                        ');
-                    }
+                }
+                if(request('outType') == true){
+                    $mpdf->WriteHTML('
+                        <p class="lead"> - بواسطة سائق السيارة ( ' . $name . ' ) الذي يقود مركبة نوع ( ' . $car . ' ) المرقمة ( ' . $num . ' ) .</p>
+                    ');
                 }
                 
                 $mpdf->WriteHTML('
