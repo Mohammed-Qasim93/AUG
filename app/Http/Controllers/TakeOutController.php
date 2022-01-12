@@ -27,9 +27,10 @@ class TakeOutController extends Controller
         if($request->data) {
             $items=[];
             for ($i = 0; $i < count($request->data) ; $i++){
-                $item = Items::findOrFail($request->data[$i])->with('categories');
+                $item = Items::with('categories')->findOrFail($request->data[$i]);
                 $items[$i] = $item;
             }
+            dd($items);
             return Inertia::render('TakeOut/Checkout', [
                 'items' => $items,
             ]);

@@ -37,8 +37,8 @@ Route::resource('categories', CategoriesController::class)->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::get('/takeout', [TakeOutController::class, 'index'])->name('takeout.index');               // Index
-    Route::get('/checkout', [TakeOutController::class, 'checkout'])->name('takeout.checkout');               // Index
-    // Route::get('/checkout', [TakeOutController::class, 'refresh'])->name('takeout.refresh');               // Index
+    Route::post('/checkout', [TakeOutController::class, 'checkout'])->name('takeout.checkout');               // Index
+    Route::get('/checkout', [TakeOutController::class, 'refresh'])->name('takeout.refresh');               // Index
     Route::post('/removeItem', [TakeOutController::class, 'removeItem'])->name('takeout.removeItem');               // Index
 });
 
