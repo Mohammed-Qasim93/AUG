@@ -24,6 +24,7 @@ class LogsController extends Controller
     {   
         return Inertia::render('Logs/Index', [
             'logs' => logs::with('items')->orderBy('created_at', 'desc')->paginate(10)->withQueryString(),
+            'categories' => Categories::all(),
         ]);
     }
 
