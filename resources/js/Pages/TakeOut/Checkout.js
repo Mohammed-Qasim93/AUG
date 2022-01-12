@@ -61,7 +61,7 @@ export default function Checkout({ auth, errors, items, success }) {
     const submit = (e) => {
         console.log(data);
         e.preventDefault();
-        const id = localStorage.getItem("checked");
+        const id = JSON.parse(localStorage.getItem("checked"));
 
         Inertia.post(`/logs`, data, {
             onFinish: () => {

@@ -7516,7 +7516,7 @@ function Checkout(_ref) {
   var submit = function submit(e) {
     console.log(data);
     e.preventDefault();
-    var id = localStorage.getItem("checked");
+    var id = JSON.parse(localStorage.getItem("checked"));
     _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_11__.Inertia.post("/logs", data, {
       onFinish: function onFinish() {
         _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_11__.Inertia.visit("/print?p=outpdf&n=".concat(data.drivername, "&num=").concat(data.vehiclenumber, "&car=").concat(data.vehicletype, "&outtype=").concat(data.outtype, "&id=").concat(id.length));
