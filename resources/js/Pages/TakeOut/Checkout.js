@@ -61,14 +61,14 @@ export default function Checkout({ auth, errors, items, success }) {
     const submit = (e) => {
         console.log(data);
         e.preventDefault();
-        // if (data.items.length === items.length) {
+        const id = localStorage.getItem("checked");
 
         Inertia.post(`/logs`, data, {
             onFinish: () => {
-                localStorage.removeItem("checked");
                 Inertia.visit(
-                    `/print?p=outpdf&n=${data.drivername}&num=${data.vehiclenumber}&car=${data.vehicletype}&outtype=${data.outtype}`
+                    `/print?p=outpdf&n=${data.drivername}&num=${data.vehiclenumber}&car=${data.vehicletype}&outtype=${data.outtype}&id=${id.length}`
                 );
+                localStorage.removeItem("checked");
             },
         });
 

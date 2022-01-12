@@ -79,7 +79,7 @@ export default function Login({ status, canResetPassword }) {
                     </small>
                 </div>
 
-                <div className="block mt-4">
+                <div className="flex w-full items-center justify-between mt-4">
                     <label className="flex items-center ">
                         <Checkbox
                             name="remember"
@@ -91,6 +91,12 @@ export default function Login({ status, canResetPassword }) {
                             تذكرني
                         </span>
                     </label>
+                    <Link
+                        href="/register"
+                        className="mr-2 text-sm font-tajawal-light font-bold text-gray-600"
+                    >
+                        إنشاء حساب جديد
+                    </Link>
                 </div>
 
                 <div className="flex items-center justify-center mt-4">
