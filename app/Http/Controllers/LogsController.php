@@ -21,32 +21,9 @@ class LogsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $query = logs::query();
-        if(request('logs')) {
-            if(request('logs') === 'yesterday'){
-                $query->whereDate('created_at', Carbon::yesterday())->orderBy('created_at', 'desc')->with('items')->paginate(10)->withQueryString();
-
-            }elseif(request('logs') === 'today'){
-                $date = Carbon::now()->subDay() . "," . now();
-                $date = explode(',', $date);
-                $query->whereBetween('created_at', $date)->orderBy('created_at', 'desc')->with('items')->paginate(10)->withQueryString();
-
-            }elseif(request('logs') === 'week'){
-                $date = Carbon::now()->subWeek() . "," . now();
-                $date = explode(',', $date);
-                $query->whereBetween('created_at', $date)->orderBy('created_at', 'desc')->with('items')->paginate(10)->withQueryString();
-
-            }elseif(request('logs') === 'month'){
-                $date = Carbon::now()->subMonthsNoOverflow() . "," . now();
-                $date = explode(',', $date);
-                $query->whereBetween('created_at', $date)->orderBy('created_at', 'desc')->with('items')->paginate(10)->withQueryString();
-
-            }
-        }
-        
+    {         
         return Inertia::render('Logs/Index', [
-            'logs' => $query ? $query->orderBy('created_at', 'desc')->with('items')->paginate(10)->withQueryString() : logs::orderBy('created_at', 'desc')->with('items')->paginate(10)->withQueryString(),
+            'logs' => logs::with('items')->orderBy('created_at', 'desc')->paginate(10)->withQueryString(),
         ]);
     }
 

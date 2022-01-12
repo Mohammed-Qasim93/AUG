@@ -6191,8 +6191,29 @@ function Dashboard(_ref) {
             })]
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-          className: "mx-auto mt-5 text-center",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+          className: "mx-auto mt-10 text-center",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("a", {
+            className: "flex justify-center space-x-3",
+            dir: "ltr",
+            href: "https://horizondev-7ul7z3h2p-mohammed-qasim93.vercel.app/",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+              children: "0770 669 4397"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("svg", {
+              xmlns: "http://www.w3.org/2000/svg",
+              width: "16",
+              height: "16",
+              fill: "currentColor",
+              "class": "bi bi-box-arrow-left opacity-50",
+              viewBox: "0 0 16 16",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("path", {
+                "fill-rule": "evenodd",
+                d: "M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("path", {
+                "fill-rule": "evenodd",
+                d: "M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"
+              })]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
             children: "\u0641\u0631\u064A\u0642 \u0627\u0644\u062F\u0639\u0645 \u0648\u0627\u0644\u062A\u0637\u0648\u064A\u0631 \u0644\u0634\u0631\u0643\u0629 \xA9 HorizonDev IQ"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("a", {
             className: "flex justify-center space-x-3",
