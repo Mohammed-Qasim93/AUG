@@ -21,17 +21,17 @@ class ItemsController extends Controller
         if(request('date_from') > request('date_to')){
             return redirect()->back()->with('success', 'تأكد من التاريخ المحدد');
         }else{
-<<<<<<< HEAD
-            $query = Items::query();
-=======
-            $query = Items::query()->with('categories')->select('id', 'name', 'qty', 'state', 'constate', 'created_at', 'categories_id')->where('inventory', false)->orWhere('inventory', null);
->>>>>>> 1738af4b30e3a0675b9250115440f12857668082
+            $query = Items::query()->select('id', 'name', 'qty', 'state', 'constate', 'created_at', 'categories_id')->where('inventory', false)->orWhere('inventory', null)->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
             $date = request('date_from') . "," . request('date_to');
             $date = explode(',', $date);
             $query->whereBetween('created_at', $date);
         }
-        return Inertia::render('Items/Index', [
-            'items' => request('date_from') && request('date_to') ? $query->with('categories')->select('id', 'name', 'qty', 'state', 'constate', 'created_at', 'categories_id')->where('inventory', false)->orWhere('inventory', null)->orderBy('created_at', 'desc')->paginate(10)->withQueryString() : Items::with('categories')->select('id', 'name', 'qty', 'state', 'constate', 'created_at', 'categories_id')->where('inventory', false)->orWhere('inventory', null)->orderBy('created_at', 'desc')->paginate(10)->withQueryString(),
+        if(request('s')){
+            $query = Items::query();
+            $query = Items::where('name', 'LIKE', '%'.request('s').'%')->orWhere('id', request('s'))->get();
+        }
+        return Inertia::render('Items/Inventory', [
+            'items' => request('date_from') && request('date_to') || request('s') ? $query->select('id', 'name', 'qty', 'state', 'constate', 'created_at', 'categories_id')->where('inventory', false)->orWhere('inventory', null)->orderBy('created_at', 'desc')->paginate(10)->withQueryString() : Items::select('id', 'name', 'qty', 'state', 'constate', 'created_at', 'categories_id')->where('inventory', false)->orWhere('inventory', null)->orderBy('created_at', 'desc')->paginate(10)->withQueryString(),
         ]);
     }
 
@@ -39,13 +39,17 @@ class ItemsController extends Controller
         if(request('date_from') > request('date_to')){
             return redirect()->back()->with('success', 'تأكد من التاريخ المحدد');
         }else{
-            $query = Items::query()->with('categories')->select('id', 'name', 'qty', 'state', 'constate', 'created_at', 'categories_id')->with('categories')->where('inventory', true);
+            $query = Items::query()->select('id', 'name', 'qty', 'state', 'constate', 'created_at', 'categories_id')->where('inventory', true);
             $date = request('date_from') . "," . request('date_to');
             $date = explode(',', $date);
             $query->whereBetween('created_at', $date);
         }
+        if(request('s')){
+            $query = Items::query();
+            $query = Items::where('name', 'LIKE', '%'.request('s').'%')->orWhere('id', request('s'))->get();
+        }
         return Inertia::render('Items/Inventory', [
-            'items' => request('date_from') && request('date_to') ? $query->with('categories')->select('id', 'name', 'qty', 'state', 'constate', 'created_at', 'categories_id')->with('categories')->where('inventory', true)->orderBy('created_at', 'desc')->paginate(10)->withQueryString() : Items::with('categories')->select('id', 'name', 'qty', 'state', 'constate', 'created_at', 'categories_id')->where('inventory', true)->orderBy('created_at', 'desc')->paginate(10)->withQueryString(),
+            'items' => request('date_from') && request('date_to') || request('s') ? $query->select('id', 'name', 'qty', 'state', 'constate', 'created_at', 'categories_id')->where('inventory', true)->orderBy('created_at', 'desc')->paginate(10)->withQueryString() : Items::select('id', 'name', 'qty', 'state', 'constate', 'created_at', 'categories_id')->where('inventory', true)->orderBy('created_at', 'desc')->paginate(10)->withQueryString(),
         ]);
     }
 
