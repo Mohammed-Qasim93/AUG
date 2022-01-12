@@ -66,9 +66,10 @@ class TakeOutController extends Controller
                 return Excel::download(new EXCELs, 'excel_file.xlsx');
             }
             elseif(request('p') == 'outpdf'){
+                dd(request()->all());
                 // $outType = logs::select('outType')->latest()->first();
-
-                $out = logs::with('items')->where('outID', $outID)->get();
+                $length = logs::select('id')->latest()->first();
+                $out = logs::with('items')->where('id', $length - request('id'))->get();
                 $Time = Carbon::parse($out[0]->outDate)->format('A h:m:s');
                 $Date = Carbon::parse($out[0]->outDate)->format('d-m-Y');
                 // $outType = [];
