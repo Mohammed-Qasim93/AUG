@@ -64,7 +64,7 @@ export default function Add({ auth, errors, success }) {
     return (
         <>
             <Authenticated auth={auth} errors={errors}>
-                <Head title="اضافة مادة" />
+                <Head title="اضافة صنف" />
                 <div className="flex">
                     <DashboardBar auth={auth} />
                     <div className="flex-1 flex flex-col max-w-6xl">

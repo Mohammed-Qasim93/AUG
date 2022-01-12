@@ -5511,7 +5511,7 @@ function Add(_ref) {
       auth: auth,
       errors: errors,
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Head, {
-        title: "\u0627\u0636\u0627\u0641\u0629 \u0645\u0627\u062F\u0629"
+        title: "\u0627\u0636\u0627\u0641\u0629 \u0635\u0646\u0641"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
         className: "flex",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_DashboardBar__WEBPACK_IMPORTED_MODULE_5__["default"], {
@@ -6885,6 +6885,7 @@ function index(_ref) {
       auth = _ref.auth,
       errors = _ref.errors,
       success = _ref.success;
+  console.log(items);
 
   var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.useForm)({
     from: "",
@@ -6935,8 +6936,8 @@ function index(_ref) {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
           className: "flex justify-between items-end h-20 ",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_Components_TableButtons__WEBPACK_IMPORTED_MODULE_5__["default"], {
-            text: "\u0625\u0636\u0627\u0641\u0629 \u0645\u0627\u062F\u0629",
-            url: "/items/create"
+            text: "\u0625\u0636\u0627\u0641\u0629 \u0635\u0646\u0641",
+            url: "/categories/create"
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
           className: "flex flex-col justify-end pr-32 items-start max-w-6xl",
@@ -7166,7 +7167,7 @@ function index(_ref) {
             paginate: items,
             url: "items",
             auth: auth,
-            tableHeaders: ["التسلسل", "الاسم", "اسم الماده", "الصنف", "الرقم التسلسلي", "الكميه", "التاريخ"]
+            tableHeaders: ["التسلسل", "اسم الماده", "الصنف", "الكميه", "الاستهلاكية", "الحاله", "التاريخ", "العمليات"]
           })
         })]
       })]
@@ -7342,7 +7343,7 @@ function index(_ref) {
             url: "logs",
             logs: true,
             auth: auth,
-            tableHeaders: ["التسلسل", "الاسم", "اسم الماده", "الصنف", "الرقم التسلسلي", "الكميه", "التاريخ", "ادخال مخزني"]
+            tableHeaders: ["التسلسل", "اسم المخول", "اسم المستلم", "اسم الماده", "الصنف", "الحالة", "الاستهلاكية", "الكميه", "التاريخ", "ادخال مخزني"]
           })
         })]
       })]
