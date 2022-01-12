@@ -66,8 +66,7 @@ class TakeOutController extends Controller
                 return Excel::download(new EXCELs, 'excel_file.xlsx');
             }
             elseif(request('p') == 'outpdf'){
-                dd(request()->all());
-                $outID = logs::count();
+                $outID = logs::where('outID', request('id'))->get();
                 dd($outID);
                 dd(logs::latest()->limit(1)->get());
                 $out = logs::with('items')->where('outID', $outID)->get();
