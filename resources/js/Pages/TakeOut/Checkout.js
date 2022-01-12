@@ -67,11 +67,7 @@ export default function Checkout({ auth, errors, items, success }) {
             onFinish: () => {
                 localStorage.removeItem("checked");
                 Inertia.visit(
-                    `/print?p=outpdf&n=${data.drivername}&num=${
-                        data.vehiclenumber
-                    }&car=${data.vehicletype}&outtype=${
-                        data.outtype
-                    }&id=${data.items.length()}`
+                    `/print?p=outpdf&n=${data.drivername}&num=${data.vehiclenumber}&car=${data.vehicletype}&outtype=${data.outtype}`
                 );
             },
         });
