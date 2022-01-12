@@ -21,14 +21,14 @@ class ItemsController extends Controller
         if(request('date_from') > request('date_to')){
             return redirect()->back()->with('success', 'تأكد من التاريخ المحدد');
         }else{
-            $query = Items::query()->with('categories')->select('id', 'name', 'qty', 'state', 'constate', 'created_at', 'categories_id')->where('inventory', false)->orWhere('inventory', null);
+            $query = Items::query()->with('categories')->where('inventory', false)->orWhere('inventory', null);
             $query = Items::query();
             $date = request('date_from') . "," . request('date_to');
             $date = explode(',', $date);
             $query->whereBetween('created_at', $date);
         }
         return Inertia::render('Items/Index', [
-            'items' => request('date_from') && request('date_to') ? $query->with('categories')->select('id', 'name', 'qty', 'state', 'constate', 'created_at', 'categories_id')->where('inventory', false)->orWhere('inventory', null)->orderBy('created_at', 'desc')->paginate(10)->withQueryString() : Items::with('categories')->select('id', 'name', 'qty', 'state', 'constate', 'created_at', 'categories_id')->where('inventory', false)->orWhere('inventory', null)->orderBy('created_at', 'desc')->paginate(10)->withQueryString(),
+            'items' => request('date_from') && request('date_to') ? $query->with('categories')->where('inventory', false)->orWhere('inventory', null)->orderBy('created_at', 'desc')->paginate(10)->withQueryString() : Items::with('categories')->where('inventory', false)->orWhere('inventory', null)->orderBy('created_at', 'desc')->paginate(10)->withQueryString(),
         ]);
     }
 
@@ -36,13 +36,13 @@ class ItemsController extends Controller
         if(request('date_from') > request('date_to')){
             return redirect()->back()->with('success', 'تأكد من التاريخ المحدد');
         }else{
-            $query = Items::query()->with('categories')->select('id', 'name', 'qty', 'state', 'constate', 'created_at', 'categories_id')->with('categories')->where('inventory', true);
+            $query = Items::query()->with('categories')->with('categories')->where('inventory', true);
             $date = request('date_from') . "," . request('date_to');
             $date = explode(',', $date);
             $query->whereBetween('created_at', $date);
         }
         return Inertia::render('Items/Inventory', [
-            'items' => request('date_from') && request('date_to') ? $query->with('categories')->select('id', 'name', 'qty', 'state', 'constate', 'created_at', 'categories_id')->with('categories')->where('inventory', true)->orderBy('created_at', 'desc')->paginate(10)->withQueryString() : Items::with('categories')->select('id', 'name', 'qty', 'state', 'constate', 'created_at', 'categories_id')->where('inventory', true)->orderBy('created_at', 'desc')->paginate(10)->withQueryString(),
+            'items' => request('date_from') && request('date_to') ? $query->with('categories')->with('categories')->where('inventory', true)->orderBy('created_at', 'desc')->paginate(10)->withQueryString() : Items::with('categories')->where('inventory', true)->orderBy('created_at', 'desc')->paginate(10)->withQueryString(),
         ]);
     }
 
