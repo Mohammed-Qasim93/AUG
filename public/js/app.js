@@ -7377,18 +7377,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_Pagination__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../Components/Pagination */ "./resources/js/Components/Pagination.js");
 /* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 
@@ -7409,21 +7397,21 @@ function Checkout(_ref) {
       errors = _ref.errors,
       items = _ref.items,
       success = _ref.success;
+  console.log(items);
 
   var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.useForm)({
-    receiver: "",
-    sender: "",
+    name: "",
+    authname: "",
     note: "",
+    vehiclenumber: "",
+    vehicletype: "",
+    drivername: "",
+    outtype: "",
     items: []
   }),
       data = _useForm.data,
       setData = _useForm.setData,
-      post = _useForm.post;
-
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
-      _useState2 = _slicedToArray(_useState, 2),
-      qty = _useState2[0],
-      setQty = _useState2[1]; // const increment = (e) => {
+      post = _useForm.post; // const increment = (e) => {
   //     setData(value + 1);
   // };
 
@@ -7453,6 +7441,7 @@ function Checkout(_ref) {
 
 
   var submit = function submit(e) {
+    console.log(data);
     e.preventDefault(); // if (data.items.length === items.length) {
 
     _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_11__.Inertia.post("/logs", data, {
@@ -7535,28 +7524,28 @@ function Checkout(_ref) {
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
                             handleChange: onHandleChange,
                             type: "text",
-                            name: "receiver",
-                            value: data.receiver,
+                            name: "name",
+                            value: data.name,
                             className: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("small", {
                             className: "text-red-500 text-sm",
-                            children: errors.receiver
+                            children: errors.name
                           })]
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
                           className: "col-span-6",
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("label", {
-                            htmlFor: "name",
+                            htmlFor: "authname",
                             className: "block text-sm font-medium text-gray-700",
                             children: "\u0627\u0633\u0645 \u0627\u0644\u0645\u062E\u0648\u0644"
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
                             handleChange: onHandleChange,
                             type: "text",
-                            name: "sender",
-                            value: data.sender,
+                            name: "authname",
+                            value: data.authname,
                             className: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("small", {
                             className: "text-red-500 text-sm",
-                            children: errors.sender
+                            children: errors.authname
                           })]
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
                           className: "col-span-6",
@@ -7573,24 +7562,87 @@ function Checkout(_ref) {
                             autoComplete: "street-address",
                             className: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                           })]
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
+                          className: "col-span-6 flex items-center gap-x-2 ",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Checkbox__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                            handleChange: onHandleChange,
+                            name: "outtype",
+                            value: data.outtype,
+                            className: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("label", {
+                            htmlFor: "outtype",
+                            className: "block text-sm font-medium text-gray-700",
+                            children: "\u062E\u0627\u0631\u062C \u0627\u0644\u0634\u0631\u0643\u0629"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("small", {
+                            className: "text-red-500 text-sm",
+                            children: errors.outtype
+                          })]
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
+                          className: "".concat(data.outtype ? " col-span-6 grid gap-6" : " hidden"),
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
+                            className: "col-span-6",
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("label", {
+                              htmlFor: "name",
+                              className: "block text-sm font-medium text-gray-700",
+                              children: "\u0627\u0633\u0645 \u0627\u0644\u0633\u0627\u0626\u0642"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                              handleChange: onHandleChange,
+                              type: "text",
+                              name: "drivername",
+                              value: data.drivername,
+                              className: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("small", {
+                              className: "text-red-500 text-sm",
+                              children: errors.drivername
+                            })]
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
+                            className: "col-span-6",
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("label", {
+                              htmlFor: "vehicletype",
+                              className: "block text-sm font-medium text-gray-700",
+                              children: "\u0646\u0648\u0639 \u0627\u0644\u0645\u0631\u0643\u0628\u0629"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                              handleChange: onHandleChange,
+                              type: "text",
+                              name: "vehicletype",
+                              value: data.vehicletype,
+                              className: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("small", {
+                              className: "text-red-500 text-sm",
+                              children: errors.sender
+                            })]
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
+                            className: "col-span-6",
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("label", {
+                              htmlFor: "vehiclenumber",
+                              className: "block text-sm font-medium text-gray-700",
+                              children: "\u0631\u0642\u0645 \u0627\u0644\u0645\u0631\u0643\u0628\u0629"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                              handleChange: onHandleChange,
+                              type: "text",
+                              name: "vehiclenumber",
+                              value: data.vehiclenumber,
+                              className: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("small", {
+                              className: "text-red-500 text-sm",
+                              children: errors.sender
+                            })]
+                          })]
                         })]
                       })
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
                       className: "px-4 py-3 flex justify-around bg-gray-50 text-right sm:px-6",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
-                        className: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600 focus:outline-none ",
-                        children: "\u0627\u062E\u0631\u0627\u062C \u0645\u0646 \u0627\u0644\u0645\u062E\u0632\u0646"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
                         className: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none ",
-                        children: "\u0627\u062E\u0631\u0627\u062C \u0645\u0646 \u0627\u0644\u0645\u0648\u0642\u0639"
-                      })]
+                        children: "\u0627\u062E\u0631\u0627\u062C"
+                      })
                     })]
                   })
                 })
               })
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
-            className: "flex flex-col pt-8 pr-32",
+            className: "flex flex-col py-8 pr-32",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("table", {
               className: "max-w-5xl divide-y text-center divide-gray-200",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("thead", {
@@ -7641,15 +7693,15 @@ function Checkout(_ref) {
                           d: "M6 18L18 6M6 6l12 12"
                         })
                       })
-                    }), item.no && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("td", {
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("td", {
                       className: "pb-4",
-                      children: item.no
-                    }), item.no && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("td", {
+                      children: item.id
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("td", {
                       className: "pb-4",
                       children: item.name
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("td", {
                       className: "py-4 ",
-                      children: item.category
+                      children: item.categories.name
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("td", {
                       className: "flex items-center justify-center py-4 text-lg",
                       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("input", {

@@ -12,14 +12,17 @@ import Pagination from "../../Components/Pagination";
 import { Inertia } from "@inertiajs/inertia";
 
 export default function Checkout({ auth, errors, items, success }) {
+    console.log(items);
     const { data, setData, post } = useForm({
-        receiver: "",
-        sender: "",
+        name: "",
+        authname: "",
         note: "",
+        vehiclenumber: "",
+        vehicletype: "",
+        drivername: "",
+        outtype: "",
         items: [],
     });
-
-    const [qty, setQty] = useState(0);
 
     // const increment = (e) => {
     //     setData(value + 1);
@@ -56,6 +59,7 @@ export default function Checkout({ auth, errors, items, success }) {
     // };
 
     const submit = (e) => {
+        console.log(data);
         e.preventDefault();
         // if (data.items.length === items.length) {
 
@@ -129,19 +133,17 @@ export default function Checkout({ auth, errors, items, success }) {
                                                                 onHandleChange
                                                             }
                                                             type="text"
-                                                            name="receiver"
-                                                            value={
-                                                                data.receiver
-                                                            }
+                                                            name="name"
+                                                            value={data.name}
                                                             className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                         />
                                                         <small className="text-red-500 text-sm">
-                                                            {errors.receiver}
+                                                            {errors.name}
                                                         </small>
                                                     </div>
                                                     <div className="col-span-6">
                                                         <label
-                                                            htmlFor="name"
+                                                            htmlFor="authname"
                                                             className="block text-sm font-medium text-gray-700"
                                                         >
                                                             اسم المخول
@@ -151,12 +153,14 @@ export default function Checkout({ auth, errors, items, success }) {
                                                                 onHandleChange
                                                             }
                                                             type="text"
-                                                            name="sender"
-                                                            value={data.sender}
+                                                            name="authname"
+                                                            value={
+                                                                data.authname
+                                                            }
                                                             className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                         />
                                                         <small className="text-red-500 text-sm">
-                                                            {errors.sender}
+                                                            {errors.authname}
                                                         </small>
                                                     </div>
                                                     <div className="col-span-6">
@@ -178,14 +182,106 @@ export default function Checkout({ auth, errors, items, success }) {
                                                             className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                         />
                                                     </div>
+                                                    <div className="col-span-6 flex items-center gap-x-2 ">
+                                                        <Checkbox
+                                                            handleChange={
+                                                                onHandleChange
+                                                            }
+                                                            name="outtype"
+                                                            value={data.outtype}
+                                                            className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                        />
+                                                        <label
+                                                            htmlFor="outtype"
+                                                            className="block text-sm font-medium text-gray-700"
+                                                        >
+                                                            خارج الشركة
+                                                        </label>
+                                                        <small className="text-red-500 text-sm">
+                                                            {errors.outtype}
+                                                        </small>
+                                                    </div>
+                                                    <div
+                                                        className={`${
+                                                            data.outtype
+                                                                ? " col-span-6 grid gap-6"
+                                                                : " hidden"
+                                                        }`}
+                                                    >
+                                                        <div className="col-span-6">
+                                                            <label
+                                                                htmlFor="name"
+                                                                className="block text-sm font-medium text-gray-700"
+                                                            >
+                                                                اسم السائق
+                                                            </label>
+                                                            <Input
+                                                                handleChange={
+                                                                    onHandleChange
+                                                                }
+                                                                type="text"
+                                                                name="drivername"
+                                                                value={
+                                                                    data.drivername
+                                                                }
+                                                                className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                            />
+                                                            <small className="text-red-500 text-sm">
+                                                                {
+                                                                    errors.drivername
+                                                                }
+                                                            </small>
+                                                        </div>
+                                                        <div className="col-span-6">
+                                                            <label
+                                                                htmlFor="vehicletype"
+                                                                className="block text-sm font-medium text-gray-700"
+                                                            >
+                                                                نوع المركبة
+                                                            </label>
+                                                            <Input
+                                                                handleChange={
+                                                                    onHandleChange
+                                                                }
+                                                                type="text"
+                                                                name="vehicletype"
+                                                                value={
+                                                                    data.vehicletype
+                                                                }
+                                                                className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                            />
+                                                            <small className="text-red-500 text-sm">
+                                                                {errors.sender}
+                                                            </small>
+                                                        </div>
+                                                        <div className="col-span-6">
+                                                            <label
+                                                                htmlFor="vehiclenumber"
+                                                                className="block text-sm font-medium text-gray-700"
+                                                            >
+                                                                رقم المركبة
+                                                            </label>
+                                                            <Input
+                                                                handleChange={
+                                                                    onHandleChange
+                                                                }
+                                                                type="text"
+                                                                name="vehiclenumber"
+                                                                value={
+                                                                    data.vehiclenumber
+                                                                }
+                                                                className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                            />
+                                                            <small className="text-red-500 text-sm">
+                                                                {errors.sender}
+                                                            </small>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div className="px-4 py-3 flex justify-around bg-gray-50 text-right sm:px-6">
-                                                <Button className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600 focus:outline-none ">
-                                                    اخراج من المخزن
-                                                </Button>
                                                 <Button className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none ">
-                                                    اخراج من الموقع
+                                                    اخراج
                                                 </Button>
                                             </div>
                                         </div>
@@ -230,7 +326,7 @@ export default function Checkout({ auth, errors, items, success }) {
                             </div>
                         </div>
 
-                        <div className="flex flex-col pt-8 pr-32">
+                        <div className="flex flex-col py-8 pr-32">
                             <table className="max-w-5xl divide-y text-center divide-gray-200">
                                 <thead className="bg-gray-50 text-right">
                                     <tr>
@@ -292,19 +388,14 @@ export default function Checkout({ auth, errors, items, success }) {
                                                 </svg>
                                             </th>
 
-                                            {item.no && (
-                                                <td className="pb-4">
-                                                    {item.no}
-                                                </td>
-                                            )}
-                                            {item.no && (
-                                                <td className="pb-4">
-                                                    {item.name}
-                                                </td>
-                                            )}
+                                            <td className="pb-4">{item.id}</td>
+
+                                            <td className="pb-4">
+                                                {item.name}
+                                            </td>
 
                                             <td className="py-4 ">
-                                                {item.category}
+                                                {item.categories.name}
                                             </td>
 
                                             <td className="flex items-center justify-center py-4 text-lg">
