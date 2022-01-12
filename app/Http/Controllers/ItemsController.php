@@ -22,7 +22,6 @@ class ItemsController extends Controller
             return redirect()->back()->with('success', 'تأكد من التاريخ المحدد');
         }else{
             $query = Items::query()->with('categories')->where('inventory', false)->orWhere('inventory', null);
-            $query = Items::query();
             $date = request('date_from') . "," . request('date_to');
             $date = explode(',', $date);
             $query->whereBetween('created_at', $date);
