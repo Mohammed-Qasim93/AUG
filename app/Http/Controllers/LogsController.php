@@ -53,8 +53,10 @@ class LogsController extends Controller
             for ($i = 0 ; $i < count($request['items']);$i++){
                 $logs = logs::create([
                     'name' => $request->name,
+                    'authname' => $request->authname,
                     'note' => $request->note,
                     'outID' => $outID,
+                    'outType' => $request->outType ? $request->outType : 0,
                     'outDate' => now(),
                     'qty' => $request['items'][$i]['qty'],
                     'state' => $request['items'][$i]['state'],
@@ -63,11 +65,7 @@ class LogsController extends Controller
                 ]);
                 $items[$i] = Items::find($request['items'][$i]['itemId']);
             }
-            return Inertia::render('Print', [
-                'items' => $items,
-                'logs' => $logs
-            ]);
-            // return Redirect::route('takeout.index')->with('success', ['icon' => 'success' ,'title' => 'نجاح العملية', 'message' => 'تم اخراج المواد بنجاح']);
+            return Redirect::route('takeout.index')->with('success', ['icon' => 'success' ,'title' => 'نجاح العملية', 'message' => 'تم اخراج المواد بنجاح']);
         }
     }
 

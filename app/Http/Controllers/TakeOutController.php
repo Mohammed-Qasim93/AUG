@@ -70,8 +70,11 @@ class TakeOutController extends Controller
                 $Time = Carbon::parse($out[0]->outDate)->format('A h:m:s');
                 $Date = Carbon::parse($out[0]->outDate)->format('d-m-Y');
                 $outType = [];
+                $name = request('n');
+                $num = request('num');
+                $car = request('c');
                 foreach($out as $i => $d){
-                    $d->outType === 0 ? $outType[$i] = "خارج الشركة" : $outType[$i] = "خارج المخزن";
+                    $d->outType === 1 ? $outType[$i] = "خارج الشركة" : $outType[$i] = "خارج المخزن";
                 }
                 $html = '
                 <style>
@@ -134,7 +137,13 @@ class TakeOutController extends Controller
                     $mpdf->WriteHTML('
                         <p class="lead">&bull; ' . $data->items->name . ' - ' . $outType[$i] . ' </p>
                     ');
+                    if($data->outType == true){
+                        $mpdf->WriteHTML('
+                            <p class="lead"> - بواسطة سائق السيارة ( ' . $name . ' ) الذي يقود مركبة نوع ( ' . $car . ' ) المرقمة ( ' . $num . ' ) .</p>
+                        ');
+                    }
                 }
+                
                 $mpdf->WriteHTML('
                     <p class="posRes">اسم المخول</p>
                     <p class="dataRes">' . $out[0]->authname . '</p>

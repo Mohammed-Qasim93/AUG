@@ -23,7 +23,7 @@ class Logs extends Migration
             $table->boolean('state'); // الاستهلاكية
             $table->bigInteger('outID'); // ID الخروج
             $table->boolean('outType'); // خارج الشركة\المخزن
-            $table->string('note'); // ملاحظات
+            $table->string('note')->nullable(); // ملاحظات
             $table->bigInteger('items_id')->unsigned();
             $table->bigInteger('users_id')->unsigned();
             $table->foreign('items_id')->references('id')->on('items');
