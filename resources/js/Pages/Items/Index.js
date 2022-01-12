@@ -30,7 +30,7 @@ export default function index({ items, auth, errors, success }) {
     useEffect(() => {
         search.length > 0 &&
             Inertia.get(
-                `/takeout?`,
+                `/items?`,
                 { item: search },
                 { replaces: true, preserveState: true }
             );
@@ -76,43 +76,45 @@ export default function index({ items, auth, errors, success }) {
                     </div>
                     <div className="flex flex-col justify-end pr-32 items-start max-w-6xl">
                         <div className="flex w-full  justify-between">
-                            <div className="flex gap-4 pt-4">
-                                <div className="flex items-center gap-4">
-                                    <Label value="من :"></Label>
-                                    <Input
-                                        type="date"
-                                        name="from"
-                                        value={data.from}
-                                        className="mt-1 block w-full "
-                                        autoComplete="username"
-                                        isFocused={true}
-                                        handleChange={onHandleChange}
-                                    />
-                                </div>
-                                <div className="flex items-center gap-4">
-                                    <Label value="الى :"></Label>
-                                    <Input
-                                        type="date"
-                                        name="to"
-                                        value={data.to}
-                                        className="mt-1 block w-full"
-                                        autoComplete="username"
-                                        isFocused={true}
-                                        handleChange={onHandleChange}
-                                    />
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <Button
-                                        className="bg-blue-500 hover:bg-blue-600"
-                                        handleClick={submit}
-                                        children="بحث"
-                                    />
-                                    <Link
-                                        className="inline-flex items-center px-4 py-2 bg-red-500 hover:bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 $"
-                                        href="/items?page=1"
-                                    >
-                                        تصفير
-                                    </Link>
+                            <div className="flex gap-4 justify-between w-full pt-4">
+                                <div className="flex gap-x-2">
+                                    <div className="flex items-center gap-4">
+                                        <Label value="من :"></Label>
+                                        <Input
+                                            type="date"
+                                            name="from"
+                                            value={data.from}
+                                            className="mt-1 block w-full "
+                                            autoComplete="username"
+                                            isFocused={true}
+                                            handleChange={onHandleChange}
+                                        />
+                                    </div>
+                                    <div className="flex items-center gap-4">
+                                        <Label value="الى :"></Label>
+                                        <Input
+                                            type="date"
+                                            name="to"
+                                            value={data.to}
+                                            className="mt-1 block w-full"
+                                            autoComplete="username"
+                                            isFocused={true}
+                                            handleChange={onHandleChange}
+                                        />
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <Button
+                                            className="bg-blue-500 hover:bg-blue-600"
+                                            handleClick={submit}
+                                            children="بحث"
+                                        />
+                                        <Link
+                                            className="inline-flex items-center px-4 py-2 bg-red-500 hover:bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 $"
+                                            href="/items?page=1"
+                                        >
+                                            تصفير
+                                        </Link>
+                                    </div>
                                 </div>
                                 <div className="flex items-center gap-4">
                                     <div className="flex items-center gap-4">
@@ -129,8 +131,8 @@ export default function index({ items, auth, errors, success }) {
 
                                     <div className="flex items-center gap-x-2">
                                         <Link
-                                            className="inline-flex items-center p-3 bg-red-500 hover:bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 $"
-                                            href="/takeout"
+                                            className="inline-flex items-center p-2 bg-red-500 hover:bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 $"
+                                            href="/items?page=1"
                                         >
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"

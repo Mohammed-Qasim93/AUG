@@ -6915,7 +6915,7 @@ function index(_ref) {
   };
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    search.length > 0 && _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_10__.Inertia.get("/takeout?", {
+    search.length > 0 && _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_10__.Inertia.get("/items?", {
       item: search
     }, {
       replaces: true,
@@ -6974,43 +6974,46 @@ function index(_ref) {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
             className: "flex w-full  justify-between",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
-              className: "flex gap-4 pt-4",
+              className: "flex gap-4 justify-between w-full pt-4",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
-                className: "flex items-center gap-4",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_7__["default"], {
-                  value: "\u0645\u0646 :"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                  type: "date",
-                  name: "from",
-                  value: data.from,
-                  className: "mt-1 block w-full ",
-                  autoComplete: "username",
-                  isFocused: true,
-                  handleChange: onHandleChange
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
-                className: "flex items-center gap-4",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_7__["default"], {
-                  value: "\u0627\u0644\u0649 :"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                  type: "date",
-                  name: "to",
-                  value: data.to,
-                  className: "mt-1 block w-full",
-                  autoComplete: "username",
-                  isFocused: true,
-                  handleChange: onHandleChange
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
-                className: "flex items-center gap-2",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_8__["default"], {
-                  className: "bg-blue-500 hover:bg-blue-600",
-                  handleClick: submit,
-                  children: "\u0628\u062D\u062B"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
-                  className: "inline-flex items-center px-4 py-2 bg-red-500 hover:bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 $",
-                  href: "/items?page=1",
-                  children: "\u062A\u0635\u0641\u064A\u0631"
+                className: "flex gap-x-2",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
+                  className: "flex items-center gap-4",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                    value: "\u0645\u0646 :"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                    type: "date",
+                    name: "from",
+                    value: data.from,
+                    className: "mt-1 block w-full ",
+                    autoComplete: "username",
+                    isFocused: true,
+                    handleChange: onHandleChange
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
+                  className: "flex items-center gap-4",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                    value: "\u0627\u0644\u0649 :"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                    type: "date",
+                    name: "to",
+                    value: data.to,
+                    className: "mt-1 block w-full",
+                    autoComplete: "username",
+                    isFocused: true,
+                    handleChange: onHandleChange
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
+                  className: "flex items-center gap-2",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_8__["default"], {
+                    className: "bg-blue-500 hover:bg-blue-600",
+                    handleClick: submit,
+                    children: "\u0628\u062D\u062B"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
+                    className: "inline-flex items-center px-4 py-2 bg-red-500 hover:bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 $",
+                    href: "/items?page=1",
+                    children: "\u062A\u0635\u0641\u064A\u0631"
+                  })]
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
                 className: "flex items-center gap-4",
@@ -7029,8 +7032,8 @@ function index(_ref) {
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
                   className: "flex items-center gap-x-2",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
-                    className: "inline-flex items-center p-3 bg-red-500 hover:bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 $",
-                    href: "/takeout",
+                    className: "inline-flex items-center p-2 bg-red-500 hover:bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 $",
+                    href: "/items?page=1",
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("svg", {
                       xmlns: "http://www.w3.org/2000/svg",
                       width: "18",
@@ -7512,7 +7515,7 @@ function Checkout(_ref) {
     _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_11__.Inertia.post("/logs", data, {
       onFinish: function onFinish() {
         localStorage.removeItem("checked");
-        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_11__.Inertia.visit("/print?p=outpdf&n=".concat(data.drivername, "&num=").concat(data.vehiclenumber, "&car=").concat(data.vehicletype, "&outtype=").concat(data.outtype));
+        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_11__.Inertia.visit("/print?p=outpdf&n=".concat(data.drivername, "&num=").concat(data.vehiclenumber, "&car=").concat(data.vehicletype, "&outtype=").concat(data.outtype, "&id=").concat(data.lenght()));
       }
     }); // } else {
     // alert("الرجاء ادخال كميات المادات");
