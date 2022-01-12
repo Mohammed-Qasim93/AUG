@@ -71,7 +71,7 @@ export default function Checkout({ auth, errors, items, success }) {
                         data.vehiclenumber
                     }&car=${data.vehicletype}&outtype=${
                         data.outtype
-                    }&id=${data.lenght()}`
+                    }&id=${data.items.lenght()}`
                 );
             },
         });
