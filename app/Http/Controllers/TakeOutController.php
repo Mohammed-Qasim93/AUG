@@ -66,8 +66,8 @@ class TakeOutController extends Controller
                 return Excel::download(new EXCELs, 'excel_file.xlsx');
             }
             elseif(request('p') == 'outpdf'){
-                $outType = logs::latest()->first();
-                dd($outType);
+                // $outType = logs::select('outType')->latest()->first();
+
                 $out = logs::with('items')->where('outID', $outID)->get();
                 $Time = Carbon::parse($out[0]->outDate)->format('A h:m:s');
                 $Date = Carbon::parse($out[0]->outDate)->format('d-m-Y');
@@ -141,7 +141,7 @@ class TakeOutController extends Controller
                         <p class="lead">&bull; ' . $data->items->name . '</p>
                     ');
                 }
-                if(request('outtype') == true){
+                if($outType){
                     $mpdf->WriteHTML('
                         <p class="lead"> - بواسطة سائق السيارة ( ' . $name . ' ) الذي يقود مركبة نوع ( ' . $car . ' ) المرقمة ( ' . $num . ' ) .</p>
                     ');
