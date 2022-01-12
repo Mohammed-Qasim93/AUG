@@ -66,10 +66,9 @@ class TakeOutController extends Controller
                 return Excel::download(new EXCELs, 'excel_file.xlsx');
             }
             elseif(request('p') == 'outpdf'){
-                dd(request()->all());
-                // $outType = logs::select('outType')->latest()->first();
                 $length = logs::select('id')->latest()->first();
-                $out = logs::with('items')->where('id', $length - request('id'))->get();
+                $id = $length->id - request('id');
+                $out = logs::with('items')->where('outID', $id)->get();
                 $Time = Carbon::parse($out[0]->outDate)->format('A h:m:s');
                 $Date = Carbon::parse($out[0]->outDate)->format('d-m-Y');
                 // $outType = [];
@@ -115,39 +114,44 @@ class TakeOutController extends Controller
                         position: absolute;
                         top: 1130px;
                         left: 70px;
-                        font-size: 22px
+                        font-size: 22px;
+                        width: 100px
                     }
                     .dataRes{
                         position: absolute;
                         top: 1130px;
                         left: 650px;
-                        font-size: 22px
+                        font-size: 22px;
+                        width: 100px
                     }
                 </style>
                 <body>
                     <h2 class="x">موضوع / اخراج مواد</h2>
                     <div>
-                        <p>في تمام الساعة <span>(' . $Time . ')</span> وبتاريخ <span>( ' . $Date . ' )</span> تم اخراج المواد ادناه بواسطة <span>( ' . $out[0]->name . ' )</span> </span></p>
+                        <p>في تمام الساعة <span>(' . $Time . ')</span> وبتاريخ <span>( ' . $Date . ' )</span> تم اخراج المواد ادناه بواسطة <span>( ' . $out[0]->items->name . ' )</span> </span></p>
                     </div>
                 </body>
                 ';
                 // <p class="lead">&bull; ' . $data->items->name . ' - ' . $outType[$i] . ' </p>
-                
                 $mpdf = new \Mpdf\Mpdf(['format' => 'Legal']);
                 $mpdf->autoScriptToLang = true;
                 $mpdf->autoLangToFont = true;
                 $mpdf->WriteHTML($html);
-                foreach ($out as $data) {
+                // foreach ($out as $data) {
+                //     $mpdf->WriteHTML('
+                //         <p class="lead">&bull; ' . $data->items->name . ' - العدد ('. $data->items->qty .')</p>
+                //     ');
+                // }
+                for ($i=0; $i < count($out) ; ++$i){
                     $mpdf->WriteHTML('
-                        <p class="lead">&bull; ' . $data->items->name . '</p>
+                        <p class="lead">&bull; ' . $out[$i]->items->name . ' - العدد ('. $out[$i]->qty .')</p>
                     ');
                 }
-                if($outType){
+                if($name){
                     $mpdf->WriteHTML('
                         <p class="lead"> - بواسطة سائق السيارة ( ' . $name . ' ) الذي يقود مركبة نوع ( ' . $car . ' ) المرقمة ( ' . $num . ' ) .</p>
                     ');
                 }
-                
                 $mpdf->WriteHTML('
                     <p class="posRes">اسم المخول</p>
                     <p class="dataRes">' . $out[0]->authname . '</p>
@@ -155,7 +159,7 @@ class TakeOutController extends Controller
                     <p class="dataDel">' . $out[0]->name . '</p>
                     
                 ');
-                $mpdf->Output('' . $out[0]->name . $Date . '.pdf', 'I');
+                $mpdf->Output('' . $out[0]->name . ' ' . $Date . ' ' . now() . '.pdf', 'I');
             }
             elseif(request('p') == 'inpdf'){
                 $out = logs::findOrFail(request('id'))->with('items')->first();
@@ -240,3 +244,11 @@ class TakeOutController extends Controller
     }
 
 }
+
+// $count = count($out)-1;
+//                 dd($count);
+//                 for ($i = 0;$i < $count ; $i++) {
+//                     $mpdf->WriteHTML('
+//                         <p class="lead">&bull; ' . $out[$i]->items->name . '</p>
+//                     ');
+//                 }
