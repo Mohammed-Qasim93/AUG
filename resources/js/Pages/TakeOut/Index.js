@@ -66,7 +66,7 @@ export default function index({ items, auth, errors, success }) {
                             </div>
                             <div className="flex gap-4 items-center pt-4">
                                 <div className="flex items-center gap-4">
-                                    <Label value="من :"></Label>
+                                    <Label value="بحث :"></Label>
                                     <Input
                                         type="search"
                                         name="search"

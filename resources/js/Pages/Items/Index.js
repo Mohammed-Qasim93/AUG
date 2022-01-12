@@ -13,17 +13,32 @@ import Swal from "sweetalert2";
 import Toast from "../../Components/Toast";
 
 export default function index({ items, auth, errors, success }) {
-    console.log(items);
     const { data, setData } = useForm({
         from: "",
         to: "",
     });
+
+    const [search, setSearch] = useState("");
 
     const onHandleChange = (event) => {
         setData({
             ...data,
             [event.target.name]: event.target.value,
         });
+    };
+
+    useEffect(() => {
+        search.length > 0 &&
+            Inertia.get(
+                `/takeout?`,
+                { item: search },
+                { replaces: true, preserveState: true }
+            );
+    }, [search]);
+
+    const handleChange = (e) => {
+        e.preventDefault();
+        setSearch(e.target.value);
     };
 
     useEffect(() => {
@@ -98,6 +113,41 @@ export default function index({ items, auth, errors, success }) {
                                     >
                                         تصفير
                                     </Link>
+                                </div>
+                                <div className="flex items-center gap-4">
+                                    <div className="flex items-center gap-4">
+                                        <Label value="بحث :"></Label>
+                                        <Input
+                                            type="search"
+                                            name="search"
+                                            value={search}
+                                            className="mt-1 block w-full"
+                                            isFocused={true}
+                                            handleChange={handleChange}
+                                        />
+                                    </div>
+
+                                    <div className="flex items-center gap-x-2">
+                                        <Link
+                                            className="inline-flex items-center p-3 bg-red-500 hover:bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 $"
+                                            href="/takeout"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="18"
+                                                height="18"
+                                                fill="#fff"
+                                                className="bi bi-arrow-clockwise"
+                                                viewBox="0 0 16 16"
+                                            >
+                                                <path
+                                                    fillRule="evenodd"
+                                                    d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"
+                                                />
+                                                <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
+                                            </svg>
+                                        </Link>
+                                    </div>
                                 </div>
                             </div>
                         </div>
