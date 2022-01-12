@@ -4710,6 +4710,7 @@ function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("
 function Footer(_ref) {
   _objectDestructuringEmpty(_ref);
 
+  var year = new Date();
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("footer", {
     className: "bg-primary print:hidden",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
@@ -4718,9 +4719,9 @@ function Footer(_ref) {
         className: "flex flex-col sm:flex-row justify-between items-center",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
           className: "flex flex-col text-gray-100 items-center justify-center",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("h2", {
             className: "text-lg capitalize",
-            children: "\u062C\u0645\u064A\u0639 \u0627\u0644\u062D\u0642\u0648\u0642 \u0645\u062D\u0641\u0648\u0638\u0629"
+            children: ["\u062C\u0645\u064A\u0639 \u0627\u0644\u062D\u0642\u0648\u0642 \u0645\u062D\u0641\u0648\u0638\u0629 ", year.getFullYear()]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
             className: "font-bold ",
             children: "\u0645\u062C\u0645\u0648\u0639\u0629 \u0634\u0631\u0643\u0627\u062A \u0627\u0644\u062F\u064A\u0631 \u0627\u0644\u0645\u062A\u062D\u062F\u0629 AUG \xA9"
@@ -5057,9 +5058,9 @@ function Login(_ref) {
           className: "text-red-500 text-sm",
           children: errors.password
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
-        className: "block mt-4",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("label", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+        className: "flex w-full items-center justify-between mt-4",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("label", {
           className: "flex items-center ",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_Checkbox__WEBPACK_IMPORTED_MODULE_2__["default"], {
             name: "remember",
@@ -5069,7 +5070,11 @@ function Login(_ref) {
             className: "mr-2 text-sm font-tajawal-light font-bold text-gray-600",
             children: "\u062A\u0630\u0643\u0631\u0646\u064A"
           })]
-        })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_7__.Link, {
+          href: "/register",
+          className: "mr-2 text-sm font-tajawal-light font-bold text-gray-600",
+          children: "\u0625\u0646\u0634\u0627\u0621 \u062D\u0633\u0627\u0628 \u062C\u062F\u064A\u062F"
+        })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
         className: "flex items-center justify-center mt-4",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -7510,12 +7515,12 @@ function Checkout(_ref) {
 
   var submit = function submit(e) {
     console.log(data);
-    e.preventDefault(); // if (data.items.length === items.length) {
-
+    e.preventDefault();
+    var id = localStorage.getItem("checked");
     _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_11__.Inertia.post("/logs", data, {
       onFinish: function onFinish() {
+        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_11__.Inertia.visit("/print?p=outpdf&n=".concat(data.drivername, "&num=").concat(data.vehiclenumber, "&car=").concat(data.vehicletype, "&outtype=").concat(data.outtype, "&id=").concat(id.length));
         localStorage.removeItem("checked");
-        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_11__.Inertia.visit("/print?p=outpdf&n=".concat(data.drivername, "&num=").concat(data.vehiclenumber, "&car=").concat(data.vehicletype, "&outtype=").concat(data.outtype));
       }
     }); // } else {
     // alert("الرجاء ادخال كميات المادات");
