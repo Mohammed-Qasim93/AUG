@@ -123,12 +123,13 @@ export default function index({ items, auth, errors, success }) {
                             auth={auth}
                             tableHeaders={[
                                 "التسلسل",
-                                "الاسم",
                                 "اسم الماده",
                                 "الصنف",
-                                "الرقم التسلسلي",
                                 "الكميه",
+                                "الاستهلاكية",
+                                "الحاله",
                                 "التاريخ",
+                                "العمليات",
                             ]}
                         />
                     </div>

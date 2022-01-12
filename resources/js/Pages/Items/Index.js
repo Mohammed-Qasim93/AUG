@@ -13,6 +13,7 @@ import Swal from "sweetalert2";
 import Toast from "../../Components/Toast";
 
 export default function index({ items, auth, errors, success }) {
+    console.log(items);
     const { data, setData } = useForm({
         from: "",
         to: "",
@@ -53,7 +54,10 @@ export default function index({ items, auth, errors, success }) {
                         سجل المواد
                     </h2>
                     <div className="flex justify-between items-end h-20 ">
-                        <TableButtons text="إضافة مادة" url="/items/create" />
+                        <TableButtons
+                            text="إضافة صنف"
+                            url="/categories/create"
+                        />
                     </div>
                     <div className="flex flex-col justify-end pr-32 items-start max-w-6xl">
                         <div className="flex w-full  justify-between">
