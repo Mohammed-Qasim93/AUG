@@ -14,7 +14,7 @@ export default function DashboardBar({ auth }) {
 
     return (
         <div className="">
-            <nav className="flex flex-col  w-64 h-screen px-4 tex-gray-900  bg-primary">
+            <nav className="flex flex-col  w-64 h-[1500px] px-4 tex-gray-900  bg-primary">
                 <div className="mt-10 mb-4 pt-20">
                     <ul className="mr-4">
                         <li
