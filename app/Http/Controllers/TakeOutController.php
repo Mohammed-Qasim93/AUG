@@ -66,16 +66,20 @@ class TakeOutController extends Controller
                 return Excel::download(new EXCELs, 'excel_file.xlsx');
             }
             elseif(request('p') == 'outpdf'){
-                $out = logs::with('items')->where('OutID', '1')->get();
+                dd(request()->all());
+                $outID = logs::count();
+                dd($outID);
+                dd(logs::latest()->limit(1)->get());
+                $out = logs::with('items')->where('outID', $outID)->get();
                 $Time = Carbon::parse($out[0]->outDate)->format('A h:m:s');
                 $Date = Carbon::parse($out[0]->outDate)->format('d-m-Y');
                 $outType = [];
                 $name = request('n');
                 $num = request('num');
-                $car = request('c');
-                foreach($out as $i => $d){
-                    $d->outType === 1 ? $outType[$i] = "خارج الشركة" : $outType[$i] = "خارج المخزن";
-                }
+                $car = request('car');
+                // foreach($out as $i => $d){
+                //     $d->outType === 1 ? $outType[$i] = "خارج الشركة" : $outType[$i] = "خارج المخزن";
+                // }
                 $html = '
                 <style>
                     body{
@@ -128,17 +132,18 @@ class TakeOutController extends Controller
                     </div>
                 </body>
                 ';
+                // <p class="lead">&bull; ' . $data->items->name . ' - ' . $outType[$i] . ' </p>
                 
                 $mpdf = new \Mpdf\Mpdf(['format' => 'Legal']);
                 $mpdf->autoScriptToLang = true;
                 $mpdf->autoLangToFont = true;
                 $mpdf->WriteHTML($html);
-                foreach ($out as $i => $data) {
+                foreach ($out as $data) {
                     $mpdf->WriteHTML('
-                        <p class="lead">&bull; ' . $data->items->name . ' - ' . $outType[$i] . ' </p>
+                        <p class="lead">&bull; ' . $data->items->name . '</p>
                     ');
                 }
-                if(request('outType') == true){
+                if(request('outtype') == true){
                     $mpdf->WriteHTML('
                         <p class="lead"> - بواسطة سائق السيارة ( ' . $name . ' ) الذي يقود مركبة نوع ( ' . $car . ' ) المرقمة ( ' . $num . ' ) .</p>
                     ');
