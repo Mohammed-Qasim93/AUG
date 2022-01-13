@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Items;
+use App\Models\Categories;
 use App\Models\logs;
 use Carbon\Carbon;
 use Illuminate\Http\Request;

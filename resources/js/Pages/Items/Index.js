@@ -69,10 +69,7 @@ export default function index({ items, auth, errors, success }) {
                         سجل المواد
                     </h2>
                     <div className="flex justify-between items-end h-20 ">
-                        <TableButtons
-                            text="إضافة صنف"
-                            url="/categories/create"
-                        />
+                        <TableButtons text="إضافة ماده" url="/items/create" />
                     </div>
                     <div className="flex flex-col justify-end pr-32 items-start max-w-6xl">
                         <div className="flex w-full  justify-between">

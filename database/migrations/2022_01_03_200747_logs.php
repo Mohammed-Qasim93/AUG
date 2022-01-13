@@ -26,8 +26,8 @@ class Logs extends Migration
             $table->string('note')->nullable(); // ملاحظات
             $table->bigInteger('items_id')->unsigned();
             $table->bigInteger('users_id')->unsigned();
-            $table->foreign('items_id')->references('id')->on('items');
-            $table->foreign('users_id')->references('id')->on('users');
+            $table->foreign('items_id')->references('id')->on('items')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

@@ -16,7 +16,9 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('Dashboard', [
+        'allItems' => Items::count(),
+    ]);
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/items/inventory', [ItemsController::class, 'inventory'])->middleware('auth')->name('items.inventory');

@@ -4211,15 +4211,15 @@ function Table(_ref) {
                   checked: checked.includes(item.id),
                   takeoutCheck: true
                 })
-              }) : null, item.qty && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
+              }) : null, (item.qty || logs) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
                 className: "py-4 print:text-xs print:font-thin",
                 children: item.id
-              }), (item.email || logs) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
+              }), item.email && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
                 className: "py-4 print:text-xs print:font-thin",
                 children: key + 1
-              }), (logs || url === "items" || takeout) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
+              }), logs && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
                 className: "py-4 print:p-1 print:text-xs print:font-thin",
-                children: item.name
+                children: item.authname
               }), !logs && url === "user" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
                 className: "py-4",
                 children: auth.user.isAdmin === 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
@@ -4230,25 +4230,25 @@ function Table(_ref) {
               }), item.email && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
                 className: "py-4 print:text-xs print:font-thin",
                 children: item.email
-              }), logs && item.items.name && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
+              }), (takeout || url === "inventory" || url === "items") && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
+                className: "py-4 p-1 print:text-xs print:font-thin",
+                children: item.name
+              }), logs && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
                 className: "py-4 p-1 print:text-xs print:font-thin",
                 children: item.items.name
-              }), logs && item.items.category && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
+              }), logs && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
                 className: "py-4 print:text-xs print:font-thin",
-                children: item.items.category
-              }), logs && item.items.no && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
-                className: "py-4 print:text-xs print:font-thin",
-                children: item.items.no
-              }), (item.categories || takeout) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
+                children: item.name
+              }), item.categories && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
                 className: "py-4 print:p-1 print:text-xs print:font-thin",
                 children: item.categories.name
-              }), item.qty >= 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
+              }), (item.qty >= 0 || logs) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
                 className: "py-4 print:p-1 print:text-xs print:font-thin",
                 children: item.qty
               }), !logs && url !== "user" && url !== "items" && takeout === false && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
                 className: "py-4 text-lg print:text-xs print:font-thin",
                 children: moment__WEBPACK_IMPORTED_MODULE_7___default()(item.created_at).format("L")
-              }), (takeout || url === "items") && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
+              }), (takeout || url === "items" || logs) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
                 className: "py-4 print:text-xs print:font-thin",
                 children: item.constate === 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("span", {
                   className: "text-green-500 font-tajawal-Black",
@@ -4257,7 +4257,7 @@ function Table(_ref) {
                   className: "text-red-500",
                   children: "\u063A\u064A\u0631 \u0642\u0627\u0628\u0644 \u0644\u0644\u0627\u0633\u062A\u0647\u0644\u0627\u0643"
                 })
-              }), (url === "items" || takeout) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("td", {
+              }), (url === "items" || takeout || logs || url === "inventory") && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("td", {
                 className: "py-4 print:text-xs print:font-thin",
                 children: [item.state == 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("span", {
                   className: "text-green-500 font-tajawal-Black",
@@ -4287,7 +4287,7 @@ function Table(_ref) {
               }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
                 className: "py-4 text-red-600 px-5",
                 children: "\u0645\u0648\u0638\u0641"
-              })), !takeout && !logs && url === "items" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("td", {
+              })), (!takeout && !logs && url === "items" || url === "inventory") && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("td", {
                 className: "py-4 flex items-center justify-center",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
                   href: "/".concat(url, "/").concat(item.id, "/edit"),
@@ -6999,8 +6999,8 @@ function index(_ref) {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
           className: "flex justify-between items-end h-20 ",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_Components_TableButtons__WEBPACK_IMPORTED_MODULE_5__["default"], {
-            text: "\u0625\u0636\u0627\u0641\u0629 \u0635\u0646\u0641",
-            url: "/categories/create"
+            text: "\u0625\u0636\u0627\u0641\u0629 \u0645\u0627\u062F\u0647",
+            url: "/items/create"
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
           className: "flex flex-col justify-end pr-32 items-start max-w-6xl",
@@ -7195,7 +7195,7 @@ function index(_ref) {
         className: "flex-1 flex flex-col max-w-6xl",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("h2", {
           className: "font-tajawal-extrabold print:hidden  text-3xl print:pr-0 pr-32 py-4 text-center w-full pt-10 ",
-          children: "\u0633\u062C\u0644 \u0627\u0644\u0627\u062F\u062E\u0627\u0644 \u0648\u0627\u0644\u0627\u062E\u0631\u0627\u062C"
+          children: "\u0645\u0648\u0627\u062F \u0627\u0644\u062C\u0631\u062F"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
           className: "relative"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
@@ -7266,9 +7266,9 @@ function index(_ref) {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Components_Table__WEBPACK_IMPORTED_MODULE_4__["default"], {
             data: items.data,
             paginate: items,
-            url: "items",
+            url: "inventory",
             auth: auth,
-            tableHeaders: ["التسلسل", "اسم الماده", "الصنف", "الكميه", "الاستهلاكية", "الحاله", "التاريخ", "العمليات"]
+            tableHeaders: ["التسلسل", "اسم الماده", "الصنف", "الكميه", "التاريخ", "الحاله", "العمليات"]
           })
         })]
       })]
@@ -7444,7 +7444,7 @@ function index(_ref) {
             url: "logs",
             logs: true,
             auth: auth,
-            tableHeaders: ["التسلسل", "اسم المخول", "اسم المستلم", "اسم الماده", "الصنف", "الحالة", "الاستهلاكية", "الكميه", "التاريخ", "ادخال مخزني"]
+            tableHeaders: ["التسلسل", "اسم المخول", "اسم الماده", "اسم المستلم", "الكميه", "الاستهلاكية", "الحالة", "التاريخ", "ادخال مخزني"]
           })
         })]
       })]
