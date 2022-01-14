@@ -120,6 +120,7 @@ export default function index({ items, auth, errors, success }) {
                             data={items.data}
                             paginate={items}
                             url="inventory"
+                            editUrl="inventory"
                             auth={auth}
                             tableHeaders={[
                                 "التسلسل",

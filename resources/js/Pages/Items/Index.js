@@ -156,6 +156,7 @@ export default function index({ items, auth, errors, success }) {
                         data={items.data}
                         paginate={items}
                         url="items"
+                        editUrl="items"
                         auth={auth}
                         total={items.total}
                         tableHeaders={[

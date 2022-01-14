@@ -18,6 +18,7 @@ export default function Table({
     takeout = false,
     logs = false,
     total,
+    editUrl,
 }) {
     const [checked, setChecked] = React.useState([]);
 
@@ -298,7 +299,7 @@ export default function Table({
                                     url === "inventory") && (
                                     <td className="py-4 flex items-center justify-center">
                                         <Link
-                                            href={`/${url}/${item.id}/edit`}
+                                            href={`/${editUrl}/${item.id}/edit`}
                                             className="bg-green-500 text-black p-2 rounded-lg mx-2 hover:bg-green-600 transition duration-500 ease-in-out"
                                         >
                                             <svg
