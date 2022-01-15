@@ -29,6 +29,7 @@ export default function index({ user, auth, errors }) {
                         data={user.data}
                         url="user"
                         auth={auth}
+                        editUrl="user"
                         paginate={user}
                         tableHeaders={[
                             "الرقم",

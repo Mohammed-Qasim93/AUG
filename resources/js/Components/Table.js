@@ -18,6 +18,7 @@ export default function Table({
     takeout = false,
     logs = false,
     total,
+    editUrl,
 }) {
     const [checked, setChecked] = React.useState([]);
 
@@ -138,19 +139,19 @@ export default function Table({
                                         />
                                     </th>
                                 ) : null}
-                                {item.qty && (
+                                {(item.qty || logs) && (
                                     <td className="py-4 print:text-xs print:font-thin">
                                         {item.id}
                                     </td>
                                 )}
-                                {(item.email || logs) && (
+                                {item.email && (
                                     <td className="py-4 print:text-xs print:font-thin">
                                         {key + 1}
                                     </td>
                                 )}
-                                {(logs || url === "items" || takeout) && (
+                                {logs && (
                                     <td className="py-4 print:p-1 print:text-xs print:font-thin">
-                                        {item.name}
+                                        {item.authname}
                                     </td>
                                 )}
                                 {!logs && url === "user" && (
@@ -172,29 +173,44 @@ export default function Table({
                                         {item.email}
                                     </td>
                                 )}
-                                {logs && item.items.name && (
+                                {(takeout ||
+                                    url === "inventory" ||
+                                    url === "items") && (
+                                    <td className="py-4 p-1 print:text-xs print:font-thin">
+                                        {item.name}
+                                    </td>
+                                )}
+                                {logs && (
                                     <td className="py-4 p-1 print:text-xs print:font-thin">
                                         {item.items.name}
                                     </td>
                                 )}
-                                {logs && item.items.category && (
+
+                                {logs && (
                                     <td className="py-4 print:text-xs print:font-thin">
-                                        {item.items.category}
+                                        {item.name}
                                     </td>
                                 )}
-                                {logs && item.items.no && (
+                                {/* {logs && (
+                                    <td className="py-4 print:text-xs print:font-thin">
+                                        {item.categories.name}
+                                        lll
+                                    </td>
+                                )} */}
+
+                                {/* {logs && item.items.no && (
                                     <td className="py-4 print:text-xs print:font-thin">
                                         {item.items.no}
                                     </td>
-                                )}
+                                )} */}
 
-                                {(item.categories || takeout) && (
+                                {item.categories && (
                                     <td className="py-4 print:p-1 print:text-xs print:font-thin">
                                         {item.categories.name}
                                     </td>
                                 )}
 
-                                {item.qty >= 0 && (
+                                {(item.qty >= 0 || logs) && (
                                     <td className="py-4 print:p-1 print:text-xs print:font-thin">
                                         {item.qty}
                                     </td>
@@ -209,7 +225,7 @@ export default function Table({
                                             )}
                                         </td>
                                     )}
-                                {(takeout || url === "items") && (
+                                {(takeout || url === "items" || logs) && (
                                     <td className="py-4 print:text-xs print:font-thin">
                                         {item.constate === 1 ? (
                                             <span className="text-green-500 font-tajawal-Black">
@@ -222,7 +238,10 @@ export default function Table({
                                         )}
                                     </td>
                                 )}
-                                {(url === "items" || takeout) && (
+                                {(url === "items" ||
+                                    takeout ||
+                                    logs ||
+                                    url === "inventory") && (
                                     <td className="py-4 print:text-xs print:font-thin">
                                         {item.state == 1 && (
                                             <span className="text-green-500 font-tajawal-Black">
@@ -276,10 +295,11 @@ export default function Table({
                                             موظف
                                         </td>
                                     ))}
-                                {!takeout && !logs && url === "items" && (
+                                {((!takeout && !logs && url === "items") ||
+                                    url === "inventory") && (
                                     <td className="py-4 flex items-center justify-center">
                                         <Link
-                                            href={`/${url}/${item.id}/edit`}
+                                            href={`/${editUrl}/${item.id}/edit`}
                                             className="bg-green-500 text-black p-2 rounded-lg mx-2 hover:bg-green-600 transition duration-500 ease-in-out"
                                         >
                                             <svg

@@ -23,7 +23,7 @@ class CreateItemsTable extends Migration
             $table->string('desc')->nullable(); // الوصف
             $table->string('note')->nullable(); // الملاحظات
             $table->bigInteger('categories_id')->unsigned(); // القسم
-            $table->foreign('categories_id')->references('id')->on('categories');
+            $table->foreign('categories_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

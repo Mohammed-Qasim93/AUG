@@ -46,7 +46,7 @@ export default function index({ items, auth, errors, success }) {
                 <DashboardBar auth={auth} />
                 <div className="flex-1 flex flex-col max-w-6xl">
                     <h2 className="font-tajawal-extrabold print:hidden  text-3xl print:pr-0 pr-32 py-4 text-center w-full pt-10 ">
-                        سجل الادخال والاخراج
+                        مواد الجرد
                     </h2>
                     <div className="relative"></div>
                     <div className="flex flex-col justify-end pr-32 print:absolute top-0 items-start max-w-6xl">
@@ -119,16 +119,16 @@ export default function index({ items, auth, errors, success }) {
                         <Table
                             data={items.data}
                             paginate={items}
-                            url="items"
+                            url="inventory"
+                            editUrl="inventory"
                             auth={auth}
                             tableHeaders={[
                                 "التسلسل",
                                 "اسم الماده",
                                 "الصنف",
                                 "الكميه",
-                                "الاستهلاكية",
-                                "الحاله",
                                 "التاريخ",
+                                "الحاله",
                                 "العمليات",
                             ]}
                         />
