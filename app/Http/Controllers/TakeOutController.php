@@ -69,97 +69,9 @@ class TakeOutController extends Controller
                 $length = logs::select('id')->latest()->first();
                 $id = $length->id - request('id');
                 $out = logs::with('items')->where('outID', $id)->get();
-                $Time = Carbon::parse($out[0]->outDate)->format('A h:m:s');
-                $Date = Carbon::parse($out[0]->outDate)->format('d-m-Y');
-                // $outType = [];
-                $name = request('n');
-                $num = request('num');
-                $car = request('car');
-                // foreach($out as $i => $d){
-                //     $d->outType === 1 ? $outType[$i] = "خارج الشركة" : $outType[$i] = "خارج المخزن";
-                // }
-                $html = '
-                <style>
-                    body{
-                        background: url("h.jpg");
-                        background-image-resize: 6;
-                        direction: rtl;
-                        font-size: 18px;
-                    }
-                    .x{
-                        text-align: center;
-                        padding-top: 100px;
-                    }
-                    .lead{
-                        line-height: 20px;
-                        font-weight:: 70px;
-                        font-size: 20px
-                    }
-                    .textsize{
-                        font-size: 20px
-                    }
-                    .posDel{
-                        position: absolute;
-                        top: 1100px;
-                        left: 75px;
-                        font-size: 18px
-                    }
-                    .posRes{
-                        position: absolute;
-                        top: 1100px;
-                        left: 655px;
-                        font-size: 18px
-                    }
-                    .dataDel{
-                        position: absolute;
-                        top: 1130px;
-                        left: 70px;
-                        font-size: 22px;
-                        width: 100px
-                    }
-                    .dataRes{
-                        position: absolute;
-                        top: 1130px;
-                        left: 650px;
-                        font-size: 22px;
-                        width: 100px
-                    }
-                </style>
-                <body>
-                    <h2 class="x">موضوع / اخراج مواد</h2>
-                    <div>
-                        <p>في تمام الساعة <span>(' . $Time . ')</span> وبتاريخ <span>( ' . $Date . ' )</span> تم اخراج المواد ادناه بواسطة <span>( ' . $out[0]->items->name . ' )</span> </span></p>
-                    </div>
-                </body>
-                ';
-                // <p class="lead">&bull; ' . $data->items->name . ' - ' . $outType[$i] . ' </p>
-                $mpdf = new \Mpdf\Mpdf(['format' => 'Legal']);
-                $mpdf->autoScriptToLang = true;
-                $mpdf->autoLangToFont = true;
-                $mpdf->WriteHTML($html);
-                // foreach ($out as $data) {
-                //     $mpdf->WriteHTML('
-                //         <p class="lead">&bull; ' . $data->items->name . ' - العدد ('. $data->items->qty .')</p>
-                //     ');
-                // }
-                for ($i=0; $i < count($out) ; ++$i){
-                    $mpdf->WriteHTML('
-                        <p class="lead">&bull; ' . $out[$i]->items->name . ' - العدد ('. $out[$i]->qty .')</p>
-                    ');
-                }
-                if($name){
-                    $mpdf->WriteHTML('
-                        <p class="lead"> - بواسطة سائق السيارة ( ' . $name . ' ) الذي يقود مركبة نوع ( ' . $car . ' ) المرقمة ( ' . $num . ' ) .</p>
-                    ');
-                }
-                $mpdf->WriteHTML('
-                    <p class="posRes">اسم المخول</p>
-                    <p class="dataRes">' . $out[0]->authname . '</p>
-                    <p class="posDel">اسم المستلم</p>
-                    <p class="dataDel">' . $out[0]->name . '</p>
-                    
-                ');
-                $mpdf->Output('' . $out[0]->name . ' ' . $Date . ' ' . now() . '.pdf', 'I');
+                return Inertia::render('Print', [
+                    'out' => $out
+                ]);
             }
             elseif(request('p') == 'inpdf'){
                 $out = logs::findOrFail(request('id'))->with('items')->first();
@@ -244,11 +156,3 @@ class TakeOutController extends Controller
     }
 
 }
-
-// $count = count($out)-1;
-//                 dd($count);
-//                 for ($i = 0;$i < $count ; $i++) {
-//                     $mpdf->WriteHTML('
-//                         <p class="lead">&bull; ' . $out[$i]->items->name . '</p>
-//                     ');
-//                 }

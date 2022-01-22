@@ -4092,7 +4092,8 @@ function Table(_ref) {
       takeout = _ref$takeout === void 0 ? false : _ref$takeout,
       _ref$logs = _ref.logs,
       logs = _ref$logs === void 0 ? false : _ref$logs,
-      total = _ref.total;
+      total = _ref.total,
+      editUrl = _ref.editUrl;
 
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState([]),
       _React$useState2 = _slicedToArray(_React$useState, 2),
@@ -4290,7 +4291,7 @@ function Table(_ref) {
               })), (!takeout && !logs && url === "items" || url === "inventory") && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("td", {
                 className: "py-4 flex items-center justify-center",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
-                  href: "/".concat(url, "/").concat(item.id, "/edit"),
+                  href: "/".concat(editUrl, "/").concat(item.id, "/edit"),
                   className: "bg-green-500 text-black p-2 rounded-lg mx-2 hover:bg-green-600 transition duration-500 ease-in-out",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("svg", {
                     xmlns: "http://www.w3.org/2000/svg",
@@ -7090,6 +7091,7 @@ function index(_ref) {
           data: items.data,
           paginate: items,
           url: "items",
+          editUrl: "items",
           auth: auth,
           total: items.total,
           tableHeaders: ["رقم الماده", "اسم الماده", "الصنف", "الكمية", "الاستهلاكية", "الحالة", "تاريخ الاضافة", "العمليات"]
@@ -7267,6 +7269,7 @@ function index(_ref) {
             data: items.data,
             paginate: items,
             url: "inventory",
+            editUrl: "inventory",
             auth: auth,
             tableHeaders: ["التسلسل", "اسم الماده", "الصنف", "الكميه", "التاريخ", "الحاله", "العمليات"]
           })
@@ -8274,6 +8277,7 @@ function index(_ref) {
           data: user.data,
           url: "user",
           auth: auth,
+          editUrl: "user",
           paginate: user,
           tableHeaders: ["الرقم", "الاسم", "البريد الالكتروني", "الحالة", "العمليات"]
         })]
