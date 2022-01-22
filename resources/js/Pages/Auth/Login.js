@@ -91,12 +91,6 @@ export default function Login({ status, canResetPassword }) {
                             تذكرني
                         </span>
                     </label>
-                    <Link
-                        href="/register"
-                        className="mr-2 text-sm font-tajawal-light font-bold text-gray-600"
-                    >
-                        إنشاء حساب جديد
-                    </Link>
                 </div>
 
                 <div className="flex items-center justify-center mt-4">

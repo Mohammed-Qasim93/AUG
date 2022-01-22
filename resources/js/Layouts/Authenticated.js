@@ -5,6 +5,7 @@ import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Link } from "@inertiajs/inertia-react";
 import Footer from "./Footer";
+import { uniqWith } from "lodash";
 
 export default function Authenticated({ auth, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
@@ -57,13 +58,16 @@ export default function Authenticated({ auth, header, children }) {
                                     </Dropdown.Trigger>
 
                                     <Dropdown.Content>
-                                        <Dropdown.Link
-                                            href="/user?page=1"
-                                            method="get"
-                                            as="button"
-                                        >
-                                            المستخدمين
-                                        </Dropdown.Link>
+                                        {auth.user.isAdmin &
+                                        (
+                                            <Dropdown.Link
+                                                href="/user?page=1"
+                                                method="get"
+                                                as="button"
+                                            >
+                                                المستخدمين
+                                            </Dropdown.Link>
+                                        )}
                                         <Dropdown.Link
                                             href={route("logout")}
                                             className="bg-red-500 text-white hover:bg-red-600"
@@ -147,19 +151,21 @@ export default function Authenticated({ auth, header, children }) {
                         </div>
 
                         <div className="mt-3 space-y-1">
+                            {auth.user.isAdmin && (
+                                <ResponsiveNavLink
+                                    method="get"
+                                    href="/user?page=1"
+                                    as="button"
+                                >
+                                    المستخدمين
+                                </ResponsiveNavLink>
+                            )}
                             <ResponsiveNavLink
                                 method="post"
                                 href={route("logout")}
                                 as="button"
                             >
                                 تسجيل خروج
-                            </ResponsiveNavLink>
-                            <ResponsiveNavLink
-                                method="get"
-                                href="/user?page=1"
-                                as="button"
-                            >
-                                المستخدمين
                             </ResponsiveNavLink>
                         </div>
                     </div>

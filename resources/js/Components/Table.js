@@ -22,31 +22,28 @@ export default function Table({
 }) {
     const [checked, setChecked] = React.useState([]);
 
-    // const [value, setValue] = React.useState(1);
-
-    console.log(data);
     useEffect(() => {
         localStorage.getItem("checked") &&
             setChecked(JSON.parse(localStorage.getItem("checked")));
     }, []);
 
-    const removeItem = (id) => {
-        let items = JSON.parse(localStorage.getItem("checked"));
-        items = items.filter((item) => item !== id);
-        console.log(items);
-        localStorage.setItem("checked", JSON.stringify(items));
-        Inertia.post(`/checkout`, { data: items }, { replaces: true });
-    };
+    // const removeItem = (id) => {
+    //     let items = JSON.parse(localStorage.getItem("checked"));
+    //     items = items.filter((item) => item !== id);
+    //     console.log(items);
+    //     localStorage.setItem("checked", JSON.stringify(items));
+    //     Inertia.post(`/checkout`, { data: items }, { replaces: true });
+    // };
 
     const handleStore = (id, outID) => {
         // e.preventDefault();
-        console.log(id);
+
         Inertia.put(
             `logs/${id}`,
             { id: id, outID: outID },
             {
                 onSuccess: () => {
-                    Inertia.visit("/print?p=inpdf&id=" + id);
+                    Inertia.get("/print?p=inpdf&id=" + id);
                 },
             }
         );
