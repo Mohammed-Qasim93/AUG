@@ -28,6 +28,8 @@
     },
     "dependencies": {
         "chart.js": "^3.7.0",
+        "html2canvas": "^1.4.0",
+        "jspdf": "^2.5.0",
         "jspdf-autotable": "^3.5.23",
         "moment": "^2.29.1",
         "react-chartjs-2": "^4.0.0",

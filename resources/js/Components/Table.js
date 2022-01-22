@@ -296,7 +296,8 @@ export default function Table({
                                         </td>
                                     ))}
                                 {((!takeout && !logs && url === "items") ||
-                                    url === "inventory") && (
+                                    url === "inventory" ||
+                                    url === "user") && (
                                     <td className="py-4 flex items-center justify-center">
                                         <Link
                                             href={`/${editUrl}/${item.id}/edit`}
