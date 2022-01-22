@@ -142,6 +142,9 @@ export default function Add({ auth, errors, categories }) {
                                                                     <Combo
                                                                         className="w-full rounded-lg"
                                                                         name="categories_id"
+                                                                        add={
+                                                                            true
+                                                                        }
                                                                         defaultValue={
                                                                             "---- اختر التصنيف ----"
                                                                         }
