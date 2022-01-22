@@ -74,79 +74,79 @@ class TakeOutController extends Controller
                 ]);
             }
             elseif(request('p') == 'inpdf'){
-                $out = logs::findOrFail(request('id'))->with('items')->first();
-                $Time = Carbon::parse($out->inDate)->format('A h:m:s');
-                $Date = Carbon::parse($out->inDate)->format('d-m-Y');
-                $outType = '';
-                $out->outType === 0 ? $outType = "خارج الشركة" : $outType = "خارج المخزن";
-                $html = '
-                <style>
-                    body{
-                        background: url("h.jpg");
-                        background-image-resize: 6;
-                        direction: rtl;
-                        font-size: 18px;
-                    }
-                    .x{
-                        text-align: center;
-                        padding-top: 100px;
-                    }
-                    .lead{
-                        line-height: 20px;
-                        font-weight:: 70px;
-                        font-size: 20px
-                    }
-                    .textsize{
-                        font-size: 20px
-                    }
-                    .posDel{
-                        position: absolute;
-                        top: 1100px;
-                        left: 75px;
-                        font-size: 18px
-                    }
-                    .posRes{
-                        position: absolute;
-                        top: 1100px;
-                        left: 655px;
-                        font-size: 18px
-                    }
-                    .dataDel{
-                        position: absolute;
-                        top: 1130px;
-                        left: 70px;
-                        font-size: 22px
-                    }
-                    .dataRes{
-                        position: absolute;
-                        top: 1130px;
-                        left: 650px;
-                        font-size: 22px
-                    }
-                </style>
-                <body>
-                    <h2 class="x">موضوع / ادخال مادة</h2>
-                    <div>
-                        <p>في تمام الساعة <span>(' . $Time . ')</span> وبتاريخ <span>( ' . $Date . ' )</span> تم ادخال المادة ادناه بواسطة <span>( ' . $out->name . ' )</span> </span></p>
-                    </div>
-                </body>
-                ';
+                // $out = logs::findOrFail(request('id'))->with('items')->first();
+                // $Time = Carbon::parse($out->inDate)->format('A h:m:s');
+                // $Date = Carbon::parse($out->inDate)->format('d-m-Y');
+                // $outType = '';
+                // $out->outType === 0 ? $outType = "خارج الشركة" : $outType = "خارج المخزن";
+                // $html = '
+                // <style>
+                //     body{
+                //         background: url("h.jpg");
+                //         background-image-resize: 6;
+                //         direction: rtl;
+                //         font-size: 18px;
+                //     }
+                //     .x{
+                //         text-align: center;
+                //         padding-top: 100px;
+                //     }
+                //     .lead{
+                //         line-height: 20px;
+                //         font-weight:: 70px;
+                //         font-size: 20px
+                //     }
+                //     .textsize{
+                //         font-size: 20px
+                //     }
+                //     .posDel{
+                //         position: absolute;
+                //         top: 1100px;
+                //         left: 75px;
+                //         font-size: 18px
+                //     }
+                //     .posRes{
+                //         position: absolute;
+                //         top: 1100px;
+                //         left: 655px;
+                //         font-size: 18px
+                //     }
+                //     .dataDel{
+                //         position: absolute;
+                //         top: 1130px;
+                //         left: 70px;
+                //         font-size: 22px
+                //     }
+                //     .dataRes{
+                //         position: absolute;
+                //         top: 1130px;
+                //         left: 650px;
+                //         font-size: 22px
+                //     }
+                // </style>
+                // <body>
+                //     <h2 class="x">موضوع / ادخال مادة</h2>
+                //     <div>
+                //         <p>في تمام الساعة <span>(' . $Time . ')</span> وبتاريخ <span>( ' . $Date . ' )</span> تم ادخال المادة ادناه بواسطة <span>( ' . $out->name . ' )</span> </span></p>
+                //     </div>
+                // </body>
+                // ';
                 
-                $mpdf = new \Mpdf\Mpdf(['format' => 'Legal']);
-                $mpdf->autoScriptToLang = true;
-                $mpdf->autoLangToFont = true;
-                $mpdf->WriteHTML($html);
-                $mpdf->WriteHTML('
-                    <p class="lead">&bull; ' . $out->items->name . ' - ' . $outType . ' </p>
-                ');
-                $mpdf->WriteHTML('
-                    <p class="posRes">اسم المخول</p>
-                    <p class="dataRes">' . $out->authname . '</p>
-                    <p class="posDel">اسم المسلم</p>
-                    <p class="dataDel">' . $out->name . '</p>
+                // $mpdf = new \Mpdf\Mpdf(['format' => 'Legal']);
+                // $mpdf->autoScriptToLang = true;
+                // $mpdf->autoLangToFont = true;
+                // $mpdf->WriteHTML($html);
+                // $mpdf->WriteHTML('
+                //     <p class="lead">&bull; ' . $out->items->name . ' - ' . $outType . ' </p>
+                // ');
+                // $mpdf->WriteHTML('
+                //     <p class="posRes">اسم المخول</p>
+                //     <p class="dataRes">' . $out->authname . '</p>
+                //     <p class="posDel">اسم المسلم</p>
+                //     <p class="dataDel">' . $out->name . '</p>
                     
-                ');
-                $mpdf->Output('' . $out->name . $Date . '.pdf', 'I');
+                // ');
+                // $mpdf->Output('' . $out->name . $Date . '.pdf', 'I');
             }else{
                 return abort(404);
             }
