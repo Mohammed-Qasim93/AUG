@@ -67,6 +67,7 @@ class TakeOutController extends Controller
             }
             elseif(request('p') == 'outpdf'){
                 $length = logs::select('id')->latest()->first();
+
                 $id = $length->id - request('id');
                 $out = logs::with('items')->where('outID', $id)->get();
                 return Inertia::render('Print', [
