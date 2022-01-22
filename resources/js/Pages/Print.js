@@ -1,32 +1,24 @@
 import React, { useEffect } from "react";
-
+import page1 from "/h.jpg";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import moment from "moment";
 import "moment/locale/en-gb";
 import { Inertia } from "@inertiajs/inertia";
 
-export default function Print({ report, auth }) {
-    const [qrcode, setQrcode] = React.useState("");
-    const qrUrl = `${window.location.origin}/result?id=${report.patientid}`;
+export default function Print({ out }) {
     const [spinner, setSpinner] = React.useState(true);
 
-    useEffect(() => {
-        QRcode.toDataURL(qrUrl)
-            .then((url) => {
-                setQrcode(url);
-            })
-            .then(() => {
-                download();
-            });
-    }, []);
+    // useEffect(() => {
+    //     download();
+    // }, []);
 
-    setTimeout(() => {
-        setSpinner(false);
-        if (auth.user !== null) {
-            Inertia.replace("/");
-        }
-    }, 3000);
+    // setTimeout(() => {
+    //     setSpinner(false);
+    //     if (auth.user !== null) {
+    //         Inertia.replace("/");
+    //     }
+    // }, 3000);
 
     const download = () => {
         const divToPrint = document.querySelector("#page");
@@ -37,14 +29,13 @@ export default function Print({ report, auth }) {
             const imgHeight = (canvas.height * imgWidth) / canvas.width;
             const doc = new jsPDF("p", "mm", "A4");
             doc.addImage(imgData, "JPEG", 0, 0, imgWidth, imgHeight);
-            heightLeft -= pageHeight;
-            doc.save(`${report.pname}_${moment().format("DD-MM-YYYY")}.pdf`);
+            doc.save(`jij.pdf`);
         });
     };
 
     return (
         <div className="flex flex-col mt-4 items-center font-sans justify-center">
-            <div
+            {/* <div
                 style={{
                     width: "100%",
                     height: "100vh",
@@ -60,7 +51,7 @@ export default function Print({ report, auth }) {
                 }}
                 className="loader"
             >
-                {spinner && (
+                {/* {spinner && (
                     <div className="m-5">
                         <svg
                             className="animate-spin -ml-1 mr-3 h-10 w-10 text-gray-400"
@@ -83,11 +74,11 @@ export default function Print({ report, auth }) {
                             ></path>
                         </svg>
                     </div>
-                )}
-            </div>
+                )/}
+            </div> */}
             <div id="page" className="">
                 <div
-                    className="page1 relative"
+                    className="page1 relative font-tajawal-regular"
                     style={{
                         backgroundImage: `url(${page1})`,
                         backgroundSize: "cover",
@@ -98,22 +89,51 @@ export default function Print({ report, auth }) {
                         height: "3500px",
                     }}
                 >
+                    <p
+                        style={{
+                            top: "30rem",
+                        }}
+                        className="absolute w-full text-center text-6xl"
+                    >
+                        م / اخراج مواد
+                    </p>
                     <div
                         style={{
-                            padding: "10rem",
-                            bottom: "25rem",
-                            left: "13rem",
+                            top: "40rem",
                         }}
-                        className="absolute   h-[26rem] w-80 flex flex-col items-center bg-gray-800  text-center rounded-3xl"
+                        className="flex absolute gap-4 w-full text-center px-20 text-6xl"
                     >
-                        <span className="text-6xl  absolute -top-1 text-gray-200 ">
-                            Scan me
-                        </span>
-                        <img
-                            src={qrcode}
-                            alt=""
-                            className="rounded-3xl absolute w-72 bottom-3"
-                        />
+                        <p className=""> تم اخراج المواد ادناه بواسطة السيد</p>
+                        <p className="">( {out[0].name} )</p>
+                        <p className="">
+                            بتأريخ {moment(out[0].outdate).format("YYYY/MM/DD")}{" "}
+                        </p>
+                        <p className="">
+                            في تمام الساعه{" "}
+                            {moment(out[0].outdate).format("hh:mm:ss")}{" "}
+                        </p>
+                    </div>
+                    <div
+                        style={{
+                            top: "46rem",
+                        }}
+                        className="absolute w-full text-6xl mt-7"
+                    >
+                        <ul className="items list-disc px-64 flex flex-col gap-y-6">
+                            {out.map((item, index) => (
+                                <li key={index}> {item.items.name} </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div
+                        style={{
+                            bottom: "30rem",
+                        }}
+                        className="flex  items-center justify-between px-80  absolute w-full"
+                    >
+                        <p className="reci"> reciver </p>
+                        <p className="send "> sender </p>
                     </div>
                 </div>
             </div>
