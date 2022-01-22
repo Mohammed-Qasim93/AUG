@@ -75,7 +75,10 @@ class TakeOutController extends Controller
                 ]);
             }
             elseif(request('p') == 'inpdf'){
-                // $out = logs::findOrFail(request('id'))->with('items')->first();
+                $out = logs::findOrFail(request('id'))->with('items')->first();
+                return Inertia::render('Print', [
+                    'out' => $out
+                ]);
                 // $Time = Carbon::parse($out->inDate)->format('A h:m:s');
                 // $Date = Carbon::parse($out->inDate)->format('d-m-Y');
                 // $outType = '';
