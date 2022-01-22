@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ItemsController;
+use App\Models\Categories;
+use App\Models\Items;
+use App\Models\logs;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -18,6 +21,12 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return Inertia::render('Dashboard', [
         'allItems' => Items::count(),
+        'storage'  => Items::where('inventory', false)->count(),
+        'inventory'  => Items::where('inventory', true)->count(),
+        'categories' => Categories::count(),
+        'in' => logs::whereNotNull('inDate')->count(),
+        'outComp' => logs::whereNull('inDate')->where('outType', true)->count(),
+        'outStorage' => logs::whereNull('inDate')->where('outType', false)->count(),
     ]);
 })->middleware(['auth'])->name('dashboard');
 
