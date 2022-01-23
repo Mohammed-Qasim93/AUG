@@ -24,7 +24,7 @@ Route::get('/', function () {
         'storage'  => Items::where('inventory', false)->count(),
         'inventory'  => Items::where('inventory', true)->count(),
         'categories' => Categories::count(),
-        'in' => logs::whereNotNull('inDate')->count(),
+        'inStorage' => logs::whereNotNull('inDate')->count(),
         'outComp' => logs::whereNull('inDate')->where('outType', true)->count(),
         'outStorage' => logs::whereNull('inDate')->where('outType', false)->count(),
     ]);

@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('items', ItemsController::class)->middleware('auth');
-Route::resource('logs', LogsController::class)->middleware('auth');
+Route::resource('logs', LogsController::class)->middleware('auth')->except(['destroy', 'show']);
 Route::resource('categories', CategoriesController::class)->middleware('auth');
 
 Route::middleware('auth')->group(function () {
