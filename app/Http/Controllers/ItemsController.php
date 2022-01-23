@@ -145,7 +145,7 @@ class ItemsController extends Controller
             'qty.integer' => 'يجب ادخال الكمية كعدد',
         ]);
 
-        if(($request->name <> $item->name) || ($request->qty <> $item->qty) || ($request->state <> $item->state) ||
+        if(($request->name <> $item->name) || ($request->qty <> $item->qty) || ($request->state <> $item->state) || ($request->constate <> $item->constate) ||
             ($request->inventory <> $item->inventory) || ($request->desc <> $item->desc) || ($request->categories_id <> $item->categories_id)){
 
             if($request->name <> $item->name){
@@ -175,6 +175,7 @@ class ItemsController extends Controller
                 'name' => $request->name,
                     'qty' => $request->qty,
                     'state' => $request->state,
+                    'constate' => $request->constate,
                     'inventory' => $request->inventory,
                     'constate' => $request->inventory == true ? false : $request->constate,
                     'desc' => $request->desc,
