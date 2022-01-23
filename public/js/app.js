@@ -7612,12 +7612,14 @@ function Print(_ref) {
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     download();
-  }, []); // setTimeout(() => {
-  //     setSpinner(false);
-  //     if (auth.user !== null) {
-  //         Inertia.get("/");
-  //     }
-  // }, 3000);
+  }, []);
+  setTimeout(function () {
+    setSpinner(false);
+
+    if (auth.user !== null) {
+      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_7__.Inertia.get("/");
+    }
+  }, 3000);
 
   var download = function download() {
     var divToPrint = document.querySelector("#page");

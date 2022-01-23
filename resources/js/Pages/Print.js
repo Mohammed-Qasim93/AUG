@@ -15,12 +15,12 @@ export default function Print({ out, auth, dname, carnum, carType }) {
         download();
     }, []);
 
-    // setTimeout(() => {
-    //     setSpinner(false);
-    //     if (auth.user !== null) {
-    //         Inertia.get("/");
-    //     }
-    // }, 3000);
+    setTimeout(() => {
+        setSpinner(false);
+        if (auth.user !== null) {
+            Inertia.get("/");
+        }
+    }, 3000);
 
     const download = () => {
         const divToPrint = document.querySelector("#page");
