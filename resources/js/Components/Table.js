@@ -85,12 +85,6 @@ export default function Table({
 
     return (
         <>
-            {total > 0 && (
-                <div className=" flex text-gray-600  justify-end gap-x-4   items-center">
-                    <p> عدد المواد : </p>
-                    <p> {total} </p>
-                </div>
-            )}
             <div className="flex flex-col pt-4 print:pr-0 pr-32">
                 <table className="max-w-5xl  divide-y text-center print:text-base divide-gray-200">
                     <thead className="bg-gray-50 text-right ">
