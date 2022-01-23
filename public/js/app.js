@@ -7516,8 +7516,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function Print(_ref) {
   var out = _ref.out,
-      auth = _ref.auth;
-  console.log(out);
+      auth = _ref.auth,
+      dname = _ref.dname,
+      carnum = _ref.carnum,
+      carType = _ref.carType;
 
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState(true),
       _React$useState2 = _slicedToArray(_React$useState, 2),
@@ -7526,14 +7528,12 @@ function Print(_ref) {
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     download();
-  }, []);
-  setTimeout(function () {
-    setSpinner(false);
-
-    if (auth.user !== null) {
-      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_7__.Inertia.get("/");
-    }
-  }, 3000);
+  }, []); // setTimeout(() => {
+  //     setSpinner(false);
+  //     if (auth.user !== null) {
+  //         Inertia.get("/");
+  //     }
+  // }, 3000);
 
   var download = function download() {
     var divToPrint = document.querySelector("#page");
@@ -7591,7 +7591,7 @@ function Print(_ref) {
       id: "page",
       className: "",
       children: (0,lodash__WEBPACK_IMPORTED_MODULE_8__.isArray)(out) ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
-        className: "page1 relative font-tajawal-regular font-extrabold",
+        className: "page1 relative font-tajawal-regular ",
         style: {
           backgroundImage: "url(".concat(_h_jpg__WEBPACK_IMPORTED_MODULE_1__["default"], ")"),
           backgroundSize: "cover",
@@ -7602,41 +7602,49 @@ function Print(_ref) {
           height: "3500px"
         },
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-          className: "absolute w-full h-full",
+          className: "absolute w-full top-64 h-full",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("p", {
             style: {
-              top: "20rem"
+              top: "10rem"
             },
             className: "absolute w-full text-center text-6xl",
             children: "\u0645 / \u0627\u062E\u0631\u0627\u062C \u0645\u0648\u0627\u062F"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
             style: {
-              top: "40rem"
+              top: "25rem"
             },
-            className: "flex absolute gap-4 w-full text-center px-20 text-6xl",
+            className: "flex flex-wrap absolute leading-loose gap-4 w-full  text-center px-20 text-6xl",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
               className: "",
               children: [" ", "\u062A\u0645 \u0627\u062E\u0631\u0627\u062C \u0627\u0644\u0645\u0648\u0627\u062F \u0627\u062F\u0646\u0627\u0647 \u0628\u0648\u0627\u0633\u0637\u0629 \u0627\u0644\u0633\u064A\u062F"]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
-              className: "",
+              className: "font-bold",
               children: ["( ", out[0].name, " )"]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
-              className: "",
-              children: ["\u0628\u062A\u0623\u0631\u064A\u062E", " ", moment__WEBPACK_IMPORTED_MODULE_4___default()(out[0].outdate).format("YYYY/MM/DD"), " "]
+              children: ["\u0628\u062A\u0623\u0631\u064A\u062E", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
+                className: "font-bold",
+                children: moment__WEBPACK_IMPORTED_MODULE_4___default()(out[0].outdate).format("YYYY/MM/DD")
+              }), " "]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
-              className: "",
-              children: ["\u0641\u064A \u062A\u0645\u0627\u0645 \u0627\u0644\u0633\u0627\u0639\u0647", " ", moment__WEBPACK_IMPORTED_MODULE_4___default()(out[0].outdate).format("hh:mm:ss"), " "]
+              children: ["\u0641\u064A \u062A\u0645\u0627\u0645 \u0627\u0644\u0633\u0627\u0639\u0647", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
+                className: "font-bold",
+                children: moment__WEBPACK_IMPORTED_MODULE_4___default()(out[0].outdate).format("hh:mm:ss")
+              }), " "]
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
             style: {
-              top: "46rem"
+              top: "45rem"
             },
-            className: "absolute w-full text-6xl mt-7",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("ul", {
-              className: "items list-disc px-64 flex flex-col gap-y-6",
+            className: "absolute w-full text-6xl mt-20",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("ul", {
+              className: "items px-64  gap-y-6",
               children: out.map(function (item, index) {
-                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("li", {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("li", {
+                  className: "flex",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
+                    className: " ml-4",
+                    children: "\u2022"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
                     className: "flex gap-x-32",
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("span", {
                       children: [" ", item.items.name, " "]
@@ -7648,20 +7656,30 @@ function Print(_ref) {
                         children: [" ", item.qty, " "]
                       })]
                     })]
-                  })
+                  })]
                 }, index);
               })
-            })
-          }), out.outType == 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-            className: "car",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
-              children: [" ", "\u0645\u0644\u0627\u062D\u0638\u0629 : \u062A\u0645 \u0627\u062E\u0631\u0627\u062C \u0627\u0644\u0645\u0648\u0627\u062F \u062E\u0627\u0631\u062C \u0627\u0644\u0634\u0631\u0643\u0647 \u0627\u0628\u0648\u0627\u0633\u0637\u0629 \u0627\u0644\u0645\u0631\u0643\u0628\u0629 \u0630\u0627\u062A \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062A", ""]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("ul", {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("li", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("li", {
-                children: [" ", out[0].vehiclenumber, " "]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("li", {
-                children: [" ", out[0].vehicletype, " "]
-              })]
+            }), " ", out[0].outType == 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+              className: "flex absolute gap-4 w-full text-center px-20 mt-20 text-6xl",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
+                className: "flex flex-wrap gap-x-4",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("span", {
+                  children: [" ", "\u062A\u0645 \u0627\u062E\u0631\u0627\u062C \u0627\u0644\u0645\u0648\u0627\u062F \u062E\u0627\u0631\u062C \u0627\u0644\u0634\u0631\u0643\u0629 \u0645\u0646 \u0642\u0628\u0644", " "]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("span", {
+                  className: "font-bold",
+                  children: [" ", "( ", dname, " )", " "]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
+                  children: " \u0646\u0648\u0639 \u0627\u0644\u0645\u0631\u0643\u0628\u0629 "
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("span", {
+                  className: "font-bold",
+                  children: [" ", "( ", carType, " )", " "]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
+                  children: " \u0627\u0644\u0645\u0631\u0642\u0645\u0629 "
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("span", {
+                  className: "font-bold",
+                  children: [" ", "( ", carnum, " )", " "]
+                })]
+              })
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
             style: {
@@ -7674,16 +7692,16 @@ function Print(_ref) {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("p", {
                 children: "\u0627\u0644\u0645\u0633\u0644\u0645"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
-                className: "text-6xl ",
-                children: [" ", out[0].name, " "]
+                className: "text-6xl font-bold",
+                children: [" ", out[0].authname, " "]
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
               className: "reciver  text-center h-72 flex flex-col justify-around flex-1",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("p", {
                 children: "\u0627\u0644\u0645\u0633\u062A\u0644\u0645"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("p", {
-                className: "text-6xl",
-                children: out[0].authname
+                className: "text-6xl font-bold",
+                children: out[0].name
               })]
             })]
           })]
@@ -7712,18 +7730,21 @@ function Print(_ref) {
               top: "40rem"
             },
             className: "flex absolute gap-4 w-full text-center px-20 text-6xl",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
-              className: "",
-              children: [" ", "\u062A\u0645 \u0627\u062F\u062E\u0627\u0644 \u0627\u0644\u0645\u0627\u062F\u0647 \u0627\u062F\u0646\u0627\u0647 \u0628\u0648\u0627\u0633\u0637\u0629 \u0627\u0644\u0633\u064A\u062F"]
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("p", {
+              children: " \u062A\u0645 \u0627\u062F\u062E\u0627\u0644 \u0627\u0644\u0645\u0627\u062F\u0647 \u0627\u062F\u0646\u0627\u0647 \u0628\u0648\u0627\u0633\u0637\u0629 \u0627\u0644\u0633\u064A\u062F"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
-              className: "",
+              className: "font-bold",
               children: ["( ", out.name, " )"]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
-              className: "",
-              children: ["\u0628\u062A\u0623\u0631\u064A\u062E", " ", moment__WEBPACK_IMPORTED_MODULE_4___default()(out.outdate).format("YYYY/MM/DD"), " "]
+              children: ["\u0628\u062A\u0623\u0631\u064A\u062E", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("span", {
+                className: "font-bold",
+                children: [moment__WEBPACK_IMPORTED_MODULE_4___default()(out.outdate).format("YYYY/MM/DD"), " "]
+              })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
-              className: "",
-              children: ["\u0641\u064A \u062A\u0645\u0627\u0645 \u0627\u0644\u0633\u0627\u0639\u0647", " ", moment__WEBPACK_IMPORTED_MODULE_4___default()(out.outdate).format("hh:mm:ss"), " "]
+              children: ["\u0641\u064A \u062A\u0645\u0627\u0645 \u0627\u0644\u0633\u0627\u0639\u0647", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("span", {
+                className: "font-bold",
+                children: [moment__WEBPACK_IMPORTED_MODULE_4___default()(out.outdate).format("hh:mm:ss"), " "]
+              })]
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
             style: {
@@ -7753,7 +7774,7 @@ function Print(_ref) {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("p", {
                 children: "\u0627\u0644\u0645\u0633\u062A\u0644\u0645"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("p", {
-                className: "text-6xl",
+                className: "text-6xl font-bold",
                 children: out.authname
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
@@ -7761,7 +7782,7 @@ function Print(_ref) {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("p", {
                 children: "\u0627\u0644\u0645\u0633\u0644\u0645"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
-                className: "text-6xl ",
+                className: "text-6xl font-bold",
                 children: [" ", out.name, " "]
               })]
             })]

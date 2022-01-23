@@ -8,20 +8,19 @@ import "moment/locale/en-gb";
 import { Inertia } from "@inertiajs/inertia";
 import { isArray } from "lodash";
 
-export default function Print({ out, auth }) {
-    console.log(out);
+export default function Print({ out, auth, dname, carnum, carType }) {
     const [spinner, setSpinner] = React.useState(true);
 
     useEffect(() => {
         download();
     }, []);
 
-    setTimeout(() => {
-        setSpinner(false);
-        if (auth.user !== null) {
-            Inertia.get("/");
-        }
-    }, 3000);
+    // setTimeout(() => {
+    //     setSpinner(false);
+    //     if (auth.user !== null) {
+    //         Inertia.get("/");
+    //     }
+    // }, 3000);
 
     const download = () => {
         const divToPrint = document.querySelector("#page");
@@ -82,7 +81,7 @@ export default function Print({ out, auth }) {
             <div id="page" className="">
                 {isArray(out) ? (
                     <div
-                        className="page1 relative font-tajawal-regular font-extrabold"
+                        className="page1 relative font-tajawal-regular "
                         style={{
                             backgroundImage: `url(${page1})`,
                             backgroundSize: "cover",
@@ -93,10 +92,10 @@ export default function Print({ out, auth }) {
                             height: "3500px",
                         }}
                     >
-                        <div className="absolute w-full h-full">
+                        <div className="absolute w-full top-64 h-full">
                             <p
                                 style={{
-                                    top: "20rem",
+                                    top: "10rem",
                                 }}
                                 className="absolute w-full text-center text-6xl"
                             >
@@ -104,35 +103,44 @@ export default function Print({ out, auth }) {
                             </p>
                             <div
                                 style={{
-                                    top: "40rem",
+                                    top: "25rem",
                                 }}
-                                className="flex absolute gap-4 w-full text-center px-20 text-6xl"
+                                className="flex flex-wrap absolute leading-loose gap-4 w-full  text-center px-20 text-6xl"
                             >
                                 <p className="">
                                     {" "}
                                     تم اخراج المواد ادناه بواسطة السيد
                                 </p>
-                                <p className="">( {out[0].name} )</p>
-                                <p className="">
+                                <p className="font-bold">( {out[0].name} )</p>
+                                <p>
                                     بتأريخ{" "}
-                                    {moment(out[0].outdate).format(
-                                        "YYYY/MM/DD"
-                                    )}{" "}
+                                    <span className="font-bold">
+                                        {moment(out[0].outdate).format(
+                                            "YYYY/MM/DD"
+                                        )}
+                                    </span>{" "}
                                 </p>
-                                <p className="">
+                                <p>
                                     في تمام الساعه{" "}
-                                    {moment(out[0].outdate).format("hh:mm:ss")}{" "}
+                                    <span className="font-bold">
+                                        {moment(out[0].outdate).format(
+                                            "hh:mm:ss"
+                                        )}
+                                    </span>{" "}
                                 </p>
                             </div>
                             <div
                                 style={{
-                                    top: "46rem",
+                                    top: "45rem",
                                 }}
-                                className="absolute w-full text-6xl mt-7"
+                                className="absolute w-full text-6xl mt-20"
                             >
-                                <ul className="items list-disc px-64 flex flex-col gap-y-6">
+                                <ul className="items px-64  gap-y-6">
                                     {out.map((item, index) => (
-                                        <li key={index}>
+                                        <li className="flex" key={index}>
+                                            <span className=" ml-4">
+                                                &bull;
+                                            </span>
                                             <div className="flex gap-x-32">
                                                 <span> {item.items.name} </span>
                                                 <div className="flex gap-x-10">
@@ -142,24 +150,33 @@ export default function Print({ out, auth }) {
                                             </div>
                                         </li>
                                     ))}
-                                </ul>
+                                </ul>{" "}
+                                {out[0].outType == 1 && (
+                                    <div className="flex absolute gap-4 w-full text-center px-20 mt-20 text-6xl">
+                                        <p className="flex flex-wrap gap-x-4">
+                                            <span>
+                                                {" "}
+                                                تم اخراج المواد خارج الشركة من
+                                                قبل{" "}
+                                            </span>
+                                            <span className="font-bold">
+                                                {" "}
+                                                ( {dname} ){" "}
+                                            </span>
+                                            <span> نوع المركبة </span>
+                                            <span className="font-bold">
+                                                {" "}
+                                                ( {carType} ){" "}
+                                            </span>
+                                            <span> المرقمة </span>
+                                            <span className="font-bold">
+                                                {" "}
+                                                ( {carnum} ){" "}
+                                            </span>
+                                        </p>
+                                    </div>
+                                )}
                             </div>
-
-                            {out.outType == 1 && (
-                                <div className="car">
-                                    <p>
-                                        {" "}
-                                        ملاحظة : تم اخراج المواد خارج الشركه
-                                        ابواسطة المركبة ذات المعلومات{""}
-                                    </p>
-                                    <ul>
-                                        <li></li>
-                                        <li> {out[0].vehiclenumber} </li>
-
-                                        <li> {out[0].vehicletype} </li>
-                                    </ul>
-                                </div>
-                            )}
 
                             <div
                                 style={{
@@ -170,12 +187,15 @@ export default function Print({ out, auth }) {
                             >
                                 <div className="sender text-center h-72 flex flex-col justify-around flex-1">
                                     <p>المسلم</p>
-                                    <p className="text-6xl "> {out[0].name} </p>
+                                    <p className="text-6xl font-bold">
+                                        {" "}
+                                        {out[0].authname}{" "}
+                                    </p>
                                 </div>
                                 <div className="reciver  text-center h-72 flex flex-col justify-around flex-1">
                                     <p>المستلم</p>
-                                    <p className="text-6xl">
-                                        {out[0].authname}
+                                    <p className="text-6xl font-bold">
+                                        {out[0].name}
                                     </p>
                                 </div>
                             </div>
@@ -209,18 +229,21 @@ export default function Print({ out, auth }) {
                                 }}
                                 className="flex absolute gap-4 w-full text-center px-20 text-6xl"
                             >
-                                <p className="">
-                                    {" "}
-                                    تم ادخال الماده ادناه بواسطة السيد
-                                </p>
-                                <p className="">( {out.name} )</p>
-                                <p className="">
+                                <p> تم ادخال الماده ادناه بواسطة السيد</p>
+                                <p className="font-bold">( {out.name} )</p>
+                                <p>
                                     بتأريخ{" "}
-                                    {moment(out.outdate).format("YYYY/MM/DD")}{" "}
+                                    <span className="font-bold">
+                                        {moment(out.outdate).format(
+                                            "YYYY/MM/DD"
+                                        )}{" "}
+                                    </span>
                                 </p>
-                                <p className="">
+                                <p>
                                     في تمام الساعه{" "}
-                                    {moment(out.outdate).format("hh:mm:ss")}{" "}
+                                    <span className="font-bold">
+                                        {moment(out.outdate).format("hh:mm:ss")}{" "}
+                                    </span>
                                 </p>
                             </div>
                             <div
@@ -246,11 +269,16 @@ export default function Print({ out, auth }) {
                             >
                                 <div className="reciver  text-center h-72 flex flex-col justify-around flex-1">
                                     <p>المستلم</p>
-                                    <p className="text-6xl">{out.authname}</p>
+                                    <p className="text-6xl font-bold">
+                                        {out.authname}
+                                    </p>
                                 </div>
                                 <div className="sender text-center h-72 flex flex-col justify-around flex-1">
                                     <p>المسلم</p>
-                                    <p className="text-6xl "> {out.name} </p>
+                                    <p className="text-6xl font-bold">
+                                        {" "}
+                                        {out.name}{" "}
+                                    </p>
                                 </div>
                             </div>
                         </div>
