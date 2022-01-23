@@ -3,31 +3,31 @@ import page1 from "/h.jpg";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import moment from "moment";
+import ApplicationLogo from "@/Components/ApplicationLogo";
 import "moment/locale/en-gb";
 import { Inertia } from "@inertiajs/inertia";
-import { isArray, uniqWith } from "lodash";
+import { isArray } from "lodash";
 
-export default function Print({ out }) {
+export default function Print({ out, auth }) {
     console.log(out);
     const [spinner, setSpinner] = React.useState(true);
 
-    // useEffect(() => {
-    //     download();
-    // }, []);
+    useEffect(() => {
+        download();
+    }, []);
 
-    // setTimeout(() => {
-    //     setSpinner(false);
-    //     if (auth.user !== null) {
-    //         Inertia.replace("/");
-    //     }
-    // }, 3000);
+    setTimeout(() => {
+        setSpinner(false);
+        if (auth.user !== null) {
+            Inertia.get("/");
+        }
+    }, 3000);
 
     const download = () => {
         const divToPrint = document.querySelector("#page");
         html2canvas(divToPrint).then((canvas) => {
             const imgData = canvas.toDataURL("image/jpeg", 1.0);
             const imgWidth = 210;
-            const pageHeight = 295;
             const imgHeight = (canvas.height * imgWidth) / canvas.width;
             const doc = new jsPDF("p", "mm", "A4");
             doc.addImage(imgData, "JPEG", 0, 0, imgWidth, imgHeight);
@@ -37,7 +37,7 @@ export default function Print({ out }) {
 
     return (
         <div className="flex flex-col mt-4 items-center font-sans justify-center">
-            {/* <div
+            <div
                 style={{
                     width: "100%",
                     height: "100vh",
@@ -53,8 +53,8 @@ export default function Print({ out }) {
                 }}
                 className="loader"
             >
-                {/* {spinner && (
-                    <div className="m-5">
+                {spinner && (
+                    <div className="m-5 flex flex-col items-center justify-center">
                         <svg
                             className="animate-spin -ml-1 mr-3 h-10 w-10 text-gray-400"
                             xmlns="http://www.w3.org/2000/svg"
@@ -75,9 +75,10 @@ export default function Print({ out }) {
                                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                             ></path>
                         </svg>
+                        <ApplicationLogo className="h-28 w-96" />
                     </div>
-                )/}
-            </div> */}
+                )}
+            </div>
             <div id="page" className="">
                 {isArray(out) ? (
                     <div
@@ -95,7 +96,7 @@ export default function Print({ out }) {
                         <div className="absolute w-full h-full">
                             <p
                                 style={{
-                                    top: "30rem",
+                                    top: "20rem",
                                 }}
                                 className="absolute w-full text-center text-6xl"
                             >
@@ -165,15 +166,17 @@ export default function Print({ out }) {
                                     bottom: "50rem",
                                     columnGap: "20rem",
                                 }}
-                                className="flex  items-center justify-between text-7xl  absolute w-full"
+                                className="flex  items-center px-20 justify-between text-7xl  absolute w-full"
                             >
-                                <div className="reciver  text-center h-72 flex flex-col justify-around flex-1">
-                                    <p>المستلم</p>
-                                    <p className=""> {out[0].name} </p>
-                                </div>
                                 <div className="sender text-center h-72 flex flex-col justify-around flex-1">
                                     <p>المسلم</p>
-                                    <p className="send "> {out[0].authname} </p>
+                                    <p className="text-6xl "> {out[0].name} </p>
+                                </div>
+                                <div className="reciver  text-center h-72 flex flex-col justify-around flex-1">
+                                    <p>المستلم</p>
+                                    <p className="text-6xl">
+                                        {out[0].authname}
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -194,7 +197,7 @@ export default function Print({ out }) {
                         <div className="absolute w-full h-full top-64">
                             <p
                                 style={{
-                                    top: "30rem",
+                                    top: "20rem",
                                 }}
                                 className="absolute w-full text-center text-6xl"
                             >
@@ -224,10 +227,13 @@ export default function Print({ out }) {
                                 style={{
                                     top: "46rem",
                                 }}
-                                className="absolute w-full text-6xl mt-7"
+                                className="absolute text-6xl mt-7"
                             >
-                                <ul className="items list-disc px-64 flex flex-col gap-y-6">
-                                    <li> {out.items.name} </li>
+                                <ul className="items px-64 text-right  gap-y-6">
+                                    <li className="">
+                                        <span className=" ml-4">&bull;</span>
+                                        <span>{out.items.name}</span>
+                                    </li>
                                 </ul>
                             </div>
 
@@ -236,15 +242,15 @@ export default function Print({ out }) {
                                     bottom: "50rem",
                                     columnGap: "20rem",
                                 }}
-                                className="flex  items-center justify-between text-7xl  absolute w-full"
+                                className="flex  items-center px-20 justify-between text-7xl  absolute w-full"
                             >
                                 <div className="reciver  text-center h-72 flex flex-col justify-around flex-1">
                                     <p>المستلم</p>
-                                    <p className=""> {out.authname} </p>
+                                    <p className="text-6xl">{out.authname}</p>
                                 </div>
                                 <div className="sender text-center h-72 flex flex-col justify-around flex-1">
                                     <p>المسلم</p>
-                                    <p className="send "> {out.name} </p>
+                                    <p className="text-6xl "> {out.name} </p>
                                 </div>
                             </div>
                         </div>

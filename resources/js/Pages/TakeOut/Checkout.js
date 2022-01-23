@@ -5,10 +5,7 @@ import Checkbox from "@/Components/Checkbox";
 import Button from "@/Components/Button";
 import Authenticated from "@/Layouts/Authenticated";
 import DashboardBar from "../../Components/DashboardBar";
-import Table from "../../Components/Table";
-import Toast from "../../Components/Toast";
-import Label from "../../Components/Label";
-import Pagination from "../../Components/Pagination";
+
 import { Inertia } from "@inertiajs/inertia";
 
 export default function Checkout({ auth, errors, items, success }) {

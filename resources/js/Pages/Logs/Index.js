@@ -25,9 +25,9 @@ export default function index({ logs, auth, errors, success }) {
         });
     };
 
-    const exportExcel = () => {
-        Inertia.get("/print?p=excel");
-    };
+    // const exportExcel = () => {
+    //     Inertia.get("/print?p=excel");
+    // };
 
     const submit = (e) => {
         e.preventDefault();
@@ -96,9 +96,9 @@ export default function index({ logs, auth, errors, success }) {
                                 </div>
                             </div>
                             <div className="flex items-center ">
-                                <button
+                                <a
                                     className="bg-green-500 p-2 rounded-lg"
-                                    onClick={exportExcel}
+                                    href="/print?p=excel"
                                 >
                                     <svg
                                         enable-background="new 0 0 30 30"
@@ -126,7 +126,7 @@ export default function index({ logs, auth, errors, success }) {
                                             />
                                         </g>
                                     </svg>
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
