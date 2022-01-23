@@ -17,8 +17,8 @@ export default function Add({ auth, errors, categories, items }) {
         note: items.note || "",
         desc: items.desc || "",
         state: items.state || 1,
-        constate: items.constate || 1,
-        inventory: items.inventory || "0",
+        constate: items.constate,
+        inventory: items.inventory,
         _method: "PUT",
     });
 
@@ -47,6 +47,7 @@ export default function Add({ auth, errors, categories, items }) {
                 ? event.target.checked
                 : event.target.value
         );
+        console.log(data);
     };
 
     // const submit = (e) => {
@@ -57,21 +58,9 @@ export default function Add({ auth, errors, categories, items }) {
     const submit = (e) => {
         e.preventDefault();
 
-        post(`/items/${items.id}`, {
-            onSuccess: () => {
-                Toast.fire({
-                    icon: "success",
-                    title: success,
-                });
-            },
-        });
+        post(`/items/${items.id}`);
         console.log(data);
     };
-
-    // const handleChange = (e) => {
-    //     const { name, value } = e.target;
-    //     setData({ ...data, [name]: value });
-    // };
 
     // const handelClick = (e) => {
     //     e.preventDefault();
@@ -224,13 +213,17 @@ export default function Add({ auth, errors, categories, items }) {
                                                                                 data.inventory
                                                                             }
                                                                             checked={
-                                                                                data.inventory ===
-                                                                                "0"
+                                                                                data.inventory ==
+                                                                                0
                                                                                     ? false
                                                                                     : true
                                                                             }
-                                                                            handleChange={
-                                                                                onHandleChange
+                                                                            handleChange={(
+                                                                                e
+                                                                            ) =>
+                                                                                onHandleChange(
+                                                                                    e
+                                                                                )
                                                                             }
                                                                         />
                                                                         <label
@@ -245,7 +238,7 @@ export default function Add({ auth, errors, categories, items }) {
                                                                         <Checkbox
                                                                             name="constate"
                                                                             disabled={
-                                                                                data.inventory ===
+                                                                                data.inventory ==
                                                                                 true
                                                                                     ? true
                                                                                     : false
@@ -254,17 +247,21 @@ export default function Add({ auth, errors, categories, items }) {
                                                                                 data.constate
                                                                             }
                                                                             checked={
-                                                                                data.constate ===
+                                                                                data.constate ==
                                                                                 "0"
                                                                                     ? false
                                                                                     : true
                                                                             }
-                                                                            handleChange={
-                                                                                onHandleChange
+                                                                            handleChange={(
+                                                                                e
+                                                                            ) =>
+                                                                                onHandleChange(
+                                                                                    e
+                                                                                )
                                                                             }
                                                                         />
                                                                         <label
-                                                                            htmlFor="state"
+                                                                            htmlFor="constate"
                                                                             className="block text-sm font-medium text-gray-700"
                                                                         >
                                                                             قابل
