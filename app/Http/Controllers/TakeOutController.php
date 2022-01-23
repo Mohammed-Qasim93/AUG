@@ -67,11 +67,13 @@ class TakeOutController extends Controller
             }
             elseif(request('p') == 'outpdf'){
                 $length = logs::select('id')->latest()->first();
-
                 $id = $length->id - request('id');
                 $out = logs::with('items')->where('outID', $id)->get();
                 return Inertia::render('Print', [
-                    'out' => $out
+                    'out' => $out,
+                    'dname' => request('n'),
+                    'carnum' => request('num'),
+                    'carType' => request('car'),
                 ]);
             }
             elseif(request('p') == 'inpdf'){
