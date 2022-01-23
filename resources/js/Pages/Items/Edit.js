@@ -248,7 +248,7 @@ export default function Add({ auth, errors, categories, items }) {
                                                                             }
                                                                             checked={
                                                                                 data.constate ==
-                                                                                "0"
+                                                                                0
                                                                                     ? false
                                                                                     : true
                                                                             }
