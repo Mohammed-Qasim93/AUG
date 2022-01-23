@@ -150,6 +150,7 @@ export default function Print({ out, auth, dname, carnum, carType }) {
                                             </div>
                                         </li>
                                     ))}
+                                    {/* jo */}
                                 </ul>{" "}
                                 {out[0].outType == 1 && (
                                     <div className="flex absolute gap-4 w-full text-center px-20 mt-20 text-6xl">
