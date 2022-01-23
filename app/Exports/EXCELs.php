@@ -33,7 +33,6 @@ class EXCELs implements FromArray, WithHeadings, WithColumnWidths
         $items = [];
         $query = Items::query();
         // $query->whereBetween('created_at', [request('date_from'), request('date_to')]);
-        $query->whereBetween('created_at', ['2022-01-01', '2022-01-23']);
         $data = $query->select('id', 'name', 'qty', 'state', 'desc')->where('inventory', true)->orderBy('created_at', 'asc')->get();
         foreach($data as $i => $d){
             $items[$i]['id'] = $d->id;

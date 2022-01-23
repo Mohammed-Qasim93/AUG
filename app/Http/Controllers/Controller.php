@@ -36,7 +36,7 @@ class Controller extends BaseController
     public function update(Request $request, $id){
         $user = User::findOrFail($id);
 
-        if(($request->name !== $user->name) || ($request->email !== $user->email) || ($request->password !== $user->password)){
+        if(($request->name !== $user->name) || ($request->email !== $user->email) || ($request->password !== $user->password) || ($request->isAdmin !== $user->isAdmin)){
             if($request->name !== $user->name){
                 $request->validate([
                     'name' => 'required|unique:users,name'
@@ -65,6 +65,7 @@ class Controller extends BaseController
             $user->update([
                 'name' => $request->name,
                 'email' => $request->email,
+                'isAdmin' => $request->isAdmin,
                 'password' => !isset($request->password) ? $user->password : Hash::make($request->password),
             ]);
             return Redirect::route('user.index')->with('success', 'تم التعديل بنجاح');
