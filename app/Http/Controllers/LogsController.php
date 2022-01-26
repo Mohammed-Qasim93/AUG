@@ -47,12 +47,12 @@ class LogsController extends Controller
      */
     public function store(Request $request)
     {
-        if((count($request['items']) <= 0) || !$request['name']){
+        if((count($request->items) <= 0) || !$request->name || !$request->authname){
             return Redirect::route('takeout.index')->with('success', ['icon' => 'error' ,'title' => 'خطا', 'message' => 'لم يتم ملئ كل المدخلات']);
         }else{
             $items = [];
             $outID = logs::all()->count();
-            for ($i = 0 ; $i < count($request['items']);$i++){
+            for ($i = 0 ; $i < count($request->items);$i++){
                 logs::create([
                     'name' => $request->name,
                     'authname' => $request->authname,
@@ -60,12 +60,12 @@ class LogsController extends Controller
                     'outID' => $outID,
                     'outType' => $request->outtype ? $request->outtype : 0,
                     'outDate' => now(),
-                    'qty' => $request['items'][$i]['qty'],
-                    'state' => $request['items'][$i]['state'],
-                    'items_id' => $request['items'][$i]['itemId'],
+                    'qty' => $request->items[$i]['qty'],
+                    'state' => $request->items[$i]['state'],
+                    'items_id' => $request->items[$i]['itemId'],
                     'users_id' => Auth::user()->id,
                 ]);
-                $items[$i] = Items::find($request['items'][$i]['itemId']);
+                $items[$i] = Items::find($request->items[$i]['itemId']);
             }
             return Redirect::route('takeout.index')->with('success', ['icon' => 'success' ,'title' => 'نجاح العملية', 'message' => 'تم اخراج المواد بنجاح']);
         }

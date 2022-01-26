@@ -59,14 +59,16 @@ export default function Checkout({ auth, errors, items, success }) {
         console.log(data);
         e.preventDefault();
         const id = JSON.parse(localStorage.getItem("checked"));
-
         Inertia.post(`/logs`, data, {
-            onFinish: () => {
-                Inertia.visit(
-                    `/print?p=outpdf&n=${data.drivername}&num=${data.vehiclenumber}&car=${data.vehicletype}&outtype=${data.outtype}&id=${id.length}`
-                );
-                localStorage.removeItem("checked");
-            },
+
+            onSuccess: () => {
+                if (data.items.length > 0 && data.name !== "" && data.authname !== "") {
+                    Inertia.visit(
+                        `/print?p=outpdf&n=${data.drivername}&num=${data.vehiclenumber}&car=${data.vehicletype}&outtype=${data.outtype}&id=${id.length}`
+                    );
+                    localStorage.removeItem("checked");
+                }
+            }
         });
 
         // } else {
@@ -202,11 +204,10 @@ export default function Checkout({ auth, errors, items, success }) {
                                                         </small>
                                                     </div>
                                                     <div
-                                                        className={`${
-                                                            data.outtype
-                                                                ? " col-span-6 grid gap-6"
-                                                                : " hidden"
-                                                        }`}
+                                                        className={`${data.outtype
+                                                            ? " col-span-6 grid gap-6"
+                                                            : " hidden"
+                                                            }`}
                                                     >
                                                         <div className="col-span-6">
                                                             <label
